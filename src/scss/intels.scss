@@ -1,0 +1,328 @@
+.intel {
+  height: 100%;
+  &.location-intel qd-map agm-map {
+    height: 100% !important;
+  }
+
+  .data-table-wrapper .tensor-table {
+    margin-bottom: 0;
+  }
+  .data-table-wrapper .tensor-table-header-row.push-header-up {
+    width: calc(100vw - 65px - 548px);
+  }
+
+  &.chats-intel {
+    .chats-intel-header {
+      background-color: #364556;
+      display: flex;
+      align-items: baseline;
+      padding: 1rem 2rem 0 2rem;
+      box-shadow: none;
+      border-bottom: 1px solid #232d38;
+
+      .group-name, .group-participants{
+        margin: 0 0 0 0.5rem;
+      }
+
+      .chats-tabs {
+        button {
+          color: #52657a;
+          font-size: 12px !important;
+          text-transform: uppercase;
+          cursor: pointer;
+          outline: none;
+        }
+        .selected-tab {
+          color: #c4e1ff !important;
+        }
+      }
+    }
+    .chats-container{
+      padding: 2rem;
+      height: calc(100% - 70px);
+
+      .chatsInfo{
+        display: block;
+        padding: 0;
+
+        .info-cube{
+          width: auto;
+          height: auto;
+          margin-right: 0;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+
+          .device-data-header{
+            width: 120px;
+            color: rgba(196, 225, 255, 0.4);
+          }
+          .device-data-subheader{
+            font-size: 12px;
+          }
+        }
+      }
+      .message-row{
+        border-bottom: 1px solid #232d38;
+
+        .group{
+          font-size: 12px;
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+        .last-commenter, .body{
+          font-size: 12px;
+        }
+        .date{
+          font-size: 12px;
+          top: 20px;
+          margin-bottom: 0;
+        }
+        .unread-count{
+          background-color: #c4e1ff;
+        }
+      }
+    }
+  }
+
+  &.browser-intel {
+    .tensor-table {
+      //height: calc(100% - 130px);
+    }
+    .browser-intel-header {
+      background-color: #364556;
+      display: block;
+      padding: 1rem 0 0 2rem;
+      box-shadow: none;
+
+      .browsers, .browser-filters {
+        button {
+          color: #52657a;
+          text-transform: uppercase;
+          cursor: pointer;
+          font-size: 10px;
+          outline: none;
+        }
+        .selected {
+          color: #c4e1ff !important;
+        }
+      }
+      .browsers{
+        button{
+          font-size: 13px;
+        }
+      }
+    }
+
+    .data-table-wrapper{
+      .tensor-table-header-row{
+        background-color: #364556;
+        border-bottom: 1px solid #1a222a;
+        color: rgba(196, 225, 255, 0.4);
+        box-shadow: none;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: calc(100vw - 65px - 548px);
+
+        .tensor-table-header-cell{
+          color: rgba(196, 225, 255, 0.4) !important;
+          padding-left: 1rem;
+          font-size: 10px;
+          color: #bfdbf8;
+          padding-right: 1rem;
+          padding-left: 1rem;
+        }
+      }
+
+      .tensor-table-cell:first-child{
+        padding-left: 0;
+      }
+      .tensor-table-cell:last-child{
+        padding-right: 0;
+      }
+
+      .tensor-table-cell{
+        width: 5vw;
+        font-size: 12px;
+        padding: 0.5rem 1rem;
+      }
+      .tensor-table-row{
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0 2rem;
+        border-bottom: 1px solid #1a222a;
+        height: auto;
+      }
+    }
+
+  }
+
+  &.contacts-intel {
+    .contacts-search {
+      background-color: #364556;
+      display: flex;
+      height: 70px;
+      align-items: center;
+      padding: 1.5rem 2rem 0.5rem 2rem;
+      box-shadow: none;
+      border-bottom: 1px solid #232d38;
+      .search-input {
+        text-transform: uppercase;
+        font-size: 13px;
+        color: #c4e1ff;
+      }
+      .magnifier-icon{
+        @include bg-image('search.png', 100%, 100%);
+        width: 12px;
+        height: 20px;
+        margin: 0 5px 2px 0;
+      }
+      .search-input::placeholder {
+        font-size: 13px;
+        color: #c4e1ff;
+      }
+    }
+    .contacts-intel-list {
+      height: calc(100% - 70px);
+    }
+    .contacts-intel-list{
+      padding: 2rem;
+      .contacts-intel-group{
+        .group-header > span{
+          font: {
+            size: 13px;
+            weight: bold;
+          }
+        }
+        .contacts-wrapper{
+          display: block;
+
+          .contacts-intel-contact{
+            background-color: transparent;
+            margin: 0;
+            margin-bottom: 1rem;
+            height: auto;
+
+            .contact-info{
+              flex-direction: inherit;
+              border-bottom: 1px solid #1a222a;
+              padding-bottom: 1rem;
+              padding-top: 5px;
+              width: 100%;
+              justify-content: flex-start;
+              font-size: 14px;
+
+              .contact-name{
+                width: 180px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                color:#c4e1ff;
+              }
+
+              .contact-number{
+                width: 180px;
+                color: rgba(196, 225, 255, 0.4);
+              }
+            }
+            .contact-image{
+              width: 28px;
+              height: 28px;
+              border-radius: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.table-intel {
+    .data-table-wrapper {
+
+      .tensor-table-row{
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0 2rem;
+        border-bottom: 1px solid #1a222a;
+        height: auto;
+      }
+
+      .tensor-table-filter {
+        background-color: transparent;
+        display: flex;
+        height: 60px;
+        align-items: center;
+        padding: 1rem 2rem 0 2rem;
+        box-shadow: none;
+        background-color: #364556;
+        .tensor-table-filter-input {
+          font-size: 13px;
+          color: #c4e1ff
+        }
+        .magnifier-icon{
+          @include bg-image('search.png', 100%, 100%);
+          width: 12px;
+          height: 20px;
+          margin: 0 5px 2px 0;
+        }
+        .tensor-table-filter-input::placeholder {
+          text-transform: uppercase;
+          font-size: 13px;
+          color: #c4e1ff;
+        }
+      }
+      .tensor-table-header-row {
+        background-color: #364556;
+        border-bottom: 1px solid #1a222a;
+        box-shadow: none;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: calc(100vw - 65px - 548px);
+
+        .tensor-table-header-cell{
+          color: rgba(196, 225, 255, 0.4);
+          padding-left: 1rem;
+        }
+      }
+
+      .tensor-table-header-cell {
+        font-size: 10px;
+        color: #bfdbf8;
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+
+      .tensor-table-cell{
+        width: 5vw;
+        font-size: 12px;
+        padding: 0.5rem 1rem;
+      }
+      .tensor-table-cell:first-child{
+        padding-left: 0;
+      }
+      .tensor-table-cell:last-child{
+        padding-right: 0;
+      }
+      .calls-missed-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        @include bg-image('call-icon1.png', contain);
+      }
+
+      .calls-outgoing-icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        @include bg-image('call-icon2.png', contain);
+      }
+
+      .calls-incoming-icon {
+        width: 20px;
+        height: 16px;
+        display: inline-block;
+        @include bg-image('call-icon3.png', contain);
+      }
+    }
+  }
+}

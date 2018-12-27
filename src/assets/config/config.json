@@ -1,0 +1,6 @@
+{
+  "environment": "DEV",
+  "api": {
+    "baseUrl": "assets/jsons"
+  }
+}

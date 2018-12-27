@@ -1,0 +1,55 @@
+[
+  {
+    "id": "12423fdr2342d32",
+    "vector": "x-caliber",
+    "name": "Silver Bullet",
+    "enabled": true,
+    "reason": {
+      "text": "Resource not available",
+      "severity": "warn"
+    },
+    "tooltip": "Use it wisely",
+    "vectorState": "NO_LICENSE",
+    "maxActions": 0,
+    "inputs": {},
+    "licenses": [
+      {
+        "used": 0,
+        "total": 250
+      }
+    ],
+    "checked": false
+  },
+  {
+    "id": "24213rfedg45634r22r43534t",
+    "vector": "link",
+    "name": "Link",
+    "enabled": true,
+    "vectorState": "OK",
+    "maxActions": 1,
+    "reason": {
+      "severity": "warn"
+    },
+    "tooltip": "Use it wisely",
+    "inputs": {},
+    "licenses": [
+      { "used": 1, "total": 10 }
+    ],
+    "checked": false
+  },
+  {
+    "id": "eq12e3e3r42r32e3r34r",
+    "vector": "whatsapp",
+    "vectorState": "INIT",
+    "maxActions": 2,
+    "name": "WhatsApp",
+    "enabled": true,
+    "reason": {
+      "severity": "warn"
+    },
+    "tooltip": "",
+    "inputs": {},
+    "licenses": [],
+    "checked": false
+  }
+]

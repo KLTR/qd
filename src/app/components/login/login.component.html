@@ -1,0 +1,55 @@
+<!-- <app-page-loader></app-page-loader> -->
+<video autoplay muted loop id="login-video">
+  <source src="../../../assets/login_video/login_screen.webm" type="video/mp4">
+</video>
+<div class="login-wrapper">
+  <div class="company">Quantum <span class="plus">+</span></div>
+  <form name="loginForm" class="login-form" (ngSubmit)="f.form.valid && login(f)" #f="ngForm" novalidate>
+    <div class="form-group user group"
+         [ngClass]="{ 'has-error': user.errors && ((user.dirty || user.touched) || f.submitted) }">
+      <input type="text"
+             autofocus
+             class="form-control login-input-box"
+             name="user"
+             [(ngModel)]="model.user"
+             #user="ngModel"
+             id="user"
+             autocomplete="off"
+             required/>
+      <span class="highlight"></span>
+      <label>Username</label>
+      <div *ngIf="user.errors && ((user.dirty || user.touched) || f.submitted)"
+           class="help-block">
+        <span [hidden]="!user.errors.required" class="error-msg">Please enter username</span>
+        <span [hidden]="!user.errors.pattern" class="error-msg">Please enter a valid username</span>
+      </div>
+    </div>
+    <div class="form-group password group"
+         [ngClass]="{ 'has-error': password.errors && ((password.dirty || password.touched) || f.submitted) }">
+      <input [type]="passwordType"
+             class="form-control login-input-box"
+             name="password"
+             [(ngModel)]="model.password"
+             #password="ngModel"
+             id="password"
+             required/>
+      <div class="icon-container" [ngClass]="{'show-pass': toShow}" (click)="showPassword()">
+        <app-svg-icon name="eye-password" [size]="16"></app-svg-icon>
+        </div> 
+      <span class="highlight"></span>
+      <label>Password</label>
+      <div *ngIf="password.errors && ((password.dirty || password.touched) || f.submitted)"
+           class="help-block">
+        <span [hidden]="!password.errors.required" class="error-msg">Please enter password</span>
+      </div>
+    </div>
+    <div class="form-group login-wrapper">
+      <button type="submit" [disabled]="!f.form.valid" class="btn btn-primary login-button">Login</button>
+    </div>
+  </form>
+  <div class="login-error-message" [ngClass]="{'active': ( error$ | async )}">Incorrect password or username</div>
+  <!--<div class="create-forgot-wrapper">-->
+    <!--<span class="create">Create Account</span>-->
+    <!--<span class="forgot">Forgot Password</span>-->
+  <!--</div>-->
+</div>

@@ -1,0 +1,26 @@
+{
+  "general": {
+    "silverBullet": "enable",
+    "licenseLimit": {
+      "value": "enable",
+      "number": 32
+    },
+    "logo": {
+      "selected": "Option 3",
+      "options": ["Option 1", "Option 2", "Option 3", "Option 4"]
+    }
+  },
+  "agent": {
+    "connectivity": "excellent"
+  },
+  "it": {
+    "apn": "disable",
+    "ip": [
+      "79.123.237.127",
+      "192.168.2.1",
+      "76.152.12.4",
+      "1.1.1.1"
+    ],
+    "selected": "1.1.1.1"
+  }
+}

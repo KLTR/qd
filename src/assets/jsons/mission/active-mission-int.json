@@ -1,0 +1,669 @@
+{
+  "targets": [],
+  "interceptorAcquired": [
+    {
+      "vector": "x-caliber",
+      "device": {
+        "id": "5ab7625953cb18000198fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: 00004",
+        "number": "+9720549840402",
+        "maxActions": 0,
+        "vectorState": "OK",
+        "email": "ron@herolo.co.il",
+        "lastRefreshAt": "2018-04-16T13:48:50.079Z",
+        "status": "active",
+        "devices": [
+          {
+            "id": "5ab7625953cb1800019858fc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "deviceType": "iPad Pro",
+            "name": "Device1",
+            "version": "11.0.3",
+            "status": "terminated",
+            "updatedAt": "2018-04-16T13:48:50.079Z"
+          },
+          {
+            "id": "5ab7625953cb18000d9858fc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "deviceType": "iPad Pro",
+            "name": "Device2",
+            "status": "unknown",
+            "updatedAt": "2018-05-07T14:03:28.833Z"
+          },
+          {
+            "id": "5ab7625953cb18000d985ffc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "deviceType": "iPad Pro",
+            "name": "Device3",
+            "status": "offline",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          },
+          {
+            "id": "5ab7625953cb18000d985dfc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "deviceType": "iMac",
+            "name": "Device4",
+            "status": "active",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          },
+          {
+            "id": "5ab7625953vb18000d985dfc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "attackedAt": "2018-04-16T13:40:50.079Z",
+            "deviceType": "iPad Pro",
+            "name": "Device5",
+            "status": "attacking",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          },
+          {
+            "id": "5ab7625953vb18046d985dfc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [
+              {
+                "key": "failed",
+                "value": "Device disconnected during attack"
+              }
+            ],
+            "deviceType": "iMac",
+            "name": "Device6",
+            "status": "failed",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          },
+          {
+            "id": "5ab7625953vb18020d985dfc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [
+              {
+                "key": "aborted",
+                "value": "Attack canceled"
+              }
+            ],
+            "deviceType": "iMac",
+            "name": "Device7",
+            "status": "aborted",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          },
+          {
+            "id": "5ab7625953vb18025d985dfc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "deviceType": "iMac",
+            "name": "Device8",
+            "status": "success",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          },
+          {
+            "id": "5ab7625953vb18025d985fsc",
+            "uid": "b8:53:ac:af:cd:dc",
+            "ip": "192.168.5.78",
+            "type": "wifi",
+            "data": [],
+            "deviceType": "iMac",
+            "name": "Device9",
+            "status": "unsupported",
+            "updatedAt": "2018-04-16T13:40:50.079Z"
+          }
+        ],
+        "pending": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-27T14:02:17.432Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 128,
+            "order": 6
+          }
+        ]
+      }
+    }
+  ,
+    {
+      "vector": "x-caliber",
+      "device": {
+      "id": "5ab7595b1800019858fc",
+      "uid": "b8:53:ac:af:cd:dc",
+      "ip": "192.168.5.78",
+      "type": "wifi",
+      "name": "Device: 00007",
+      "status": "active",
+      "pending": false,
+      "data": [
+        {
+          "key": "uid",
+          "value": "b8:53:ac:af:cd:dc",
+          "order": 0
+        },
+        {
+          "key": "type",
+          "value": "wifi",
+          "order": 1
+        },
+        {
+          "key": "last seen",
+          "value": "2018-03-27T14:02:17.432Z",
+          "order": 2,
+          "date": true
+        },
+        {
+          "key": "mac",
+          "value": "b8:53:ac:af:cd:dc",
+          "order": 3
+        },
+        {
+          "key": "ip",
+          "value": "192.168.5.78",
+          "order": 4
+        },
+        {
+          "key": "number",
+          "value": "Unknown",
+          "order": 5
+        },
+        {
+          "key": "latency (ms)",
+          "value": 128,
+          "order": 6
+        }
+      ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device": {
+        "id": "5ab762595b80001985fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: 00007",
+        "status": "active",
+        "pending": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-27T14:02:17.432Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 128,
+            "order": 6
+          }
+        ]
+      }
+    },
+    {
+      "vector": "link",
+      "device": {
+        "id": "5ab762jk595b1800019858fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: 00007",
+        "status": "active",
+        "pending": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-27T14:02:17.432Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 128,
+            "order": 6
+          }
+        ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device": {
+        "id": "5ab76259588b1800019858fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: 00007",
+        "status": "active",
+        "pending": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-27T14:02:17.432Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 128,
+            "order": 6
+          }
+        ]
+      }
+    },
+    {
+      "vector": "link",
+      "device": {
+        "id": "5ab762595b001800019858fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: 00007",
+        "status": "active",
+        "pending": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-27T14:02:17.432Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 128,
+            "order": 6
+          }
+        ]
+      }
+    }
+  ],
+  "pending": [
+    {
+      "vector": "banner",
+      "device": {
+        "id": "5ab7625953cb1800019858fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: 00004",
+        "status": "active",
+        "pending": true,
+        "failure": true,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-26T12:02:13.614Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 89,
+            "order": 6
+          },
+          {
+            "key": "reason",
+            "timestamp": "2018-03-18T08:46:11.214Z",
+            "value": "Agent already exist in the source",
+            "order": 7
+          }
+        ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device": {
+        "id": "5ab762566953cb1800019858fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: Http",
+        "status": "browseHttp",
+        "pending": true,
+        "failure": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-26T12:02:13.614Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 89,
+            "order": 6
+          }
+        ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device": {
+        "id": "5ab762566953cb1800019858fc",
+        "uid": "b8:53:ac:af:cd:dc",
+        "ip": "192.168.5.78",
+        "type": "wifi",
+        "name": "Device: HttpS",
+        "status": "browseHttps",
+        "pending": true,
+        "failure": false,
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 0
+          },
+          {
+            "key": "type",
+            "value": "wifi",
+            "order": 1
+          },
+          {
+            "key": "last seen",
+            "value": "2018-03-26T12:02:13.614Z",
+            "order": 2,
+            "date": true
+          },
+          {
+            "key": "mac",
+            "value": "b8:53:ac:af:cd:dc",
+            "order": 3
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78",
+            "order": 4
+          },
+          {
+            "key": "number",
+            "value": "Unknown",
+            "order": 5
+          },
+          {
+            "key": "latency (ms)",
+            "value": 89,
+            "order": 6
+          }
+        ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device": {
+        "id": "5accc17045e80721c9413f4e",
+        "name": "Device: failed",
+        "status": "active",
+        "pending": true,
+        "failure": true,
+        "timestamp": "2018-04-10T14:13:16.809Z",
+        "data": [
+          {
+            "key": "uid",
+            "value": "c0:d0:12:6b:eb:01",
+            "order": 0
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.76",
+            "order": 1
+          },
+          {
+            "key": "reason",
+            "value": "Infection failed",
+            "order": 2
+          }
+        ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device": {
+        "id": "5accc170450721c9413f4e",
+        "name": "Device: Sleep",
+        "status": "sleep",
+        "pending": true,
+        "timestamp": "2018-04-10T14:13:16.809Z",
+        "data": [
+          {
+            "key": "uid",
+            "value": "c0:d0:12:6b:eb:01",
+            "order": 0
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.76",
+            "order": 1
+          },
+          {
+            "key": "reason",
+            "value": "Infection failed",
+            "order": 2
+          }
+        ]
+      }
+    },
+    {
+      "vector": "interceptor",
+      "device":
+      {
+        "id": "5adf19884e86cf0001638d59",
+        "name": "Device: 00004",
+        "status": "browseHttps",
+        "pending": true,
+        "failure": true,
+        "timestamp": "2018-04-24T11:58:02.563Z",
+        "data": [
+          {
+            "key": "uid",
+            "value": "b8:53:ac:af:cd:dc"
+          },
+          {
+            "key": "ip",
+            "value": "192.168.5.78"
+          },
+          {
+            "key": "Failure time",
+            "value": "Tue Apr 24 2018 11:58:02 GMT+0000 (UTC)"
+          },
+          {
+            "key": "reason",
+            "value": "Infection failed (recoverable)"
+          }]
+      }
+    }
+  ]
+}

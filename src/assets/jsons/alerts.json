@@ -1,0 +1,250 @@
+[
+  {
+  "id": "5acb84bd36640d828deeb97f",
+  "datetime": "2018-04-09T15:20:29.905Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acba2c07d9422edb5ff05b5",
+  "datetime": "2018-04-09T17:28:33.018Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acba81e7d94224213ff05b6",
+  "datetime": "2018-04-09T17:51:26.219Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for iPhone",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acbac647d9422b808ff05b7",
+  "datetime": "2018-04-09T18:09:40.767Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acbad197d94225ff2ff05b8",
+  "datetime": "2018-04-09T18:12:41.741Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acc6ca713bbf0a0caac0ac4",
+  "datetime": "2018-04-10T07:49:59.301Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission ff archived successfully",
+  "status": "active",
+  "severity": "major"
+}, {
+  "id": "5acc6ebe13bbf0391cac0ac5",
+  "datetime": "2018-04-10T07:58:54.119Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission Test archived successfully",
+  "status": "active",
+  "severity": "major"
+}, {
+  "id": "5acc703f13bbf00be3ac0ac6",
+  "datetime": "2018-04-10T08:05:19.313Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for iPhone",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acc798b13bbf0ef59ac0ac7",
+  "datetime": "2018-04-10T08:44:59.203Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acc7e9a13bbf03803ac0ac8",
+  "datetime": "2018-04-10T09:06:34.527Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acca17722cf600001866869",
+  "datetime": "2018-04-10T11:35:19.967Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission Test2 archived successfully",
+  "status": "active",
+  "severity": "major"
+}, {
+  "id": "5acca1eb22cf60000186686a",
+  "datetime": "2018-04-10T11:37:15.856Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acca2f622cf60000186686b",
+  "datetime": "2018-04-10T11:41:42.561Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acca42e22cf60000186686c",
+  "datetime": "2018-04-10T11:46:54.269Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission Test3 archived successfully",
+  "status": "active",
+  "severity": "major"
+}, {
+  "id": "5acca5f222cf60000186686d",
+  "datetime": "2018-04-10T11:54:26.888Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acca67122cf60000186686e",
+  "datetime": "2018-04-10T12:02:30.949Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission Test4 archived successfully",
+  "status": "inactive",
+  "severity": "major"
+}, {
+  "id": "5acca7d622cf60000186686f",
+  "datetime": "2018-04-10T12:02:30.949Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "inactive",
+  "severity": "info"
+}, {
+  "id": "5acca8e022cf600001866870",
+  "datetime": "2018-04-10T12:06:56.295Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for iPhone",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5accc54c22cf600001866871",
+  "datetime": "2018-04-10T14:08:12.069Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5accc60522cf600001866872",
+  "datetime": "2018-04-10T14:11:17.683Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "inactive",
+  "severity": "info"
+}, {
+  "id": "5acdb5b54ae1450001a1b801",
+  "datetime": "2018-04-11T07:13:57.301Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission Test5 archived successfully",
+  "status": "inactive",
+  "severity": "major"
+}, {
+  "id": "5acdb7694ae1450001a1b802",
+  "datetime": "2018-04-11T07:21:13.818Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "inactive",
+  "severity": "info"
+}, {
+  "id": "5acdc10b4ae1450001a1b803",
+  "datetime": "2018-04-11T08:02:19.184Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "inactive",
+  "severity": "info"
+}, {
+  "id": "5acdd2454ae1450001a1b804",
+  "datetime": "2018-04-11T09:15:49.614Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for IPhone 5 s 11.2",
+  "status": "inactive",
+  "severity": "info"
+}, {
+  "id": "5acde7d04ae1450001a1b805",
+  "datetime": "2018-04-11T10:47:44.610Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acdf3ce4ae1450001a1b806",
+  "datetime": "2018-04-11T11:38:54.824Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Iphone X 112",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acdf3d24ae1450001a1b807",
+  "datetime": "2018-04-11T11:38:58.663Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acdf4aa4ae1450001a1b808",
+  "datetime": "2018-04-11T11:42:34.257Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for iPhone",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acdf76c4ae1450001a1b809",
+  "datetime": "2018-04-11T11:54:20.816Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for IPhone 5 s 11.2",
+  "status": "active",
+  "severity": "info"
+}, {
+  "id": "5acdf7c14ae1450001a1b80a",
+  "datetime": "2018-04-11T11:55:45.598Z",
+  "module": "mission",
+  "name": "archive-mission",
+  "description": "Mission Test6 archived successfully",
+  "status": "active",
+  "severity": "major"
+}, {
+  "id": "5acdfa6649f44f0001062acf",
+  "datetime": "2018-04-11T12:07:02.723Z",
+  "module": "intl",
+  "name": "deviceinfo",
+  "description": "Device info completed successfully for Gabriel’s 8S plus",
+  "status": "active",
+  "severity": "info"
+}]

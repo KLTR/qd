@@ -1,0 +1,19 @@
+<div class="navigation-wrapper">
+    <div class="navbar-wrapper">
+      <a class="navbar-logo" href="#">QUANTUM</a>
+      <div class="navbar-system-bar">
+        <app-system-bar [system]="system" [user]="user"></app-system-bar>
+      </div>
+      <!-- <div class="navbar-alerts" (click)="showAlerts()" *ngIf="!isChanged" [ngClass]="{'more-alerts': moreAlerts}">
+        <div class="circle-wrapper {{highestLevel}}" *ngIf="highestLevel">
+          <span class="alerts-amount">{{activeAlerts.length < 100 ? activeAlerts.length : '99'}}</span>
+        </div>
+      </div> -->
+      <div class="navbar-menu" (click)="toggleMenu()" [ngClass]="{'navbar-menu-active': menuState$ | async}">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  

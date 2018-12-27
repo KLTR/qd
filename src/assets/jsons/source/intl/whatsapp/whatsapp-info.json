@@ -1,0 +1,57 @@
+[
+  {
+    "key": "device name",
+    "value": "Guy's Phone",
+    "order": 1
+  },
+  {
+    "key": "device version",
+    "value": "10.0.2",
+    "order": 2
+  },
+  {
+    "key": "imsi",
+    "value": "460001357924680",
+    "order": 3
+  },
+  {
+    "key": "imei",
+    "value": "132456789132456",
+    "order": 4
+  },
+  {
+    "key": "phone number",
+    "value": "+972544333333",
+    "order": 5
+  },
+  {
+    "key": "device color",
+    "value": "Silver pink",
+    "order": 6
+  },
+  {
+    "key": "ethernet mac",
+    "value": "76:00:05:80:1D:D1",
+    "order": 7
+  },
+  {
+    "key": "iccid",
+    "value": "132456789132456",
+    "order": 8
+  },
+  {
+    "key": "device type",
+    "value": "Android 6s",
+    "order": 9
+  },
+  {
+    "key": "battery",
+    "value": "50%",
+    "order": 10
+  },
+  {
+    "key": "serial number",
+    "value": "132456789132456",
+    "order": 11
+  }
+]

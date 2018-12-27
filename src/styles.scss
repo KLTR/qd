@@ -1,1 +1,327 @@
-/* You can add global styles to this file, and also import other style files */
+@import "scss/colors";
+@import "scss/backgroundimages";
+@import "scss/base";
+@import "scss/main";
+@import "scss/cases";
+@import "scss/mission";
+@import "scss/intels";
+// @import '~perfect-scrollbar/css/perfect-scrollbar.css';
+/* app css stylesheet */
+
+/* latin-ext */
+
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('assets/fonts/titilliumweb-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-display: auto;
+  font-weight: 400;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('assets/fonts/titilliumweb-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+p,
+button,
+div {
+  user-select: none !important;
+}
+
+*:focus {
+  outline: none;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar-track {
+  background: #202933;
+  box-shadow: 1px 0px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #202933;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b4a58;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  color: #b7d2ee;
+  font-size: 15px;
+  background-color: #232d38;
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.remove-scroll {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
+.no-scroll {
+  position: fixed !important;
+  overflow: hidden !important;
+  height: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.modal-content {
+  background-color: transparent !important;
+}
+
+/*:::::::::::::::::::::::::: GENERAL :::::::::::::::::::::::::*/
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.red-text {
+  color: #ff6c91 !important;
+}
+
+.btn-wrap,
+[type="button"] {
+  -webkit-appearance: inherit !important;
+}
+
+/*.modal-dialog {
+  max-width: 100% !important;
+}*/
+
+.modal-backdrop {
+  bottom: 0;
+  position: fixed;
+  opacity: 0.5 !important;
+}
+
+.standart-modal,
+.archive-case-modal {
+  .modal-dialog {
+    max-width: 313px;
+  }
+}
+
+.tooltip {
+  //pointer-events: none;
+  &.show {
+    opacity: 1 !important; // pointer-events: none;
+    z-index: 999;
+  }
+  .arrow {
+    &:before {
+      border-right-color: #52667b;
+      border-left-color: #52667b;
+    }
+  }
+  .tooltip-inner {
+    border-radius: 2px;
+    background-color: #52667b;
+    color: #fff;
+  }
+}
+
+.create-mission-wizard {
+  .modal-dialog {
+    max-width: 65%;
+  }
+}
+
+@media screen and (max-width: 1450px) {
+  .create-mission-wizard {
+    .modal-dialog {
+      max-width: 90%;
+    }
+  }
+}
+
+/////////Removes bottom pading from cube tooltips///////////
+.bs-tooltip-bottom {
+  padding: 0.4em 0 0 0;
+}
+
+///Modals
+.add-attack-modal {
+  .modal-dialog {
+    max-width: 813px;
+  }
+}
+
+.abort-modal {
+  .modal-dialog {
+    width: 366px;
+  }
+}
+
+.active-mission-details,
+.export-modal {
+  .modal-dialog {
+    max-width: 570px;
+  }
+}
+
+.info-modal-backdrop {
+  opacity: .7 !important;
+}
+
+.info-modal-container {
+  .modal-content {
+    width: 74vw;
+    margin: 0 auto;
+    background-color: transparent !important;
+  }
+}
+
+.info-modal-container,
+.move-item-modal-container,
+.shutdown-modal-container,
+.about-modal-container {
+  .modal-content {
+    width: 74vw;
+    margin: 0 auto;
+    background-color: transparent !important;
+  }
+  .mobile-modal-background {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .mobile-modal-body {
+      background-color: #364556;
+      box-shadow: 0px 1.7333333333333334vw 7.2vw 0 rgba(16, 21, 26, 0.24);
+      width: 74vw;
+      p {
+        margin: 0
+      }
+    }
+    .mobile-modal-main-text-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      height: 12vw;
+      border: 0;
+      .mobile-modal-main-text {
+        margin: 0;
+      }
+    }
+    .mobile-modal-cancel-btn-container {
+      background-color: transparent;
+      margin: 15px auto;
+      .mobile-modal-cancel-btn {
+        border: 0;
+        color: #c4e1ff;
+        height: 50px;
+        width: 74vw;
+        background: 0;
+        font-size: 3.466666666666667vw;
+        line-height: 0.13333333333333333vw;
+        letter-spacing: 0.13333333333333333vw;
+        &:focus {
+          outline: 0;
+        }
+        &:active {
+          color: #6cfff8;
+        }
+      }
+    }
+  }
+  .mobile-modal-top-main {
+    .mobile-modal-body {
+      max-height: 66.53333333333333vw;
+      overflow: auto;
+      padding-top: 8vw;
+      padding-bottom: 10.8vw;
+      overflow-x: hidden;
+      .list {
+        margin: 0;
+        .mobile-modal-row {
+          display: flex;
+          justify-content: flex-start;
+          margin-right: 6.666666666666667vw;
+          margin-bottom: 1.6vw;
+          .mobile-modal-field {
+            width: 33.33333333333%;
+            font-size: 2.933333333333333vw;
+            letter-spacing: 0.1vw;
+            margin: auto;
+            text-transform: uppercase;
+            color: rgba(197, 225, 255, 0.5);
+          }
+          .mobile-modal-field-value {
+            font-size: 4vw;
+            letter-spacing: 0.1vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0;
+            margin-left: 15.33333333333%;
+          }
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    .mobile-modal-main-text-container {
+      background-color: #425469;
+    }
+  }
+  .mobile-modal-bottom-main {
+    .mobile-modal-body {
+      display: flex;
+      justify-content: center;
+      height: 44.53333333333333vw;
+      .msg-container {
+        display: flex;
+        align-items: center;
+        width: 45vw;
+        p {
+          text-align: left;
+          height: 11.066666666666666vw;
+          line-height: 6.1vw;
+          font-size: 4.533333333333333vw;
+          span {
+            color: #6cfff8;
+          }
+        }
+      }
+    }
+    .mobile-modal-bottom-container {
+      .mobile-modal-bottom {
+        font-size: 3.466666666666667vw;
+        color: #232d38;
+        font-weight: bold;
+        letter-spacing: 0.13333333333333333vw;
+        text-transform: uppercase;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.mobile-modal-backdrop {
+  opacity: .7 !important;
+}
+
+.toast {
+  display: none;
+}

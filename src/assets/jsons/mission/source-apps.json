@@ -1,0 +1,436 @@
+[
+  {
+    "id": "5af9c013d237a933018c10a7",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "info",
+    "idx": 0,
+    "status": "updateData",
+    "hasIntl": true,
+    "mandatory": true,
+    "defaults": {},
+    "tooltip": "Task completed: Tue May 15 2018 07:55:12 GMT+0000 (UTC) == updateData -- {}",
+    "subTasks": [],
+    "updatedAt": "2018-05-15T07:55:12.592Z",
+    "progress": 100,
+    "download": 100,
+    "taskId": "5afa924e446935530ee387ed"
+  },
+  {
+    "id": "5af9c014d237a939508c10ab",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "apps",
+    "idx": 1,
+    "status": "updateData",
+    "hasIntl": true,
+    "mandatory": true,
+    "defaults": {},
+    "tooltip": "Task completed: Tue May 15 2018 07:55:15 GMT+0000 (UTC) == updateData -- {}",
+    "subTasks": [],
+    "updatedAt": "2018-05-15T07:55:15.588Z",
+    "progress": 100,
+    "download": 100,
+    "taskId": "5afa924e4469356d1ee387f1"
+  },
+  {
+    "id": "5af9c014d237a93c448c10ac",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "passwords",
+    "idx": 2,
+    "status": "updateData",
+    "hasIntl": true,
+    "mandatory": true,
+    "defaults": {},
+    "tooltip": "Task completed: Tue May 15 2018 07:55:15 GMT+0000 (UTC) == updateData -- {}",
+    "subTasks": [],
+    "updatedAt": "2018-05-15T07:55:15.905Z",
+    "progress": 100,
+    "download": 100,
+    "taskId": "5afa924e446935f719e387f2"
+  },
+  {
+    "id": "5af9c014d237a981458c10b4",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "browser",
+    "idx": 3,
+    "status": "updateData",
+    "hasIntl": true,
+    "mandatory": false,
+    "defaults": {},
+    "tooltip": "Task completed: Tue May 15 2018 07:55:16 GMT+0000 (UTC) == updateData -- { History: 'completed',\n  Bookmarks: 'completed',\n  Cookies: 'completed' }",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a99ff98c10b5",
+        "name": "History",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a967a38c10b6",
+        "name": "Bookmarks",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a979d58c10b7",
+        "name": "Cookies",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-15T07:55:16.921Z",
+    "progress": 100,
+    "download": 100,
+    "taskId": "5afa924e44693546a1e387f3"
+  },
+  {
+    "id": "5af9c014d237a914ce8c10ad",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "contacts",
+    "idx": 4,
+    "status": "fetchData",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {},
+    "tooltip": "Fetch Intelligence data == fetchData",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a945498c10ae",
+        "name": "Native",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a92ca88c10af",
+        "name": "Images",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.077Z"
+  },
+  {
+    "id": "5af9c014d237a92fed8c10b0",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "callhistory",
+    "idx": 5,
+    "status": "fetchData",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {},
+    "tooltip": "Fetch Intelligence data == fetchData",
+    "subTasks": [],
+    "updatedAt": "2018-05-14T16:57:56.086Z"
+  },
+  {
+    "id": "5af9c014d237a96e208c10b1",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "messages",
+    "idx": 6,
+    "status": "fetchData",
+    "hasIntl": true,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.677Z",
+        "to": "2018-05-15T07:56:19.677Z"
+      }
+    },
+    "tooltip": "Fetch Intelligence data == fetchData",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a9cf0c8c10b2",
+        "name": "Chats",
+        "defaults": {
+          "checked": true,
+          "locked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a9828e8c10b3",
+        "name": "Media",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.098Z"
+  },
+  {
+    "id": "5af9c014d237a9c4188c10b8",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "locations",
+    "idx": 7,
+    "status": "fetchData",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {},
+    "tooltip": "Fetch Intelligence data == fetchData",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a9ee6a8c10b9",
+        "name": "GPS",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a92ae88c10ba",
+        "name": "Frequent locations",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.129Z"
+  },
+  {
+    "id": "5af9c014d237a90b6b8c10ce",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "photos",
+    "idx": 8,
+    "status": "fetchData",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.768Z",
+        "to": "2018-05-15T07:56:19.768Z"
+      }
+    },
+    "tooltip": "Fetch Intelligence data == fetchData",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a9c1ca8c10cf",
+        "name": "Database",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a96c5e8c10d0",
+        "name": "Thumbnails",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a94fc78c10d1",
+        "name": "Images",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a93ac88c10d2",
+        "name": "Videos",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a946368c10d3",
+        "name": "Recordings",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.236Z"
+  },
+  {
+    "id": "5af9c014d237a941588c10c5",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "signal",
+    "idx": 9,
+    "status": "appNotExists",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.742Z",
+        "to": "2018-05-15T07:56:19.742Z"
+      }
+    },
+    "tooltip": "App not installed on target device == appNotExists",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a95c2a8c10c6",
+        "name": "Chats",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a936f28c10c7",
+        "name": "Media",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.177Z"
+  },
+  {
+    "id": "5af9c014d237a949918c10c8",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "line",
+    "idx": 10,
+    "status": "appNotExists",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.752Z",
+        "to": "2018-05-15T07:56:19.752Z"
+      }
+    },
+    "tooltip": "App not installed on target device == appNotExists",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a9fe568c10c9",
+        "name": "Chats",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a9e2178c10ca",
+        "name": "Media",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.193Z"
+  },
+  {
+    "id": "5af9c014d237a912ad8c10cb",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "wechat",
+    "idx": 11,
+    "status": "appNotExists",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.759Z",
+        "to": "2018-05-15T07:56:19.759Z"
+      }
+    },
+    "tooltip": "App not installed on target device == appNotExists",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a97c928c10cc",
+        "name": "Chats",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a9a9ef8c10cd",
+        "name": "Media",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-14T16:57:56.211Z"
+  },
+  {
+    "id": "5af9c014d237a925708c10bb",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "whatsapp",
+    "idx": 12,
+    "status": "appNotExists",
+    "hasIntl": true,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.712Z",
+        "to": "2018-05-15T07:56:19.712Z"
+      }
+    },
+    "tooltip": "App not installed on target device == appNotExists -- { Chats: 'completed',\n  Thumbnails: 'completed',\n  Images: 'completed' }",
+    "subTasks": [
+      {
+        "id": "5af9c014d237a979c08c10bc",
+        "name": "Chats",
+        "defaults": {
+          "checked": true,
+          "locked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a9e3658c10bd",
+        "name": "Thumbnails",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a939db8c10be",
+        "name": "Images",
+        "defaults": {
+          "checked": true
+        }
+      },
+      {
+        "id": "5af9c014d237a9ee698c10bf",
+        "name": "Audio",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a958098c10c0",
+        "name": "Video",
+        "defaults": {}
+      },
+      {
+        "id": "5af9c014d237a931cc8c10c1",
+        "name": "Document",
+        "defaults": {}
+      }
+    ],
+    "updatedAt": "2018-05-15T07:55:26.075Z",
+    "progress": 100,
+    "download": 100,
+    "taskId": "5afa924e4469352799e387f7"
+  },
+  {
+    "id": "5af9c014d237a95ff38c10c2",
+    "sourceId": "5afa924d1dc418c93b92dae3",
+    "name": "telegram",
+    "idx": 13,
+    "status": "appNotExists",
+    "hasIntl": false,
+    "mandatory": false,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-05-01T07:56:19.727Z",
+        "to": "2018-05-15T07:56:19.727Z"
+      }
+    }
+  },
+  {
+    "id": "5ad25e9afa32b12d23bf724b",
+    "name": "photos",
+    "status": "updateData",
+    "hasIntl": true,
+    "defaults": {},
+    "status": "updateData",
+    "idx": 0,
+    "progress": 100,
+    "downloaded": 71,
+    "tooltip": "Completed 2018-04-15T09:50:46.549Z. Click here to update data",
+    "subTasks": []
+  },
+  {
+    "id": "5ad25e9afa32b16ee0bf723f",
+    "name": "emails",
+    "hasIntl": true,
+    "status": "fetchData",
+    "tooltip": "Please click here to fetch data",
+    "subTasks": [
+      {
+        "id": "5ad25e9afa32b18679bf7240",
+        "name": "Chats",
+        "defaults": {
+          "checked": true,
+          "locked": true
+        }
+      },
+      {
+        "id": "5ad25e9afa32b13eddbf7241",
+        "name": "Media",
+        "defaults": {
+          "clicked": true
+        }
+      }
+    ],
+    "sourceId": "5ad320615efca2377e5163ef",
+    "idx": 60000,
+    "defaults": {
+      "timeRange": {
+        "from": "2018-04-01T12:00:11.390Z",
+        "to": "2018-04-15T12:00:11.390Z",
+        "clicked": true
+      }
+    }
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "deviceName": "TOSHIBA",
+  "deviceId": 1,
+  "progress": 80,
+  "exports": [
+    {
+      "id": "1111",
+      "name": "Lake Dustinfurt",
+      "isChecked": false,
+      "missions": [
+        {
+          "id": "1111a",
+          "name": "Dollar",
+          "sourcesCount": 4,
+          "isChecked": false
+        },
+        {
+          "id": "1111b",
+          "name": "Euro",
+          "sourcesCount": 7,
+          "isChecked": false
+        }
+      ]
+    },
+    {
+      "id": "2222",
+      "name": "1_Haagberg",
+      "isChecked": false,
+      "missions": []
+    },
+    {
+      "id": "3333",
+      "name": "West Nehastad",
+      "isChecked": false,
+      "missions": [
+        {
+          "id": "3333a",
+          "name": "Dollar",
+          "sourcesCount": 5,
+          "isChecked": false
+        }
+      ]
+    },
+    {
+      "id": "4444",
+      "name": "East Franceschester",
+      "isChecked": false,
+      "missions": []
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "safari": {
+    "bookmarks": [
+      {
+        "text": "https://www.bing.com/",
+        "id": "598ac24e4374d800012b5c32"
+      },
+      {
+        "text": "https://www.google.com/?client=safari&channel=iphone_bm",
+        "id": "598ac24e4374d800012b5c33"
+      },
+      {
+        "text": "https://www.apple.com/",
+        "id": "598ac24e4374d800012b5c34"
+      },
+      {
+        "text": "http://m.hotmobile.co.il/",
+        "id": "598ac24e4374d800012b5c35"
+      },
+      {
+        "text": "http://m.ynet.co.il/8",
+        "id": "598ac24e4374d800012b5c36"
+      },
+      {
+        "text": "http://m.sport5.co.il/",
+        "id": "598ac24e4374d800012b5c37"
+      },
+      {
+        "text": "https://m.winner.co.il/home",
+        "id": "598ac24e4374d800012b5c3a"
+      }
+    ],
+    "history": [
+      {
+        "text": "https://m.winner.co.il/home",
+        "date": "2017-08-09T06:04:29.140Z",
+        "id": "598ac24e4374d800012b5c61"
+      },
+      {
+        "text": "https://m.winner.co.il/",
+        "date": "2017-08-09T06:04:27.020Z",
+        "id": "598ac24e4374d800012b5c5f"
+      },
+      {
+        "text": "https://www.google.com/search?q=winner&ie=UTF-8&oe=UTF-8&hl=en-il&client=safari",
+        "date": "2017-08-09T06:04:22.180Z",
+        "id": "598ac24e4374d800012b5c5e"
+      },
+      {
+        "text": "https://www.google.co.il/search?q=winner&ie=UTF-8&oe=UTF-8&hl=en-il&client=safari&gfe_rd=cr&ei=_8GKWdTbONT08AealYGYBg",
+        "date": "2017-08-09T06:04:22.180Z",
+        "id": "598ac24e4374d800012b5c60"
+      },
+      {
+        "text": "http://m.sport5.co.il/",
+        "date": "2017-08-09T06:01:36.655Z",
+        "id": "598ac24e4374d800012b5c4e"
+      },
+      {
+        "text": "http://m.sport5.co.il/",
+        "date": "2017-08-09T05:55:42.961Z",
+        "id": "598ac24e4374d800012b5c4f"
+      },
+      {
+        "text": "http://www.sport5.co.il/",
+        "date": "2017-08-09T05:55:41.617Z",
+        "id": "598ac24e4374d800012b5c56"
+      },
+      {
+        "text": "http://m.ynet.co.il/8",
+        "date": "2017-08-09T05:55:18.893Z",
+        "id": "598ac24e4374d800012b5c40"
+      },
+      {
+        "text": "http://ynet.co.il/",
+        "date": "2017-08-09T05:55:18.891Z",
+        "id": "598ac24e4374d800012b5c47"
+      },
+      {
+        "text": "https://www.apple.com/",
+        "date": "2017-08-09T05:54:21.663Z",
+        "id": "598ac24e4374d800012b5c5d"
+      }
+    ],
+    "cookies": [
+      {
+        "text": ".sport5.co.il",
+        "createDate": "2017-08-20T10:13:20.000Z",
+        "expireDate": "2018-08-20T10:13:20.000Z",
+        "cookies": "__za_cd_19760733",
+        "value": "%7B%22visits%22%3A%22%5B1503218403%2C1503211363%2C1502976748%2C1502976312%2C1502973218%2C1502972803%2C1502971834%2C1502969803%2C1502969632%2C1502880921%2C1502808306%5D%22%2C%22campaigns_status%22%3A%7B%229595%22%3A1502780360%2C%2213196%22%3A1503217159%2C%2215846%22%3A1503218406%2C%2215907%22%3A1503223999%7D%7D",
+        "id": "5999695cc46e340001ffe62b"
+      },
+      {
+        "text": "m.sport5.co.il",
+        "createDate": "2017-08-20T10:12:53.000Z",
+        "expireDate": "2018-08-20T10:12:53.000Z",
+        "cookies": "trc_cookie_storage",
+        "value": "taboola%2520global%253Auser-id%3D1951df44-f6c4-4b81-a5e8-60f2ed4eb6e0-tuct82fe9b",
+        "id": "5999695cc46e340001ffe61a"
+      },
+      {
+        "text": ".sport5.co.il",
+        "createDate": "2017-08-20T08:39:58.000Z",
+        "expireDate": "2019-08-20T08:39:58.000Z",
+        "cookies": "__utma",
+        "value": "213585750.431030272.1502181662.1502802706.1503218395.5",
+        "id": "5999695cc46e340001ffe629"
+      }
+    ]
+  },
+  "chrome": {
+    "bookmarks": [
+      {
+        "text": "https://www.bing.com/",
+        "id": "598ac24e4374d800012b5c32"
+      },
+      {
+        "text": "https://www.google.com/?client=safari&channel=iphone_bm",
+        "id": "598ac24e4374d800012b5c33"
+      },
+      {
+        "text": "https://www.apple.com/",
+        "id": "598ac24e4374d800012b5c34"
+      },
+      {
+        "text": "http://m.hotmobile.co.il/",
+        "id": "598ac24e4374d800012b5c35"
+      },
+      {
+        "text": "http://m.ynet.co.il/8",
+        "id": "598ac24e4374d800012b5c36"
+      },
+      {
+        "text": "http://m.sport5.co.il/",
+        "id": "598ac24e4374d800012b5c37"
+      },
+      {
+        "text": "https://m.winner.co.il/home",
+        "id": "598ac24e4374d800012b5c3a"
+      }
+    ],
+    "history": [
+      {
+        "text": "https://m.winner.co.il/home",
+        "date": "2017-08-09T06:04:29.140Z",
+        "id": "598ac24e4374d800012b5c61"
+      },
+      {
+        "text": "https://m.winner.co.il/",
+        "date": "2017-08-09T06:04:27.020Z",
+        "id": "598ac24e4374d800012b5c5f"
+      },
+      {
+        "text": "https://www.google.com/search?q=winner&ie=UTF-8&oe=UTF-8&hl=en-il&client=safari",
+        "date": "2017-08-09T06:04:22.180Z",
+        "id": "598ac24e4374d800012b5c5e"
+      },
+      {
+        "text": "https://www.google.co.il/search?q=winner&ie=UTF-8&oe=UTF-8&hl=en-il&client=safari&gfe_rd=cr&ei=_8GKWdTbONT08AealYGYBg",
+        "date": "2017-08-09T06:04:22.180Z",
+        "id": "598ac24e4374d800012b5c60"
+      },
+      {
+        "text": "http://m.sport5.co.il/",
+        "date": "2017-08-09T06:01:36.655Z",
+        "id": "598ac24e4374d800012b5c4e"
+      },
+      {
+        "text": "http://m.sport5.co.il/",
+        "date": "2017-08-09T05:55:42.961Z",
+        "id": "598ac24e4374d800012b5c4f"
+      },
+      {
+        "text": "http://www.sport5.co.il/",
+        "date": "2017-08-09T05:55:41.617Z",
+        "id": "598ac24e4374d800012b5c56"
+      },
+      {
+        "text": "http://m.ynet.co.il/8",
+        "date": "2017-08-09T05:55:18.893Z",
+        "id": "598ac24e4374d800012b5c40"
+      },
+      {
+        "text": "http://ynet.co.il/",
+        "date": "2017-08-09T05:55:18.891Z",
+        "id": "598ac24e4374d800012b5c47"
+      },
+      {
+        "text": "https://www.apple.com/",
+        "date": "2017-08-09T05:54:21.663Z",
+        "id": "598ac24e4374d800012b5c5d"
+      }
+    ]
+  }
+}

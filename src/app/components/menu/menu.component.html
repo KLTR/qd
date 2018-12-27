@@ -1,0 +1,22 @@
+<ul class="main-menu" *ngIf="isMenuOpen$ | async">
+    <!-- <li *ngIf="user?.admin" (click)="moveToUsers()">
+      <p class="menu-item">Users</p>
+    </li> -->
+    <li *ngIf="user?.admin" (click)="moveToInterceptors()">
+      <p class="menu-item">Interceptors</p>
+    </li>
+    <!-- <li (click)="moveToExport()">
+      <p class="menu-item">Export</p>
+    </li> -->
+    <li *ngIf="false" (click)="moveToOperator()">
+      <p class="menu-item">Operator AP</p>
+    </li>
+  
+    <li *ngIf="true" (click)="moveToVersion()">
+      <p class="menu-item">Version</p>
+    </li>
+    <li (click)="moveToLogout()">
+      <p class="menu-item">Logout</p>
+    </li>
+  </ul>
+  

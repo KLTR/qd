@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1234,
+      "username": "megi",
+    "name": "Homer simposn",
+    "password": "Home",
+    "createdBy": "Home HQ",
+    "createdAt": "2017-04-24T21:13:24.194Z",
+    "updatedAt": "2017-04-24T21:13:24.194Z",
+    "admin": true
+  },
+  {
+    "id": 1235,
+    "username": "Homer",
+    "name": "Home simp",
+    "password": "Home1",
+    "createdBy": "Home HQ1",
+    "createdAt": "2017-04-24T21:13:24.194Z",
+    "updatedAt": "2017-04-24T21:13:24.194Z",
+    "canCreateCase": true
+  }
+]

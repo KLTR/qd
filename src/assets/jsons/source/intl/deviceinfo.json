@@ -1,0 +1,115 @@
+[
+  {
+    "key": "name",
+    "value": "Guy's Phone",
+    "order": 17
+  },
+  {
+    "key": "version",
+    "value": "11.2.2",
+    "order": 1,
+    "category": "operating system"
+  },
+  {
+    "key": "build",
+    "value": "15C202",
+    "order": 2,
+    "category": "operating system"
+  },
+  {
+    "key": "imsi",
+    "value": "460001357924680",
+    "order": 12,
+    "category": "hardware"
+  },
+  {
+    "key": "model",
+    "value": "D221AP",
+    "order": 11,
+    "category": "hardware"
+  },
+  {
+    "key": "imei",
+    "value": "132456789132456",
+    "order": 13,
+    "category": "hardware"
+  },
+  {
+    "key": "number",
+    "value": "+972544333333",
+    "order": 18
+  },
+  {
+    "key": "color",
+    "color": true,
+    "value": "#000",
+    "order": 14,
+    "category": "hardware"
+  },
+  {
+    "key": "wifi mac",
+    "value": "76:00:05:80:1D:D1",
+    "order": 15,
+    "category": "hardware"
+  },
+  {
+    "key": "bt mac",
+    "value": "76:00:05:80:1D:D1",
+    "order": 16,
+    "category": "hardware"
+  },
+  {
+    "key": "battery",
+    "value": "88%",
+    "order": 3,
+    "category": "status"
+  },
+  {
+    "key": "charging",
+    "value": "No",
+    "order": 4,
+    "category": "status"
+  },
+  {
+    "key": "screen locked",
+    "value": "Yes",
+    "order": 5,
+    "category": "status"
+  },
+  {
+    "key": "configured",
+    "value": "Lorem",
+    "order": 6,
+    "category": "status"
+  },
+  {
+    "key": "time zone",
+    "value": "+2 GMT",
+    "order": 7,
+    "category": "status"
+  },
+  {
+    "key": "language",
+    "value": "English",
+    "order": 8,
+    "category": "status"
+  },
+  {
+    "key": "wifi",
+    "value": "Lorem",
+    "order": 9,
+    "category": "connectivity"
+  },
+  {
+    "key": "carrier",
+    "value": "Lorem",
+    "order": 10,
+    "category": "connectivity"
+  },
+  {
+    "key": "serial",
+    "value": "132456789132456",
+    "order": 19,
+    "category": "hardware"
+  }
+]

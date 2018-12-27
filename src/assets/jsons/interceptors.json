@@ -1,0 +1,42 @@
+[
+  {
+    "id": "5afbd29d237376bae317baaf",
+    "name": "Digger",
+    "description": "It hurts when IP",
+    "type": "wifi",
+    "uid": "f4:4d:30:6f:7f:b5",
+    "createdAt": "2018-05-16T06:41:33.942Z",
+    "updatedAt": "2018-05-16T06:41:33.942Z",
+    "attached": false
+  },
+  {
+    "id": "5afbd29d23737627a117bab0",
+    "name": "Winternet",
+    "description": "Winternt",
+    "type": "wifi",
+    "uid": "f4:4d:30:6f:08:42",
+    "createdAt": "2018-05-16T06:41:33.956Z",
+    "updatedAt": "2018-05-16T06:41:33.956Z",
+    "attached": false
+  },
+  {
+    "id": "5afbd29d2373764f4617bab1",
+    "name": "oDroid",
+    "description": "oDroid",
+    "type": "wifi",
+    "uid": "11:22:33:44:55:66",
+    "createdAt": "2018-05-16T06:41:33.965Z",
+    "updatedAt": "2018-05-16T06:41:41.920Z",
+    "attached": true
+  },
+  {
+    "id": "5afbd29d23737670b417bab2",
+    "name": "Remote",
+    "description": "Remote",
+    "type": "remote",
+    "uid": "123",
+    "createdAt": "2018-05-16T06:41:33.976Z",
+    "updatedAt": "2018-05-16T06:41:33.976Z",
+    "attached": false
+  }
+]

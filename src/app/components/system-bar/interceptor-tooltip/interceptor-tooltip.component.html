@@ -1,0 +1,32 @@
+<div class="tooltip-container">
+    <div class="single-row mode">
+      <div class="key">Interceptor name</div>
+      <div class="value">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdown" ngbDropdownToggle>{{interceptor?.name || 'select interceptor'}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdown">
+            <button class="dropdown-item" *ngFor="let interceptor of interceptors" (click)="attachInterceptor(interceptor)">{{interceptor.info.name}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="single-row name">
+      <div class="key">Operational mode</div>
+      <div class="value">
+        <input type="text" class="input name" [value]="interceptor.mode" [disabled]="true">
+      </div>
+    </div>
+    <div class="single-row status">
+      <div class="key">Interceptor status</div>
+      <div class="value">
+        <input type="text" class="input status" [value]="interceptor.indicators.state === 'GREEN' ? 'Connected' : 'Disconnected'" [ngClass]="{'disconnected': !interceptor.operational, 'connected': interceptor.operational}"
+          [disabled]="true">
+      </div>
+    </div>
+    <div class="diagnostic" *ngIf="!interceptor?.indiciators?.state === 'GREEN'">
+      <div class="header">Interceptor Diagnostic</div>
+      <div class="content">{{interceptor.diagnostics}}</div>
+      <button class="close-btn" (click)="closeTooltip()">Close</button>
+    </div>
+  </div>
+  

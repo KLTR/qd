@@ -1,0 +1,34 @@
+{
+  "storage": {
+    "level": 1,
+    "operational": true,
+    "total": "507 GB",
+    "text": "Storage: 412 GB/507 GB",
+    "available": "412 GB"
+  },
+  "rejects": [],
+  "operational": true,
+  "interceptor": {
+    "text": "Interceptor oDroid failed to connect",
+    "operational": false,
+    "id": "5afbd29d2373764f4617bab1",
+    "type": "wifi",
+    "mode": "partner",
+    "name": "oDroid"
+  },
+  "internet": {
+    "text": "Internet Connection - Connected",
+    "operational": true
+  },
+  "battery": {
+    "level": 4,
+    "operational": true,
+    "text": "Battery: No battery indication"
+  },
+  "tooltips": {
+    "battery": "Battery: No battery indication",
+    "storage": "Storage: 412 GB/507 GB",
+    "internet": "Internet Connection - Connected",
+    "interceptor": "Interceptor oDroid attached, operational: true"
+  }
+}

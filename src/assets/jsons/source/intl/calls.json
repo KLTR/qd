@@ -1,0 +1,122 @@
+[
+  {
+    "id":1, "type": 0,
+    "name": "Amir Oren",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2016-09-30T18:25:43.511Z",
+    "provider": "Partner"
+  },
+  {
+    "id":1, "type": 1,
+    "name": "Ami Danilov",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2016-09-25T18:25:43.511Z",
+    "provider": "Partner"
+  },
+  {
+    "id":1, "type": 2,
+    "name": "Beni oren",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2016-09-21T18:25:43.511Z",
+    "provider": "Cellcom"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Beni berger",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z",
+    "provider": "Cellcom"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Amir Oren",
+    "number": "+97254465859",
+    "duration": "Not answered",
+    "datetime": "2012-04-23T18:25:43.511Z",
+    "provider": "Rami Levi"
+  },
+  {
+    "id":1, "type": 1,
+    "name": "Jhonny Danilov",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z",
+    "provider": "Rami Levi"
+  },
+  {
+    "id":1, "type": 2,
+    "name": "Cathrine oren",
+    "number": "fdsfsdfdsfsdfsdfsd fsdf sdf dsf dsfdsfdsfdsfsdfsdfsdfdsf",
+    "duration": "Not answered",
+    "datetime": "2012-04-23T18:25:43.511Z",
+    "provider": "012"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Chris berger",
+    "number": "dsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsf",
+    "duration": "Not answered",
+    "datetime": "2012-04-23T18:25:43.511Z",
+    "provider": "012"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Amir Oren",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 1,
+    "name": "Ami Danilov",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 2,
+    "name": "Beni oren",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Beni berger",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Amir Oren",
+    "number": "+97254465859",
+    "duration": "Not answered",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 1,
+    "name": "Jhonny Danilov",
+    "number": "+97254465859",
+    "duration": "00:00:34",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 2,
+    "name": "Cathrine oren",
+    "number": "+97254465859",
+    "duration": "Not answered",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  },
+  {
+    "id":1, "type": 0,
+    "name": "Chris berger",
+    "number": "+97254465859",
+    "duration": "Not answered",
+    "datetime": "2012-04-23T18:25:43.511Z"
+  }
+]

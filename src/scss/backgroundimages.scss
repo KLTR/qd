@@ -1,0 +1,68 @@
+$image-base: 'assets/img/';
+
+@mixin size($width, $height) {
+	width: $width;
+	height: $height;
+}
+
+@mixin bg-image($image-name, $image-width, $image-height: none, $position : center) {
+  background-image: url($image-base + $image-name);
+  @if ($image-height: none) {
+    background-size: $image-width;
+  } @else {
+    background-size: $image-width $image-height;
+  }
+  background-repeat: no-repeat;
+  background-position: $position;
+}
+
+@mixin bg-image-sprite($image-name, $image-width, $image-height, $position-top,$position-left) {
+	background:url($image-base + $image-name) $position-top $position-left;
+	width:$image-width;
+	height:$image-height;
+	background-repeat: no-repeat;
+}
+
+@mixin bg-image-sprite-important($image-name, $image-width, $image-height, $position-top,$position-left) {
+  background:url($image-base + $image-name) $position-top $position-left !important;
+  width:$image-width !important;
+  height:$image-height !important;
+  background-repeat: no-repeat !important;
+}
+
+@mixin image($image-name, $image-width, $image-height) {
+	background:url($image-base + $image-name);
+	width:$image-width;
+	height:$image-height;
+	background-repeat: no-repeat;
+}
+
+@mixin bg-image-only($image-name) {
+	background-image:url($image-base + $image-name);
+}
+
+@mixin bg-image-fill($image-name, $width, $height) {
+	@include size($width, $height);
+	background-image:url($image-base + $image-name);
+	background-size: 100% 100%;
+}
+
+@mixin bg-image-repeat($image-name, $image-width, $image-height, $repeat : repeat, $position : center) {
+	@include bg-image($image-name, $image-width, $image-height);
+	background-repeat: $repeat;
+	background-position: $position;
+}
+
+@mixin bg-image-contain($image-name, $position : center) {
+	background-image:url($image-base + $image-name);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: $position;
+}
+
+@mixin bg-image-cover($image-name, $position : center) {
+	background-image:url($image-base + $image-name);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: $position;
+}

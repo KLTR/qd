@@ -1,0 +1,35 @@
+[
+    {
+      "mailId": 1,
+      "messageId": 1,
+      "from": "Rami Danilov (rami@gmail.com)",
+      "to": "Ludvic Android (rami@gmail.com)",
+      "cc": "Ludvic Android (rami@gmail.com)",
+      "bcc": "Ludvic Android (rami@gmail.com)",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  Duis aute irure dolor in reprehenderit in voluptate velit esse dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi t aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse llum dolore eu fugiat nulla pariatur. Excepteur sint  cupidatat non proident, sunt in",
+      "datetime": "2016-09-30T18:25:43.511Z",
+      "attachments": [{"url": "http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg", "size": 123456},{"url":"http://www.gloriana.com/sites/g/files/g2000004666/f/Sample-image10-highres.jpg", "size": 45534}]
+    },
+    {
+      "mailId": 1,
+      "messageId": 2,
+      "from": "Rami Danilov (rami@gmail.com)",
+      "to": "Ludvic Android (rami@gmail.com)",
+      "cc": "Ludvic Android (rami@gmail.com)",
+      "bcc": "Ludvic Android (rami@gmail.com)",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  Duis aute irure dolor in reprehenderit in voluptate velit esse dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi t aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse llum dolore eu fugiat nulla pariatur. Excepteur sint  cupidatat non proident, sunt in",
+      "datetime": "2016-09-30T18:25:43.511Z",
+      "attachments": [{"url":"http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg", "size": 34535345}]
+    },
+    {
+      "mailId": 2,
+      "messageId": 3,
+      "from": "Rami Danilov (rami@gmail.com)",
+      "to": "Ludvic Android (rami@gmail.com)",
+      "cc": "Ludvic Android (rami@gmail.com)",
+      "bcc": "Ludvic Android (rami@gmail.com)",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  Duis aute irure dolor in reprehenderit in voluptate velit esse dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi t aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse llum dolore eu fugiat nulla pariatur. Excepteur sint  cupidatat non proident, sunt in",
+      "datetime": "2016-09-30T18:25:43.511Z",
+      "attachments": []
+    }
+]

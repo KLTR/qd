@@ -1,0 +1,36 @@
+<div class="system-bar" *ngIf="system">
+    <ul>
+      <li class="alerts">
+        <span class="alerts-number">{{system.alerts?.count}}</span>
+        <app-svg-icon  name="alert" [size]="15" ></app-svg-icon>
+      </li>
+      <li class="device-info">
+          <ng-template class="tool-tip" #internetTip>{{system.internet?.tip}}</ng-template>
+          <!-- <ng-template class="tool-tip alerts-tip" #alertsTip>{{system.alerts?.tip}}</ng-template> -->
+          <ng-template class="tool-tip" #batteryTip>{{system.goat?.tip}}</ng-template>
+          <ng-template class="tool-tip" #storageTip>{{system.storage?.tip}}</ng-template>
+
+        <app-svg-icon class="battery-placeholder" [ngbTooltip]="batteryTip" [name]="batteryStatus" [size]="25"></app-svg-icon>
+        <app-svg-icon class="internet" name="internet" [ngbTooltip]="internetTip" [size]="15" [ngClass]="internetStatus"></app-svg-icon>
+        <app-svg-icon class="disk-space" name="{{diskStatus}}" [ngbTooltip]="storageTip" [size]="17" ></app-svg-icon>
+        <app-svg-icon 
+        class="device-placeholder" [ngbTooltip]="interceptorTooltip" [name]="interceptorStatus" [ngClass]="interceptorStatus" [size]="25"
+        triggers="manual" #t="ngbTooltip"  (click)="openInterceptorTooltip()"  role="button" tabindex="0">
+        </app-svg-icon>
+                    
+      </li>
+      <li class="sep-line clear-fix">
+        <span class="general-clock">{{date | date:'dd.MM.yyyy'}}</span>{{ clock$ | async | date:'HH:mm:ss' }}
+      </li>
+      <li class="user-info">
+        <p class="username-ellipsis">{{user.user}}</p>
+        <p class="username-admin">({{user.role}})</p>
+      </li>
+    </ul>
+  </div>
+  <div class="tooltip-hide">
+    <ng-template #interceptorTooltip>
+      <app-interceptor-tooltip  [interceptor]="system.interceptor" (closeTip)="openInterceptorTooltip()"></app-interceptor-tooltip>
+    </ng-template>
+  </div>
+  <!-- <ng-template   #interceptorTip>{{system.interceptor?.indicators.state.tip}}</ng-template> -->

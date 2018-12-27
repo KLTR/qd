@@ -1,0 +1,186 @@
+[
+  {
+    "id": "5addaac799acd1264ae80eda",
+    "name": "info",
+    "selected": true,
+    "mandatory": true,
+    "subTasks": [],
+    "idx": 1
+  },
+  {
+    "id": "5addaac799acd16ab5e80ee2",
+    "name": "photos",
+    "selected": true,
+    "mandatory": true,
+    "subTasks": [],
+    "idx": 2
+  },
+  {
+    "id": "5addaac799acd176d5e80ee4",
+    "name": "whatsapp",
+    "selected": true,
+    "mandatory": true,
+    "subTasks": [],
+    "idx": 3
+  },
+  {
+    "id": "5addaac799acd19dace80ee6",
+    "name": "contacts",
+    "selected": true,
+    "subTasks": [],
+    "idx": 4
+  },
+  {
+    "id": "5addaac799acd10b68e80eec",
+    "name": "callhistory",
+    "selected": true,
+    "subTasks": [],
+    "idx": 5
+  },
+  {
+    "id": "5addaac799acd16baee80eee",
+    "name": "callhistory",
+    "selected": true,
+    "timeRange": {
+      "from": "2018-03-24T10:25:03.337Z",
+      "to": "2018-04-23T10:25:03.339Z"
+    },
+    "idx": 6,
+    "subTasks": [
+      {
+        "id": "5addaac799acd11350e80eef",
+        "name": "Chats",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac799acd12482e80ef0",
+        "name": "Media",
+        "selected": true,
+        "checked": false
+      }
+    ]
+  },
+  {
+    "id": "5addaac799acd1cc9ae80ef4",
+    "name": "browser",
+    "selected": true,
+    "idx": 7,
+    "subTasks": [
+      {
+        "id": "5addaac799acd1df43e80ef5",
+        "name": "History",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac799acd19ef9e80ef6",
+        "name": "Bookmarks",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac799acd11eaee80ef7",
+        "name": "Cookies",
+        "selected": true,
+        "checked": false
+      }
+    ]
+  },
+  {
+    "id": "5addaac899acd1eddee80eff",
+    "name": "whatsapp",
+    "selected": true,
+    "idx": 8,
+    "timeRange": {
+      "from": "2018-03-24T10:25:03.339Z",
+      "to": "2018-04-23T10:25:03.339Z"
+    },
+    "subTasks": [
+      {
+        "id": "5addaac899acd119d1e80f00",
+        "name": "Chats",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd1514de80f01",
+        "name": "Thumbnails",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd148d9e80f02",
+        "name": "Images",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd18674e80f03",
+        "name": "Audio",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd1241ee80f04",
+        "name": "Video",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd121c8e80f05",
+        "name": "Document",
+        "selected": true,
+        "checked": false
+      }
+    ]
+  },
+  {
+    "id": "5addaac899acd15b34e80f0d",
+    "name": "telegram",
+    "selected": true,
+    "idx": 9,
+    "timeRange": {
+      "from": "2018-03-24T10:25:03.340Z",
+      "to": "2018-04-23T10:25:03.340Z"
+    },
+    "subTasks": [
+      {
+        "id": "5addaac899acd11d58e80f0e",
+        "name": "Chats",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd13a67e80f0f",
+        "name": "Media",
+        "selected": true,
+        "checked": false
+      }
+    ]
+  },
+  {
+    "id": "5addaac899acd1e191e80f16",
+    "name": "line",
+    "selected": true,
+    "idx": 10,
+    "timeRange": {
+      "from": "2018-03-24T10:25:03.340Z",
+      "to": "2018-04-23T10:25:03.340Z"
+    },
+    "subTasks": [
+      {
+        "id": "5addaac899acd1a3b9e80f17",
+        "name": "Chats",
+        "selected": true,
+        "checked": false
+      },
+      {
+        "id": "5addaac899acd11f21e80f18",
+        "name": "Media",
+        "selected": true,
+        "checked": false
+      }
+    ]
+  }
+]

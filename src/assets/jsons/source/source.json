@@ -1,0 +1,163 @@
+{
+
+  "id": "5ab76773f37e5c0cf31974bb1",
+  "status": "inactive",
+  "name": "Lisa’s iPhone",
+  "vectorType": "x-caliber",
+  "intls": [{
+      "idx": 1,
+      "id": "5ab7622ab8cf068d116eb497",
+      "name": "reign",
+      "progress": 33
+    },
+    {
+      "idx": 2,
+      "id": "5ab7622ab8cf0634cb6eb498",
+      "name": "info",
+      "progress": 100
+    },
+    {
+      "idx": 3,
+      "id": "5ab7622ab8cf062f006eb49a",
+      "name": "profilePic",
+      "progress": 100
+    },
+    {
+      "idx": 4,
+      "id": "5ab7622ab8cf0651bc6eb49e",
+      "name": "wallPaper",
+      "progress": 100
+    },
+    {
+      "idx": 5,
+      "id": "5ab7622ab8cf060e196eb4a0",
+      "name": "apps",
+      "progress": 100
+    },
+    {
+      "idx": 6,
+      "id": "5ab7622ab8cf06c68e6eb4a2",
+      "name": "passwords",
+      "progress": 100
+    },
+    {
+      "idx": 7,
+      "id": "5ab7622ab8cf063de36eb4a4",
+      "name": "contacts",
+      "progress": 100
+    },
+    {
+      "idx": 8,
+      "id": "5ab7622ab8cf0642fd6eb4aa",
+      "name": "callhistory",
+      "progress": 100
+    },
+    {
+      "idx": 9,
+      "id": "5ab7622ab8cf062ed96eb4ac",
+      "name": "messages",
+      "progress": 100
+    },
+    {
+      "idx": 9,
+      "id": "5ab7622ab8cf0682076eb4ba",
+      "name": "locations",
+      "progress": 69
+    },
+    {
+      "idx": 29,
+      "id": "5ab7622ab8cf0690f36eb4bd",
+      "name": "whatsapp",
+      "progress": 100
+    },
+    {
+      "idx": 28,
+      "id": "5ab7622bb8cf062fa56eb4d1",
+      "name": "signal",
+      "progress": 21
+    },
+    {
+      "idx": 30,
+      "id": "5ab7622bb8cf061cb26eb4d4",
+      "name": "line",
+      "progress": 100
+    },
+    {
+      "idx": 31,
+      "id": "5ab7622bb8cf068a1d6eb4da",
+      "name": "wechat",
+      "progress": 24
+    },
+    {
+      "idx": 32,
+      "id": "5ab7622bb8cf061fb36eb4dd",
+      "name": "skype",
+      "progress": 0
+    },
+    {
+      "idx": 33,
+      "id": "5ab7622bb8cf06e2266eb4e0",
+      "name": "emails",
+      "progress": 79
+    },
+    {
+      "idx": 565,
+      "id": "5ab7622bb8cf061eba6eb4e6",
+      "name": "photos",
+      "progress": 23
+    }
+  ],
+  "vector": "http",
+  "number": "+972544326565",
+  "deviceModel": "iPhone 8",
+  "deviceVersion": "11.2.2",
+  "createdAt": "2018-05-23T14:59:29.093Z",
+  "endedAt": "2018-05-24T16:59:37.304Z",
+  "profileImages": [{
+    "id": "5ab7678869f76e7e6e9b1ae5tes",
+    "origin": "wallpaper"
+  }],
+  "indicators": {
+    "battery": 3,
+    "wifi": 1
+  },
+  "progress": {
+    "percentage": 12,
+    "time": {
+      "eta": 213123,
+      "elapsed": 23423,
+      "lostConnection": 5
+    },
+    "trafic": {
+      "sent": 212345,
+      "total": 212345
+    }
+  },
+  "data": [{
+      "key": "Phone number",
+      "value": "Unknown",
+      "idx": 0
+    },
+    {
+      "key": "Mac add",
+      "value": "2018-04-09T17:51:26.219Z",
+      "date": true,
+      "idx": 1
+    },
+    {
+      "key": "Interception",
+      "value": "wifi",
+      "idx": 2
+    },
+    {
+      "key": "IP",
+      "value": "192.168.5.78",
+      "idx": 3
+    },
+    {
+      "key": "Quality signal",
+      "value": "Bad",
+      "idx": 4
+    }
+  ]
+}

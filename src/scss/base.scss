@@ -1,0 +1,35 @@
+svg {
+  vertical-align: middle;
+}
+
+*:focus{
+  outline: none;
+}
+
+@mixin font-light()
+{
+  font-family: "Titillium Web";
+  font-weight: 200;
+  font-style: normal;
+}
+
+@mixin font-regular()
+{
+  font-family: "Titillium Web";
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin font-semi-bold()
+{
+  font-family: "Titillium Web";
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin font-bold()
+{
+  font-family: "Titillium Web";
+  font-weight: 700;
+  font-style: normal;
+}
