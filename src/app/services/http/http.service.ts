@@ -14,6 +14,8 @@ serverUrls = {
   login: '/users/login',
   logout: '/users/logout',
   dashboardTop: '/dashboard/top',
+  search: '/search',
+  activeMission: '/active_mission/left'
 }
 token: string;
   constructor(private http: HttpClient) { 
@@ -42,6 +44,17 @@ token: string;
     };
     return httpOptions;
   }
+  getToken() : any {
+    let token =  localStorage.getItem('user');
+    token = token.slice(10,token.length-2);
+    return token;
+  }
+  getActiveMission(): Observable<any> {
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()))
+  }
+  search( search: {scope: string, keyword: string}): Observable<any> {
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders(this.getToken()))
+  }
 
   login(credentials: { user: string, password: string }): Observable<{ token: string, swagger_ui: string }> {
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials)
@@ -50,13 +63,10 @@ token: string;
     let token: string;
     tokenSub.subscribe(res => token = res)
     console.log(token)
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'), this.setHeaders(token));
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'), this.setHeaders(this.getToken()));
   }
   getDashboard(token): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(token));
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(this.getToken()));
   }
-  getToken(): string{
-    console.log(this.token)
-    return this.token;
-  }
+
 }

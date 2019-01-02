@@ -1,0 +1,15 @@
+<div *ngIf="searchResult?.results?.length > 0" class="search-modal">
+    <div class="modal-wrapper">
+      <div class="search-modal-content">
+          <ul>
+            <li class="result-count">Found {{searchResult?.results?.length}} results</li>
+            <li class="result-item" *ngFor="let result of searchResult.results">
+              <span class="result-trail">{{formatString(result.trail)}} > </span>
+              <span class="result-title">{{result.title}}</span>
+              <hr>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  

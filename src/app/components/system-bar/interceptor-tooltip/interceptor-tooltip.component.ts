@@ -24,11 +24,11 @@ export class InterceptorTooltipComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isOpened = false;
     if (this.interceptors) {
-      this.isOpened = true;
+      // this.isOpened = true;
     }
     // this.getInterceptors();
-    console.log(this.interceptor)
   }
 
   getInterceptors() {

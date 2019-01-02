@@ -18,7 +18,7 @@ import {
   LoaderService,
   IconService,
   MenuService,
-  WebsocketService,
+  // WebsocketService,
   WsService
 } from "@app/services";
 import {
@@ -43,6 +43,8 @@ import { AuthGuard } from '@app/guards';
 // Libraries
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TestComponent } from './components/test/test.component';
+import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
+import { LeftBarComponent } from './components/left-bar/left-bar.component';
 
 // import {WebSocketModule} from '@app/services/websocket'
 // import { environment } from '@env/environment.prod';
@@ -77,6 +79,8 @@ import { TestComponent } from './components/test/test.component';
     BitesToKbPipe,
     OrderByPipe,
     TestComponent,
+    SearchModalComponent,
+    LeftBarComponent,
   
   ],
   imports: [
@@ -101,12 +105,15 @@ import { TestComponent } from './components/test/test.component';
     LoaderService,
     IconService,
     MenuService,
-    WebsocketService,
+    // WebsocketService,
     WsService,
   // Resolvers
   LayoutResolver,
   // Guards
   AuthGuard,
+  ],
+  entryComponents:[
+    SearchModalComponent,
   ],
   bootstrap: [AppComponent]
 })

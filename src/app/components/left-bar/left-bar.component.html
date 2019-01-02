@@ -1,0 +1,35 @@
+<div class="sidebar">
+  <!-- This section shoudl be at the TOP-->
+  <div class="section sources">
+    <div class="header">Sources</div>
+    <div class="content">
+      <div class="items" *ngFor="let source of missionData?.sources">
+        <span class="name">{{source.name}}</span>
+      </div>
+    </div>
+  </div>
+  <!-- This section should be at the MID -->
+  <div class="section pending">
+    <div class="header">Pending</div>
+    <div class="content">
+      <div class="items" *ngFor="let pending of missionData?.pending_devices">
+        <span class="name">{{pending.name}}</span>
+      </div>
+    </div>
+  </div>
+  <!-- BOT -->
+  <div class="section targets">
+    <div class="header">Targets</div>
+    <div class="content" >
+      <div class="items" *ngFor="let target of missionData?.targets">
+        <span class="name">{{target.name}}</span>
+        <span class="icon"><img src="../../../assets/img/svg/ready-to-attack.svg"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-target">
+    <img src="../../../assets/img/svg/add-target.svg">
+    <p> Add Target</p>
+  </div>
+</div>

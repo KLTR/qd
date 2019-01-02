@@ -27,31 +27,36 @@ export class HeaderComponent implements OnInit {
   menuState$: Observable<boolean>;
   subscription: Subscription;
   subs: Subscription;
-
+  searchText = '';
+  searchResults: any;
   isChanged = false;
   moreAlerts = false;
-  private msg = {
-    author: "Roy",
-    message: "howdy folks"
-  };
-  constructor(private store: Store<fromSystem.State>,
+
+
+  constructor(
               private menuService: MenuService,
-              private modalService: NgbModal,
-              private router: Router,
               private httpService: HttpService,
-              private websocket: WebsocketService,
-              private ws: WsService
+              private ws: WsService,
+         
               ) {
-                ws.messages.subscribe(msg => {
+               this.ws.messages.subscribe(msg => {
                   this.catchWebSocketEvents(msg)
                   console.log("Dashboard socket : ", msg);
                 })
   }
 
   ngOnInit() {
-   
-   
+   this.searchResults = [];
   }
+
+
+filterItem(searchValue) {
+  // console.log(searchValue);
+  let search = {scope: '', keyword: searchValue}
+  this.httpService.search(search).subscribe( res => {
+    this.searchResults = res
+  });
+}
 
   colorEventCircle() {
     if (this.activeAlerts.length > 0) {

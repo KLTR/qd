@@ -2,6 +2,13 @@
     <div class="navbar-wrapper">
       <a class="navbar-logo" href="#">QUANTUM</a>
       <div class="navbar-system-bar">
+          <div class="search-bar">
+              <form>
+                  <input id="search-input" #searchInput type="search" placeholder="Search" name="searchText" [(ngModel)]="searchText"
+                   (input)="filterItem(searchInput.value)"
+                    >
+              </form>  
+          </div>
         <app-system-bar [system]="system" [user]="user"></app-system-bar>
       </div>
       <!-- <div class="navbar-alerts" (click)="showAlerts()" *ngIf="!isChanged" [ngClass]="{'more-alerts': moreAlerts}">
@@ -16,4 +23,4 @@
       </div>
     </div>
   </div>
-  
+  <app-search-modal [searchResult]="searchResults" ></app-search-modal>

@@ -24,7 +24,9 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   internetStatus: String;
   diskStatus: String;
   interceptorStatus: String;
-
+  aliceStatus: String;
+  pioneerStatus: String;
+  cloudStatus: String;
   constructor(private cdRef: ChangeDetectorRef) {
     this.isMenuOpen = false;
     this.date = new Date();
@@ -39,8 +41,11 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
     this.getInternetMode();
     this.getDiskSpace();
     this.getDeviceStatus();
+    this.getAliceStatus();
+    this.getPioneerStatus();
+    this.getCloudStatus()
     this.checkInterceptor();
-    console.log(this.internetStatus);
+    
   }
 
   ngAfterViewInit() {
@@ -112,6 +117,31 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  getAliceStatus(){
+    if(this.system.alice){
+      if(this.system.alice.indicator.state === "GREEN"){
+        this.aliceStatus = 'alice-green'
+      } else {
+        this.aliceStatus = 'alice-no-light'
+      }
+    }
+  }
+
+  getCloudStatus(){
+    if(this.system.cloudx){
+      if(this.system.cloudx.indicator.state === "GREEN"){
+        this.cloudStatus = 'cloud-green'
+      } else {
+        this.cloudStatus = 'cloud-no-light'
+      }
+    }
+  }
+
+  getPioneerStatus(){
+    if(this.system.pioneer){
+        this.pioneerStatus = 'pioneer'
+    }
+  }
   openInterceptorTooltip() {
     this.tooltip.isOpen() ? this.tooltip.close() : this.tooltip.open();
   }
