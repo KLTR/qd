@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-
 serverUrls = {
   getChatAppChats: '/messengers/{{type}}/sessions',
   getChatAppInfo: '/messengers/{{type}}/about',
@@ -47,7 +46,14 @@ token: string;
   getToken() : any {
     let token =  localStorage.getItem('user');
     token = token.slice(10,token.length-2);
+    console.log(token)
     return token;
+  }
+  setToken(){
+    let token = localStorage.getItem('user');
+    token = token.slice(10,token.length-2);
+    this.token = token;
+    console.log(this.token)
   }
   getActiveMission(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()))
@@ -57,16 +63,16 @@ token: string;
   }
 
   login(credentials: { user: string, password: string }): Observable<{ token: string, swagger_ui: string }> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials)
+   return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials)
   }
-  logout(tokenSub: Observable<any>) : Observable<any> {
-    let token: string;
-    tokenSub.subscribe(res => token = res)
-    console.log(token)
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'), this.setHeaders(this.getToken()));
+  logout() : Observable<any> {
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'), this.setHeaders(this.token));
   }
-  getDashboard(token): Observable<any> {
+  getDashboard(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(this.getToken()));
   }
 
+  getConfig() : any {
+    return this.http.get('../../../assets/config/config.json')
+  }
 }

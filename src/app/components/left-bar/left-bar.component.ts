@@ -1,5 +1,5 @@
 import { HttpService } from '@app/services/http/http.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-left-bar',
@@ -8,34 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftBarComponent implements OnInit {
 
-  missionData: any;
+ @Input() missionData: any;
   temp: any;
+
   constructor(
     private http: HttpService
   ) { }
 
   ngOnInit() {
-    this.http.getActiveMission().subscribe( res => 
-      {
-        console.log(res),
-        this.missionData = res,
-        this.setPendingDevicesArray()
-      })
   }
 
-  setPendingDevicesArray(){
-    let pending : any[];
-    pending = this.missionData.pending_devices;
-    for(let i = 0 ; i < pending.length ; i++){
-      switch(Object.keys(pending[i])[0]){
-        case 'pioneer':
-        pending[i] = {...pending[i].pioneer, vectorType: 'pioneer'}
-        break;
-      }
-    }
-    this.missionData.pending_devices = pending;
-      console.log(this.missionData);
-  }
-
+ ngOnChanges(changes: SimpleChanges): void {
+   //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+   //Add '${implements OnChanges}' to the class.
+   console.log(changes)
+ }
 
 }

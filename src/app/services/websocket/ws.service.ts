@@ -1,4 +1,4 @@
-import { AuthService } from '@app/services';
+// import { AuthService } from '@app/services';
 import { environment } from './../../../environments/environment.prod';
 // import { environment } from '@env/environment.prod';
 import { Injectable } from '@angular/core';
@@ -8,8 +8,10 @@ import {map} from 'rxjs/operators';
 export class WsService{
 public messages: Rx.Subject<any>;
 private token: string;
-    constructor(auth: AuthService){
-         auth.token$.subscribe(res => this.token = res);
+    constructor(/*auth: AuthService*/){
+        //  auth.token$.subscribe(res => this.token = res);
+        let tokenz =  localStorage.getItem('user');
+     this.token = tokenz.slice(10,tokenz.length-2);
         this.messages = <Rx.Subject<any>>
         this.connect(`${environment.websocketUrl}/dashboard/ws`)
         .pipe(

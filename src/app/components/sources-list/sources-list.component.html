@@ -1,0 +1,35 @@
+<div *ngIf="missionData" class="sources-wrapper">
+
+  <app-left-bar [missionData]="missionData"></app-left-bar>
+
+  <div class="sources-list-wrapper">
+    <ul class="sources-list">
+      <li class="source-cube" *ngFor="let source of missionData?.sources">
+        <div class="source-img">
+          <img *ngIf="source.ios?.profile_pics[0]" src="{{source.ios?.profile_pics[0]}}">
+          <app-svg-icon *ngIf="!source.ios?.profile_pics[0]" name="avatar" [size]="85"  class="cube-person-img"></app-svg-icon>
+        </div>
+        <div class="source-info-wrapper">
+        <div class="source-info">
+            <p class="source-name">{{source.ios?.name}}</p>
+            <p class="source-number">{{source.ios?.number}}</p>
+            <div class="source-phone-info">
+                <span class="phone-model">{{source.ios?.model}} </span>
+                <span class="phone-version">{{source.ios?.version}}</span>
+                <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
+                </app-svg-icon>
+                <!-- <app-svg-icon class="phone-wifi" [name]="getWifiStatus()" [size]="13">
+                </app-svg-icon> -->
+
+            </div>
+        </div>
+            <div class="device-status">
+                <app-svg-icon name="inactive" [size]=32></app-svg-icon>
+                <span class="device-status-text">{{source?.activity_state}}</span>
+            </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+

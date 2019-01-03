@@ -14,9 +14,7 @@ export class LayoutResolver implements Resolve<any> {
   constructor(private httpService: HttpService, private store: Store<State>, private auth: AuthService) {
   }
   resolve(): any {
-    let token 
-    this.auth.token$.subscribe(res => token = res);
-    this.httpService.getDashboard(token).pipe(
+    this.httpService.getDashboard().pipe(
       catchError(err => of({})),
       map((data: any) => {
       this.store.dispatch(new systemActions.UpdateSystem(data));

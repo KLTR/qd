@@ -4,12 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LayoutResolver } from '@app/resolvers';
 import {AuthGuard} from '@app/guards'
-import {TestComponent} from './components/test/test.component'
 import { MissionResolver } from '@app/resolvers'
+import { SourcesListComponent } from './components/sources-list/sources-list.component';
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path:'',
@@ -18,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'activeMission',
-        component: TestComponent,
+        component: SourcesListComponent,
         // resolve: {
         //   missionData: MissionResolver
         // },
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'login',
     pathMatch: 'full',
     component: LoginComponent
+  },
+  {
+    path: '**', redirectTo:
+      '/login', pathMatch:
+      'full'
   },
 ];
 

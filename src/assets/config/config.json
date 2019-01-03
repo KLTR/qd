@@ -1,6 +1,9 @@
 {
-  "environment": "DEV",
-  "api": {
-    "baseUrl": "assets/jsons"
-  }
+    "indicators": {
+        "state": {
+            "green": "GREEN",
+            "red": "RED",
+            "yellow": "YELLOW"
+        }
+    } 
 }

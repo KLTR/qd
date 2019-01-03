@@ -41,12 +41,13 @@ export class AuthService {
   }
 
   logout(): void {
-    this.http.logout(this.token$).subscribe(res => console.log(res))
+    this.http.logout().subscribe(res => console.log(res))
     this.store.dispatch(new userActions.Logout());
   }
 
   login(credentials: { user: string, password: string }): void {
     this.store.dispatch(new userActions.Login(credentials));
+    this.http.setToken();
   }
 
 

@@ -32,7 +32,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { AlertsStripComponent } from './components/header/alerts-strip/alerts-strip.component'
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
-
+import { SourcesListComponent } from './components/sources-list/sources-list.component';
 import {
   CharactersPipe, SafeHtmlPipe, CaseFilterPipe, SignalStrenghtPipe, MissionWizardOperatorsPipe,
   TooltipDataFilterPipe, FilterAlertsPipe, SortAppsPipe, CubeIconsPipe, SourceByTypePipe, FilterArrayByInputPipe,
@@ -42,13 +42,11 @@ import { AuthGuard } from '@app/guards';
 
 // Libraries
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TestComponent } from './components/test/test.component';
 import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
 import { LeftBarComponent } from './components/left-bar/left-bar.component';
 
 // import {WebSocketModule} from '@app/services/websocket'
 // import { environment } from '@env/environment.prod';
-
 @NgModule({
   declarations: [
     // Components
@@ -78,9 +76,9 @@ import { LeftBarComponent } from './components/left-bar/left-bar.component';
     SetActiveMailPipe,
     BitesToKbPipe,
     OrderByPipe,
-    TestComponent,
     SearchModalComponent,
     LeftBarComponent,
+    SourcesListComponent
   
   ],
   imports: [

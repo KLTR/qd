@@ -14,7 +14,7 @@
           <ng-template class="tool-tip" #pioneerTip>{{system.pioneer?.tip}}</ng-template>
 
         <div *ngIf="pioneerStatus" class="icon-wrapper pioneer-wrapper">
-            <span [ngClass]="system.pioneer?.state === 'GREEN' ? 'circle-green' : 'circle-red'">{{system.pioneer?.operational_count}}</span>
+            <span [ngClass]="system.pioneer?.indicator?.state === config?.indicators.state.green ? 'circle-green' : 'circle-red'">{{system.pioneer?.operational_count}}</span>
         <app-svg-icon  class="pioneer" [ngbTooltip]="pioneerTip" [name]="pioneerStatus" [size]="17">
         </app-svg-icon>
         </div>

@@ -1,3 +1,4 @@
+import { HttpService } from '@app/services';
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild, SimpleChange } from '@angular/core';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { SystemInfo, User } from '@app/models';
@@ -27,13 +28,17 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   aliceStatus: String;
   pioneerStatus: String;
   cloudStatus: String;
-  constructor(private cdRef: ChangeDetectorRef) {
+  config: any;
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private http: HttpService) {
     this.isMenuOpen = false;
     this.date = new Date();
     this.layoutInterval = null;
   }
 
   ngOnInit() {
+  this.http.getConfig().subscribe( res => this.config = res)
   }
 
   ngOnChanges(changes: { [key: string]: SimpleChange }) {
@@ -54,23 +59,23 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   checkInterceptor() {
-    if (this.system.interceptor) {
-      if (this.system.interceptor.indicators.state === "GREEN" && this.tooltip) {
+    if (this.system.interceptor && this.config) {
+      if (this.system.interceptor.indicators.state === this.config.indicators.state.green && this.tooltip) {
         this.tooltip.open();
       }
     }
   }
 
   getBatteryMode() {
-    if (this.system.goat) {
+    if (this.system.goat && this.config) {
       switch (this.system.goat.indicator.state) {
-        case "GREEN":
+        case this.config.indicators.state.green:
           this.batteryStatus = 'battery-full';
           break;
-        case "YELLOW":
+        case this.config.indicators.state.yellow:
           this.batteryStatus = 'battery-mid';
           break;
-        case "RED":
+        case this.config.indicators.red:
           this.batteryStatus = 'battery-low';
           break;
         // default :
@@ -82,15 +87,15 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getDiskSpace() {
-    if (this.system.storage) {
+    if (this.system.storage && this.config) {
       switch (this.system.storage.indicator.state) {
-        case "GREEN":
+        case this.config.indicators.state.green:
           this.diskStatus = 'storage-full';
           break;
-        case "YELLOW":
+        case this.config.indicators.state.yellow:
           this.diskStatus = 'storage-half';
           break;
-        case "RED":
+        case this.config.indicators.red:
           this.diskStatus = 'storage-empty';
           break;
       }
@@ -98,8 +103,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getInternetMode() {
-    if (this.system.internet) {
-      if (this.system.internet.indicator.state === "GREEN") {
+    if (this.system.internet && this.config) {
+      if (this.system.internet.indicator.state === this.config.indicators.state.green) {
         this.internetStatus = 'connected';
       } else {
         this.internetStatus = 'not-connected';
@@ -108,8 +113,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getDeviceStatus() {
-    if (this.system.interceptor) {
-      if (this.system.interceptor.indicators.state === "GREEN") {
+    if (this.system.interceptor && this.config) {
+      if (this.system.interceptor.indicators.state === this.config.indicators.state.green) {
         this.interceptorStatus = 'interceptor';
       } else {
         this.interceptorStatus = 'interceptor-failed';
@@ -118,8 +123,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getAliceStatus(){
-    if(this.system.alice){
-      if(this.system.alice.indicator.state === "GREEN"){
+    if(this.system.alice && this.config){
+      if(this.system.alice.indicator.state === this.config.indicators.state.green){
         this.aliceStatus = 'alice-green'
       } else {
         this.aliceStatus = 'alice-no-light'
@@ -128,8 +133,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getCloudStatus(){
-    if(this.system.cloudx){
-      if(this.system.cloudx.indicator.state === "GREEN"){
+    if(this.system.cloudx && this.config){
+      if(this.system.cloudx.indicator.state === this.config.indicators.state.green){
         this.cloudStatus = 'cloud-green'
       } else {
         this.cloudStatus = 'cloud-no-light'
@@ -138,7 +143,7 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getPioneerStatus(){
-    if(this.system.pioneer){
+    if(this.system.pioneer && this.config){
         this.pioneerStatus = 'pioneer'
     }
   }
