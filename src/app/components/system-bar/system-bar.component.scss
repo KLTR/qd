@@ -39,17 +39,19 @@
     li.device-info {
       width: 200px;
       justify-content: space-around;
+      display: flex;
+      align-items: center;
+      .cloud{
+        margin-top: 5px;
+      }
       .disk-space {
         position: relative;
-        top:  2px;
       }
       .internet {
         position: relative;
-        top: 2.5px;
       }
       .icon-wrapper{
         margin-right: 3px;
-        margin-top: 1px;
       }
       .circle-green{
         background-color: #6cfff8;

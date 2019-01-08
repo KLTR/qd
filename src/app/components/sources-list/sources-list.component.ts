@@ -16,8 +16,9 @@ export class SourcesListComponent implements OnInit {
     this.http.getActiveMission().subscribe( res => 
       {
         console.log(res),
-        this.temp = res,
-        this.setPendingDevicesArray()
+        this.missionData = res;
+        // this.temp = res,
+        // this.setPendingDevicesArray()
       })
   }
 

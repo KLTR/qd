@@ -23,4 +23,4 @@
       </div>
     </div>
   </div>
-  <app-search-modal [searchResult]="searchResults" ></app-search-modal>
+  <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal>

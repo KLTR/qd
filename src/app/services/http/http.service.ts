@@ -14,8 +14,9 @@ serverUrls = {
   logout: '/users/logout',
   dashboardTop: '/dashboard/top',
   search: '/search',
-  activeMission: '/active_mission/left'
+  activeMission: '/dashboard/left'
 }
+config: any;
 token: string;
   constructor(private http: HttpClient) { 
    
@@ -46,14 +47,13 @@ token: string;
   getToken() : any {
     let token =  localStorage.getItem('user');
     token = token.slice(10,token.length-2);
-    console.log(token)
+    this.setToken();
     return token;
   }
   setToken(){
     let token = localStorage.getItem('user');
     token = token.slice(10,token.length-2);
     this.token = token;
-    console.log(this.token)
   }
   getActiveMission(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()))
@@ -66,13 +66,19 @@ token: string;
    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials)
   }
   logout() : Observable<any> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'), this.setHeaders(this.token));
+    console.log(this.token);
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders(this.token));
   }
   getDashboard(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(this.getToken()));
   }
 
   getConfig() : any {
-    return this.http.get('../../../assets/config/config.json')
+    this.config =  this.http.get('../../../assets/config/config.json')
+    return this.config;
+  }
+
+  getConfigLocal(): any{
+    return this.config;
   }
 }

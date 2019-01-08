@@ -10,12 +10,13 @@ export class LeftBarComponent implements OnInit {
 
  @Input() missionData: any;
   temp: any;
-
+  isWizardOpen = false;
   constructor(
     private http: HttpService
   ) { }
 
   ngOnInit() {
+    console.log(this.missionData);
   }
 
  ngOnChanges(changes: SimpleChanges): void {
@@ -24,4 +25,11 @@ export class LeftBarComponent implements OnInit {
    console.log(changes)
  }
 
+ openWizard(){
+   this.isWizardOpen = true;
+ }
+
+ closeWizard(){
+    this.isWizardOpen = false;
+ }
 }

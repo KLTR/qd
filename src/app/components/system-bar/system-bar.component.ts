@@ -38,7 +38,7 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
-  this.http.getConfig().subscribe( res => this.config = res)
+  this.http.getConfigLocal().subscribe( res => this.config = res)
   }
 
   ngOnChanges(changes: { [key: string]: SimpleChange }) {
@@ -78,6 +78,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
         case this.config.indicators.red:
           this.batteryStatus = 'battery-low';
           break;
+        default:
+        this.batteryStatus = 'battery-low';
         // default :
         // Chargin icon
         //   this.batteryStatus = 'power-on';
@@ -98,6 +100,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
         case this.config.indicators.red:
           this.diskStatus = 'storage-empty';
           break;
+        default: 
+        this.diskStatus = 'storage-empty';
       }
     }
   }

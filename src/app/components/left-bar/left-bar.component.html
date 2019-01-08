@@ -4,7 +4,7 @@
     <div class="header">Sources</div>
     <div class="content">
       <div class="items" *ngFor="let source of missionData?.sources">
-        <span class="name">{{source.name}}</span>
+        <span class="name">{{source.id}}</span>
       </div>
     </div>
   </div>
@@ -12,8 +12,8 @@
   <div class="section pending">
     <div class="header">Pending</div>
     <div class="content">
-      <div class="items" *ngFor="let pending of missionData?.pending_devices">
-        <span class="name">{{pending.name}}</span>
+      <div class="items" *ngFor="let pending of missionData?.infections">
+        <span class="name">{{pending.id}}</span>
       </div>
     </div>
   </div>
@@ -28,8 +28,10 @@
     </div>
   </div>
 
-  <div class="add-target">
+  <div class="add-target" (click)="openWizard()">
     <img src="../../../assets/img/svg/add-target.svg">
     <p> Add Target</p>
   </div>
 </div>
+
+<app-add-target-wizard  *ngIf="isWizardOpen" (closeModal)="closeWizard()"></app-add-target-wizard>

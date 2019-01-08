@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   subscription: Subscription;
   subs: Subscription;
   searchText = '';
-  searchResults: any;
+  searchResults: any[];
   isChanged = false;
   moreAlerts = false;
 
@@ -138,9 +138,15 @@ filterItem(searchValue) {
         case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
         break;
+        case 'search_result':
+        this.searchResults.push(msg.result.search_result);
+        this.searchResults = this.searchResults.slice();
+        break;
       }
       // this triggers on changes
       this.system = Object.assign({}, this.system);
     }
-
+    clearSearchResults(){
+      this.searchResults = [];
+    }
 }

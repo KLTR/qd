@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, SimpleChange, HostListener, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, SimpleChange, HostListener, ElementRef, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-search-modal',
@@ -7,10 +7,14 @@ import { Component, OnInit, Input, ChangeDetectorRef, SimpleChange, HostListener
 })
 export class SearchModalComponent implements OnInit, OnDestroy {
   @Input() searchResult: any[];
+  @Output() clearSearchResults = new EventEmitter();
   @HostListener('document:click', ['$event'])
   onClick(event) {
     if (!this.el.nativeElement.contains(event.target) ) {
-      this.searchResult = [];
+      if(this.searchResult.length > 0){
+        this.searchResult = [];
+        this.clearSearchResults.emit();
+      }
     }
   }
   constructor(

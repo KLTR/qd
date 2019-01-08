@@ -1,0 +1,30 @@
+
+    <div class="right-bar" [ngClass]="isOpen ? 'expanded' : 'folded'">
+        <div class="arrow" (click)="toggleNav()">
+           <img src="../../../assets/img/right-arrow-archive.png"> 
+        </div>
+        <div class="wrapper" [ngClass]="isOpen ? 'open-nav' : 'close-nav' ">
+          <div class="content">
+              <p class="header">Events Feed</p>
+              <div class="timeline">
+                <span class="time" [class.selected]="selected === 'today'" (click)="toggleSelected('today')">Today</span>
+                <span class="time" [class.selected]="selected === 'all'" (click)="toggleSelected('all')">All</span>
+              </div>
+              <div class="events-list">
+                  <ul>
+                      <li class="event-item" *ngFor="let event of data">
+                          <span class="event-time">{{event.time}}</span>
+                          <span class="event-title" [ngClass]='event.state'>{{event.title}}</span>
+                          <span class="event-target">{{event.target}}</span>
+                          <span class="event-source">{{event.source}}</span>
+                          <div class="buttons">
+                              <span class="dismiss">DISMISS</span>
+                              <span class="view">VIEW</span>
+                          </div>
+                        </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+    </div>
+     

@@ -47,7 +47,7 @@ export class AuthService {
 
   login(credentials: { user: string, password: string }): void {
     this.store.dispatch(new userActions.Login(credentials));
-    this.http.setToken();
+    this.http.setToken()
   }
 
 

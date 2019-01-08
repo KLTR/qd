@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'quantum-ui';
+
+  constructor(
+    private http: HttpService) {
+      this.http.getConfig().subscribe(res => console.log(res));
+  }
+  
 }
