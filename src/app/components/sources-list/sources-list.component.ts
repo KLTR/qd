@@ -1,4 +1,4 @@
-import { HttpService } from '@app/services';
+import { HttpService, WsService } from '@app/services';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,39 +9,49 @@ import { Component, OnInit } from '@angular/core';
 export class SourcesListComponent implements OnInit {
 
   missionData: any;
+  events: any[];
   temp: any;
-  constructor(private http: HttpService) { }
+  constructor(
+    private http: HttpService,
+    private ws: WsService,
+
+    ){
+     this.ws.messages.subscribe(msg => {
+        this.catchWebSocketEvents(msg)
+        console.log("Dashboard socket : ", msg);
+      })
+}
 
   ngOnInit() {
+    this.events = [];
     this.http.getActiveMission().subscribe( res => 
       {
-        console.log(res),
+        console.log(res);
         this.missionData = res;
         // this.temp = res,
         // this.setPendingDevicesArray()
       })
   }
 
-  setPendingDevicesArray(){
-    let pending : any[];
-    pending = this.temp.pending_devices;
-    for(let i = 0 ; i < pending.length ; i++){
-      switch(Object.keys(pending[i])[0]){
-        case 'pioneer':
-        pending[i] = {...pending[i].pioneer, vectorType: 'pioneer'}
-        break;
-      }
-    }
-    this.temp.pending_devices = pending;
-    this.missionData = this.temp;
-      console.log(this.missionData);
-  }
-  getBatteryIcon(battery) {
-    if (battery <= 20) {
-      return 'device-battery-empty';
-    }
-    return 'device-battery-full';
-  }
+  // setPendingDevicesArray(){
+  //   let pending : any[];
+  //   pending = this.temp.pending_devices;
+  //   for(let i = 0 ; i < pending.length ; i++){
+  //     switch(Object.keys(pending[i])[0]){
+  //       case 'pioneer':
+  //       pending[i] = {...pending[i].pioneer, vectorType: 'pioneer'}
+  //       break;
+  //     }
+  //   }
+  //   this.temp.pending_devices = pending;
+  //   this.missionData = this.temp;
+  // }
+  // getBatteryIcon(battery) {
+  //   if (battery <= 20) {
+  //     return 'device-battery-empty';
+  //   }
+  //   return 'device-battery-full';
+  // }
 
   getWifiSignal(wifi) {
       switch (wifi) {
@@ -63,4 +73,42 @@ export class SourcesListComponent implements OnInit {
     }
   }
 
+
+  setAnimatedIcon() {
+        return {
+          height: 27,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/initializing.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+          }
+        }
+      }
+    }
+  catchWebSocketEvents(msg) {
+    switch(Object.keys(msg.result)[0]) {
+      case 'target':
+      this.missionData.targets.push(msg.result.target);
+      this.missionData = Object.assign({}, this.missionData);
+      break;
+      case 'infection':
+      this.missionData.infections.push(msg.result.infection);
+      this.missionData = Object.assign({}, this.missionData);
+      break;
+      case 'source':
+      this.missionData.sources.push(msg.result.source);
+      this.missionData = Object.assign({}, this.missionData);
+      break;
+      case 'event':
+      this.events.push(msg.result.event.log);
+      this.events = this.events.slice();
+      break;
+      case 'alert':
+      return;
+    }
+  }
 }

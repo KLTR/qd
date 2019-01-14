@@ -1,8 +1,6 @@
-@import "../../../../scss/base";
-@import "../../../../scss/backgroundimages";
-
-$image-base: '../../../../../assets/img/mission-cube/';
-
+@import "../../../../../scss/backgroundimages";
+@import "../../../../../scss/base.scss";
+$image-base: '../../../../../../assets/img/mission-cube/';
 .modal-media-header
 {
   height: 78px;
@@ -18,9 +16,13 @@ $image-base: '../../../../../assets/img/mission-cube/';
 
 .disconnect-device-modal
 {
+  position: absolute;
+  top: 50px;
+  left: 20vw;
   height: 480px;
   z-index: 99999 !important;
   overflow-y: hidden !important;
+  width: 65vw;
 
   .modal-dialog
   {
@@ -61,11 +63,30 @@ $image-base: '../../../../../assets/img/mission-cube/';
 
         .alerts-icon{
           width: 20px;
+          display: flex;
+          align-items: center;
         }
       }
-      .alerts-filter {
+
+      .close-button {
         position: absolute;
-        right: 77px;
+        right: 11px;
+        cursor: pointer;
+        svg{
+          display: flex;
+        }
+      }
+    }
+    .modal-content {
+      text-align: center;
+      width: 95%;
+      margin: 20px auto 0 auto;
+      font-size: 14px;
+      color: #c4e1ff;
+      background-color: #2f3b4a !important;
+      flex: 1;
+      .alerts-filter {
+        padding: 25px 5px;
         display: flex;
         font-size: 14px;
         cursor: pointer;
@@ -102,20 +123,6 @@ $image-base: '../../../../../assets/img/mission-cube/';
         }
 
       }
-      .close-button {
-        position: absolute;
-        right: 11px;
-        cursor: pointer;
-      }
-    }
-    .modal-content {
-      text-align: center;
-      width: 95%;
-      margin: 20px auto 0 auto;
-      font-size: 14px;
-      color: #c4e1ff;
-      background-color: #2f3b4a !important;
-      flex: 1;
       .titles-wrapper {
         display: flex;
         margin-bottom: 4px;
@@ -124,8 +131,6 @@ $image-base: '../../../../../assets/img/mission-cube/';
           display: inline-block;
           text-transform: uppercase;
           color: #6f859d;
-          text-align: left;
-          padding-left: 12px;
         }
         .name {
           width: 14%;
@@ -168,6 +173,7 @@ $image-base: '../../../../../assets/img/mission-cube/';
         background-color: #3a4a5c;
         margin-bottom: 7px;
         box-shadow: 0 1px 4px 0 rgba(26, 34, 42, 0.32);
+        width: fit-content;
         [class^='alert'], [class*=' alert'] {
           display: inline-block;
           width: 27%;
@@ -177,6 +183,7 @@ $image-base: '../../../../../assets/img/mission-cube/';
           padding-bottom: 11px;
           font-size: 13px;
           padding-left: 12px;
+          display: flex;
         }
         .alert-description {
           width: 30%;
@@ -201,6 +208,11 @@ $image-base: '../../../../../assets/img/mission-cube/';
           &.info {
             background-color: #c5e1ff;
           }
+        }
+        div{
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .alert-name, .alert-id, .alert-severity {
           //width: 16%;
@@ -241,6 +253,10 @@ $image-base: '../../../../../assets/img/mission-cube/';
           width: 10%;
           align-self: center;
           cursor: pointer;
+          height: 18px;
+          border: 2px solid #bdd9f6;
+          padding: 3px;
+          margin-right: 5px;
         }
       }
     }
@@ -289,3 +305,13 @@ $image-base: '../../../../../assets/img/mission-cube/';
     }
   }
 }
+.CRITICAL{
+  color:#ff4d6a;
+}
+.MAJOR{
+  color: rgba(255, 159, 57, 0.7);
+}
+.INFO{
+  color: #c5e1ff;
+}
+

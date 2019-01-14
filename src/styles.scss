@@ -5,12 +5,15 @@
 @import "scss/cases";
 @import "scss/mission";
 @import "scss/intels";
-// @import '~perfect-scrollbar/css/perfect-scrollbar.css';
-/* app css stylesheet */
-// Angular Mat styles
-@import '@angular/material/prebuilt-themes/purple-green.css';
 
-/* latin-ext */
+// Ag-Grid styles
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+$ag-icons-path: "../node_modules/ag-grid/src/styles/icons/";
+
+// .ag-row-even{
+    
+// }
 
 @font-face {
   font-family: 'Titillium Web';
@@ -326,4 +329,15 @@ a:focus {
 
 .toast {
   display: none;
+}
+
+.ag-theme-balham{
+  background-color: #2f3b4a !important;
+  width: fit-content !important;
+}
+.ag-header-cell{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-right: 0 !important;
 }

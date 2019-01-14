@@ -4,7 +4,20 @@
     <div class="header">Sources</div>
     <div class="content">
       <div class="items" *ngFor="let source of missionData?.sources">
-        <span class="name">{{source.id}}</span>
+        <span class="name">{{source.name}}</span>
+        <!-- <span *ngIf="isAnimatedIcon(source?.status)" class="device-status animated">
+            <div class="percent-icon" *ngIf="source.status === 'downloading'">
+                <span class="percent">{{source.progress?.percentage}}%</span>
+              </div>
+              <div (mouseenter)="toggleShowInfoIcon(true)" (mouseleave)="toggleShowInfoIcon(false)">
+                <lottie-animation-view *ngIf="source.status !== 'downloading'" [options]="source.icon.options" [width]="icon.size.width"
+                  [height]="icon.size.height">
+                </lottie-animation-view>
+                <lottie-animation-view *ngIf="source.status === 'downloading'" [options]="source.icon.options" [width]="icon.size.width"
+                  [height]="icon.size.height">
+                </lottie-animation-view>
+              </div>
+        </span> -->
       </div>
     </div>
   </div>
@@ -13,7 +26,10 @@
     <div class="header">Pending</div>
     <div class="content">
       <div class="items" *ngFor="let pending of missionData?.infections">
-        <span class="name">{{pending.id}}</span>
+        <span class="name">{{pending.name}}</span>
+        <span class="device-status">
+          <app-svg-icon [name]="'device-active'" [size]="12"></app-svg-icon>
+        </span>
       </div>
     </div>
   </div>

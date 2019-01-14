@@ -27,7 +27,6 @@ export class WebsocketService {
       closeObserver: {
         next: (val: any) => {
           if(val.wasClean) {
-            console.log('Socket closed', val);
             this._socketErr.next(null);
           } else {
             this._socketErr.next(val);

@@ -1,6 +1,6 @@
 <div class="system-bar" *ngIf="system">
     <ul>
-      <li class="alerts">
+      <li class="alerts" (click)="toggleAlerts()">
         <span class="alerts-number">{{system.alerts?.count}}</span>
         <app-svg-icon  name="alert" [size]="15" ></app-svg-icon>
       </li>
@@ -33,8 +33,10 @@
         <span class="general-clock">{{date | date:'dd.MM.yyyy'}}</span>{{ clock$ | async | date:'HH:mm:ss' }}
       </li>
       <li class="user-info">
-        <p class="username-ellipsis">{{user.user}}</p>
-        <p class="username-admin">({{user.role}})</p>
+        <p class="username-ellipsis">{{user?.user}}</p>
+        <p class="username-admin">
+          (<span *ngFor='let role of user?.roles; let isLast=last'>{{role}}{{isLast ? '' : ', '}}</span>)
+        </p>
       </li>
     </ul>
   </div>
@@ -44,3 +46,4 @@
     </ng-template>
   </div>
   <!-- <ng-template   #interceptorTip>{{system.interceptor?.indicators.state.tip}}</ng-template> -->
+  <app-alerts-modal  [isOpen]="isAlertsOpen" ></app-alerts-modal>

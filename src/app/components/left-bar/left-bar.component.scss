@@ -37,6 +37,8 @@
       .items {
         display: flex;
         padding: 6.5px 15px 6.5px 10px;
+        align-items: center;
+        justify-content: space-between;
         &:hover {
           background-color: #43576b;
           cursor: pointer;

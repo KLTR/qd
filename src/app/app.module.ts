@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LottieAnimationViewModule } from 'ng-lottie';
 
 // Angular Mat Modules
 import {CustomMaterialModule} from './modules/material-module';
@@ -32,15 +33,16 @@ import {
 import { SystemBarComponent } from './components/system-bar/system-bar.component';
 import { InterceptorTooltipComponent } from './components/system-bar/interceptor-tooltip/interceptor-tooltip.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AlertsModalComponent } from './components/header/alerts-modal/alerts-modal.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { AlertsStripComponent } from './components/header/alerts-strip/alerts-strip.component'
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { SourcesListComponent } from './components/sources-list/sources-list.component';
 import { StoreModule } from '@ngrx/store';
 import { AddTargetWizardComponent } from './components/add-target-wizard/add-target-wizard.component';
-
+import {AlertsModalComponent} from './components/system-bar/alerts/alerts-modal/alerts-modal.component'
+import { AlertsStripComponent } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
+import { LeftBarComponent } from './components/left-bar/left-bar.component';
+import { RightBarComponent } from './components/right-bar/right-bar.component';
 // Pipes
 import {
   CharactersPipe, SafeHtmlPipe, CaseFilterPipe, SignalStrenghtPipe, MissionWizardOperatorsPipe,
@@ -52,8 +54,9 @@ import { AuthGuard } from '@app/guards';
 // Libraries
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
-import { LeftBarComponent } from './components/left-bar/left-bar.component';
-import { RightBarComponent } from './components/right-bar/right-bar.component';
+
+import { AgGridModule } from 'ag-grid-angular';
+
 
 @NgModule({
   declarations: [
@@ -107,6 +110,8 @@ import { RightBarComponent } from './components/right-bar/right-bar.component';
     NgbModule,
     // AngularMaterial
     CustomMaterialModule,
+    LottieAnimationViewModule.forRoot(),
+    AgGridModule.withComponents([]),
     // WebSocketModule.forRoot(environment.websocketUrl),
   ],
   providers: [

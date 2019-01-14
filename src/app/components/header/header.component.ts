@@ -1,17 +1,10 @@
-import { WebsocketService } from './../../services/websocket/websocket.service';
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import { MenuService } from '@app/components/menu/menu.service'
-import { AlertsModalComponent } from './alerts-modal/alerts-modal.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpService } from '../../services/http/http.service';
 import { User, SystemInfo } from '@app/models';
 import { Observable, Subscription } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { fromSystem, systemActions } from '@app/state';
-import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { WsService } from '@app/services';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -51,7 +44,6 @@ export class HeaderComponent implements OnInit {
 
 
 filterItem(searchValue) {
-  // console.log(searchValue);
   let search = {scope: '', keyword: searchValue}
   this.httpService.search(search).subscribe( res => {
     this.searchResults = res
@@ -114,6 +106,7 @@ filterItem(searchValue) {
 
     catchWebSocketEvents(msg) {
       switch(Object.keys(msg.result)[0]) {
+        // System 
         case 'alice':
         this.system.alice = msg.result.alice;
         break;
@@ -138,6 +131,7 @@ filterItem(searchValue) {
         case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
         break;
+        // Search
         case 'search_result':
         this.searchResults.push(msg.result.search_result);
         this.searchResults = this.searchResults.slice();

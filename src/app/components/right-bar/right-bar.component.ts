@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-right-bar',
@@ -8,17 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class RightBarComponent implements OnInit {
   isOpen = false;
   selected = "today"
+  @Input() events: any[];
   data = [
-    {time: '9:30AM', title:'Intel Arrived', target:'Alex Randolph', source:'Alex iPhone', state:'green'},
-    {time: '12:30AM', title:'Low Battery', target:'Alex Randolph', source:'Alex iPhone', state:'red'},
-    {time: '06:00PM', title:'Source Arrived', target:'Alex Randolph', source:'Alex iPhone', state:'green'},
-    {time: '01:00PM', title:'License about to end'},
-    {time: '04:20AM', title:'Existing Source Re-connect', target:'Alex Randolph', source:'Alex iPhone', state:'green'},
-
+    { createdAt: '9:30AM',  msg:'Intel Arrived', owners:{target: 'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
+    { createdAt: '12:30AM', msg:'Low Battery', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'WARNING', tags:[], importance: true, target_url:''},
+    { createdAt: '06:00PM', msg:'Source Arrived', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
+    { createdAt: '01:00PM', msg:'License about to end', owners:{},tags:[], importance: true, target_url:''},
+    { createdAt: '04:20AM', msg:'Existing Source Re-connect', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
   ]
   constructor() { }
 
   ngOnInit() {
+  }
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    console.log(this.events)
   }
   toggleNav(){
     this.isOpen = !this.isOpen;

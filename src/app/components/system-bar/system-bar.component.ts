@@ -17,6 +17,7 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('t') public tooltip: NgbTooltip;
   isMenuOpen: boolean;
   date: any;
+  isAlertsOpen = false;
   clock$: Observable<number> = interval(1000).pipe(
     map(() => Date.now())
   );
@@ -50,17 +51,18 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
     this.getPioneerStatus();
     this.getCloudStatus()
     this.checkInterceptor();
-    
   }
 
   ngAfterViewInit() {
     this.checkInterceptor();
     this.cdRef.detectChanges();
   }
-
+toggleAlerts(){
+  this.isAlertsOpen = !this.isAlertsOpen;
+}
   checkInterceptor() {
     if (this.system.interceptor && this.config) {
-      if (this.system.interceptor.indicators.state === this.config.indicators.state.green && this.tooltip) {
+      if (this.system.interceptor.indicator.state === this.config.indicators.state.green && this.tooltip) {
         this.tooltip.open();
       }
     }
@@ -113,12 +115,13 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
       } else {
         this.internetStatus = 'not-connected';
       }
+      
     }
   }
 
   getDeviceStatus() {
     if (this.system.interceptor && this.config) {
-      if (this.system.interceptor.indicators.state === this.config.indicators.state.green) {
+      if (this.system.interceptor.indicator.state === this.config.indicators.state.green) {
         this.interceptorStatus = 'interceptor';
       } else {
         this.interceptorStatus = 'interceptor-failed';

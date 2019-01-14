@@ -10,15 +10,18 @@
                 <span class="time" [class.selected]="selected === 'today'" (click)="toggleSelected('today')">Today</span>
                 <span class="time" [class.selected]="selected === 'all'" (click)="toggleSelected('all')">All</span>
               </div>
-              <div class="events-list">
+              <div *ngIf="events?.length > 0" class="events-list" [ngClass]="isOpen ? '' : 'hidden'">
                   <ul>
-                      <li class="event-item" *ngFor="let event of data">
-                          <span class="event-time">{{event.time}}</span>
-                          <span class="event-title" [ngClass]='event.state'>{{event.title}}</span>
-                          <span class="event-target">{{event.target}}</span>
-                          <span class="event-source">{{event.source}}</span>
+                      <li class="event-item" *ngFor="let event of events">
+                          <span class="event-time">{{event.created_at | date:'HH:mm:ss'}}</span>
+                          <span class="event-title" [ngClass]='event.severity ? event.severity : "INFO" '>{{event.msg}}</span>
+                          <div class="owners">
+                                <span *ngIf="event.metadata?.owner1" class="event-owner1">{{event.metadata.owner1}}</span>
+                                <span *ngIf="event.metadata?.owner2" class="event-owner2">{{event.metadata.owner2}}</span>
+                          </div>
+                  
                           <div class="buttons">
-                              <span class="dismiss">DISMISS</span>
+                              <span class="dismiss">DISMISS </span>
                               <span class="view">VIEW</span>
                           </div>
                         </li>

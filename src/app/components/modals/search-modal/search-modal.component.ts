@@ -25,7 +25,6 @@ export class SearchModalComponent implements OnInit, OnDestroy {
 
   }
   ngOnChanges(changes: { [key: string]: SimpleChange }) {
-    console.log(this.searchResult)
   }
 
   ngAfterViewInit() {

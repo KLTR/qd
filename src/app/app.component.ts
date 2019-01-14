@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(
     private http: HttpService) {
-      this.http.getConfig().subscribe(res => console.log(res));
+      this.http.getConfig().subscribe();
   }
   
 }

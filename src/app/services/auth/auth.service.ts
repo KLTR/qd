@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.http.logout().subscribe(res => console.log(res))
+    this.http.logout().subscribe()
     this.store.dispatch(new userActions.Logout());
   }
 

@@ -4,7 +4,7 @@ export class SystemInfo {
   rejects: string[];
   alerts: number;
   interceptor: {
-    indicators: {
+    indicator: {
       state: string;
       tip: string;
     }
