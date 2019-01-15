@@ -1,4 +1,3 @@
-import { WebsocketService } from './../../services/websocket/websocket.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, Effect, ROOT_EFFECTS_INIT, ofType } from '@ngrx/effects';
@@ -46,7 +45,7 @@ export class UserEffects {
   @Effect()
   userInfo$: Observable<Action> = this.actions$.pipe(ofType(userActions.UserActionTypes.GET_INFO))
     .pipe(
-      tap(() => this.socketSub = this.socket.connectSocket()),
+      // tap(() => this.socketSub = this.socket.connectSocket()),
       map((action: userActions.GetInfo) => action.payload),
       map(user => new userActions.LoginSuccess(user),
       catchError(err => of(new userActions.LoginFail(err)))
@@ -63,7 +62,6 @@ export class UserEffects {
   constructor(private store: Store<State>,
     private router: Router,
     private actions$: Actions,
-    private socket: WebsocketService,
     private http: HttpService) {
     this.router.routerState.root.queryParams.subscribe(query => this.returnUrl = query['return'] || 'activeMission');
   }

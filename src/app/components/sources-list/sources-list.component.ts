@@ -1,5 +1,7 @@
+import { WebSocketCommonService } from '../../services/websocket/websocket.service';
 import { HttpService, WsService } from '@app/services';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sources-list',
@@ -14,11 +16,11 @@ export class SourcesListComponent implements OnInit {
   constructor(
     private http: HttpService,
     private ws: WsService,
-
     ){
-     this.ws.messages.subscribe(msg => {
+      console.log('init')
+      this.ws.wsMessages.subscribe(msg => {
         this.catchWebSocketEvents(msg)
-        console.log("Dashboard socket : ", msg);
+        console.log("LeftBarSocket : ", msg);
       })
 }
 
@@ -28,10 +30,12 @@ export class SourcesListComponent implements OnInit {
       {
         console.log(res);
         this.missionData = res;
-        // this.temp = res,
-        // this.setPendingDevicesArray()
+
       })
+
   }
+
+
 
   // setPendingDevicesArray(){
   //   let pending : any[];
@@ -89,26 +93,30 @@ export class SourcesListComponent implements OnInit {
         }
       }
     }
+
   catchWebSocketEvents(msg) {
-    switch(Object.keys(msg.result)[0]) {
-      case 'target':
-      this.missionData.targets.push(msg.result.target);
-      this.missionData = Object.assign({}, this.missionData);
-      break;
-      case 'infection':
-      this.missionData.infections.push(msg.result.infection);
-      this.missionData = Object.assign({}, this.missionData);
-      break;
-      case 'source':
-      this.missionData.sources.push(msg.result.source);
-      this.missionData = Object.assign({}, this.missionData);
-      break;
-      case 'event':
-      this.events.push(msg.result.event.log);
-      this.events = this.events.slice();
-      break;
-      case 'alert':
-      return;
+    if(msg.result){
+      switch(Object.keys(msg.result)[0]) {
+        case 'target':
+        this.missionData.targets.push(msg.result.target);
+        this.missionData = Object.assign({}, this.missionData);
+        break;
+        case 'infection':
+        this.missionData.infections.push(msg.result.infection);
+        this.missionData = Object.assign({}, this.missionData);
+        break;
+        case 'source':
+        this.missionData.sources.push(msg.result.source);
+        this.missionData = Object.assign({}, this.missionData);
+        break;
+        case 'event':
+        this.events.push(msg.result.event.log);
+        this.events = this.events.slice();
+        break;
+      }
+    } else{
+      console.log('err', msg.result);
     }
+
   }
 }

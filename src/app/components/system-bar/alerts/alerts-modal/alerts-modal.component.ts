@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './alerts-modal.component.html',
   styleUrls: ['./alerts-modal.component.scss']
 })
-export class AlertsModalComponent implements OnInit, OnDestroy {
+export class AlertsModalComponent implements OnInit {
   alertsData;
   filteredAlerts;
   @Input() isOpen;
@@ -89,9 +89,9 @@ export class AlertsModalComponent implements OnInit, OnDestroy {
     this.countActiveAlerts();
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
   sortByValue(sort: string) {
     if (sort === 'date' && (this.sortBy !== '-datetime' && this.sortBy !== '+datetime')) {

@@ -1,11 +1,15 @@
 .strip-wrapper {
-    position: absolute;
-    top: 0px;
-    height: 27px;
-    background-color: #ff5470;
-    width: 100%;
-    text-align: center;
-    transition: all 600ms;
+  position: absolute;
+  top: 0;
+  height: 27px;
+  background-color: #ff5470;
+  width: 100%;
+  text-align: center;
+  transition: all 600ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
     .message {
       font-size: 12px;
       font-weight: 600;
@@ -16,6 +20,7 @@
     .buttons-wrap {
       display: inline-block;
       padding-left: 30px;
+      margin-top: 3px;
       .dismiss-btn {
         display: inline-block;
         font-size: 10px;
