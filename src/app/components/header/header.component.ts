@@ -32,8 +32,7 @@ export class HeaderComponent implements OnInit {
               private ws: WsService,
          
               ) {
-                console.log('init')
-                this.ws.wsMessages.subscribe(msg => {
+                this.ws.messages.subscribe(msg => {
                   this.catchWebSocketEvents(msg)
                   console.log("Dashboard socket : ", msg);
                 })
@@ -107,7 +106,9 @@ filterItem(searchValue) {
   }
 
     catchWebSocketEvents(msg) {
-      console.log(msg)
+    if(Object.keys(msg)[0] === 'error'){
+      return;
+    }
       switch(Object.keys(msg.result)[0]) {
         // System 
         case 'alice':

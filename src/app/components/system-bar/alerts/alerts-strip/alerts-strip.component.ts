@@ -14,13 +14,13 @@ export class AlertsStripComponent implements OnInit {
   subscription: Subscription;
 
   constructor(
-    // private ws: WsService
+    private ws: WsService
     ) {
 
-      // this.ws.socketEvent.subscribe(msg => {
-      //   this.catchWebSocketEvents(msg)
-      //   console.log("Dashboard socket : ", msg);
-      // })
+      this.ws.messages.subscribe(msg => {
+        this.catchWebSocketEvents(msg)
+        console.log("Alerts socket : ", msg);
+      })
       }
 
   ngOnInit() {
@@ -39,22 +39,20 @@ export class AlertsStripComponent implements OnInit {
   }
 
 
-  // catchWebSocketEvents(msg){
-  //   console.log(msg);
-  //   if(Object.keys(msg)[0] === 'error'){
-  //     return;
-  //   }
-  //   switch(Object.keys(msg.result)[0]) {
-  //     case 'alert':
-  //     console.log(msg.result.alert.log);
-  //     let alert = msg.result.alert.log;
-  //     if(alert.severity === 'CRITICAL'){
-  //       this.showStrip = true;
-  //       this.message = alert.msg;
-  //       // setTimeout(() => {this.showStrip = false;}, 30000);
-  //     }
-  //     break;
-  //   }
-  // }
+  catchWebSocketEvents(msg){
+    if(Object.keys(msg)[0] === 'error'){
+      return;
+    }
+    switch(Object.keys(msg.result)[0]) {
+      case 'alert':
+      let alert = msg.result.alert.log;
+      if(alert.severity === 'CRITICAL'){
+        this.showStrip = true;
+        this.message = alert.msg;
+        // setTimeout(() => {this.showStrip = false;}, 30000);
+      }
+      break;
+    }
+  }
 
 }

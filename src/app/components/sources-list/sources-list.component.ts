@@ -1,4 +1,3 @@
-import { WebSocketCommonService } from '../../services/websocket/websocket.service';
 import { HttpService, WsService } from '@app/services';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -17,8 +16,7 @@ export class SourcesListComponent implements OnInit {
     private http: HttpService,
     private ws: WsService,
     ){
-      console.log('init')
-      this.ws.wsMessages.subscribe(msg => {
+      this.ws.messages.subscribe(msg => {
         this.catchWebSocketEvents(msg)
         console.log("LeftBarSocket : ", msg);
       })
@@ -28,34 +26,11 @@ export class SourcesListComponent implements OnInit {
     this.events = [];
     this.http.getActiveMission().subscribe( res => 
       {
-        console.log(res);
         this.missionData = res;
 
       })
 
   }
-
-
-
-  // setPendingDevicesArray(){
-  //   let pending : any[];
-  //   pending = this.temp.pending_devices;
-  //   for(let i = 0 ; i < pending.length ; i++){
-  //     switch(Object.keys(pending[i])[0]){
-  //       case 'pioneer':
-  //       pending[i] = {...pending[i].pioneer, vectorType: 'pioneer'}
-  //       break;
-  //     }
-  //   }
-  //   this.temp.pending_devices = pending;
-  //   this.missionData = this.temp;
-  // }
-  // getBatteryIcon(battery) {
-  //   if (battery <= 20) {
-  //     return 'device-battery-empty';
-  //   }
-  //   return 'device-battery-full';
-  // }
 
   getWifiSignal(wifi) {
       switch (wifi) {
@@ -95,6 +70,9 @@ export class SourcesListComponent implements OnInit {
     }
 
   catchWebSocketEvents(msg) {
+    if(Object.keys(msg)[0] === 'error'){
+      return;
+    }
     if(msg.result){
       switch(Object.keys(msg.result)[0]) {
         case 'target':
