@@ -34,7 +34,6 @@ export class HeaderComponent implements OnInit {
               ) {
                 this.ws.messages.subscribe(msg => {
                   this.catchWebSocketEvents(msg)
-                  console.log("Dashboard socket : ", msg);
                 })
   }
 

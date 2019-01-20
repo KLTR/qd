@@ -122,24 +122,24 @@ a:focus {
   }
 }
 
-.tooltip {
-  //pointer-events: none;
-  &.show {
-    opacity: 1 !important; // pointer-events: none;
-    z-index: 999;
-  }
-  .arrow {
-    &:before {
-      border-right-color: #52667b;
-      border-left-color: #52667b;
-    }
-  }
-  .tooltip-inner {
-    border-radius: 2px;
-    background-color: #52667b;
-    color: #fff;
-  }
-}
+// .tooltip {
+//   //pointer-events: none;
+//   &.show {
+//     opacity: 1 !important; // pointer-events: none;
+//     z-index: 999;
+//   }
+//   .arrow {
+//     &:before {
+//       border-right-color: #52667b;
+//       border-left-color: #52667b;
+//     }
+//   }
+//   .tooltip-inner {
+//     border-radius: 2px;
+//     background-color: #52667b;
+//     color: #fff;
+//   }
+// }
 
 .create-mission-wizard {
   .modal-dialog {
@@ -156,9 +156,9 @@ a:focus {
 }
 
 /////////Removes bottom pading from cube tooltips///////////
-.bs-tooltip-bottom {
-  padding: 0.4em 0 0 0;
-}
+// .bs-tooltip-bottom {
+//   padding: 0.4em 0 0 0;
+// }
 
 ///Modals
 .add-attack-modal {

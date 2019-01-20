@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +17,9 @@ serverUrls = {
 }
 config: any;
 token: string;
-  constructor(private http: HttpClient) { 
+  constructor(
+    private http: HttpClient,
+    ) { 
    
   }
 
@@ -68,6 +69,7 @@ token: string;
   logout() : Observable<any> {
     console.log(this.token);
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders(this.token));
+    
   }
   getDashboard(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(this.getToken()));

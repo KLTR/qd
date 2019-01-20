@@ -1,6 +1,6 @@
 import { HttpService } from '@app/services/http/http.service';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-
+import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
 @Component({
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
@@ -12,10 +12,12 @@ export class LeftBarComponent implements OnInit {
   temp: any;
   isWizardOpen = false;
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    public iconService: IconService
   ) { }
 
   ngOnInit() {
+    
   }
 
  ngOnChanges(changes: SimpleChanges): void {
@@ -36,17 +38,31 @@ export class LeftBarComponent implements OnInit {
 }
 setInfectionIcon(state){
   switch(state){
-    case "PENDING":
-    break;
     case "IN_PROGRESS":
-    break;
+    return 'infection-attacking'
     case "FAILED":
-    return 'status-lost-connection-long'
-    case "COMPLETED":
-    return 'status-active'
+    return 'infection-failed'
 }
   }
+  closeT(event) {
+    console.log(event)
+  }
 
+  setAnimatedIcon() {
+    return {
+      height: 18,
+      width: 18,
+      options: {
+        path: 'assets/svg-jsons/initializing.json',
+        autoplay: true,
+        loop: true,
+        rendererSettings: {
+          progressiveLoad: true,
+          preserveAspectRatio: 'xMidYMid meet',
+      }
+    }
+  }
+}
 
 // setIcon(source) {
 //   this.isAnimated = this.isAnimatedIcon();

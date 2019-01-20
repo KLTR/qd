@@ -56,6 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
 
 import { AgGridModule } from 'ag-grid-angular';
+import { DeviceTooltipComponent } from './components/device-tooltip/device-tooltip.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { AgGridModule } from 'ag-grid-angular';
     LeftBarComponent,
     SourcesListComponent,
     AddTargetWizardComponent,
-    RightBarComponent
+    RightBarComponent,
+    DeviceTooltipComponent
   
   ],
   imports: [

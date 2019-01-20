@@ -9,8 +9,8 @@
           <!-- <ng-template class="tool-tip alerts-tip" #alertsTip>{{system.alerts?.tip}}</ng-template> -->
           <ng-template class="tool-tip" #batteryTip>{{system.goat?.tip}}</ng-template>
           <ng-template class="tool-tip" #storageTip>{{system.storage?.tip}}</ng-template>
-          <ng-template class="tool-tip" #aliceTip>{{system.alice?.tip}}</ng-template>
-          <ng-template class="tool-tip" #cloudTip>{{system.cloud?.tip}}</ng-template>
+          <!-- <ng-template class="tool-tip" #aliceTip>{{system.alice?.tip}}</ng-template> -->
+          <!-- <ng-template class="tool-tip" #cloudTip>{{system.cloud?.tip}}</ng-template> -->
           <ng-template class="tool-tip" #pioneerTip>{{system.pioneer?.tip}}</ng-template>
 
         <div *ngIf="pioneerStatus" class="icon-wrapper pioneer-wrapper">
@@ -18,8 +18,8 @@
         <app-svg-icon  class="pioneer" [ngbTooltip]="pioneerTip" [name]="pioneerStatus" [size]="17">
         </app-svg-icon>
         </div>
-        <app-svg-icon *ngIf="cloudStatus" class="cloud" [ngbTooltip]="cloudTip" [name]="cloudStatus" [size]="23"></app-svg-icon>
-        <app-svg-icon *ngIf="aliceStatus" class="alice" [ngbTooltip]="aliceTip" [name]="aliceStatus" [size]="22"></app-svg-icon>
+        <!-- <app-svg-icon *ngIf="cloudStatus" class="cloud" [ngbTooltip]="cloudTip" [name]="cloudStatus" [size]="23"></app-svg-icon> -->
+        <!-- <app-svg-icon *ngIf="aliceStatus" class="alice" [ngbTooltip]="aliceTip" [name]="aliceStatus" [size]="22"></app-svg-icon> -->
         <app-svg-icon *ngIf="batteryStatus" class="battery-placeholder" [ngbTooltip]="batteryTip" [name]="batteryStatus" [size]="25"></app-svg-icon>
         <app-svg-icon *ngIf="internetStatus" class="internet" name="internet" [ngbTooltip]="internetTip" [size]="15" [ngClass]="internetStatus"></app-svg-icon>
         <app-svg-icon *ngIf="diskStatus" class="disk-space" name="{{diskStatus}}" [ngbTooltip]="storageTip" [size]="17" ></app-svg-icon>

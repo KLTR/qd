@@ -19,7 +19,6 @@ export class AlertsStripComponent implements OnInit {
 
       this.ws.messages.subscribe(msg => {
         this.catchWebSocketEvents(msg)
-        console.log("Alerts socket : ", msg);
       })
       }
 

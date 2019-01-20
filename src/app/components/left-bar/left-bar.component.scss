@@ -43,6 +43,14 @@
           background-color: #43576b;
           cursor: pointer;
         }
+          .info-icon{
+            margin-left: auto;
+            margin-right: 2px;
+        }
+        .device-status{
+          display: flex;
+          margin-left: auto;
+        }
       }
 
       span {
@@ -84,4 +92,3 @@
   color: white;
   font-size: 14px;
 }
-

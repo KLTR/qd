@@ -18,7 +18,6 @@ export class SourcesListComponent implements OnInit {
     ){
       this.ws.messages.subscribe(msg => {
         this.catchWebSocketEvents(msg)
-        console.log("LeftBarSocket : ", msg);
       })
 }
 
@@ -26,8 +25,17 @@ export class SourcesListComponent implements OnInit {
     this.events = [];
     this.http.getActiveMission().subscribe( res => 
       {
+        console.log(res);
         this.missionData = res;
-
+        if(!this.missionData.sources){
+          this.missionData.sources = [];
+        }
+        if(!this.missionData.targets){
+          this.missionData.targets = [];
+        }
+        if(!this.missionData.infections){
+          this.missionData.infections = [];
+        }
       })
 
   }
@@ -50,7 +58,7 @@ export class SourcesListComponent implements OnInit {
           return 'signal-no';
       
     }
-  }
+ }
 
 
   setAnimatedIcon() {
@@ -80,8 +88,9 @@ export class SourcesListComponent implements OnInit {
         this.missionData = Object.assign({}, this.missionData);
         break;
         case 'infection':
-        this.missionData.infections.push(msg.result.infection);
+        this.handleInfection(msg.result.infection);
         this.missionData = Object.assign({}, this.missionData);
+        console.log(this.missionData.infections);
         break;
         case 'source':
         this.missionData.sources.push(msg.result.source);
@@ -95,6 +104,25 @@ export class SourcesListComponent implements OnInit {
     } else{
       console.log('err', msg.result);
     }
+  }
 
+  handleInfection(infection){
+    if(!infection.state){
+      return;
+    }
+    if(infection.state === 'IN_PROGRESS'){
+      this.missionData.infections.push(infection);
+      return;
+    }
+     else {
+      this.missionData.infections = this.missionData.infections.filter( (x) => { if(x.id !== infection.id){ return x}});
+      if(infection.state === 'FAILED'){
+        this.missionData.infections.push(infection);
+      }
+      if(infection.state === 'COMPLETED'){
+        this.missionData.sources.push(infection);
+      }
+    }
+   
   }
 }

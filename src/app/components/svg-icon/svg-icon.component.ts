@@ -1,6 +1,6 @@
+import { SafeHtmlPipe } from '@app/pipes/safe-html.pipe';
 import { Component, HostBinding, Input, OnChanges, OnInit, SimpleChange, ViewEncapsulation } from '@angular/core';
 import { IconService } from '@app/services';
-// import { SafeHtmlPipe } from '@quadream/ui-common';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -41,12 +41,6 @@ export class SvgIconComponent implements OnInit, OnChanges {
   }
 
   private setSVG() {
-    // if (this.mobWidth < 1920) {
-    //   this.size = 12.5;
-    // }
-    // if (this.mobWidth < 1080) {
-    //   this.size = 8;
-    // }
     this.svgData = this.iconService.getIcon(this.name, this.size);
     this.inner = this.sanitizer.bypassSecurityTrustHtml(this.svgData);
   }
