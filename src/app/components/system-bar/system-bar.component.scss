@@ -378,24 +378,24 @@
         .value {
           .dropdown {
             &>.btn {
-              width: 206px;
-              height: 32px;
-              border: solid 1px #bcd8f5;
-              background-color: transparent;
-              border-radius: 2px;
-              padding: 0;
-              padding-left: 10px;
-              text-align: left;
-              color: #bcd8f5;
-              box-shadow: none;
-              outline: none;
-              text-transform: capitalize;
-              font-size: 11.5px;
-              font-weight: normal;
-              font-style: normal;
-              letter-spacing: 0.3px;
-              font-stretch: normal;
-              opacity: 0.75;
+    width: 206px;
+    height: 32px;
+    border: solid 1px #bcd8f5;
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 0;
+    padding-left: 10px;
+    text-align: left;
+    color: #bcd8f5;
+    box-shadow: none;
+    outline: none;
+    text-transform: capitalize;
+    font-size: 13.5px;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0.3px;
+    font-stretch: normal;
+    opacity: 1;
               &:after {
                 position: absolute;
                 top: 15px;

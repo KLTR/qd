@@ -139,14 +139,14 @@
     <div class="tooltip-container content">
       <div class="single-row name">
         <div class="key">Interceptor name</div>
-        <!-- <div class="value">
+        <div class="value">
               <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-outline-primary" id="dropdown_interceptors" ngbDropdownToggle>{{system?.interceptor?.interceptors[0] || 'select interceptor'}}</button>
+                  <button class="btn btn-outline-primary" id="dropdown_interceptors" ngbDropdownToggle>{{system?.interceptor?.interceptors[0].name || 'select interceptor'}}</button>
                   <div ngbDropdownMenu aria-labelledby="dropdown_interceptors">
-                    <button class="dropdown-item" *ngFor="let interceptor of system?.interceptor?.interceptors" (click)="selectInterceptor(interceptor)">{{interceptor}}</button>
+                    <button class="dropdown-item" *ngFor="let interceptor of system?.interceptor?.interceptors" (click)="selectInterceptor(interceptor)">{{interceptor.name}}</button>
                   </div>
                 </div>
-          </div> -->
+          </div>
       </div>
       <div class="single-row mode">
         <div class="key">Interceptor mode</div>
@@ -155,16 +155,16 @@
             <button class="btn btn-outline-primary" id="dropdown" ngbDropdownToggle>{{system?.interceptor?.interceptor?.name || 'select interceptor'}}</button> -->
           <!-- <div ngbDropdownMenu aria-labelledby="dropdown">
               <button class="dropdown-item" *ngFor="let interceptor of interceptors" (click)="attachInterceptor(interceptor)">{{system?.interceptor?.interceptor?.name}}</button>
-            </div> 
+            </div>
           -->
-          <input type="text" class="input status" [value]="system?.interceptor?.interceptor?.name" [disabled]="true">
+          <input type="text" class="input status" [value]="selectedInterceptor?.mode" [disabled]="true">
         </div>
       </div>
 
       <div class="single-row status">
         <div class="key">Interceptor status</div>
         <div class="value">
-          <input type="text" class="input status-{{system?.interceptor?.indicator?.state}}" [value]="system?.interceptor?.indicator?.state === 'GREEN' ? 'Connected' : 'Disconnected'"
+          <input type="text" class="input status-{{system?.interceptor?.indicator?.state}}" [value]="selectedInterceptor?.connected ? 'Connected' : 'Disconnected'"
             [disabled]="true">
         </div>
       </div>

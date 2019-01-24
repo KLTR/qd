@@ -97,7 +97,6 @@ closeTip(){
   this.openedPop = null;
 }
   checkInterceptor() {
-    return;
     if (this.system.interceptor && this.config) {
      this.selectedInterceptor = this.system.interceptor.interceptors[0];
     }
@@ -197,7 +196,9 @@ toggleInternetTip(event){
   }
 
   selectInterceptor(interceptor){
-    this.selectedInterceptor = this.selectedInterceptor;
+    console.log(interceptor);
+    this.selectedInterceptor = interceptor;
+    console.log(this.selectedInterceptor)
   }
 
 }
