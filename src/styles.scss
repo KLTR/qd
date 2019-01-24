@@ -10,7 +10,8 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 $ag-icons-path: "../node_modules/ag-grid/src/styles/icons/";
-
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
 // .ag-row-even{
     
 // }
@@ -39,7 +40,9 @@ button,
 div {
   user-select: none !important;
 }
-
+p{
+  margin: 0 ;
+}
 *:focus {
   outline: none;
 }
@@ -340,4 +343,84 @@ a:focus {
   align-items: center !important;
   justify-content: center !important;
   padding-right: 0 !important;
+}
+.icon-button{
+  width: 123px;
+  height: 35px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16);
+  background-color: #314153;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span{
+    color: #c5e1ff;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    text-align: center;
+    margin: 0 !important;
+  }
+  .button-img{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      height: 40px;
+      width: 40px;
+    }
+  }
+&:hover{
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
+  background-color: #4d6179;
+  cursor: pointer;
+
+}
+&:active{
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16);
+  background-color: #3d5064;
+  transform: translateY(1px); 
+}
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  to {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+.rotating {
+  &:hover{
+    -webkit-animation: rotating 2s linear infinite;
+    -moz-animation: rotating 2s linear infinite;
+    -ms-animation: rotating 2s linear infinite;
+    -o-animation: rotating 2s linear infinite;
+    animation: rotating 2s linear infinite;
+  }
 }

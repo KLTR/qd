@@ -9,6 +9,7 @@ export class RightBarComponent implements OnInit {
   isOpen = false;
   selected = "today"
   @Input() events: any[];
+
   data = [
     { createdAt: '9:30AM',  msg:'Intel Arrived', owners:{target: 'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
     { createdAt: '12:30AM', msg:'Low Battery', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'WARNING', tags:[], importance: true, target_url:''},
@@ -30,5 +31,8 @@ export class RightBarComponent implements OnInit {
   }
   toggleSelected(val){
     this.selected = val;
+  }
+  removeEvent(index){
+    this.events['events'].splice(index, 1);
   }
 }

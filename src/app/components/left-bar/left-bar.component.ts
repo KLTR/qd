@@ -1,5 +1,5 @@
 import { HttpService } from '@app/services/http/http.service';
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
 @Component({
   selector: 'app-left-bar',
@@ -7,17 +7,17 @@ import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
   styleUrls: ['./left-bar.component.scss']
 })
 export class LeftBarComponent implements OnInit {
-
+  @ViewChild('sourcePop') public sourcePop: any;
  @Input() missionData: any;
   temp: any;
   isWizardOpen = false;
+  selectedSource: any;
   constructor(
     private http: HttpService,
     public iconService: IconService
   ) { }
 
   ngOnInit() {
-    
   }
 
  ngOnChanges(changes: SimpleChanges): void {
@@ -44,9 +44,14 @@ setInfectionIcon(state){
     return 'infection-failed'
 }
   }
-  closeT(event) {
-    console.log(event)
+  closeT() {
+    console.log(this.sourcePop.isOpen());
+    this.sourcePop.close();
+    this.selectedSource = null;
   }
+  selectSource(source){
+    this.selectedSource = source;
+   }
 
   setAnimatedIcon() {
     return {

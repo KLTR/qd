@@ -24,7 +24,10 @@
     cursor: pointer;
     vertical-align: middle;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: left;
+    p{
+      margin-left: 20px;
+    }
   }
 }

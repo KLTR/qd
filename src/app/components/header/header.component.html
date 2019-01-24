@@ -11,16 +11,35 @@
           </div>
         <app-system-bar [system]="system" [user]="user"></app-system-bar>
       </div>
-      <!-- <div class="navbar-alerts" (click)="showAlerts()" *ngIf="!isChanged" [ngClass]="{'more-alerts': moreAlerts}">
-        <div class="circle-wrapper {{highestLevel}}" *ngIf="highestLevel">
-          <span class="alerts-amount">{{activeAlerts.length < 100 ? activeAlerts.length : '99'}}</span>
+      <div class="navbar-menu">
+        <div class="alerts" (click)="toggleAlerts()">
+            <span class="alerts-number">{{system.alerts?.count}}</span>
+            <app-svg-icon name="alert" [size]="20" ></app-svg-icon>
         </div>
-      </div> -->
-      <div class="navbar-menu" (click)="toggleMenu()" [ngClass]="{'navbar-menu-active': menuState$ | async}">
-        <span></span>
-        <span></span>
-        <span></span>
+
+        <app-svg-icon name="user" [size]="21" [satPopoverAnchorFor]="userPop" (click)="userPop.toggle()"></app-svg-icon>
+
+        <app-svg-icon name="settings" [size]="20"  (click)="toggleMenu()" [ngClass]="{'navbar-menu-active': menuState$ | async}"></app-svg-icon>
       </div>
     </div>
+
+
   </div>
+
   <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal>
+  <app-alerts-modal  [isOpen]="isAlertsOpen" ></app-alerts-modal>
+        <sat-popover #userPop xAlign="center" yAlign="below">
+            <div class="custom-tip user">
+                <div class="header">{{user.user}}</div>
+                <ul class="content">
+                    <ul class="table-headers">
+                        <li>Space name</li>
+                        <li class="roles">Roles</li>
+                    </ul>
+                    <ul class="table-values" *ngFor="let space of user?.permissions">
+                        <li><span>{{space.space_name}}</span></li>
+                        <li class="roles" *ngFor="let role of space.roles; let i = index;">{{role}} <span *ngIf="i !== space.roles.length-1">,</span></li>
+                    </ul>
+                </ul>
+            </div>
+        </sat-popover>

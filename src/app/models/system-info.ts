@@ -13,6 +13,17 @@ export class SystemInfo {
       mode: string;
       name: string
     }
+    interceptors:[
+      {
+        interceptor:{
+          connected: boolean;
+          diagnostics: string;
+          id: string;
+          name: string;
+          mode: string;
+      }
+      }
+    ]
   };
   internet: {
     indicator:{

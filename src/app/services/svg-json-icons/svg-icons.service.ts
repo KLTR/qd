@@ -98,6 +98,14 @@ export class IconService {
       <path fill="#a7cff7" d="M7.44 0H.56A.56.56 0 0 0 0 .56v12.88a.56.56 0 0 0 .56.56h6.88a.56.56 0 0 0 .56-.56V.56A.56.56 0 0 0 7.44 0zm-.16.72V10H.72V.72zM3 12a1 1 0 1 1 1 1 1 1 0 0 1-1-1z" id="aLayer_1-2" data-name="Layer 1" />
     </g>
     </svg>`;
+    case 'right_arrow':
+    return `
+    <svg viewBox="0 0 129 129" width="20px" height="20px">
+      <g>
+        <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z" fill="#BEDAF8"/>
+      </g>
+    </svg>
+    `
             case 'arrow':
                 return `<svg viewBox="0 0 8.14 15.57" id="arrow" width="${size ? size : ''}" height="${size ? size : ''}">
     <g id="bLayer_2" data-name="Layer 2">
@@ -609,7 +617,7 @@ export class IconService {
             <path fill="currentColor" d="M78 0H5a5 5 0 0 0-5 5v73a5 5 0 0 0 5 5h73a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM10 55.72l34.28-34.31 5.87 5.87-34.32 34.31zm28.76 5.87l-5.87-5.87 34.28-34.31L73 27.28z" id="bsLayer_1-2" data-name="Layer 1" />
         </g>
     </svg>`;
-            case 'wifi_exellent':
+            case 'wifi_excellent':
                 return `<svg viewBox="0 0 35.34 18.52" id="wifi_exellent" width="${size ? size : ''}" height="${size ? size : ''}">
 
         <g id="aLayer_2" data-name="Layer 2">
@@ -636,7 +644,7 @@ export class IconService {
             </g>
         </g>
     </svg>`;
-            case 'wifi-exellent':
+            case 'wifi-excellent':
                 return `<svg viewBox="0 0 35.34 18.52" id="wifi-exellent" width="${size ? size : ''}" height="${size ? size : ''}">
 
         <g id="dLayer_2" data-name="Layer 2">
@@ -679,12 +687,18 @@ export class IconService {
             case 'signal_middle':
                 return `<svg  viewBox="0 0 11 11" id="signal_middle" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}"><defs><style>.cls-1-middle{fill:#c5e1ff;}.cls-2-middle{fill:#4a6170;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_10" data-name="Layer 10"><rect class="cls-1-middle" x="3" y="6" width="2" height="5"/><rect class="cls-1-middle" y="8" width="2" height="3"/><rect class="cls-2-middle" x="6" y="3" width="2" height="8"/><rect class="cls-2-middle" x="9" width="2" height="11"/></g></g></svg>`;
 
-            case 'target':
+            case 'target_PENDING':
                 return `<svg viewBox="0 0 16 16" id="target" width="${size ? size : ''}" height="${size ? size : ''}">
         <g id="aLayer_2" data-name="Layer 2">
             <path fill="currentColor" d="M8 0a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm.5 15v-1.58h-1V15A7 7 0 0 1 1 8.5h2v-1H1A7 7 0 0 1 7.5 1v1.92h1V1A7 7 0 0 1 15 7.5h-2v1h2A7 7 0 0 1 8.5 15z" id="aLayer_1-2" data-name="Layer 1" />
         </g>
     </svg>`;
+    case 'target_IN_PROGRESS':
+    return `<svg viewBox="0 0 16 16" id="target" width="${size ? size : ''}" height="${size ? size : ''}">
+    <g id="aLayer_2" data-name="Layer 2">
+        <path fill="#6cfff8" d="M8 0a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm.5 15v-1.58h-1V15A7 7 0 0 1 1 8.5h2v-1H1A7 7 0 0 1 7.5 1v1.92h1V1A7 7 0 0 1 15 7.5h-2v1h2A7 7 0 0 1 8.5 15z" id="aLayer_1-2" data-name="Layer 1" />
+    </g>
+</svg>`
     case 'device-failed':
         return `<svg viewBox="0 0 15.51 13.18" id="device-failed" width="${size ? size : ''}" height="${size ? size : ''}">
             <g id="aLayer_2" data-name="Layer 2">
@@ -714,7 +728,16 @@ export class IconService {
     </g>
 </svg>`
 
-
+case 'user': 
+return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : 21}" height="${size ? size : 21}">
+<path fill="#C5E1FF" fill-rule="evenodd" d="M10.499.001C4.71.001 0 4.711 0 10.5c0 5.789 4.71 10.499 10.499 10.499 5.79 0 10.499-4.71 10.499-10.499 0-5.789-4.709-10.499-10.499-10.499zm0 19.644a9.117 9.117 0 0 1-6.807-3.049c-.513-.572-.293-1.51.433-1.761a.088.088 0 0 0 .015-.005c.055-.018 3.59-.921 4.095-1.925.231-.459.003-1.047-.227-1.452a6.95 6.95 0 0 1-.307-.45l-.001-.001c-.599-.958-1.055-2.219-1.102-3.777-.07-2.344 1.744-4.247 3.896-4.253h.01c2.154.006 3.967 1.909 3.897 4.253-.046 1.558-.503 2.819-1.102 3.777v.001a6.958 6.958 0 0 1-.308.45c-.23.405-.458.993-.227 1.452.506 1.004 4.041 1.907 4.095 1.925l.014.005c.727.251.947 1.188.434 1.761a9.123 9.123 0 0 1-6.808 3.049z"/>
+</svg>
+`
+case 'settings':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : 23}" height="${size ? size : 23}">
+<path fill="#C5E1FF" fill-rule="evenodd" d="M20.699 9.82a9.204 9.204 0 0 0-1.519-3.635l1.454-1.807-2.026-2.02-1.825 1.46a9.265 9.265 0 0 0-3.627-1.469L12.896 0H10.03l-.263 2.377a9.279 9.279 0 0 0-3.496 1.458L4.422 2.358l-2.026 2.02 1.479 1.841A9.205 9.205 0 0 0 2.382 9.81L0 10.072v2.856l2.385.263a9.216 9.216 0 0 0 1.487 3.566l-1.469 1.828 2.026 2.02 1.835-1.466a9.278 9.278 0 0 0 3.502 1.464L10.03 23h2.866l.261-2.369a9.287 9.287 0 0 0 3.612-1.459l1.839 1.47 2.026-2.02-1.461-1.816a9.23 9.23 0 0 0 1.523-3.626L23 12.928v-2.856l-2.301-.252zM11.5 15.467A3.974 3.974 0 0 1 7.52 11.5a3.974 3.974 0 0 1 3.98-3.967 3.974 3.974 0 0 1 3.98 3.967 3.974 3.974 0 0 1-3.98 3.967z"/>
+</svg>
+`
             case 'exclamation-mark':
                 return `<svg viewBox="0 0 15 10" id="exclamation-mark" width="${size ? size : ''}" height="${size ? size : ''}">
                 <g id="aLayer_2" data-name="Layer 2">
@@ -940,18 +963,7 @@ export class IconService {
             </g>
         </g>
     </svg>`;
-            case 'fetch_faile':
-                return `<svg viewBox="0 0 22.29 20.14" id="fetch_faile" width="${size ? size : ''}" height="${size ? size : ''}">
-
-        <g id="cLayer_2" data-name="Layer 2">
-            <g id="cLayer_1-2" data-name="Layer 1">
-                <path fill="currentColor"  d="M12.8 5.12v7.62h-2.02l2.24 3.88 2.24-3.88h-2.01V5.12h-.45z" />
-                <path fill="currentColor"  d="M13 1.6a9.16 9.16 0 0 0-3.11.55 5.37 5.37 0 0 1 .35.45 8.73 8.73 0 1 1-5.95 8.49 5.27 5.27 0 0 1-.56-.19A9.27 9.27 0 1 0 13 1.6z" />
-                <path fill="currentColor" fill="#ff4d6a" d="M5.8 0a5.8 5.8 0 1 0 5.8 5.8A5.8 5.8 0 0 0 5.8 0zm0 11A5.2 5.2 0 1 1 11 5.8 5.2 5.2 0 0 1 5.8 11z" />
-                <path fill="currentColor" fill="#ff4d6a" d="M5.3 4.3h1v5h-1zm0-2h1v1h-1z" />
-            </g>
-        </g>
-    </svg>`;
+            
             case 'locations':
                 return `<svg viewBox="0 0 83 83" id="locations" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
 
@@ -1104,6 +1116,21 @@ export class IconService {
         </g>
     </g>
 </svg>`;
+case 'bell_notification':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="17.67" height="19.828" viewBox="0 0 17.67 19.828">
+<g id="Group_136" data-name="Group 136" transform="translate(-1825 -529)">
+    <path id="Path_77" fill="#ff4d6a" d="M353.482 1298.891l-.683-1.168a1.6 1.6 0 0 1-.216-.8v-4.366c0-2.913-3.173-5.47-6.216-5.47s-6.216 2.329-6.216 5.47v4.366a1.591 1.591 0 0 1-.217.8l-.682 1.168a1.564 1.564 0 0 0 1.3 2.367h2.248a3.562 3.562 0 0 0 7.125 0h2.249a1.564 1.564 0 0 0 1.308-2.367zm-7.116 4.148a1.783 1.783 0 0 1-1.781-1.781h3.562a1.783 1.783 0 0 1-1.781 1.782zm-5.4-3.562l.5-.856a3.381 3.381 0 0 0 .46-1.7v-4.366c0-2.137 2.381-3.689 4.435-3.689 1.954 0 4.435 1.655 4.435 3.689v4.366a3.374 3.374 0 0 0 .46 1.7l.5.857z" data-name="Path 77" transform="translate(1488.969 -755.994)"/>
+    <g id="Ellipse_52" fill="#ff4d6a" stroke="#3d5064"  data-name="Ellipse 52" transform="translate(1825 529)">
+        <circle cx="5" cy="5" r="5" stroke="none" fill="none"/>
+        <circle cx="5" cy="5" r="4.5" fill="#ff4d6a" stroke="#ff4d6a" />
+    </g>
+</g>
+</svg>
+`
+case 'bell_empty':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="14.67" height="17.738" viewBox="0 0 14.67 17.738">
+<path id="Path_77" d="M353.482 1298.891l-.683-1.168a1.6 1.6 0 0 1-.216-.8v-4.366c0-2.913-3.173-5.47-6.216-5.47s-6.216 2.329-6.216 5.47v4.366a1.591 1.591 0 0 1-.217.8l-.682 1.168a1.564 1.564 0 0 0 1.3 2.367h2.248a3.562 3.562 0 0 0 7.125 0h2.249a1.564 1.564 0 0 0 1.308-2.367zm-7.116 4.148a1.783 1.783 0 0 1-1.781-1.781h3.562a1.783 1.783 0 0 1-1.781 1.782zm-5.4-3.562l.5-.856a3.381 3.381 0 0 0 .46-1.7v-4.366c0-2.137 2.381-3.689 4.435-3.689 1.954 0 4.435 1.655 4.435 3.689v4.366a3.374 3.374 0 0 0 .46 1.7l.5.857z" fill="#c5e1ff" data-name="Path 77" transform="translate(-339.031 -1287.083)"/>
+</svg>`
             case 'target_device_failed':
             case 'target_device_aborted':
                 return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 36" width="${size ? size : ''}" height="${size ? size : ''}">
@@ -1162,15 +1189,29 @@ export class IconService {
 </svg>`;
             case 'alice-green': 
                 return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : ''}" height="${size ? size : ''}" viewBox="0 0 31.61 21.09"><defs><style>.cls-1{fill:#c4e0ff;}.cls-2{fill:#6cfff8;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M13.19,10.09H0v5H16.09A17.6,17.6,0,0,1,13.19,10.09ZM2,13.09v-1H5v1Z"/><path class="cls-1" d="M21.93,19.85a20.39,20.39,0,0,1-5-3.76H0v3.37a1.63,1.63,0,0,0,1.62,1.63H21.38a1.6,1.6,0,0,0,1.38-.79ZM5,19.09H2v-1H5Z"/><path class="cls-1" d="M12.16,4.59v-.5H1.62A1.62,1.62,0,0,0,0,5.71V9.09H12.86A16.14,16.14,0,0,1,12.16,4.59ZM5,7.09H2v-1H5Z"/><path class="cls-2" d="M23.16,0,14,4.57c.09,6.43,4.21,11.17,8.81,13.66,4.59-2.49,8.71-7.23,8.8-13.66Zm3,5.19L27.62,6.6l-5.16,5.16L19,8.33l1.42-1.42,2,2"/></g></g></svg>`
-            case 'alice-no-light':
-                return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : ''}" height="${size ? size : ''}" viewBox="0 0 22.76 17"><defs><style>.cls-1{fill:#c4e0ff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M13.19,6H0v5H16.09A17.46,17.46,0,0,1,13.19,6ZM2,9V8H5V9Z"/><path class="cls-1" d="M21.93,15.76A20.14,20.14,0,0,1,17,12H0v3.38A1.63,1.63,0,0,0,1.62,17H21.38a1.6,1.6,0,0,0,1.38-.79ZM5,15H2V14H5Z"/><path class="cls-1" d="M12.16.51V0H1.62A1.63,1.63,0,0,0,0,1.62V5H12.86A16.07,16.07,0,0,1,12.16.51ZM5,3H2V2H5Z"/></g></g></svg>`
+            case 'alice-red':
+            return `
+            <svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : ''}" height="${size ? size : ''}" viewBox="0 0 33.61 19">
+            <g id="Group_133" data-name="Group 133" transform="translate(-1042.92 -489)">
+            <path id="_-e-Shape_557" d="M3879.99 1824.98l-9.34 4.52c.09 6.36 4.3 11.04 8.98 13.51 4.68-2.47 8.89-7.15 8.98-13.51zm3.1 5.13l1.44 1.4-5.25 5.1-3.5-3.39 1.44-1.4 2.06 1.99" fill="#ff4d6a" fill-rule="evenodd" data-name="-e-Shape 557" transform="translate(-2813 -1335.98)"/>
+            <path id="_-e-Shape_556" d="M3869.25 1835h-13.33v5h16.25a17.308 17.308 0 0 1-2.92-5zm-11.31 3v-1h3.03v1zm20.13 6.76a20.237 20.237 0 0 1-5.01-3.76h-17.14v3.38a1.637 1.637 0 0 0 1.64 1.62h19.95a1.651 1.651 0 0 0 1.4-.79zm-17.1-.76h-3.03v-1h3.03zm7.23-14.49v-.51h-10.64a1.637 1.637 0 0 0-1.64 1.62v3.38h12.98a16.848 16.848 0 0 1-.7-4.49zm-7.23 2.49h-3.03v-1h3.03z" fill="#c5e1ff" data-name="-e-Shape 556" transform="translate(-2813 -1335.98)"/>
+        </g>
+        </svg>
+        `
             case 'pioneer':
-            return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : ''}" height="${size ? size : ''}" viewBox="0 0 23 17"><defs><style>.cls-1{fill:#c4e0ff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M13,4a9.92,9.92,0,0,1,.84-4H1.62A1.63,1.63,0,0,0,0,1.62V5H13.05C13,4.67,13,4.34,13,4ZM5,3H2V2H5Z"/><path class="cls-1" d="M13.2,6H0v5H15.87A9.92,9.92,0,0,1,13.2,6ZM2,9V8H5V9Z"/><path class="cls-1" d="M0,12v3.38A1.63,1.63,0,0,0,1.62,17H21.38A1.63,1.63,0,0,0,23,15.38V14a9.9,9.9,0,0,1-6-2Zm5,3H2V14H5Z"/></g></g></svg>`
+            return `<svg xmlns="http://www.w3.org/2000/svg"  width="${size ? size : ''}" height="${size ? size : ''}"refresh viewBox="0 0 23 17"><defs><style>.cls-1{fill:#c4e0ff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M13,4a9.92,9.92,0,0,1,.84-4H1.62A1.63,1.63,0,0,0,0,1.62V5H13.05C13,4.67,13,4.34,13,4ZM5,3H2V2H5Z"/><path class="cls-1" d="M13.2,6H0v5H15.87A9.92,9.92,0,0,1,13.2,6ZM2,9V8H5V9Z"/><path class="cls-1" d="M0,12v3.38A1.63,1.63,0,0,0,1.62,17H21.38A1.63,1.63,0,0,0,23,15.38V14a9.9,9.9,0,0,1-6-2Zm5,3H2V14H5Z"/></g></g></svg>`
 
             case 'cloud-green':
-                return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : ''}" height="${size ? size : ''}" viewBox="0 0 34 18.44"><defs><style>.cls-1{fill:#c4e0ff;}.cls-2{fill:#6cfff8;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M19.66,14.53H15.85a5.33,5.33,0,0,1-3.23-1.09H0v3.38a1.62,1.62,0,0,0,1.62,1.62H21.38A1.62,1.62,0,0,0,23,16.82V14.53ZM5,16.44H2v-1H5Z"/><path class="cls-1" d="M14.53,4.11a5.47,5.47,0,0,1,.62-1.48,5.69,5.69,0,0,1,.93-1.19H1.62A1.63,1.63,0,0,0,0,3.07V6.44H11.31A5.38,5.38,0,0,1,14.53,4.11ZM2,4.44v-1H5v1Z"/><path class="cls-1" d="M10.48,9.24a5.13,5.13,0,0,1,.32-1.8H0v5H11.6A5.2,5.2,0,0,1,10.48,9.24ZM5,10.44H2v-1H5Z"/><path class="cls-2" d="M34,8.59a4,4,0,0,0-3.76-3.94V4.56A4.61,4.61,0,0,0,25.58,0a4.69,4.69,0,0,0-3.86,2,4,4,0,0,0-4.85,1.66A3.72,3.72,0,0,0,16.36,6h-.51a3.29,3.29,0,1,0,0,6.58H30.18a3.37,3.37,0,0,0,2-.64A3.9,3.9,0,0,0,34,8.59Z"/></g></g></svg>`
-            case 'cloud-no-light':
-                return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : ''}" height="${size ? size : ''}"><defs><style>.cls-1{fill:#c4e0ff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M19.66,13.09H15.85A5.39,5.39,0,0,1,12.62,12H0v3.38A1.63,1.63,0,0,0,1.62,17H21.38A1.63,1.63,0,0,0,23,15.38V13.09ZM5,15H2V14H5Z"/><path class="cls-1" d="M14.53,2.67a5.47,5.47,0,0,1,.62-1.48A5.69,5.69,0,0,1,16.08,0H1.62A1.63,1.63,0,0,0,0,1.62V5H11.31A5.3,5.3,0,0,1,14.53,2.67ZM2,3V2H5V3Z"/><path class="cls-1" d="M10.48,7.8A5.13,5.13,0,0,1,10.8,6H0v5H11.6A5.2,5.2,0,0,1,10.48,7.8ZM5,9H2V8H5Z"/></g></g></svg>`
+                return `<svg xmlns="http://www.w3.org/2000/svg"  width="${size ? size : ''}" height="${size ? size : ''}" viewBox="0 0 34 18.44"><defs><style>.cls-1{fill:#c4e0ff;}.cls-2{fill:#6cfff8;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M19.66,14.53H15.85a5.33,5.33,0,0,1-3.23-1.09H0v3.38a1.62,1.62,0,0,0,1.62,1.62H21.38A1.62,1.62,0,0,0,23,16.82V14.53ZM5,16.44H2v-1H5Z"/><path class="cls-1" d="M14.53,4.11a5.47,5.47,0,0,1,.62-1.48,5.69,5.69,0,0,1,.93-1.19H1.62A1.63,1.63,0,0,0,0,3.07V6.44H11.31A5.38,5.38,0,0,1,14.53,4.11ZM2,4.44v-1H5v1Z"/><path class="cls-1" d="M10.48,9.24a5.13,5.13,0,0,1,.32-1.8H0v5H11.6A5.2,5.2,0,0,1,10.48,9.24ZM5,10.44H2v-1H5Z"/><path class="cls-2" d="M34,8.59a4,4,0,0,0-3.76-3.94V4.56A4.61,4.61,0,0,0,25.58,0a4.69,4.69,0,0,0-3.86,2,4,4,0,0,0-4.85,1.66A3.72,3.72,0,0,0,16.36,6h-.51a3.29,3.29,0,1,0,0,6.58H30.18a3.37,3.37,0,0,0,2-.64A3.9,3.9,0,0,0,34,8.59Z"/></g></g></svg>`
+            case 'cloud-red':
+            return `
+            <svg xmlns="http://www.w3.org/2000/svg"  width="${size ? size : ''}" height="${size ? size : ''}"  viewBox="0 0 33.61 19">
+            <g id="Group_134" data-name="Group 134" transform="translate(-638 -491)">
+                <path id="_-e-Shape_559" d="M3523.61 1835.87a4.087 4.087 0 0 0-3.83-4.06v-.1a4.735 4.735 0 0 0-4.76-4.71 4.8 4.8 0 0 0-3.94 2.05 4.1 4.1 0 0 0-1.46-.27 4.032 4.032 0 0 0-3.49 1.99 3.943 3.943 0 0 0-.51 2.37h-.53a3.4 3.4 0 0 0 0 6.8h14.62a3.467 3.467 0 0 0 2.03-.66 4.084 4.084 0 0 0 1.87-3.41z" fill="#ff4d6a" fill-rule="evenodd" data-name="-e-Shape 559" transform="translate(-2852 -1336)"/>
+                <path id="_-e-Shape_558" d="M3508.66 1841.01h-3.81c-1.22 0-2.12.01-3.23-.01H3489v3.38a1.626 1.626 0 0 0 1.62 1.62h19.76a1.626 1.626 0 0 0 1.62-1.62v-3.37h-3.34zM3494 1844h-3v-1h3zm9.53-12.33a5.47 5.47 0 0 1 .62-1.48 5.678 5.678 0 0 1 .93-1.19h-14.46a1.626 1.626 0 0 0-1.62 1.62v3.38h11.31a5.3 5.3 0 0 1 3.22-2.33zm-12.53.33v-1h3v1zm8.48 4.8a5.125 5.125 0 0 1 .32-1.8H3489v5h11.6a5.2 5.2 0 0 1-1.12-3.2zm-5.48 1.2h-3v-1h3z" fill="#c5e1ff" fill-rule="oddeven" data-name="-e-Shape 558" transform="translate(-2851 -1336)"/>
+            </g>
+        </svg>
+        `
             default:
                 return '';
         }

@@ -8,7 +8,6 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 export class DeviceTooltipComponent implements OnInit,OnDestroy {
   @Input() device;
   @Output() close = new EventEmitter();
-  isOpen: boolean;
   deviceName: string;
   constructor() { }
 
@@ -20,21 +19,15 @@ export class DeviceTooltipComponent implements OnInit,OnDestroy {
 // phone_number: "1111"
 
   ngOnInit() {
-    console.log(this.isOpen);
     console.log(this.device);
-      this.deviceName = this.device.name;
-    if (!this.deviceName) {
-      this.deviceName = 'Unknown';
-    }
-
   }
 
   closeTooltip() {
+    console.log('closing');
     this.close.emit();
   }
 ngOnDestroy(): void {
   //Called once, before the instance is destroyed.
   //Add 'implements OnDestroy' to the class.
-  this.isOpen = false;
 }
 }

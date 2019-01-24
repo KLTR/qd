@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   searchResults: any[];
   isChanged = false;
   moreAlerts = false;
+  isAlertsOpen = false;
 
 
   constructor(
@@ -42,7 +43,9 @@ export class HeaderComponent implements OnInit {
 
   }
 
-
+  toggleAlerts(){
+    this.isAlertsOpen = !this.isAlertsOpen;
+  }
 filterItem(searchValue) {
   let search = {scope: '', keyword: searchValue}
   this.httpService.search(search).subscribe( res => {

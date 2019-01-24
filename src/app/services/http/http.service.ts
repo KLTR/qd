@@ -13,7 +13,8 @@ serverUrls = {
   logout: '/users/logout',
   dashboardTop: '/dashboard/top',
   search: '/search',
-  activeMission: '/dashboard/left'
+  activeMission: '/dashboard/left',
+  getEvents: '/dashboard/right',
 }
 config: any;
 token: string;
@@ -29,10 +30,10 @@ token: string;
     }
     return original;
   }
-  getUrlByApiName(apiName: string, id?: string, adittional?: string): string {
+  getUrlByApiName(apiName: string, id?: string, addiotnal?: string): string {
       let url = environment.baseUrl + this.serverUrls[apiName].replace('{{id}}', id);
-      if (adittional) {
-        url += adittional;
+      if (addiotnal) {
+        url += addiotnal;
       }
       return url;
   }
@@ -56,15 +57,18 @@ token: string;
     token = token.slice(10,token.length-2);
     this.token = token;
   }
+  getEvents(): Observable<any> {
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('getEvents'), this.setHeaders(this.getToken()));
+  }
   getActiveMission(): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()))
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()));
   }
   search( search: {scope: string, keyword: string}): Observable<any> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders(this.getToken()))
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders(this.getToken()));
   }
 
   login(credentials: { user: string, password: string }): Observable<{ token: string, swagger_ui: string }> {
-   return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials)
+   return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials);
   }
   logout() : Observable<any> {
     console.log(this.token);
@@ -76,7 +80,7 @@ token: string;
   }
 
   getConfig() : any {
-    this.config =  this.http.get('../../../assets/config/config.json')
+    this.config =  this.http.get('../../../assets/config/config.json');
     return this.config;
   }
 

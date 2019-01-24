@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, pipe } from 'rxjs';
 import { HttpService, AuthService } from '@app/services';
-import {  tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',

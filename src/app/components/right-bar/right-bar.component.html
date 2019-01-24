@@ -1,7 +1,8 @@
 
     <div class="right-bar" [ngClass]="isOpen ? 'expanded' : 'folded'">
         <div class="arrow" (click)="toggleNav()">
-           <img src="../../../assets/img/right-arrow-archive.png"> 
+          <app-svg-icon  [name]="isOpen ? 'right_arrow' : (events.events?.length > 0 ? 'bell_notification' : 'bell_empty' ) "  [size]="15"></app-svg-icon>
+          <!-- <img *ngIf="!isOpen" src="../../../assets/img/right-arrow.png"> -->
         </div>
         <div class="wrapper" [ngClass]="isOpen ? 'open-nav' : 'close-nav' ">
           <div class="content">
@@ -10,18 +11,18 @@
                 <span class="time" [class.selected]="selected === 'today'" (click)="toggleSelected('today')">Today</span>
                 <span class="time" [class.selected]="selected === 'all'" (click)="toggleSelected('all')">All</span>
               </div>
-              <div *ngIf="events?.length > 0" class="events-list" [ngClass]="isOpen ? '' : 'hidden'">
+              <div *ngIf="events?.events?.length > 0" class="events-list" [ngClass]="isOpen ? '' : 'hidden'">
                   <ul>
-                      <li class="event-item" *ngFor="let event of events">
+                      <li class="event-item" *ngFor="let event of events.events; let i = index">
                           <span class="event-time">{{event.created_at | date:'HH:mm:ss'}}</span>
-                          <span class="event-title" [ngClass]='event.severity ? event.severity : "INFO" '>{{event.msg}}</span>
+                          <!-- <span class="event-title" [ngClass]='event.log?.severity ? event.log.severity : "INFO" '>{{event.log.msg}}</span> -->
+                          <span class="event-title" [ngClass]='"INFO"'>{{event.log.msg}}</span>
                           <div class="owners">
-                                <span *ngIf="event.metadata?.owner1" class="event-owner1">{{event.metadata.owner1}}</span>
-                                <span *ngIf="event.metadata?.owner2" class="event-owner2">{{event.metadata.owner2}}</span>
+                                <span *ngIf="event.log?.metadata?.key" class="event-owner1">{{event.log.metadata.key}}</span>
+                                <span *ngIf="event.log?.metadata?.name" class="event-owner2">{{event.log.metadata.name}}</span>
                           </div>
-                  
                           <div class="buttons">
-                              <span class="dismiss">DISMISS </span>
+                              <span class="dismiss" (click)="removeEvent(i)">DISMISS </span>
                               <span class="view">VIEW</span>
                           </div>
                         </li>

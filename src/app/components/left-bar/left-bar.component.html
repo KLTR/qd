@@ -3,23 +3,20 @@
   <div class="section sources">
     <div class="header">Sources</div>
     <div class="content">
-      <div class="items" *ngFor="let source of missionData?.sources" (mouseenter)="source.hover=true" (mouseleave)="source.clicked ? ' ' : source.hover=false">
-        <span class="name">{{source.name}}</span>
+      <div class="items" *ngFor="let source of missionData?.sources" 
+      (mouseenter)="source.hover=true;"
+       (mouseleave)="source.hover=false;">
+        <span class="name">{{source.source?.name}}</span>
 
         <span class="device-status">
-          <app-svg-icon *ngIf="source.hover" (click)="source.clicked ? source.clicked=false : source.clicked=true"
-            class="info-icon" name="info-second" triggers="click" [autoClose]="false" [ngbTooltip]="sourceTip" [size]="12">
+          <app-svg-icon 
+           (click)="selectSource(source);sourcePop.toggle()"
+            class="info-icon" name="info-second"  [satPopoverAnchorFor]="sourcePop"  [size]="12">
           </app-svg-icon>
           <lottie-animation-view [options]="setAnimatedIcon().options" [width]="setAnimatedIcon().width" [height]="setAnimatedIcon().height">
           </lottie-animation-view>
         </span>
 
-
-        <div class="tooltip-hide">
-          <ng-template #sourceTip>
-            <app-device-tooltip class="tooltip" [device]="source"></app-device-tooltip>
-          </ng-template>
-        </div>
         <!-- <span *ngIf="isAnimatedIcon(source?.status)" class="device-status animated">
             <div class="percent-icon" *ngIf="source.status === 'downloading'">
                 <span class="percent">{{source.progress?.percentage}}%</span>
@@ -41,9 +38,9 @@
     <div class="header">Infecting</div>
     <div class="content">
       <div class="items" *ngFor="let infection of missionData?.infections">
-        <span class="name">{{infection.name}}, {{infection.state}}</span>
-        <span class="device-status" *ngIf="infection.state">
-          <app-svg-icon [name]="infection.state" [size]="18"></app-svg-icon>
+        <span class="name">{{infection.infection?.name}}</span>
+        <span class="device-status" *ngIf="infection.infection?.state">
+          <app-svg-icon [name]="infection.infection.state" [size]="18"></app-svg-icon>
         </span>
       </div>
     </div>
@@ -52,8 +49,11 @@
     <div class="header">Targets</div>
     <div class="content">
       <div class="items" *ngFor="let target of missionData?.targets">
-        <span class="name">{{target.name}}</span>
-        <span class="icon"><img src="../../../assets/img/svg/ready-to-attack.svg"></span>
+        <span class="name">{{target.target?.name}}</span>
+        <span class="icon">
+          <span class="device-count {{target.state}}">{{target?.devices_count}}</span>
+          <app-svg-icon [size]="17" name="target_{{target.state}}"></app-svg-icon>
+        </span>
       </div>
     </div>
   </div>
@@ -65,3 +65,8 @@
 </div>
 
 <app-add-target-wizard *ngIf="isWizardOpen" (closeModal)="closeWizard()"></app-add-target-wizard>
+
+
+<sat-popover #sourcePop xAlign="start" yAlign="center" >
+    <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT()"></app-device-tooltip>
+</sat-popover>

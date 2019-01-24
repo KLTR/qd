@@ -25,7 +25,6 @@ export class SourcesListComponent implements OnInit {
     this.events = [];
     this.http.getActiveMission().subscribe( res => 
       {
-        console.log(res);
         this.missionData = res;
         if(!this.missionData.sources){
           this.missionData.sources = [];
@@ -37,7 +36,9 @@ export class SourcesListComponent implements OnInit {
           this.missionData.infections = [];
         }
       })
-
+    this.http.getEvents().subscribe(res => {
+      this.events = res;
+    })
   }
 
   getWifiSignal(wifi) {
@@ -82,8 +83,10 @@ export class SourcesListComponent implements OnInit {
       return;
     }
     if(msg.result){
+      
       switch(Object.keys(msg.result)[0]) {
         case 'target':
+        console.log(msg.result.target);
         this.missionData.targets.push(msg.result.target);
         this.missionData = Object.assign({}, this.missionData);
         break;
@@ -107,22 +110,19 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleInfection(infection){
-    if(!infection.state){
+    let infectionObj = infection.infection; 
+    if(!infectionObj.state){
       return;
     }
-    if(infection.state === 'IN_PROGRESS'){
+    if(infectionObj.state === 'IN_PROGRESS'){
       this.missionData.infections.push(infection);
       return;
     }
      else {
-      this.missionData.infections = this.missionData.infections.filter( (x) => { if(x.id !== infection.id){ return x}});
-      if(infection.state === 'FAILED'){
+      this.missionData.infections = this.missionData.infections.filter( (x) => { if(x.infection.id !== infectionObj.id){ return x}});
+      if(infectionObj.state === 'FAILED'){
         this.missionData.infections.push(infection);
       }
-      if(infection.state === 'COMPLETED'){
-        this.missionData.sources.push(infection);
-      }
     }
-   
   }
 }

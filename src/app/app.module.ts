@@ -31,7 +31,6 @@ import {
   LayoutResolver,
 } from "@app/resolvers"
 import { SystemBarComponent } from './components/system-bar/system-bar.component';
-import { InterceptorTooltipComponent } from './components/system-bar/interceptor-tooltip/interceptor-tooltip.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -43,10 +42,12 @@ import {AlertsModalComponent} from './components/system-bar/alerts/alerts-modal/
 import { AlertsStripComponent } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
 import { LeftBarComponent } from './components/left-bar/left-bar.component';
 import { RightBarComponent } from './components/right-bar/right-bar.component';
+import { SatPopoverModule } from '@ncstate/sat-popover';
+
 // Pipes
 import {
-  CharactersPipe, SafeHtmlPipe, CaseFilterPipe, SignalStrenghtPipe, MissionWizardOperatorsPipe,
-  TooltipDataFilterPipe, FilterAlertsPipe, SortAppsPipe, CubeIconsPipe, SourceByTypePipe, FilterArrayByInputPipe,
+  CharactersPipe, SafeHtmlPipe, CaseFilterPipe, SignalStrenghtPipe,
+  TooltipDataFilterPipe, FilterAlertsPipe, SortAppsPipe, CubeIconsPipe, SourceByTypePipe,
   RemoveDuplicatesPipe, DayMonthOnlyPipe, GetFilenameFromUrlPipe, SetActiveMailPipe, BitesToKbPipe, OrderByPipe,
 } from '@app/pipes';
 import { AuthGuard } from '@app/guards';
@@ -65,7 +66,6 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
     AppComponent,
     LoginComponent,
     SystemBarComponent,
-    InterceptorTooltipComponent,
     HeaderComponent,
     AlertsModalComponent,
     MenuComponent,
@@ -110,6 +110,7 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
     BrowserAnimationsModule,
     // Libraries
     NgbModule,
+    SatPopoverModule,
     // AngularMaterial
     CustomMaterialModule,
     LottieAnimationViewModule.forRoot(),

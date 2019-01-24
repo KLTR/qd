@@ -15,6 +15,15 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() user: User;
   @Input() system: SystemInfo;
   @ViewChild('t') public tooltip: NgbTooltip;
+
+  // Popovers childs
+  @ViewChild('internetPop') public internetPop: any;
+  @ViewChild('alicePop') public alicePop : any;
+  @ViewChild('cloudPop') public cloudPop : any;
+  @ViewChild('pioneerPop') public pioneerPop : any;
+  @ViewChild('interceptorPop') public interceptorPop: any;
+  openedPop: any;
+  pops : any[];
   isMenuOpen: boolean;
   date: any;
   isAlertsOpen = false;
@@ -29,7 +38,9 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   aliceStatus: String;
   pioneerStatus: String;
   cloudStatus: String;
+  showInternetTip = false;
   config: any;
+  selectedInterceptor: any;
   constructor(
     private cdRef: ChangeDetectorRef,
     private http: HttpService) {
@@ -40,6 +51,8 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnInit() {
   this.http.getConfigLocal().subscribe( res => this.config = res)
+  this.pops = [this.internetPop,this.alicePop, this.cloudPop, this.pioneerPop, this.interceptorPop];
+  
   }
 
   ngOnChanges(changes: { [key: string]: SimpleChange }) {
@@ -58,13 +71,35 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
     this.cdRef.detectChanges();
   }
 toggleAlerts(){
+  
   this.isAlertsOpen = !this.isAlertsOpen;
 }
+
+// Close other popover that is currently open;
+handlePops(index){
+  // If click on opened pop
+  if(this.openedPop === this.pops[index]){
+    this.openedPop.close();
+    this.openedPop = null;
+    return;
+  }
+  this.openedPop = this.pops[index];
+  this.openedPop.open();
+  for(let i = 0 ; i < this.pops.length; i++){
+    if(i !== index && this.pops[i].isOpen()){
+      this.pops[i].close();
+      return;
+    }
+  }
+}
+closeTip(){
+  this.openedPop.close();
+  this.openedPop = null;
+}
   checkInterceptor() {
+    return;
     if (this.system.interceptor && this.config) {
-      if (this.system.interceptor.indicator.state === this.config.indicators.state.green && this.tooltip) {
-        this.tooltip.open();
-      }
+     this.selectedInterceptor = this.system.interceptor.interceptors[0];
     }
   }
 
@@ -107,7 +142,9 @@ toggleAlerts(){
       }
     }
   }
-
+toggleInternetTip(event){
+  this.showInternetTip = !this.showInternetTip;
+}
   getInternetMode() {
     if (this.system.internet && this.config) {
       if (this.system.internet.indicator.state === this.config.indicators.state.green) {
@@ -134,7 +171,7 @@ toggleAlerts(){
       if(this.system.alice.indicator.state === this.config.indicators.state.green){
         this.aliceStatus = 'alice-green'
       } else {
-        this.aliceStatus = 'alice-no-light'
+        this.aliceStatus = 'alice-red'
       }
     }
   }
@@ -144,18 +181,23 @@ toggleAlerts(){
       if(this.system.cloudx.indicator.state === this.config.indicators.state.green){
         this.cloudStatus = 'cloud-green'
       } else {
-        this.cloudStatus = 'cloud-no-light'
+        this.cloudStatus = 'cloud-red'
       }
     }
   }
 
   getPioneerStatus(){
     if(this.system.pioneer && this.config){
-        this.pioneerStatus = 'pioneer'
+      if(this.system.pioneer.indicator.state === this.config.indicators.state.green){
+        this.pioneerStatus = 'pioneer-green';
+      } else {
+        this.pioneerStatus = 'pioneer-red'
+      }
     }
   }
-  openInterceptorTooltip() {
-    this.tooltip.isOpen() ? this.tooltip.close() : this.tooltip.open();
+
+  selectInterceptor(interceptor){
+    this.selectedInterceptor = this.selectedInterceptor;
   }
 
 }

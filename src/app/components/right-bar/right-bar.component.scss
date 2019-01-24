@@ -3,7 +3,7 @@
         position: relative;
         width: 0;
         background: transparent;
-        transition: 0.5s;
+        transition: 0.7s;
         &.expanded{
             width: 280px
         }
@@ -12,7 +12,7 @@
         }
     
     .wrapper{
-        height: calc(100vh - 3.2vw);
+        height: calc(100vh);
         box-shadow: 0px 2px 13px 0 rgba(27, 31, 43, 0.27);
         background-color: #283440;
         width: 0;
@@ -20,7 +20,7 @@
         top:0;
         right:0;
         overflow-x: hidden;
-        transition: 0.5s;
+        transition: 0.7s;
         padding-top: 50px;
         &.open-nav{
             width: 250px; 
@@ -79,7 +79,6 @@
                     .event-time{
                         color: rgba(197, 225, 255, 0.5);
                         font-size: 10px;
-                        
                     }
                     .event-title{
                         font-size: 15px;
@@ -144,6 +143,7 @@
         border-bottom-left-radius: 25px;
         &:hover{
             cursor: pointer;
+            background-color: #3d5064;
         }
         img{
             height: 14px;

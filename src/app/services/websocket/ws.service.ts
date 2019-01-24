@@ -16,6 +16,7 @@ private token: string;
         if(userToken){
            this.token = JSON.parse(userToken).token
         }
+
         this.messages = <Rx.Subject<any>>
         this.connect(environment.websocketUrl)
         .pipe(
