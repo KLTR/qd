@@ -154,8 +154,9 @@ from 'rxjs/operators';
 
     checkInterceptor() {
       if (this.system.interceptor && this.config) {
-         this.selectedInterceptor = this.system.interceptor.interceptors[0];
-    
+        if(this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0){
+          this.selectedInterceptor = this.system.interceptor.interceptors[0];
+        }
       }
     }
 

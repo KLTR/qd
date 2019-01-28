@@ -208,10 +208,11 @@ deviceStatusToText(source): string{
 
   handleTarget(target){
     // let t = this.missionData.targets.find( (t) => t.id === target.id );
-    let targetObj = target.target;
-    if(!targetObj.state){
+    if(!target.state){
       return;
     }
+    let targetObj = target.target;
+    console.log(target);
     this.missionData.targets = this.missionData.targets.filter((x) => {if(x.target.id !== targetObj.id){return x}});
     this.missionData.targets.push(target);
   }
