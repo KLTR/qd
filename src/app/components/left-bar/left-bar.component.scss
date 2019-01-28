@@ -14,6 +14,7 @@
 
     &.pending {
       height: 25%;
+
     }
 
     &.targets {
@@ -64,7 +65,7 @@
           margin-left: auto;
           .icon-wrapper{
             position: absolute;
-            right: 45px;
+            right: 35px;
           }
          .device-status-icon{
             margin-right: 1px;
@@ -181,6 +182,42 @@
           letter-spacing: 0.5px;
   
         }
+        }
+      }
+    }
+    .custom-tip{
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      text-align: left;
+      color: #c5e1ff;
+      margin-top: 20px;
+      border-radius: 4px;
+      min-width: 350px;
+      &:after{
+        content: "";
+        display: block;
+        border-width: 0px 10px 10px;
+        border-style: solid;
+        border-color: transparent transparent #4d6179;
+        margin-left: -10px;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+      }
+      &.small-tip{
+        min-width: 50px;
+        .header{
+          min-width: 50px;
+          padding: 10px;
+          height: 38px;
+          background-color: #4d6179;
+         display: flex;
+        align-items: center;
+        padding-left: 15px;
         }
       }
     }

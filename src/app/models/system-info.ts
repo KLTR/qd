@@ -69,7 +69,14 @@ pioneer: {
   indicator:{
     state: string;
   },
-  tip: string;
+  pioneers:[
+    {
+      created_at: string,
+      updated_at: string,
+      host: string,
+      state: string
+    }
+  ]
 };
 user :{
   name? : string;

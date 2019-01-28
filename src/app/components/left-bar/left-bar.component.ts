@@ -1,9 +1,11 @@
+import { AddTargetWizardComponent } from './../add-target-wizard/add-target-wizard.component';
 import { HttpService } from '@app/services/http/http.service';
-import { Component, OnInit, Input, SimpleChanges, ViewChild, QueryList, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, QueryList, ViewChildren, ChangeDetectorRef } from '@angular/core';
 import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
 import { SatPopover } from '@ncstate/sat-popover';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
   styleUrls: ['./left-bar.component.scss']
@@ -13,20 +15,30 @@ export class LeftBarComponent implements OnInit {
   temp: any;
   isWizardOpen = false;
   selectedSource: any;
-  @ViewChildren(SatPopover) public popovers: QueryList<SatPopover>;
-  viewInit = false;
+  hoveredInfection: any;
+  @ViewChildren('sourcePopovers') public srcPopovers: QueryList<SatPopover>;
+  @ViewChildren('infectionPopovers') public infPopovers: QueryList<SatPopover>;
   constructor(
     private http: HttpService,
-    public iconService: IconService
+    public iconService: IconService,
+    private _cd: ChangeDetectorRef,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
+  
   }
-
-
-getCurrentPopover(index): SatPopover{
-  return this.popovers.find((p, i) => i === index);
+ngAfterViewChecked(): void {
+  this._cd.detectChanges();
 }
+
+getSourcePopover(index): SatPopover{
+  return this.srcPopovers.find((p, i) => i === index);
+}
+getInfectionPopover(index): SatPopover{
+  return this.infPopovers.find((p, i) => i === index);
+}
+
  isAnimatedIcon(source) {
   switch (source.state) {
     case 'DOWNLOADING_AGENT' :
@@ -50,13 +62,19 @@ setInfectionIcon(state){
     return 'infection-failed'
 }
   }
+
   closeT(index) {
-    let pop =   this.popovers.find((p, i) => i === index);
+    let pop =   this.srcPopovers.find((p, i) => i === index);
     pop.close();
     this.selectedSource = null;
   }
+
   selectSource(source){
     this.selectedSource = source;
+   }
+
+   selectHoveredInfection(infection){
+     this.hoveredInfection = infection;
    }
 // 
    setAnimatedIcon(source) {
@@ -143,9 +161,18 @@ setInfectionIcon(state){
 
  openWizard(){
    this.isWizardOpen = true;
+   this.openAddAttack();
  }
 
  closeWizard(){
     this.isWizardOpen = false;
  }
+
+ openAddAttack() {
+  const openAddAttackModal = this.modalService.open(AddTargetWizardComponent, {
+    windowClass: 'add-attack-modal',
+    centered: true,
+    backdrop: 'static'
+  });
+}
 }

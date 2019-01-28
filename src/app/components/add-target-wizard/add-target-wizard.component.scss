@@ -1,12 +1,12 @@
 #add-attack-modal-wrapper {
-  position: absolute;
+  // position: absolute;
   background-color: #2f3b4a;
   box-shadow: 0.9px 0.4px 2px 0 rgba(0, 0, 0, 0.25);
-  left: 260px;
-  top: 116px;
+  // left: 260px;
+  // top: 116px;
   height: 80vh;
-  width: 80vw;
-  .modal-header-attack {
+  width: 100%;
+    .modal-header-attack {
     height: 40px;
     background-color: #3a4a5c;
     box-shadow: 0px 1px 4px 0 rgba(26, 34, 42, 0.32);
@@ -142,6 +142,7 @@
           width: 720px;
           height: 60px;
           display: flex;
+          margin-left:18px;
           background-color: #415266;
           box-shadow: 0 1px 4px 0 rgba(26, 34, 42, 0.32);
           align-items: center;
@@ -244,6 +245,7 @@
             margin-left: auto;
             color: rgba(197, 225, 255, 0.4);
             background-color: transparent;
+            margin-right: 10px;
             &:hover {
               color: rgba(197, 225, 255, 1);
             }
@@ -271,7 +273,7 @@
         }
         .card-wrapper {
           width: 720px;
-          margin-left: 31px;
+          margin-left: 18px;
           height: 85px;
           background-color: #384758;
           box-shadow: 0px 1px 4px 0 rgba(26, 34, 42, 0.32);
