@@ -25,10 +25,15 @@
         </div>
             <div class="device-status">
                 <!-- <app-svg-icon name="inactive" [size]=32></app-svg-icon> -->
-                <lottie-animation-view [options]="setAnimatedIcon().options"
-                  [width]="setAnimatedIcon().width" [height]="setAnimatedIcon().height">
+                <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
+                  [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
                 </lottie-animation-view>
-                <span class="device-status-text">{{source?.activity_state}}</span>
+                <ng-template #noAnimatedIcon>
+                  <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
+                </ng-template>
+                <span class="device-status-text"
+                 [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
+                 {{deviceStatusToText(source)}}</span>
             </div>
         </div>
       </li>

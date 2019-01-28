@@ -1,17 +1,20 @@
 import { HttpService } from '@app/services/http/http.service';
-import { Component, OnInit, Input, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild, QueryList, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
+import { SatPopover } from '@ncstate/sat-popover';
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
   styleUrls: ['./left-bar.component.scss']
 })
 export class LeftBarComponent implements OnInit {
-  @ViewChild('sourcePop') public sourcePop: any;
  @Input() missionData: any;
   temp: any;
   isWizardOpen = false;
   selectedSource: any;
+  @ViewChildren(SatPopover) public popovers: QueryList<SatPopover>;
+  viewInit = false;
   constructor(
     private http: HttpService,
     public iconService: IconService
@@ -20,22 +23,25 @@ export class LeftBarComponent implements OnInit {
   ngOnInit() {
   }
 
- ngOnChanges(changes: SimpleChanges): void {
-   //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-   //Add '${implements OnChanges}' to the class.
- }
- isAnimatedIcon(sourceStatus) {
-  switch (sourceStatus) {
-    case 'active' :
-    case 'initializing' :
-    case 'downloading' :
-    case 'downloading-agent' :
-    case 'shutting-down' :
+
+getCurrentPopover(index): SatPopover{
+  return this.popovers.find((p, i) => i === index);
+}
+ isAnimatedIcon(source) {
+  switch (source.state) {
+    case 'DOWNLOADING_AGENT' :
+    case 'INITIALIZING' :
+    case 'DOWNLOADING' :
+    case 'ACTIVE' :
+    case 'TERMINATING' :
+    case 'COLLECTING_DATA':
       return true;
     default:
       return false;
   }
 }
+
+
 setInfectionIcon(state){
   switch(state){
     case "IN_PROGRESS":
@@ -44,65 +50,96 @@ setInfectionIcon(state){
     return 'infection-failed'
 }
   }
-  closeT() {
-    console.log(this.sourcePop.isOpen());
-    this.sourcePop.close();
+  closeT(index) {
+    let pop =   this.popovers.find((p, i) => i === index);
+    pop.close();
     this.selectedSource = null;
   }
   selectSource(source){
     this.selectedSource = source;
    }
-
-  setAnimatedIcon() {
-    return {
-      height: 18,
-      width: 18,
-      options: {
-        path: 'assets/svg-jsons/initializing.json',
-        autoplay: true,
-        loop: true,
-        rendererSettings: {
-          progressiveLoad: true,
-          preserveAspectRatio: 'xMidYMid meet',
-      }
+// 
+   setAnimatedIcon(source) {
+ 
+    switch (source.state) {
+      // 0
+      case 'DOWNLOADING_AGENT':
+      return {
+        height: 23,
+        width: 25,
+        options: {
+          path: 'assets/svg-jsons/downloading-agent.json',
+          autoplay: true,
+          loop: true,
+          rendererSettings: {
+            progressiveLoad: true,
+            preserveAspectRatio: 'xMidYMid meet',
+            scaleMode: 'noScale'
+          }
+        }
+      };
+      // 1
+      case 'INITIALIZING':
+      return {
+        height: 27,
+        width: 27,
+        options: {
+          path: 'assets/svg-jsons/initializing.json',
+          autoplay: true,
+          loop: true,
+          rendererSettings: {
+            progressiveLoad: true,
+            preserveAspectRatio: 'xMidYMid meet'
+          }
+        }
+      };
+      // 2
+      case 'DOWNLOADING':
+      return {
+        height: 27,
+        width: 27,
+        options: {
+          path: 'assets/svg-jsons/downloading.json',
+          autoplay: true,
+          loop: true,
+          rendererSettings: {
+            progressiveLoad: true,
+            preserveAspectRatio: 'xMidYMid meet'
+          }
+        }
+      };
+      // 3
+      case 'ACTIVE':
+        return {
+          height: 27,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/active.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet'
+            }
+          }
+        };
+    // 4
+      case 'TERMINATING':
+        return {
+          height: 27,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/shutting-down.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet'
+            }
+          }
+        };
     }
   }
-}
-
-// setIcon(source) {
-//   this.isAnimated = this.isAnimatedIcon();
-//   if (this.icon.options) {
-//     if (!this.icon.options.path.includes(this.source.status)) {
-//       this.timedOut = true;
-//       setTimeout(() => this.timedOut = false, 10);
-//     }
-//   }
-
-//     this.icon.options = {
-//       path: `assets/svg-jsons/${this.source.status}.json`,
-//       autoplay: true,
-//       loop: true,
-//       rendererSettings: {
-//         progressiveLoad: false,
-//         preserveAspectRatio: 'xMidYMid meet'
-//       }
-//     };
-//     switch (this.source.status) {
-//       case 'active':
-//         this.icon.size = {width: 15, height: 21};
-//         break;
-//       case 'downloading':
-//         this.icon.size = {width: 29, height: 18};
-//         break;
-//       case 'downloading-agent':
-//         this.icon.size = {width: 25, height: 18};
-//         break;
-//       case 'initializing':
-//         this.icon.size = {width: 27, height: 18};
-//         break;
-//     }
-
-// }
 
  openWizard(){
    this.isWizardOpen = true;

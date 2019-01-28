@@ -136,7 +136,7 @@ export class IconService {
       <path fill="#6cfff8" d="M7.44 0H.56A.56.56 0 0 0 0 .56v12.88a.56.56 0 0 0 .56.56h6.88a.56.56 0 0 0 .56-.56V.56A.56.56 0 0 0 7.44 0zm-.16.72V10H.72V.72zM3 12a1 1 0 1 1 1 1 1 1 0 0 1-1-1z" id="fLayer_1-2" data-name="Layer 1" />
     </g>
     </svg>`;
-            case 'target_device_terminated':
+            case 'TERMINATED':
             case 'inactive':
                 return `<svg viewBox="0 0 12.86 18.86" id="inactive" width="${size ? size : ''}" height="${size ? size : ''}">
     <g id="gLayer_2" data-name="Layer 2">
@@ -173,12 +173,12 @@ export class IconService {
       </g>
     </g>
     </svg>`;
-            case 'lost-connection-long':
+            case 'LOST_CONNECTION':
                 return `<svg viewBox="0 0 12.99 14" id="lost-connection-long" width="${size ? size : ''}" height="${size ? size : ''}">
             <g id="kLayer_2" data-name="Layer 2">
       <g id="kLayer_1-2" data-name="Layer 1">
-        <path fill="currentColor" d="M9.77 10H3.22v-.43l-.73.43v3.45a.57.57 0 0 0 .57.56h6.87a.56.56 0 0 0 .56-.56V5.32l-.72.43zm-3.28 3a1 1 0 1 1 1-1 1 1 0 0 1-1 1zM3.22.72h6.55v2.71l.72-.43V.56A.56.56 0 0 0 9.93 0H3.06a.57.57 0 0 0-.57.56v7.12l.73-.43z" />
-        <path fill="currentColor" transform="rotate(-30.26 6.498 6.5)" d="M-.81 6.14h14.62v.72H-.81z" />
+        <path fill="#ff4d6a" d="M9.77 10H3.22v-.43l-.73.43v3.45a.57.57 0 0 0 .57.56h6.87a.56.56 0 0 0 .56-.56V5.32l-.72.43zm-3.28 3a1 1 0 1 1 1-1 1 1 0 0 1-1 1zM3.22.72h6.55v2.71l.72-.43V.56A.56.56 0 0 0 9.93 0H3.06a.57.57 0 0 0-.57.56v7.12l.73-.43z" />
+        <path fill="#ff4d6a" transform="rotate(-30.26 6.498 6.5)" d="M-.81 6.14h14.62v.72H-.81z" />
       </g>
     </g>
     </svg>`;

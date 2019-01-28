@@ -1,15 +1,85 @@
-<div class="wizard-backdrop">
- 
-  <div class="wizard-modal">
-    <div class="left-side">
-    
+<div id="add-attack-modal-wrapper">
+  <div class="modal-header-attack">
+    <app-svg-icon name="add_attack_vector" [size]="15" class="vector-icon"></app-svg-icon>
+    Attack vectors
   </div>
-  <div class="right-side">
-    
+  <p class="choose">Choose one or more attack vectors</p>
+  <div class="picks-wrapper">
+    <ul class="options">
+      <li class="list-item" *ngFor="let vector of defaults; trackBy: trackVectors; index as i">
+        <input type="checkbox" class="hidden-box" id="{{vector.vector+'-box'}}" [ngModel]="vector.checked"
+               (change)="updateCheckedVectors(i, $event)">
+        <label for="{{vector.vector+'-box'}}" class="check--label" btnCheckbox>
+          <span class="check--label-box"></span>
+        </label>
+        <div class="option-box" stopPropagation (click)="updateCheckedVectors(i)">
+          <div class="vector-icon-wrapper">
+            <app-svg-icon name="type-{{vector.vector}}" [size]="19"></app-svg-icon>
+          </div>
+          <div class="vector-info">
+            <div class="vector-name">{{vector.name}}<span class="licenses">
+                ( licenses: <span [ngClass]="{ 'warn': vector.licenses[0]?.used === 1, 'error': vector.licenses[0]?.used === 0 }">{{vector.licenses[0]?.used}}</span>/{{vector.licenses[0]?.total}} )
+            </span></div>
+            <div class="vector-state">
+      <span>Vector currently: <span
+        [ngClass]="{ 'error': vector?.maxActions === 0 || vector?.vectorState === 'OFF', 'warn': vector?.vectorState === 'INIT' }"
+        [ngbTooltip]="vector?.vectorState === 'OK' ? vectorStateTip : null" placement="right">
+        {{ !isConnected ? 'Disconnected. Please check internet connection'
+        : vector?.vectorState === 'OFF' ? 'Not available. Please reset service'
+        : vector?.vectorState === 'INIT' ? 'Initializing. Please wait it may take a few minutes'
+        : vector?.vectorState === 'NO_LICENSE' ? 'Daily licenses limit exceeded'
+        : vector?.maxActions === 0 ? 'Busy' : 'Ready' }}
+      </span>
+      </span>
+              <ng-template #vectorStateTip>
+                <div [ngStyle]="{ 'min-width': '150px' }">
+                  No. of available resources: {{ vector.maxActions }}
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <button class="reset-button modal-btn" stopPropagation (click)="resetServer(vector.vector)">Reset</button>
+          <div class="carret-wrapper">
+            <i class="fa fa-angle-right" type="button" [ngClass]="{'fa-angle-down': vector.checked}"></i>
+          </div>
+        </div>
+        <div class="type-{{vector.vector}} card-wrapper" *ngIf="vector.checked">
+          <div class="main-area">
+            <div class="phone-wrapper inputs">
+              <label for="name">Name (Optional)</label>
+              <input [(ngModel)]="vector.inputs.name" class="phone" id="name" name="name"/>
+            </div>
+            <div class="email-wrapper inputs">
+              <label for="identifier">Phone number/Email</label>
+              <input [ngClass]="{ 'error': !!error[vector.vector] }" [(ngModel)]="vector.inputs.identifier"
+                     (change)="validateIdentifier($event.target.value, vector.vector)" class="phone" id="identifier"
+                     name="identifier"/>
+              <span class="input-error" *ngIf="!!error[vector.vector]">{{ error[vector.vector] }}</span>
+            </div>
+            <ng-container *ngIf="vector.vector === 'link'">
+              <div class="define-link-wrapper">
+                <button class="define-button" id="define-button" name="email">Define link message <i
+                  class="fa fa-pencil"
+                  aria-hidden="true"></i></button>
+              </div>
+              <div class="preview-link-wrapper">
+                <button class="preview-button" id="preview-button" name="preview">Preview</button>
+              </div>
+            </ng-container>
+            <div class="text-wrapper inputs" *ngIf="vector.vector === 'banner'">
+              <label for="text-banner">Text</label>
+              <input class="text" id="text-banner" name="text" [(ngModel)]="vector.message"/>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
-    <div (click)="closeModalFunc()" class="close-modal">
-        <img src="../../../assets/img/exit.png">
-        <a >Exit</a>
-      </div>
-    </div>
+  <div class="alert-msg" *ngIf="!isEmpty">Please fill in the Required Fields</div>
+  <div class="buttons-wrapper">
+    <button class="cancel-button modal-btn"  (click)="closeModalFunc()">Cancel</button>
+    <button class="apply-button modal-btn" [ngClass]="{ 'disabled': noneChecked || hasErrors || !isConnected }"
+            (click)="closeModalFunc()">Attack!
+    </button>
   </div>
+</div>

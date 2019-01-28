@@ -12,18 +12,11 @@ export class DeviceTooltipComponent implements OnInit,OnDestroy {
   constructor() { }
 
 
-// tip:
-// device: "iPhone X"
-// ip: "192.191.11.1"
-// mac: "00:xx:cc:11:dd"
-// phone_number: "1111"
 
   ngOnInit() {
-    console.log(this.device);
   }
 
   closeTooltip() {
-    console.log('closing');
     this.close.emit();
   }
 ngOnDestroy(): void {

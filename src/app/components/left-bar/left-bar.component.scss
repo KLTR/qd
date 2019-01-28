@@ -50,6 +50,7 @@
         padding: 5px 15px 5px 10px;
         align-items: center;
         justify-content: space-between;
+        position: relative;
         &:hover {
           background-color: #43576b;
           cursor: pointer;
@@ -61,6 +62,13 @@
         .device-status{
           display: flex;
           margin-left: auto;
+          .icon-wrapper{
+            position: absolute;
+            right: 45px;
+          }
+         .device-status-icon{
+            margin-right: 1px;
+          }
         }
       }
 
@@ -112,7 +120,7 @@
   color: #c5e1ff;
   font-size: 11px;
   letter-spacing: 0.2px;
-  margin-left: 50px;
+ 
     .tooltip-header{
       display: flex;
       justify-content: space-between;

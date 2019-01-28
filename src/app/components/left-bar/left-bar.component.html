@@ -3,33 +3,36 @@
   <div class="section sources">
     <div class="header">Sources</div>
     <div class="content">
-      <div class="items" *ngFor="let source of missionData?.sources" 
+      <div class="items" *ngFor="let source of missionData?.sources; let i = index;" 
       (mouseenter)="source.hover=true;"
-       (mouseleave)="source.hover=false;">
+      (mouseleave)="source.hover=false;">
+
+        <sat-popover xAlign="start" yAlign="center">
+          <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
+        </sat-popover>
+
         <span class="name">{{source.source?.name}}</span>
-
         <span class="device-status">
-          <app-svg-icon 
-           (click)="selectSource(source);sourcePop.toggle()"
-            class="info-icon" name="info-second"  [satPopoverAnchorFor]="sourcePop"  [size]="12">
-          </app-svg-icon>
-          <lottie-animation-view [options]="setAnimatedIcon().options" [width]="setAnimatedIcon().width" [height]="setAnimatedIcon().height">
-          </lottie-animation-view>
-        </span>
 
-        <!-- <span *ngIf="isAnimatedIcon(source?.status)" class="device-status animated">
-            <div class="percent-icon" *ngIf="source.status === 'downloading'">
-                <span class="percent">{{source.progress?.percentage}}%</span>
-              </div>
-              <div (mouseenter)="toggleShowInfoIcon(true)" (mouseleave)="toggleShowInfoIcon(false)">
-                <lottie-animation-view *ngIf="source.status !== 'downloading'" [options]="source.icon.options" [width]="icon.size.width"
-                  [height]="icon.size.height">
-                </lottie-animation-view>
-                <lottie-animation-view *ngIf="source.status === 'downloading'" [options]="source.icon.options" [width]="icon.size.width"
-                  [height]="icon.size.height">
-                </lottie-animation-view>
-              </div>
-        </span> -->
+          <span class="icon-wrapper"
+           *ngIf="popovers?.first && source.hover"
+           (click)="selectSource(source);getCurrentPopover(i).toggle();"
+           [satPopoverAnchorFor]="getCurrentPopover(i)"
+           >
+            <app-svg-icon  
+              class="info-icon" name="info-second" [size]="12">
+            </app-svg-icon>
+          </span>
+
+          <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
+            [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
+          </lottie-animation-view>
+
+          <ng-template #noAnimatedIcon>
+            <app-svg-icon class="device-status-icon" [size]="23" [name]="source.state"></app-svg-icon>
+          </ng-template>
+
+        </span>
       </div>
     </div>
   </div>
@@ -65,8 +68,3 @@
 </div>
 
 <app-add-target-wizard *ngIf="isWizardOpen" (closeModal)="closeWizard()"></app-add-target-wizard>
-
-
-<sat-popover #sourcePop xAlign="start" yAlign="center" >
-    <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT()"></app-device-tooltip>
-</sat-popover>

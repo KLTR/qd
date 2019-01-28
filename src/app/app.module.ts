@@ -58,6 +58,7 @@ import { SearchModalComponent } from './components/modals/search-modal/search-mo
 
 import { AgGridModule } from 'ag-grid-angular';
 import { DeviceTooltipComponent } from './components/device-tooltip/device-tooltip.component';
+import { PopOversComponent } from './components/pop-overs/pop-overs.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
     SourcesListComponent,
     AddTargetWizardComponent,
     RightBarComponent,
-    DeviceTooltipComponent
+    DeviceTooltipComponent,
+    PopOversComponent
   
   ],
   imports: [

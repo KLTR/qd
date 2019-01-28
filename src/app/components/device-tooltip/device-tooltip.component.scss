@@ -1,10 +1,22 @@
 .tooltip-wrapper {
-  margin-left: 55px;
   background-color: #52667b;
   padding: 15px;
   color: #c5e1ff;
   font-size: 11px;
   letter-spacing: 0.2px;
+  position: absolute;
+  left: 70px;
+  &::after{
+    content: "";
+    display: block;
+    border-width: 10px 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent #4d6179 transparent transparent;
+    margin-left: -10px;
+    position: absolute;
+    top: 0px;
+    left: -10px;
+  }
     .tooltip-header{
       display: flex;
       justify-content: space-between;
