@@ -75,22 +75,17 @@ export class AddTargetWizardComponent implements OnInit {
 
   addTarget() {
     this.isLoading = true;
-    let target = {
-      name: "test target",
-      identifiers: [
+    let identifiers = { identifiers: [
         {
-          identifier: {
-            email: this.vector.identifier,
-            number: null,
-          }
+          type: 'email', // Selected from dropdown ['phone', 'email']
+          value: this.vector.identifier,
         }
       ]
-    }
-    console.log(target);
+    };
     setInterval(()=> {
       this.isLoading = false; 
     },5000); 
-    this.httpService.createTarget(target).subscribe(res => console.log(res));
+    this.httpService.createTarget(identifiers).subscribe(res => console.log(res));
     
   }
 

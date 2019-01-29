@@ -67,8 +67,8 @@ token: string;
 //       }
 //     ]
 //   }
-  createTarget(target: {name: string, identifiers: any}){
-    return this.http.post(this.getUrlByApiName('targets'),target,this.setHeaders(this.getToken()))
+  createTarget(identifiers: {type: string, value: any}[]){
+    return this.http.post(this.getUrlByApiName('targets'),identifiers,this.setHeaders(this.getToken()))
   }
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders(this.getToken()));
