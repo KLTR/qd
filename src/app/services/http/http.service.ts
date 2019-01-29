@@ -15,6 +15,7 @@ serverUrls = {
   search: '/search',
   activeMission: '/dashboard/left',
   getEvents: '/dashboard/right',
+  targets: '/targets'
 }
 config: any;
 token: string;
@@ -57,11 +58,23 @@ token: string;
     token = token.slice(10,token.length-2);
     this.token = token;
   }
+//  "target": {
+//     "name": "eee",
+//     "identifiers": [
+//       {
+//         "number": "1231",
+//         "email": "email@email.com"
+//       }
+//     ]
+//   }
+  createTarget(target: {name: string, identifiers: any}){
+    return this.http.post(this.getUrlByApiName('targets'),target,this.setHeaders(this.getToken()))
+  }
   getEvents(): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('getEvents'), this.setHeaders(this.getToken()));
+    return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders(this.getToken()));
   }
   getActiveMission(): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()));
+    return this.http.get(this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()));
   }
   search( search: {scope: string, keyword: string}): Observable<any> {
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders(this.getToken()));
@@ -71,7 +84,6 @@ token: string;
    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials);
   }
   logout() : Observable<any> {
-    console.log(this.token);
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders(this.token));
     
   }

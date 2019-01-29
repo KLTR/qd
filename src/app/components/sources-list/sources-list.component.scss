@@ -7,9 +7,40 @@
         width: 85%;
         height: 85vh;
         overflow-y: auto;
+        .filters{
+            display: flex;
+            padding-top: 7px;
+            margin-left: 47px;
+            span {
+                max-width: 200px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                padding: 0 5px 0 5px;
+                color: #52667b;
+                border-bottom: 2px solid;
+                font-size: 13px;
+                cursor: pointer;
+              }
+              span.selected{
+                border-bottom: 2px solid #c5e1ff;
+                font-weight: bold;
+                color: #c4e1ff;
+              }
+              span:last-child {
+                &:after {
+                  content: '';
+                }    
+              }
+          }
         .sources-list{
             margin: 0;
+            margin-top: 15px;
             //ul
+            .no-items{
+                margin-left: 10px;
+            }
             .source-cube{
                 margin: 5px;
                 list-style: none;

@@ -12,7 +12,8 @@ export class SourcesListComponent implements OnInit {
   missionData: any;
   missionDataFlattened: any;
   events: any[];
-  temp: any;
+  filteredSources = [];
+  filterValue = '';
   constructor(
     private http: HttpService,
     private ws: WsService,
@@ -28,7 +29,7 @@ export class SourcesListComponent implements OnInit {
     this.http.getActiveMission().subscribe( res => 
       {
         this.missionData = res;
-        
+
         if(!this.missionData.sources){
           this.missionData.sources = [];
         }
@@ -38,11 +39,25 @@ export class SourcesListComponent implements OnInit {
         if(!this.missionData.infections){
           this.missionData.infections = [];
         }
-
+       this.assignFilteredSources();
       })
     this.http.getEvents().subscribe(res => {
       this.events = res;
     })
+
+  }
+  assignFilteredSources() {
+    this.filteredSources =  this.missionData.sources;
+    this.setFilter(this.filterValue);
+  }
+  setFilter(value){
+    this.filterValue = value;
+    if(!value || value === '') {
+      this.filteredSources = this.missionData.sources;
+    } else {
+     this.filteredSources = this.missionData.sources.filter(item => item.status === value)
+ 
+    }
   }
 
   getWifiSignal(wifi) {
@@ -195,6 +210,7 @@ deviceStatusToText(source): string{
         case 'source':
         this.handleSource(msg.result.source);
         this.missionData = Object.assign({}, this.missionData);
+        this.assignFilteredSources();
         break;
         case 'event':
         this.events.push(msg.result.event.log);

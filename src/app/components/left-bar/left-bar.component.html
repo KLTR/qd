@@ -7,7 +7,7 @@
       <div class="items" *ngFor="let source of missionData?.sources; let i = index;" 
       (mouseenter)="source.hover=true;"
       (mouseleave)="source.hover=false;"
-     >
+      >
         <sat-popover #sourcePopovers xAlign="start" yAlign="center">
           <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
         </sat-popover>
@@ -59,7 +59,7 @@
         <span  class="device-status">
  
           <app-svg-icon   
-          *ngIf="infPopovers?.first" 
+          *ngIf="infPopovers?.first && infPopovers?.length === missionData?.infections.length" 
           (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();"
           (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
           [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state"  [size]="18"></app-svg-icon>

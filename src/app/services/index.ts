@@ -1,7 +1,7 @@
 export * from './http/http.service';
 export * from './auth/auth.service';
 // export * from './connectivity/connectivity.service';
-// export * from './interceptor/interceptor.service';
+export * from './interceptor/interceptor.service';
 export * from './loader/loader.service';
 export * from './svg-json-icons/svg-icons.service';
 export * from '../components/menu/menu.service'

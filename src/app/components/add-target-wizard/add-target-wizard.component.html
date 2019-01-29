@@ -3,8 +3,7 @@
     <app-svg-icon name="add_attack_vector" [size]="15" class="vector-icon"></app-svg-icon>
     Attack vectors
   </div>
-  <p class="choose">Choose one or more attack vectors</p>
-  <div class="picks-wrapper">
+  <div *ngIf="!isLoading; else loadingScreen" class="picks-wrapper">
     <ul class="options">
       <li class="list-item" >
         <input type="checkbox" class="hidden-box" id="{{vector.vector+'-box'}}" [ngModel]="vector.checked"
@@ -26,18 +25,8 @@
 
       </span>
       </span>
-              <!-- 
-                <ng-template #vectorStateTip>
-                [ngbTooltip]="vector?.vectorState === 'OK' ? vectorStateTip : null" placement="right"
-
-                <div [ngStyle]="{ 'min-width': '150px' }">
-                  No. of available resources: {{ vector.maxActions }}
-                </div>
-              </ng-template> 
-            -->
             </div>
           </div>
-          <button class="reset-button modal-btn" stopPropagation (click)="resetServer(vector)">Reset</button>
         </div>
         <div class="type-{{vector.vectorType}} card-wrapper">
           <div class="main-area">
@@ -48,30 +37,27 @@
                      name="identifier"/>
               <span class="input-error" *ngIf="error">{{ error}}</span>
             </div>
-            <!-- <ng-container *ngIf="vector.vector === 'link'">
-              <div class="define-link-wrapper">
-                <button class="define-button" id="define-button" name="email">Define link message <i
-                  class="fa fa-pencil"
-                  aria-hidden="true"></i></button>
-              </div>
-              <div class="preview-link-wrapper">
-                <button class="preview-button" id="preview-button" name="preview">Preview</button>
-              </div>
-            </ng-container>
-            <div class="text-wrapper inputs" *ngIf="vector.vector === 'banner'">
-              <label for="text-banner">Text</label>
-              <input class="text" id="text-banner" name="text" [(ngModel)]="vector.message"/>
-            </div> -->
           </div>
         </div>
       </li>
     </ul>
   </div>
-  <div class="alert-msg" *ngIf="isEmpty">Please fill in the Required Fields</div>
   <div class="buttons-wrapper">
+    <!-- <button class="apply-button modal-btn" (click)="">Test Viewer</button> -->
     <button class="cancel-button modal-btn"  (click)="activeModal.close()">Cancel</button>
-    <button class="apply-button modal-btn" [ngClass]="{ 'disabled': isEmpty || hasErrors || !isConnected }"
-            (click)="closeModalFunc()">Attack!
+    <button class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isConnected" [ngClass]="{ 'disabled': isEmpty || hasErrors || !isConnected }"
+            (click)="addTarget()">Attack!
     </button>
   </div>
 </div>
+
+  <ng-template #loadingScreen>
+    <ng-container>
+      <div class="no-devices">
+        <div class="Rectangle"></div>
+        <div class="new-device-details">
+          <h2>Waiting for devices</h2>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>

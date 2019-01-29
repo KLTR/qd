@@ -3,8 +3,16 @@
   <app-left-bar [missionData]="missionData"></app-left-bar>
 
   <div class="sources-list-wrapper">
+      <div class="filters">
+          <span [class.selected]="filterValue === ''" (click)="setFilter('')">All sources</span>
+          <span [class.selected]="filterValue === 'DOWNLOADING'" (click)="setFilter('DOWNLOADING')">Downloading</span>
+          <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active</span>
+          <span [class.selected]="filterValue === 'LOST_CONNECTION'" (click)="setFilter('LOST_CONNECTION')">Lost Connection</span>
+          <span [class.selected]="filterValue === 'TERMINATED'" (click)="setFilter('TERMINATED')">Inactive</span>
+      </div>
     <ul class="sources-list">
-      <li class="source-cube" *ngFor="let source of missionData?.sources">
+        <p *ngIf="filteredSources.length === 0" class="no-items">No sources are {{filterValue | lowercase}}</p>
+      <li class="source-cube" *ngFor="let source of filteredSources">
         <div class="source-img">
           <img *ngIf="source.ios?.profile_pics[0]" src="{{source.ios?.profile_pics[0]}}">
           <app-svg-icon *ngIf="!source.ios?.profile_pics[0]" name="avatar" [size]="85"  class="cube-person-img"></app-svg-icon>

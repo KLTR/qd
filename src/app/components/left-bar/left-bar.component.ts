@@ -5,7 +5,6 @@ import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
 import { SatPopover } from '@ncstate/sat-popover';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
-
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
   styleUrls: ['./left-bar.component.scss']
@@ -33,6 +32,7 @@ ngAfterViewChecked(): void {
 }
 
 getSourcePopover(index): SatPopover{
+  
   return this.srcPopovers.find((p, i) => i === index);
 }
 getInfectionPopover(index): SatPopover{

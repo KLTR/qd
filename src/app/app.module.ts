@@ -2,17 +2,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { CustomRouterStateSerializer, effects, metaReducers, reducers } from '@app/state'
 import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LottieAnimationViewModule } from 'ng-lottie';
+import {
+  ToastrModule,
+  ToastNoAnimation,
+  ToastNoAnimationModule
+} from 'ngx-toastr';
 
 // Angular Mat Modules
 import {CustomMaterialModule} from './modules/material-module';
@@ -23,6 +27,7 @@ import {
   LoaderService,
   IconService,
   MenuService,
+  InterceptorService,
   WsService
 } from "@app/services";
 
@@ -111,19 +116,26 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
     // Libraries
     NgbModule,
     SatPopoverModule,
+    ToastNoAnimationModule.forRoot({
+      timeOut: 5000,
+      preventDuplicates: true,
+    }),
     // AngularMaterial
     CustomMaterialModule,
     LottieAnimationViewModule.forRoot(),
+    
     AgGridModule.withComponents([]),
     // WebSocketModule.forRoot(environment.websocketUrl),
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
     HttpService,
     AuthService,
     LoaderService,
     IconService,
     MenuService,
+    InterceptorService,
     // WebsocketService,
     WsService,
   // Resolvers
