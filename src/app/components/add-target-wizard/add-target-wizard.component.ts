@@ -98,7 +98,7 @@ export class AddTargetWizardComponent implements OnInit {
     setInterval(()=> {
       this.isLoading = false; 
     },5000); 
-    this.httpService.createTarget(this.identifiers).subscribe(res => console.log(res));
+    this.httpService.createTarget(this.identifiers).subscribe();
     
   }
 
@@ -109,40 +109,10 @@ export class AddTargetWizardComponent implements OnInit {
   closeModalFunc() {
     this.closeModal.emit();
   }
-
-  // validateEmail(input: string, vector: string) {
-  //   const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  //   if (input.length > 0) {
-  //     this.isEmpty = false;
-  //     if (!emailRegex.test(input)) {
-  //       this.error = 'Invalid email address';
-  //     } else {
-  //       this.error = null;
-  //     }
-  //   } else {
-  //     this.error = 'Phone or Email is required';
-  //   }
-  //   this.setHasError();
-  // }
-  // validatePhone(input: string, vector: string) {
-  //   if (input.length > 0) {
-  //     const phoneRegex = new RegExp(/\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{9,14}$/);
-  //     this.isEmpty = false;
-  //     if (!phoneRegex.test(input)) {
-  //       this.error = 'Invalid phone number';
-  //     } else {
-  //       this.error = null;
-  //     }
-  //   } else {
-  //     this.error = 'Phone or Email is required';
-  //   }
-  //   this.setHasError();
-  // }
   validateIdentifier(input: string) {
     if(!input){
       return
     }
-    console.log(input)
     if (input.length > 0) {
       if ( this.selectedType === "phone" ) {
         const phoneRegex = new RegExp(/\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{9,14}$/);
@@ -165,7 +135,6 @@ export class AddTargetWizardComponent implements OnInit {
     } else {
       this.error = `${this.selectedType} is required`;
     }
-    console.log(this.vector.inputs[0]);
     this.setHasError();
   }
 
