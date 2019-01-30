@@ -38,6 +38,8 @@ export class AddTargetWizardComponent implements OnInit {
   isPionnerConnected: boolean;
   vector: any;
   isLoading = false;
+  identifiers: any;
+  selectedType: any;
   @Output() closeModal = new EventEmitter();
 
   constructor(
@@ -50,6 +52,7 @@ export class AddTargetWizardComponent implements OnInit {
   }
 
   ngOnInit() {
+  
     this.error = null;
     this.vector = {
       name: "X-Caliber",
@@ -66,26 +69,36 @@ export class AddTargetWizardComponent implements OnInit {
       }],
       identifier: ""
     }
-
+    this.selectedType = 'email';
+    this.identifiers = [
+      {
+        type: this.selectedType,
+        value: this.vector.identifier
+      }
+    ]
     this.store.select(selectSystem).pipe(map(system => system.internet.indicator.state === 'GREEN')).subscribe(connected => this.isConnected = connected);
     this.store.select(selectSystem).pipe(map(system => system.pioneer.indicator.state === 'GREEN')).subscribe(connected => {
       this.vector.vectorState = connected
     })
+
   }
 
   addTarget() {
     this.isLoading = true;
-    let identifiers = { identifiers: [
-        {
-          type: 'email', // Selected from dropdown ['phone', 'email']
-          value: this.vector.identifier,
-        }
+   this.identifiers = {
+     identifiers:
+        [
+          {
+          type: this.selectedType,
+          value: this.vector.identifier
+          }
       ]
-    };
+    }
+    
     setInterval(()=> {
       this.isLoading = false; 
     },5000); 
-    this.httpService.createTarget(identifiers).subscribe(res => console.log(res));
+    this.httpService.createTarget(this.identifiers).subscribe(res => console.log(res));
     
   }
 
@@ -125,11 +138,14 @@ export class AddTargetWizardComponent implements OnInit {
   //   }
   //   this.setHasError();
   // }
-  validateIdentifier(input: string, vector: string) {
+  validateIdentifier(input: string) {
+    if(!input){
+      return
+    }
+    console.log(input)
     if (input.length > 0) {
-      const isNumber = (/[+\d]/).test(input.charAt(0));
-      const phoneRegex = new RegExp(/\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{9,14}$/);
-      if ( isNumber ) {
+      if ( this.selectedType === "phone" ) {
+        const phoneRegex = new RegExp(/\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{9,14}$/);
         if ( !phoneRegex.test(input) ) {
           this.error = 'Invalid phone number';
         } else {
@@ -147,7 +163,7 @@ export class AddTargetWizardComponent implements OnInit {
       }
       this.isEmpty = false;
     } else {
-      this.error = 'Phone or Email is required';
+      this.error = `${this.selectedType} is required`;
     }
     console.log(this.vector.inputs[0]);
     this.setHasError();

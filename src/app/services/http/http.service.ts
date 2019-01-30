@@ -58,15 +58,7 @@ token: string;
     token = token.slice(10,token.length-2);
     this.token = token;
   }
-//  "target": {
-//     "name": "eee",
-//     "identifiers": [
-//       {
-//         "number": "1231",
-//         "email": "email@email.com"
-//       }
-//     ]
-//   }
+
   createTarget(identifiers: {type: string, value: any}[]){
     return this.http.post(this.getUrlByApiName('targets'),identifiers,this.setHeaders(this.getToken()))
   }

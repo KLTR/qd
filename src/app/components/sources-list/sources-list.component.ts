@@ -10,8 +10,7 @@ import { Subscription } from 'rxjs';
 export class SourcesListComponent implements OnInit {
 
   missionData: any;
-  missionDataFlattened: any;
-  events: any[];
+  events: any;
   filteredSources = [];
   filterValue = '';
   constructor(
@@ -24,8 +23,7 @@ export class SourcesListComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.events = [];
-    this.missionDataFlattened = [];
+ 
     this.http.getActiveMission().subscribe( res => 
       {
         this.missionData = res;
@@ -42,9 +40,11 @@ export class SourcesListComponent implements OnInit {
        this.assignFilteredSources();
       })
     this.http.getEvents().subscribe(res => {
-      this.events = res;
+      this.events = res.events;
     })
-
+    if(!this.events){
+      this.events = [];
+    }
   }
   assignFilteredSources() {
     this.filteredSources =  this.missionData.sources;

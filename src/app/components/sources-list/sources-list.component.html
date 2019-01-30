@@ -8,7 +8,7 @@
           <span [class.selected]="filterValue === 'DOWNLOADING'" (click)="setFilter('DOWNLOADING')">Downloading</span>
           <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active</span>
           <span [class.selected]="filterValue === 'LOST_CONNECTION'" (click)="setFilter('LOST_CONNECTION')">Lost Connection</span>
-          <span [class.selected]="filterValue === 'TERMINATED'" (click)="setFilter('TERMINATED')">Inactive</span>
+          <span [class.selected]="filterValue === 'TERMINATED'" (click)="setFilter('TERMINATED')">Terminated</span>
       </div>
     <ul class="sources-list">
         <p *ngIf="filteredSources.length === 0" class="no-items">No sources are {{filterValue | lowercase}}</p>

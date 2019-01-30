@@ -31,7 +31,14 @@
         <div class="type-{{vector.vectorType}} card-wrapper">
           <div class="main-area">
             <div class="email-wrapper inputs">
-              <label for="identifier">Phone number/Email</label>
+                <div ngbDropdown class="d-inline-block dropdown">
+                    <button class="btn btn-outline-primary" id="typeDropdown" ngbDropdownToggle>{{selectedType || 'select type'}}</button>
+                    <div ngbDropdownMenu aria-labelledby="typeDropdown">
+                      <button class="dropdown-item" (click)="selectedType = 'email';validateIdentifier(vector.inputs.identifier)">Email</button>
+                      <button class="dropdown-item" (click)="selectedType = 'phone';validateIdentifier(vector.inputs.identifier)">Phone number</button>
+                    </div>
+                  </div>
+              <label for="identifier">Enter target's {{selectedType}}</label>
               <input [ngClass]="{ 'error': !!error }" [(ngModel)]="vector.inputs.identifier"
                      (keyup)="validateIdentifier($event.target.value, vector)" class="phone" id="identifier"
                      name="identifier"/>

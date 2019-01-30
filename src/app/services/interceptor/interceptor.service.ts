@@ -42,10 +42,10 @@ export class InterceptorService implements HttpInterceptor {
             return throwError(error);
           }
           // Any other server error response 
-          else {
-            this.toastr.error(error.statusText, error.status.toString());
-            return throwError(error);
-          }
+          // else {
+          //   this.toastr.error(error.statusText, error.status.toString());
+          //   return throwError(error);
+          // }
         }));
 }
 
