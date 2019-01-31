@@ -1,3 +1,4 @@
+import { environment as env } from '@env/environment.prod';
 import {
   WsService,
   HttpService
@@ -5,12 +6,14 @@ import {
 import {
   Component,
   OnInit,
-  Output,
-  EventEmitter
+  Input,
+  ChangeDetectorRef,
+  SimpleChanges
 } from '@angular/core';
 import {
   NgbModal,
-  NgbActiveModal
+  NgbActiveModal,
+  NgbModalRef
 } from '@ng-bootstrap/ng-bootstrap';
 import {
   Store
@@ -22,7 +25,7 @@ import {
 import {
   map
 } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {DeviceListModalComponent} from './../device-list-modal/device-list-modal.component'
 
 @Component({
   selector: 'app-add-target-wizard',
@@ -39,16 +42,20 @@ export class AddTargetWizardComponent implements OnInit {
   vector: any;
   isLoading = false;
   identifiers: any;
-  selectedType: any;
-  @Output() closeModal = new EventEmitter();
-
+  selectedType: any
+  targetId: any;
+  @Input() devices : []; // hold missionData.infections where infection.state === 'PENDING'
   constructor(
     public activeModal: NgbActiveModal,
     private httpService: HttpService,
     private modalService: NgbModal,
     private ws: WsService,
-    private store: Store < State > ) {
-
+    private store: Store < State >,
+    private _cd: ChangeDetectorRef
+    ) {
+      this.ws.messages.subscribe(msg => {
+        this.catchWebSocketEvents(msg)
+      })
   }
 
   ngOnInit() {
@@ -84,7 +91,6 @@ export class AddTargetWizardComponent implements OnInit {
   }
 
   addTarget() {
-    this.isLoading = true;
    this.identifiers = {
      identifiers:
         [
@@ -95,22 +101,26 @@ export class AddTargetWizardComponent implements OnInit {
       ]
     }
     
-    setInterval(()=> {
-      this.isLoading = false; 
-    },5000); 
-    this.httpService.createTarget(this.identifiers).subscribe();
-    
+      this.httpService.createTarget(this.identifiers).subscribe( 
+        (targetId: any) => {   
+          console.log(targetId);
+            this.isLoading = true; 
+            this.targetId = targetId;
+
+        },
+        err => {console.log(err),this.activeModal.close()}
+      )
   }
 
 
   trackVectors(index, item) {
     return item.id ? item.id : index;
   }
-  closeModalFunc() {
-    this.closeModal.emit();
-  }
+
   validateIdentifier(input: string) {
     if(!input){
+      this.error = `${this.selectedType} is required`;
+      this.setHasError()
       return
     }
     if (input.length > 0) {
@@ -132,17 +142,45 @@ export class AddTargetWizardComponent implements OnInit {
         }
       }
       this.isEmpty = false;
-    } else {
-      this.error = `${this.selectedType} is required`;
     }
     this.setHasError();
   }
-
+  
   setHasError() {
     if (this.error) {
       this.hasErrors = true;
     } else {
       this.hasErrors = false;
+    }
+  }
+  catchWebSocketEvents(msg) {
+    if(Object.keys(msg)[0] === 'error'){
+      return;
+    }
+    if(msg.result){
+      if(env.debug){
+        console.log(msg.result);
+      }
+      switch(Object.keys(msg.result)[0]) {
+        case 'infection':
+        let infection = msg.result.infection;
+        if(this.targetId && infection.infection.state === "PENDING" && infection.infection.target_id === this.targetId){
+          this.activeModal.close();
+          let deviceListModalRef = this.modalService.open(DeviceListModalComponent, { centered: true, size: 'lg', backdrop: 'static' });
+          deviceListModalRef.componentInstance.deviceList = [infection];
+          deviceListModalRef.componentInstance.targetId = this.targetId;
+  
+        }
+        break;
+        case 'target':
+        let target = msg.result.target;
+        if(target.state === "PENDING"){
+          this.targetId = target.target.id;
+          this.isLoading = true; 
+        }
+      }
+    } else{
+      console.log('err', msg.result);
     }
   }
 }

@@ -1,9 +1,9 @@
-import { AddTargetWizardComponent } from './../add-target-wizard/add-target-wizard.component';
+import { AddTargetWizardComponent } from './../modals/add-target-wizard/add-target-wizard.component';
 import { HttpService } from '@app/services/http/http.service';
 import { Component, OnInit, Input, QueryList, ViewChildren, ChangeDetectorRef } from '@angular/core';
 import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
 import { SatPopover } from '@ncstate/sat-popover';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
@@ -21,12 +21,13 @@ export class LeftBarComponent implements OnInit {
     private http: HttpService,
     public iconService: IconService,
     private _cd: ChangeDetectorRef,
-    private modalService: NgbModal
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
   
   }
+
 ngAfterViewChecked(): void {
   this._cd.detectChanges();
 }
@@ -39,19 +40,6 @@ getInfectionPopover(index): SatPopover{
   return this.infPopovers.find((p, i) => i === index);
 }
 
- isAnimatedIcon(source) {
-  switch (source.state) {
-    case 'DOWNLOADING_AGENT' :
-    case 'INITIALIZING' :
-    case 'DOWNLOADING' :
-    case 'ACTIVE' :
-    case 'TERMINATING' :
-    case 'COLLECTING_DATA':
-      return true;
-    default:
-      return false;
-  }
-}
 
 
 setInfectionIcon(state){
@@ -77,6 +65,19 @@ setInfectionIcon(state){
      this.hoveredInfection = infection;
    }
 // 
+isAnimatedIcon(source) {
+  switch (source.state) {
+    case 'DOWNLOADING_AGENT' :
+    case 'INITIALIZING' :
+    case 'DOWNLOADING' :
+    case 'ACTIVE' :
+    case 'TERMINATING' :
+    case 'COLLECTING_DATA':
+      return true;
+    default:
+      return false;
+  }
+}
    setAnimatedIcon(source) {
  
     switch (source.state) {
@@ -169,10 +170,11 @@ setInfectionIcon(state){
  }
 
  openAddAttack() {
-  const openAddAttackModal = this.modalService.open(AddTargetWizardComponent, {
+ let AddTargetModalRef =  this.modalService.open(AddTargetWizardComponent, {
     windowClass: 'add-attack-modal',
     centered: true,
     backdrop: 'static'
   });
+  // this.AddTargetModalRef.componentInstance._cd.detectChanges();
 }
 }

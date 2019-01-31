@@ -15,6 +15,7 @@ export const environment = {
   apiUrl: `${protocol}//${host}:${port}`,
   websocketUrl: `ws://${host}:${websocketPort}/dashboard/ws`,
   wsProtocol: 'Bearer',
+  debug: true,
   addAttackVector: false,
   export: {
     isZipEnabled: false

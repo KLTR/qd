@@ -39,12 +39,11 @@ export class InterceptorService implements HttpInterceptor {
               msg: "User have no permissions"
             };
             this.toastr.error(err.title, err.msg);
-            return throwError(error);
           }
           // Any other server error response 
           // else {
           //   this.toastr.error(error.statusText, error.status.toString());
-          //   return throwError(error);
+            return throwError(error);
           // }
         }));
 }

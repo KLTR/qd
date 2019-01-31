@@ -21,11 +21,7 @@ export class RightBarComponent implements OnInit {
 
   ngOnInit() {
   }
-  ngOnChanges(): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(this.events)
-  }
+
   toggleNav(){
     this.isOpen = !this.isOpen;
   }
@@ -33,6 +29,6 @@ export class RightBarComponent implements OnInit {
     this.selected = val;
   }
   removeEvent(index){
-    this.events['events'].splice(index, 1);
+    this.events.splice(index, 1);
   }
 }

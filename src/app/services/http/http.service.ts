@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.prod';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -59,8 +60,9 @@ token: string;
     this.token = token;
   }
 
-  createTarget(identifiers: [{type: string, value: any}]){
-    return this.http.post(this.getUrlByApiName('targets'),identifiers,this.setHeaders(this.getToken()))
+  createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
+    return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders(this.getToken()))
+  
   }
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders(this.getToken()));

@@ -42,7 +42,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { SourcesListComponent } from './components/sources-list/sources-list.component';
 import { StoreModule } from '@ngrx/store';
-import { AddTargetWizardComponent } from './components/add-target-wizard/add-target-wizard.component';
+import { AddTargetWizardComponent } from './components/modals/add-target-wizard/add-target-wizard.component';
 import {AlertsModalComponent} from './components/system-bar/alerts/alerts-modal/alerts-modal.component'
 import { AlertsStripComponent } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
 import { LeftBarComponent } from './components/left-bar/left-bar.component';
@@ -63,7 +63,10 @@ import { SearchModalComponent } from './components/modals/search-modal/search-mo
 
 import { AgGridModule } from 'ag-grid-angular';
 import { DeviceTooltipComponent } from './components/device-tooltip/device-tooltip.component';
+import { DeviceListModalComponent } from './components/modals/device-list-modal/device-list-modal.component';
 
+import { MomentModule } from 'ngx-moment';
+import { SourceComponent } from './components/left-bar/source/source.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,8 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
     SourcesListComponent,
     RightBarComponent,
     DeviceTooltipComponent,
+    DeviceListModalComponent,
+    SourceComponent,
   
   ],
   imports: [
@@ -120,8 +125,8 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
       timeOut: 5000,
       preventDuplicates: true,
     }),
+    MomentModule,
     // AngularMaterial
-    CustomMaterialModule,
     LottieAnimationViewModule.forRoot(),
     
     AgGridModule.withComponents([]),
@@ -146,6 +151,7 @@ import { DeviceTooltipComponent } from './components/device-tooltip/device-toolt
   entryComponents:[
     SearchModalComponent,
     AddTargetWizardComponent,
+    DeviceListModalComponent
   ],
   bootstrap: [AppComponent]
 })

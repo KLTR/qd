@@ -1,7 +1,7 @@
+import { environment as env } from '@env/environment.prod';
 import { HttpService, WsService } from '@app/services';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-sources-list',
   templateUrl: './sources-list.component.html',
@@ -13,6 +13,11 @@ export class SourcesListComponent implements OnInit {
   events: any;
   filteredSources = [];
   filterValue = '';
+  allSourcesNumber: number;
+  downloadingSourcesNumber: number;
+  acitveSourcesNumber: number;
+  lostConnectionSourcesNumber: number;
+  terminatedSourcesNumber: number
   constructor(
     private http: HttpService,
     private ws: WsService,
@@ -23,7 +28,7 @@ export class SourcesListComponent implements OnInit {
 }
 
   ngOnInit() {
- 
+    
     this.http.getActiveMission().subscribe( res => 
       {
         this.missionData = res;
@@ -38,6 +43,8 @@ export class SourcesListComponent implements OnInit {
           this.missionData.infections = [];
         }
        this.assignFilteredSources();
+       this.setSourcesNumbers();
+       this.filterPendingInfections();
       })
     this.http.getEvents().subscribe(res => {
       this.events = res.events;
@@ -58,6 +65,9 @@ export class SourcesListComponent implements OnInit {
      this.filteredSources = this.missionData.sources.filter(item => item.status === value)
  
     }
+  }
+  filterPendingInfections(){
+    this.missionData.infections = this.missionData.infections.filter(infection => infection.infection.state !== 'PENDING');
   }
 
   getWifiSignal(wifi) {
@@ -194,10 +204,14 @@ deviceStatusToText(source): string{
   }
 }
   catchWebSocketEvents(msg) {
+
     if(Object.keys(msg)[0] === 'error'){
       return;
     }
     if(msg.result){
+      if(env.debug){
+        console.log(msg.result);
+      }
       switch(Object.keys(msg.result)[0]) {
         case 'target':
         this.handleTarget(msg.result.target);
@@ -211,6 +225,7 @@ deviceStatusToText(source): string{
         this.handleSource(msg.result.source);
         this.missionData = Object.assign({}, this.missionData);
         this.assignFilteredSources();
+        this.setSourcesNumbers();
         break;
         case 'event':
         this.events.push(msg.result.event.log);
@@ -227,15 +242,14 @@ deviceStatusToText(source): string{
     if(!target.state){
       return;
     }
-    let targetObj = target.target;
     console.log(target);
-    this.missionData.targets = this.missionData.targets.filter((x) => {if(x.target.id !== targetObj.id){return x}});
+    this.missionData.targets = this.missionData.targets.filter((x) => {if(x.target.id !== target.target.id){return x}});
     this.missionData.targets.push(target);
   }
 
   handleInfection(infection){
     let infectionObj = infection.infection; 
-    if(!infectionObj.state){
+    if(!infectionObj.state || infectionObj.state === 'PENDING'){
       return;
     }
 
@@ -259,4 +273,16 @@ deviceStatusToText(source): string{
     this.missionData.sources = this.missionData.sources.filter((x) => {if(x.source.id !== sourceObj.id){return x}});
     this.missionData.sources.push(source)
   }
+
+  setSourcesNumbers(){
+    if(!this.missionData || !this.missionData.source){
+      return;
+    }
+    this.allSourcesNumber = this.missionData.sources.length;
+    this.downloadingSourcesNumber =  this.missionData.sources.filter((src) => src.state === 'DOWNLOADING').length;
+    this.acitveSourcesNumber = this.missionData.sources.filter((src) => src.state === 'ACTIVE').length;
+    this.lostConnectionSourcesNumber = this.missionData.sources.filter((src) => src.state === 'LOST_CONNECTION').length;
+    this.terminatedSourcesNumber = this.missionData.sources.filter((src) => src.state === 'TERMINATED').length;
+  }
 }
+

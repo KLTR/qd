@@ -22,7 +22,7 @@ private token: string;
         .pipe(
             map((response: MessageEvent): any =>{
                 let data = JSON.parse(response.data);
-                console.log(data.result)
+                // console.log(data.result)
                 return data;
             }),
         )

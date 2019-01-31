@@ -20,8 +20,8 @@
       <span>Vector currently: <span
         [ngClass]="{ 'error': !vector?.vectorState}"
         >
-        {{ !isConnected ? 'Disconnected. Please check internet connection'
-        : vector?.vectorState ? 'Ready' : 'Disconnected' }}
+        {{ vector?.vectorState ? 'Ready' : 'Busy' }}
+        
 
       </span>
       </span>
@@ -40,7 +40,7 @@
                   </div>
               <label for="identifier">Enter target's {{selectedType}}</label>
               <input [ngClass]="{ 'error': !!error }" [(ngModel)]="vector.inputs.identifier"
-                     (keyup)="validateIdentifier($event.target.value, vector)" class="phone" id="identifier"
+                     (keyup)="validateIdentifier($event.target.value)" (change)="validateIdentifier($event.target.value)" class="phone" id="identifier"
                      name="identifier"/>
               <span class="input-error" *ngIf="error">{{ error}}</span>
             </div>
@@ -51,9 +51,9 @@
   </div>
   <div class="buttons-wrapper">
     <!-- <button class="apply-button modal-btn" (click)="">Test Viewer</button> -->
-    <button class="cancel-button modal-btn"  (click)="activeModal.close()">Cancel</button>
-    <button class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isConnected" [ngClass]="{ 'disabled': isEmpty || hasErrors || !isConnected }"
-            (click)="addTarget()">Attack!
+    <button class="cancel-button modal-btn"  (click)="activeModal.close()">Close</button>
+    <button *ngIf="!isLoading" class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isConnected" [ngClass]="{ 'disabled': isEmpty || hasErrors || !isConnected }"
+            (click)="addTarget()">Add target
     </button>
   </div>
 </div>
