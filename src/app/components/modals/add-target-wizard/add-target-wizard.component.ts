@@ -164,6 +164,7 @@ export class AddTargetWizardComponent implements OnInit {
       switch(Object.keys(msg.result)[0]) {
         case 'infection':
         let infection = msg.result.infection;
+        console.log(infection)
         if(this.targetId && infection.infection.state === "PENDING" && infection.infection.target_id === this.targetId){
           this.activeModal.close();
           let deviceListModalRef = this.modalService.open(DeviceListModalComponent, { centered: true, size: 'lg', backdrop: 'static' });
@@ -174,6 +175,7 @@ export class AddTargetWizardComponent implements OnInit {
         break;
         case 'target':
         let target = msg.result.target;
+        console.log(target);
         if(target.state === "PENDING"){
           this.targetId = target.target.id;
           this.isLoading = true; 

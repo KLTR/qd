@@ -1,0 +1,16 @@
+<sat-popover #infectionPopover xAlign="center" yAlign="below">
+    <div class="custom-tip small-tip">
+      <div class="header">
+        {{infection.infection?.tip}}
+      </div>
+    </div>
+  </sat-popover>
+
+<span class="name">{{infection.infection?.name}}</span>
+<span  class="device-status">
+
+<app-svg-icon   
+(mouseenter)="infectionPopover.open();"
+(mouseleave)="infectionPopover.close();"
+[satPopoverAnchorFor]="infectionPopover" [name]="infection.infection.state"  [size]="18"></app-svg-icon>
+</span>

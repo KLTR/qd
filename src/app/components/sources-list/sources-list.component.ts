@@ -275,7 +275,7 @@ deviceStatusToText(source): string{
   }
 
   setSourcesNumbers(){
-    if(!this.missionData || !this.missionData.source){
+    if(!this.missionData || !this.missionData.sources){
       return;
     }
     this.allSourcesNumber = this.missionData.sources.length;

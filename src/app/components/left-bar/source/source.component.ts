@@ -1,5 +1,5 @@
 import { SatPopover } from '@ncstate/sat-popover';
-import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-source',
@@ -8,7 +8,6 @@ import { Component, OnInit, Input, QueryList, ViewChildren } from '@angular/core
 })
 export class SourceComponent implements OnInit {
 @Input() source;
-@ViewChildren('sourcePopovers') public srcPopovers: QueryList<SatPopover>;
 
 
   constructor() { }
@@ -18,16 +17,6 @@ export class SourceComponent implements OnInit {
   }
 
 
-  getSourcePopover(index): SatPopover{
-  
-    return this.srcPopovers.find((p, i) => i === index);
-  }
-
-  closeT(index) {
-    let pop =  this.srcPopovers.find((p, i) => i === index);
-    pop.close();
-    // this.selectedSource = null;
-  }
   isAnimatedIcon(source) {
     switch (source.state) {
       case 'DOWNLOADING_AGENT' :
@@ -122,5 +111,7 @@ export class SourceComponent implements OnInit {
         };
     }
   }
-
+close(){
+  console.log(this.source);
+}
 }

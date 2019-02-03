@@ -54,7 +54,7 @@ from 'rxjs/operators';
   AfterViewInit {
 
     @Input() user: User;
-    @Input() system: SystemInfo;
+    @Input() system: any;
     @ViewChild('t') public tooltip: NgbTooltip;
 
     // Popovers childs

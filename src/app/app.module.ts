@@ -18,8 +18,6 @@ import {
   ToastNoAnimationModule
 } from 'ngx-toastr';
 
-// Angular Mat Modules
-import {CustomMaterialModule} from './modules/material-module';
 // Services
 import {
   HttpService,
@@ -52,7 +50,7 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
 // Pipes
 import {
   CharactersPipe, SafeHtmlPipe, CaseFilterPipe, SignalStrenghtPipe,
-  TooltipDataFilterPipe, FilterAlertsPipe, SortAppsPipe, CubeIconsPipe, SourceByTypePipe,
+  TooltipDataFilterPipe, FilterAlertsPipe, SortAppsPipe,
   RemoveDuplicatesPipe, DayMonthOnlyPipe, GetFilenameFromUrlPipe, SetActiveMailPipe, BitesToKbPipe, OrderByPipe,
 } from '@app/pipes';
 import { AuthGuard } from '@app/guards';
@@ -67,6 +65,7 @@ import { DeviceListModalComponent } from './components/modals/device-list-modal/
 
 import { MomentModule } from 'ngx-moment';
 import { SourceComponent } from './components/left-bar/source/source.component';
+import { InfectionComponent } from './components/left-bar/infection/infection.component';
 
 @NgModule({
   declarations: [
@@ -88,8 +87,6 @@ import { SourceComponent } from './components/left-bar/source/source.component';
     TooltipDataFilterPipe,
     FilterAlertsPipe,
     SortAppsPipe,
-    CubeIconsPipe,
-    SourceByTypePipe,
     RemoveDuplicatesPipe,
     DayMonthOnlyPipe,
     GetFilenameFromUrlPipe,
@@ -104,6 +101,7 @@ import { SourceComponent } from './components/left-bar/source/source.component';
     DeviceTooltipComponent,
     DeviceListModalComponent,
     SourceComponent,
+    InfectionComponent,
   
   ],
   imports: [

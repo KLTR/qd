@@ -1,0 +1,26 @@
+<sat-popover #sourcePopover xAlign="start" yAlign="center">
+        <app-device-tooltip [device]="source" (close)="close()"></app-device-tooltip>
+</sat-popover>
+
+      <span class="name">{{source.source?.name}}</span>
+      <span class="device-status">
+
+        <span class="icon-wrapper"
+         *ngIf="source.hover"
+         (click)="sourcePopover.toggle();"
+         [satPopoverAnchorFor]="sourcePopover"
+         >
+          <app-svg-icon  
+            class="info-icon" name="info-second" [size]="12">
+          </app-svg-icon>
+        </span>
+
+        <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
+          [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
+        </lottie-animation-view>
+
+        <ng-template #noAnimatedIcon>
+          <app-svg-icon class="device-status-icon" [size]="18" [name]="source.state"></app-svg-icon>
+        </ng-template>
+
+      </span>

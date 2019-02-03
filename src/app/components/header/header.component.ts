@@ -11,8 +11,8 @@ import { WsService } from '@app/services';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() user: User;
-  @Input() system: SystemInfo;
+  @Input() user: any;
+  @Input() system: any;
   @Input() alerts: any;
   title = 'app';
   highestLevel: string;
