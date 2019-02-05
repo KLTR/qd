@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: quantum-ui
+  name: quantum-ui
+  namespace: {{ namespace }}
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: quantum-ui
+  type: NodePort
