@@ -21,7 +21,6 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.data.subscribe(data => {
-    // });
+ 
   }
 }

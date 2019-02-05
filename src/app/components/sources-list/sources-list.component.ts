@@ -45,6 +45,9 @@ export class SourcesListComponent implements OnInit {
        this.assignFilteredSources();
        this.setSourcesNumbers();
        this.filterPendingInfections();
+       this.missionData.sources.forEach(source => {
+         this.setSourceInfoStatus(source);
+       });
       })
     this.http.getEvents().subscribe(res => {
       this.events = res.events;
@@ -270,8 +273,11 @@ deviceStatusToText(source): string{
     if(!source.state){
       return;
     }
+
     this.missionData.sources = this.missionData.sources.filter((x) => {if(x.source.id !== sourceObj.id){return x}});
+    this.setSourceInfoStatus(source);
     this.missionData.sources.push(source)
+    
   }
 
   setSourcesNumbers(){
@@ -284,5 +290,12 @@ deviceStatusToText(source): string{
     this.lostConnectionSourcesNumber = this.missionData.sources.filter((src) => src.state === 'LOST_CONNECTION').length;
     this.terminatedSourcesNumber = this.missionData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
+
+
+  setSourceInfoStatus(source) {
+      if(source.state === 'INITIALIZING' || source.state === 'DOWNLOADING_AGENT'){
+        source.noInfo = true;
+      }
+    }
 }
 

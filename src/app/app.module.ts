@@ -66,7 +66,9 @@ import { DeviceListModalComponent } from './components/modals/device-list-modal/
 import { MomentModule } from 'ngx-moment';
 import { SourceComponent } from './components/left-bar/source/source.component';
 import { InfectionComponent } from './components/left-bar/infection/infection.component';
-
+import { TemplateRendererComponent } from './components/ag-grid/template-renderer.component';
+import { OwnersCellComponent } from './components/ag-grid/owners-cell-component';
+import { DateCellComponent } from './components/ag-grid/date-cell-component';
 @NgModule({
   declarations: [
     // Components
@@ -79,6 +81,19 @@ import { InfectionComponent } from './components/left-bar/infection/infection.co
     LayoutComponent,
     AlertsStripComponent,
     SvgIconComponent,
+    AddTargetWizardComponent,
+    SearchModalComponent,
+    LeftBarComponent,
+    SourcesListComponent,
+    RightBarComponent,
+    DeviceTooltipComponent,
+    DeviceListModalComponent,
+    SourceComponent,
+    InfectionComponent,
+    // Cells
+    TemplateRendererComponent,
+    OwnersCellComponent,
+    DateCellComponent,
     // Pipes
     CharactersPipe,
     CaseFilterPipe,
@@ -92,17 +107,7 @@ import { InfectionComponent } from './components/left-bar/infection/infection.co
     GetFilenameFromUrlPipe,
     SetActiveMailPipe,
     BitesToKbPipe,
-    OrderByPipe,
-    AddTargetWizardComponent,
-    SearchModalComponent,
-    LeftBarComponent,
-    SourcesListComponent,
-    RightBarComponent,
-    DeviceTooltipComponent,
-    DeviceListModalComponent,
-    SourceComponent,
-    InfectionComponent,
-  
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -149,7 +154,10 @@ import { InfectionComponent } from './components/left-bar/infection/infection.co
   entryComponents:[
     SearchModalComponent,
     AddTargetWizardComponent,
-    DeviceListModalComponent
+    DeviceListModalComponent,
+    TemplateRendererComponent,
+    OwnersCellComponent,
+    DateCellComponent
   ],
   bootstrap: [AppComponent]
 })

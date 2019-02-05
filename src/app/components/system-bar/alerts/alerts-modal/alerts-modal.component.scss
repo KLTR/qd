@@ -1,12 +1,12 @@
 @import "../../../../../scss/backgroundimages";
 @import "../../../../../scss/base.scss";
 $image-base: '../../../../../../assets/img/mission-cube/';
-.modal-media-header
-{
+
+.modal-media-header {
   height: 78px;
   font-size: 26px;
   text-align: center;
-  color:#65efe8;
+  color: #65efe8;
   background-color: #445464;
   padding: 22px;
   text-transform: capitalize;
@@ -14,33 +14,30 @@ $image-base: '../../../../../../assets/img/mission-cube/';
 
 
 
-.disconnect-device-modal
-{
+.disconnect-device-modal {
   position: absolute;
   top: 50px;
-  left: 20vw;
-  height: 480px;
+  left: 17vw;
+  min-height: 480px;
   z-index: 99999 !important;
   overflow-y: hidden !important;
-  width: 65vw;
-
-  .modal-dialog
-  {
+  width: 75vw;
+  height: 80vh;
+  .modal-dialog {
     max-width: 735px !important;
     width: 100%;
     margin: 0 auto;
   }
 
-  .modal-wrapper
-  {
+  .modal-wrapper {
     width: 100%;
     height: 100%;
     background-color: #2f3b4a;
     border-radius: 0;
     display: flex;
     flex-direction: column;
-    .modal-disconnect-header
-    {
+
+    .modal-disconnect-header {
       height: 40px;
       font-size: 17px;
       text-align: center;
@@ -52,16 +49,19 @@ $image-base: '../../../../../../assets/img/mission-cube/';
       box-shadow: 0 1px 4px 0 rgba(26, 34, 42, 0.32);
       padding-top: 4px;
       position: relative;
+
       .alert-title {
         padding-left: 10px;
       }
+
       ::ng-deep .icon {
         vertical-align: baseline;
       }
+
       .title-icon {
         display: flex;
 
-        .alerts-icon{
+        .alerts-icon {
           width: 20px;
           display: flex;
           align-items: center;
@@ -72,11 +72,13 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         position: absolute;
         right: 11px;
         cursor: pointer;
-        svg{
+
+        svg {
           display: flex;
         }
       }
     }
+
     .modal-content {
       text-align: center;
       width: 95%;
@@ -85,11 +87,13 @@ $image-base: '../../../../../../assets/img/mission-cube/';
       color: #c4e1ff;
       background-color: #2f3b4a !important;
       flex: 1;
+
       .alerts-filter {
         padding: 25px 5px;
         display: flex;
         font-size: 14px;
         cursor: pointer;
+
         .show-all {
           margin-left: 7px;
           background-color: #c5e1ff;
@@ -101,11 +105,13 @@ $image-base: '../../../../../../assets/img/mission-cube/';
           align-self: center;
           border-top-left-radius: 3px;
           border-bottom-left-radius: 3px;
+
           &.inactive {
             color: rgba(197, 225, 255, .5);
             background-color: #5E7081;
           }
         }
+
         .show-active {
           background-color: #c5e1ff;
           color: #2f3b4a;
@@ -116,6 +122,7 @@ $image-base: '../../../../../../assets/img/mission-cube/';
           align-self: center;
           border-top-right-radius: 3px;
           border-bottom-right-radius: 3px;
+
           &.inactive {
             color: rgba(197, 225, 255, .5);
             background-color: #5E7081;
@@ -123,47 +130,20 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         }
 
       }
+
       .titles-wrapper {
         display: flex;
         margin-bottom: 4px;
         font-size: 10px;
-        .title-cell {
-          display: inline-block;
-          text-transform: uppercase;
-          color: #6f859d;
-        }
-        .name {
-          width: 14%;
-          text-align: center;
-          //padding-left: 25px;
-        }
-        .time {
-          width: 14%;
-          // padding-left: 39px;
-          text-align: center;
-        }
-        .module {
-          width: 14%;
-        }
-        .description {
-          text-align: center;
-          width: 30%;
-        }
-        .status {
-          width: 14%;
-          text-align: center;
-        }
-        .severity {
-          width: 14%;
-          text-align: center;
-        }
-        .actions{
-          width: 10%;
-        }
       }
+
       .table-wrapper {
-        max-height: 375px;
-        overflow-y: auto;
+        height: 85%;
+        display: flex;
+        overflow-y: hidden;
+        align-items: center;
+        justify-content: center;
+        position: relative;
       }
 
       .alert-wrapper {
@@ -173,82 +153,79 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         background-color: #3a4a5c;
         margin-bottom: 7px;
         box-shadow: 0 1px 4px 0 rgba(26, 34, 42, 0.32);
-        width: fit-content;
-        [class^='alert'], [class*=' alert'] {
-          display: inline-block;
-          width: 27%;
-        }
-        [class*="alert"] {
-          padding-top: 14px;
-          padding-bottom: 11px;
-          font-size: 13px;
-          padding-left: 12px;
-          display: flex;
-        }
-        .alert-description {
-          width: 30%;
-          font-size: 12px;
-          line-height: 1.4;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-        .alert-color {
-          width: 7px;
+        min-height: 250px;
+     height: 100%;
+        .buttons {
+          cursor: pointer;
           height: 100%;
-          position: absolute;
-          left: 0;
-          padding: 0;
-          &.critical {
-            background-color: #ff4d6a;
-          }
-          &.major {
-            background-color: #ff9f39;
-          }
-          &.info {
-            background-color: #c5e1ff;
-          }
-        }
-        div{
           display: flex;
           align-items: center;
-          justify-content: center;
+
+          .toggle-btn {
+            cursor: pointer;
+            height: 18px;
+            width: fit-content;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #bdd9f6;
+            &.inactive{
+              opacity: 0.5;
+            }
+            span {
+              color: #bdd9f6;
+              line-height: 12px;              
+              font-size: 11px;
+              font-weight: bold;
+              font-style: normal;
+              font-stretch: normal;
+              letter-spacing: 0.2px;
+            }
+          }
+
         }
-        .alert-name, .alert-id, .alert-severity {
-          //width: 16%;
-          //padding-top: 5px;
-        }
+
+
         .alert-name {
           width: 14%;
           text-align: left;
         }
+
         .alert-time {
           width: 14%;
           text-align: left;
         }
+
         .alert-module {
           text-transform: capitalize;
           width: 14%;
           text-align: left;
         }
+
         .alert-status {
           width: 14%;
           text-align: left;
           text-transform: capitalize;
         }
+
         .alert-severity {
           width: 14%;
           @include font-bold;
+
           &.critical {
             color: #ff4d6a;
           }
+
           &.major {
             color: #ff9f39;
           }
         }
+
         .alert-status {
           width: 14%;
         }
+
         .close-alert {
           width: 10%;
           align-self: center;
@@ -260,29 +237,30 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         }
       }
     }
-    .modal-disconnect-footer
-    {
+
+    .modal-disconnect-footer {
       font-size: 15px;
       text-align: center;
       color: #ff6c91;
       display: flex;
       justify-content: flex-end;
       margin: 0 7px 20px 0;
+
       .center-button {
-        width:225px;
+        width: 225px;
         height: 44px;
         font-size: 20px;
         margin: 0 auto;
       }
-      .disconnect-modal-button
-      {
-        width:130px;
+
+      .disconnect-modal-button {
+        width: 130px;
         height: 40px;
         font-size: 15px;
         margin-right: 12px;
       }
-      .button-yes
-      {
+
+      .button-yes {
         border: none;
         color: #232d38;
         @include font-bold;
@@ -293,8 +271,7 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         box-shadow: 0 7px 10px 0 rgba(26, 34, 42, 0.31);
       }
 
-      .button-no
-      {
+      .button-no {
         border: none;
         color: #b6d1ed;
         background-color: transparent;
@@ -305,13 +282,5 @@ $image-base: '../../../../../../assets/img/mission-cube/';
     }
   }
 }
-.CRITICAL{
-  color:#ff4d6a;
-}
-.MAJOR{
-  color: rgba(255, 159, 57, 0.7);
-}
-.INFO{
-  color: #c5e1ff;
-}
+
 
