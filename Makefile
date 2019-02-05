@@ -4,7 +4,7 @@ endif
 
 QD_GO_MAKEFILE_PATH := ${QD_GO_ROOT}/sr-rnd-00.swg.local/go/makefile
 
-DOCKER_PROJECT := ng-ui-quantum
+DOCKER_PROJECT := go-ng-ui-quantum
 
 include ${QD_GO_MAKEFILE_PATH}/Makefile.base
 
