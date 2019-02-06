@@ -152,7 +152,7 @@ body {
 .modal-content {
   background-color: transparent !important;
 }
-
+.modal-dialog{}
 /*:::::::::::::::::::::::::: GENERAL :::::::::::::::::::::::::*/
 
 a,
@@ -178,6 +178,15 @@ a:focus {
   bottom: 0;
   position: fixed;
   opacity: 0.5 !important;
+}
+
+
+.alerts-window{
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+  .modal-dialog{
+    max-width: 75vw;
+  }
 }
 
 .standart-modal,

@@ -35,9 +35,9 @@ export class DeviceListModalComponent implements OnInit {
     })
     console.log(this.targetId);
     console.log(this.deviceList);
-    this.deviceList = this.deviceList.map(
-      (device: any) => device.infection
-    )
+    // this.deviceList = this.deviceList.map(
+    //   (device: any) => device.infection
+    // )
     console.log(this.deviceList);
   }
   getAnimatedIcon(name: string): any {
@@ -53,18 +53,21 @@ export class DeviceListModalComponent implements OnInit {
   }
 
   getDeviceIconSize(deviceStatus: string): number {
-    switch (deviceStatus) {
+    if(!deviceStatus){
+      return;
+    }
+    switch (deviceStatus.toLowerCase()) {
       case 'offline':
-      case 'active':
-      case 'loading':
+      case 'ready':
+      case 'created':
         return 30;
       default:
-        return 38;
+        return 34;
     }
   }
 
   getDeviceStatusText(deviceStatus: string): string {
-    switch (deviceStatus) {
+    switch (deviceStatus.toLowerCase()) {
       case 'failed':
         this.isAttackingOrChecking = false;
         return 'Failed';
@@ -77,13 +80,13 @@ export class DeviceListModalComponent implements OnInit {
       case 'unknown':
         this.isAttackingOrChecking = false;
         return 'Not Recently Checked';
-      case 'active':
+      case 'ready':
         this.isAttackingOrChecking = false;
         return 'Ready to attack';
       case 'attacking':
         this.isAttackingOrChecking = true;
         return 'attacking';
-      case 'unsupported':
+      case 'NOT_SUPPORTED':
         this.isAttackingOrChecking = false;
         return 'Not supported';
       case 'success':
@@ -92,7 +95,7 @@ export class DeviceListModalComponent implements OnInit {
       case 'terminated':
         this.isAttackingOrChecking = false;
         return 'Agent terminated';
-      case 'loading':
+      case 'created':
         this.isAttackingOrChecking = true;
         return 'Checking status (It may take a few minutes)...';
       default:
@@ -101,14 +104,14 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
   getButtonText(deviceStatus: string): string {
-    switch (deviceStatus) {
+    switch (deviceStatus.toLowerCase()) {
       case 'failed':
       case 'aborted':
       case 'offline':
       case 'terminated':
       case 'unknown':
         return 'check status';
-      case 'active':
+      case 'ready':
         return 'attack!';
       case 'attacking':
         return 'abort';

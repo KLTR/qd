@@ -1,9 +1,7 @@
 import {
   HttpService
 }
-
 from '@app/services';
-
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -14,29 +12,20 @@ import {
   ViewChild,
   SimpleChange
 }
-
 from '@angular/core';
-
 import {
   NgbTooltip
 }
-
 from '@ng-bootstrap/ng-bootstrap';
-
 import {
-  SystemInfo,
   User
 }
-
 from '@app/models';
-
 import {
   Observable,
   interval
 }
-
 from 'rxjs/';
-
 import {
   map
 }
@@ -121,7 +110,6 @@ from 'rxjs/operators';
     }
 
     toggleAlerts() {
-
       this.isAlertsOpen = !this.isAlertsOpen;
     }
 

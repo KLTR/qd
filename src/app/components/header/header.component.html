@@ -27,7 +27,6 @@
   </div>
 
   <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal>
-  <app-alerts-modal  [isOpen]="isAlertsOpen" [alerts]="system.alerts" ></app-alerts-modal>
         <sat-popover #userPop xAlign="center" yAlign="below">
             <div class="custom-tip user">
                 <div class="header">{{user.user}}</div>

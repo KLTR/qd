@@ -231,7 +231,7 @@ deviceStatusToText(source): string{
         this.setSourcesNumbers();
         break;
         case 'event':
-        this.events.push(msg.result.event.log);
+        this.events.unshift(msg.result.event.log);
         this.events = this.events.slice();
         break;
       }
@@ -247,7 +247,7 @@ deviceStatusToText(source): string{
     }
     console.log(target);
     this.missionData.targets = this.missionData.targets.filter((x) => {if(x.target.id !== target.target.id){return x}});
-    this.missionData.targets.push(target);
+    this.missionData.targets.unshift(target);
   }
 
   handleInfection(infection){
@@ -257,13 +257,13 @@ deviceStatusToText(source): string{
     }
 
     if(infectionObj.state === 'IN_PROGRESS'){
-      this.missionData.infections.push(infection);
+      this.missionData.infections.unshift(infection);
       return;
     }
      else {
       this.missionData.infections = this.missionData.infections.filter((x) => { if(x.infection.id !== infectionObj.id){ return x}});
       if(infectionObj.state === 'FAILED'){
-        this.missionData.infections.push(infection);
+        this.missionData.infections.unshift(infection);
       }
     }
   }
@@ -276,7 +276,7 @@ deviceStatusToText(source): string{
 
     this.missionData.sources = this.missionData.sources.filter((x) => {if(x.source.id !== sourceObj.id){return x}});
     this.setSourceInfoStatus(source);
-    this.missionData.sources.push(source)
+    this.missionData.sources.unshift(source)
     
   }
 

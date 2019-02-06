@@ -1,3 +1,4 @@
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   Component,
   Input,
@@ -22,8 +23,8 @@ import { DateCellComponent } from '@app/components/ag-grid/date-cell-component';
   styleUrls: ['./alerts-modal.component.scss']
 })
 export class AlertsModalComponent implements OnInit {
+ 
   filteredAlerts;
-  @Input() isOpen;
   @Input() alerts;
   @ViewChild('deleteCell') deleteCell: TemplateRef<any>;
   @ViewChild('ownersCell') ownersCell: TemplateRef<any>;
@@ -42,10 +43,16 @@ export class AlertsModalComponent implements OnInit {
   private overlayNoRowsTemplate: string;
 
   
-  constructor(private httpService: HttpService) {
+  constructor(
+    private httpService: HttpService,
+    public activeModal: NgbActiveModal
+    ) {
     this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";
   }
-
+ngOnChanges(): void {
+  console.log(this.alerts);
+  this.gridApi.redrawRows();
+}
   ngOnInit() {
     this.columnDefs = [
       {
@@ -119,37 +126,6 @@ export class AlertsModalComponent implements OnInit {
 
       }
     ];
-    this.rowData = [{
-      created_at: '2018-02-04T14:52:31.731441376Z',
-      msg: 'System Alert',
-      owners: {Target: 'Donald Trump',License: 'Daily'},
-      severity: 'INFO',
-    },
-    {
-      created_at: '2019-01-04T14:51:39.731441376Z',
-      msg: 'Whatsapp Alert',
-      owners: {Target: 'Donald Trump',License: 'Daily'},
-      severity: 'MAJOR',
-    },
-    {
-      created_at: '2019-02-05T14:55:39.731441376Z',
-      msg: 'Hardware Alert',
-      owners: {Target: 'Donald Trump',License: 'Daily'},
-      severity: 'MAJOR',
-    },
-    {
-      created_at: '2019-03-12T22:52:39.731441376Z',
-      msg: 'Intel Alert',
-      owners: {Target: 'Donald Trump',License: 'Daily'},
-      severity: 'CRITICAL',
-    },
-    {
-      created_at: '2019-02-05T14:52:39.731441376Z',
-      msg: 'Another system Alert',
-      owners: {Target: 'Donald Trump',License: 'Daily'},
-      severity: 'INFO',
-    },
-  ];
 
   this.rowClassRules = {
     "closed" : (params) => {
@@ -162,7 +138,6 @@ export class AlertsModalComponent implements OnInit {
       sortAscending: '<i class="fa fa-long-arrow-down"/>',
       sortDescending: '<i class="fa fa-long-arrow-up"/>',
     }
-    this.countActiveAlerts();
   }
 onGridReady(params){
   this.gridApi = params.api;
@@ -173,18 +148,7 @@ onGridReady(params){
     this.gridApi.setFilterModel(null);
     this.gridApi.onFilterChanged();
   }
-  countActiveAlerts() {
-    this.activeAlertsCount = 0;
-    if (this.rowData) {
-      if (this.rowData.length > 0) {
-        this.rowData.forEach(alert => {
-          if (alert.status === 'active') {
-            this.activeAlertsCount += 1;
-          }
-        });
-      }
-    }
-  }
+
 
   deleteAlert(alert, index) {
     // this.httpService.deleteAlert(alert.id).subscribe(() => {
@@ -195,7 +159,6 @@ onGridReady(params){
       this.filteredAlerts.splice(indexFd, 1);
     }
     this.rowData.splice(indexOg, 1);
-    this.countActiveAlerts();
   }
 
 

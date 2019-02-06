@@ -4,6 +4,7 @@ import { Component, OnInit, Input, QueryList, ViewChildren, ChangeDetectorRef } 
 import { IconService } from '@app/services/svg-json-icons/svg-icons.service'
 import { SatPopover } from '@ncstate/sat-popover';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DeviceListModalComponent } from '../modals/device-list-modal/device-list-modal.component';
 @Component({
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
@@ -176,5 +177,21 @@ isAnimatedIcon(source) {
     backdrop: 'static'
   });
   // this.AddTargetModalRef.componentInstance._cd.detectChanges();
+}
+openDeviceListModal(targetId){
+  console.log(targetId);
+
+  this.http.getTargetDeivces(targetId).subscribe( res => {
+    console.log(res);
+    let deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static'
+    });
+    deviceListModalRef.componentInstance.deviceList = res.devices;
+    deviceListModalRef.componentInstance.targetId = res.target.id;
+    deviceListModalRef.componentInstance.target = res.target;
+
+  })
 }
 }

@@ -8,12 +8,10 @@ import {
   OnInit,
   Input,
   ChangeDetectorRef,
-  SimpleChanges
 } from '@angular/core';
 import {
   NgbModal,
   NgbActiveModal,
-  NgbModalRef
 } from '@ng-bootstrap/ng-bootstrap';
 import {
   Store

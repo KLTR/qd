@@ -63,8 +63,8 @@ export class IconService {
     }
 
     getIcon(name: string, size?: number): string {
-        switch (name) {
-            case 'target_device_success':
+        switch (name.toLowerCase()) {
+            case 'target_device_completed':
             case 'active':
                 return `<svg viewBox="0 0 8 14" id="active" width="${size ? size : ''}" height="${size ? size : ''}">
     <g id="aLayer_2" data-name="Layer 2">
@@ -147,7 +147,7 @@ export class IconService {
     </g>
 </svg>
 `
-            case 'TERMINATED':
+            case 'terminated':
             case 'inactive':
                 return `<svg viewBox="0 0 12.86 18.86" id="inactive" width="${size ? size : ''}" height="${size ? size : ''}">
     <g id="gLayer_2" data-name="Layer 2">
@@ -184,7 +184,7 @@ export class IconService {
       </g>
     </g>
     </svg>`;
-            case 'LOST_CONNECTION':
+            case 'lost_connection':
                 return `<svg viewBox="0 0 12.99 14" id="lost-connection-long" width="${size ? size : ''}" height="${size ? size : ''}">
             <g id="kLayer_2" data-name="Layer 2">
       <g id="kLayer_1-2" data-name="Layer 1">
@@ -698,13 +698,13 @@ export class IconService {
             case 'signal_middle':
                 return `<svg  viewBox="0 0 11 11" id="signal_middle" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}"><defs><style>.cls-1-middle{fill:#c5e1ff;}.cls-2-middle{fill:#4a6170;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_10" data-name="Layer 10"><rect class="cls-1-middle" x="3" y="6" width="2" height="5"/><rect class="cls-1-middle" y="8" width="2" height="3"/><rect class="cls-2-middle" x="6" y="3" width="2" height="8"/><rect class="cls-2-middle" x="9" width="2" height="11"/></g></g></svg>`;
 
-            case 'target_PENDING':
+            case 'target_pending':
                 return `<svg viewBox="0 0 16 16" id="target" width="${size ? size : ''}" height="${size ? size : ''}">
         <g id="aLayer_2" data-name="Layer 2">
             <path fill="currentColor" d="M8 0a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm.5 15v-1.58h-1V15A7 7 0 0 1 1 8.5h2v-1H1A7 7 0 0 1 7.5 1v1.92h1V1A7 7 0 0 1 15 7.5h-2v1h2A7 7 0 0 1 8.5 15z" id="aLayer_1-2" data-name="Layer 1" />
         </g>
     </svg>`;
-    case 'target_IN_PROGRESS':
+    case 'target_in_progress':
     return `<svg viewBox="0 0 16 16" id="target" width="${size ? size : ''}" height="${size ? size : ''}">
     <g id="aLayer_2" data-name="Layer 2">
         <path fill="#6cfff8" d="M8 0a8 8 0 1 0 8 8 8 8 0 0 0-8-8zm.5 15v-1.58h-1V15A7 7 0 0 1 1 8.5h2v-1H1A7 7 0 0 1 7.5 1v1.92h1V1A7 7 0 0 1 15 7.5h-2v1h2A7 7 0 0 1 8.5 15z" id="aLayer_1-2" data-name="Layer 1" />
@@ -720,7 +720,7 @@ export class IconService {
             </g>
         </g>
     </svg>`;
-    case 'FAILED':
+    case 'failed':
      return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size: 15}" height="${size ? size: 15}" viewBox="0 0 25 36">
      <g id="Group_153" data-name="Group 153" transform="translate(-1376 -1496)">
      <path id="Path_348" d="M1385 1504h-8a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1v-18l-1-.75V1525h-15v-20h7.5zm-.5 26a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z" fill="#6a8699" data-name="Path 348"/>
@@ -730,7 +730,7 @@ export class IconService {
  </g>
 </svg>
 `
-    case 'IN_PROGRESS':
+    case 'in_progress':
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : 15}" height="${size ? size : 15}" viewBox="0 0 25 36">
     <g id="Group_152" data-name="Group 152" transform="translate(-1318 -1497)">
         <path id="Path_346" d="M1327 1505h-8a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1v-18l-1-.75V1526h-15v-20h7.5zm-.5 26a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z" fill="#a7cff7" data-name="Path 346"/>
@@ -1166,6 +1166,7 @@ return `<svg xmlns="http://www.w3.org/2000/svg" width="14.67" height="17.738" vi
     </g>
 </svg>`;
             case 'target_device_active':
+            case 'target_device_ready':
                 return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 28" width="${size ? size : ''}" height="${size ? size : ''}">
     <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_1-2" data-name="Layer 1">

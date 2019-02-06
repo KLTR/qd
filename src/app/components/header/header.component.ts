@@ -1,3 +1,4 @@
+import { AlertsModalComponent } from './../system-bar/alerts/alerts-modal/alerts-modal.component';
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import { MenuService } from '@app/components/menu/menu.service'
 import { HttpService } from '../../services/http/http.service';
@@ -5,6 +6,7 @@ import { User, SystemInfo } from '@app/models';
 import { Observable, Subscription } from 'rxjs';
 import * as $ from 'jquery';
 import { WsService } from '@app/services';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -31,7 +33,7 @@ export class HeaderComponent implements OnInit {
               private menuService: MenuService,
               private httpService: HttpService,
               private ws: WsService,
-         
+              private modalService: NgbModal,
               ) {
                 this.ws.messages.subscribe(msg => {
                   this.catchWebSocketEvents(msg)
@@ -40,15 +42,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
    this.searchResults = [];
+   this.system.alerts = [];
    this.httpService.getDashboard().subscribe( res =>  this.recentAlert = res.alert)
   }
 
   toggleAlerts(){
-    this.isAlertsOpen = !this.isAlertsOpen;
-    if(this.isAlertsOpen){
-      this.httpService.getAlerts().subscribe(res => this.system.alerts = res.alerts);
-    }
+    this.httpService.getAlerts().subscribe(res => {
+      this.system.alerts = res.alerts;
+      let alertsModalRef = this.modalService.open(AlertsModalComponent, { windowClass:'alerts-window',backdrop: 'static' });
+      alertsModalRef.componentInstance.alerts = this.system.alerts;
+    });
   }
+
+
 filterItem(searchValue) {
   let search = {scope: '', keyword: searchValue}
   this.httpService.search(search).subscribe( res => {
@@ -72,9 +78,6 @@ filterItem(searchValue) {
   }
 
   toggleMenu() {
-    /*if (this.router.url.indexOf('/mission/') > -1) {
-      return;
-    }*/
     this.menuService.toggleMenu();
   }
 
@@ -85,30 +88,6 @@ filterItem(searchValue) {
     // });
   }
 
-  setAletsAmountCyrcle() {
-    setTimeout(() => {
-      const $alerts = $('.alerts-amount');
-      let width = 0;
-      let containerWidth = 0;
-      switch ($alerts.html().length) {
-        case 1:
-          width = 13;
-          containerWidth = 8;
-          break;
-        case 2:
-          width = 16;
-          containerWidth = 11;
-          break;
-        case 3:
-          width = 19;
-          containerWidth = 14;
-          break;
-      }
-      $alerts.height(width);
-      $alerts.width(width);
-      $('.navbar-alerts').width(containerWidth);
-    });
-  }
 
     catchWebSocketEvents(msg) {
     if(Object.keys(msg)[0] === 'error'){
@@ -135,14 +114,16 @@ filterItem(searchValue) {
         this.system.internet = msg.result.internet;
         break;
         case 'alert':
-        this.system.alerts = msg.result.alert;
+        this.recentAlert = msg.result.alert;
+        this.system.alerts.unshift(msg.result.alert.log);
+        console.log(this.system);
         break;
         case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
         break;
         // Search
         case 'search_result':
-        this.searchResults.push(msg.result.search_result);
+        this.searchResults.unshift(msg.result.search_result);
         this.searchResults = this.searchResults.slice();
         break;
       }

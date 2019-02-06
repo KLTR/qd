@@ -155,6 +155,7 @@ import { DateCellComponent } from './components/ag-grid/date-cell-component';
     SearchModalComponent,
     AddTargetWizardComponent,
     DeviceListModalComponent,
+    AlertsModalComponent,
     TemplateRendererComponent,
     OwnersCellComponent,
     DateCellComponent

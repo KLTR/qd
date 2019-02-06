@@ -15,9 +15,13 @@ serverUrls = {
   dashboardTop: '/dashboard/top',
   search: '/search',
   activeMission: '/dashboard/left',
+  // Alerts & events
+  alerts: '/alerts',
   getEvents: '/dashboard/right',
+  deleteEvent: '/events/{{id}}',
+  // Targets
   targets: '/targets',
-  alerts: '/alerts'
+  targetDevices: '/targets/{{id}}/devices'
 }
 config: any;
 token: string;
@@ -40,11 +44,17 @@ token: string;
       }
       return url;
   }
-  setHeaders(token): {headers: HttpHeaders} {
+  getTargetDeivces(targetId): Observable<any>{
+    return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
+  }
+  deleteEvent(eventId): Observable<any>{
+    return this.http.delete(this.getUrlByApiName('deleteEvent', eventId), this.setHeaders());
+  }
+  setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'authorization': `${token}`
+        'authorization': this.getToken()
       })
     };
     return httpOptions;
@@ -62,32 +72,32 @@ token: string;
   }
 
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
-    return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders(this.getToken()))
+    return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
   
   }
   getEvents(): Observable<any> {
-    return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders(this.getToken()));
+    return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }
   getActiveMission(): Observable<any> {
-    return this.http.get(this.getUrlByApiName('activeMission'), this.setHeaders(this.getToken()));
+    return this.http.get(this.getUrlByApiName('activeMission'), this.setHeaders());
   }
   search( search: {scope: string, keyword: string}): Observable<any> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders(this.getToken()));
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders());
   }
 
   login(credentials: { user: string, password: string }): Observable<{ token: string, swagger_ui: string }> {
    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials);
   }
   logout() : Observable<any> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders(this.token));
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders());
     
   }
   getDashboard(): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(this.getToken()));
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders());
   }
 
   getAlerts() :Observable<any> {
-    return this.http.get(this.getUrlByApiName('alerts'), this.setHeaders(this.getToken()));
+    return this.http.get(this.getUrlByApiName('alerts'), this.setHeaders());
   }
 
   getConfig() : any {
