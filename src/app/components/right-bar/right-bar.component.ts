@@ -10,13 +10,7 @@ export class RightBarComponent implements OnInit {
   selected = "today"
   @Input() events: any[];
 
-  data = [
-    { createdAt: '9:30AM',  msg:'Intel Arrived', owners:{target: 'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
-    { createdAt: '12:30AM', msg:'Low Battery', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'WARNING', tags:[], importance: true, target_url:''},
-    { createdAt: '06:00PM', msg:'Source Arrived', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
-    { createdAt: '01:00PM', msg:'License about to end', owners:{},tags:[], importance: true, target_url:''},
-    { createdAt: '04:20AM', msg:'Existing Source Re-connect', owners:{target:'Alex Randolph', source:'Alex iPhone'}, severity:'INFO', tags:[], importance: true, target_url:''},
-  ]
+ 
   constructor() { }
 
   ngOnInit() {

@@ -5,12 +5,7 @@
   <div class="wrapper" [ngClass]="isOpen ? 'open-nav' : 'close-nav' ">
     <div class="content">
       <p class="header">Events Feed</p>
-              <!--
-                   <div class="timeline">
-                <span class="time" [class.selected]="selected === 'today'" (click)="toggleSelected('today')">Today</span>
-                <span class="time" [class.selected]="selected === 'all'" (click)="toggleSelected('all')">All</span>
-              </div> 
-                -->
+
       <div *ngIf="events?.length > 0" class="events-list" [ngClass]="isOpen ? '' : 'hidden'">
         <ul>
           <li class="event-item" *ngFor="let event of events; let i = index">

@@ -187,24 +187,25 @@ a:focus {
   }
 }
 
-// .tooltip {
-//   //pointer-events: none;
-//   &.show {
-//     opacity: 1 !important; // pointer-events: none;
-//     z-index: 999;
-//   }
-//   .arrow {
-//     &:before {
-//       border-right-color: #52667b;
-//       border-left-color: #52667b;
-//     }
-//   }
-//   .tooltip-inner {
-//     border-radius: 2px;
-//     background-color: #52667b;
-//     color: #fff;
-//   }
-// }
+.tooltip {
+  //pointer-events: none;
+  &.show {
+    opacity: 1 !important; // pointer-events: none;
+    z-index: 999;
+  }
+  .arrow {
+    &:before {
+      border-top-color: #52667b;
+      border-right-color: transparent !important;
+      border-left-color: transparent !important;
+    }
+  }
+  .tooltip-inner {
+    border-radius: 2px;
+    background-color: #52667b;
+    color: #fff;
+  }
+}
 
 .create-mission-wizard {
   .modal-dialog {
