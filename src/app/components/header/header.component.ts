@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   isChanged = false;
   moreAlerts = false;
   isAlertsOpen = false;
-
+  recentAlert: any;
 
   constructor(
               private menuService: MenuService,
@@ -40,11 +40,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
    this.searchResults = [];
-
+   this.httpService.getDashboard().subscribe( res =>  this.recentAlert = res.alert)
   }
 
   toggleAlerts(){
     this.isAlertsOpen = !this.isAlertsOpen;
+    if(this.isAlertsOpen){
+      this.httpService.getAlerts().subscribe(res => this.system.alerts = res.alerts);
+    }
   }
 filterItem(searchValue) {
   let search = {scope: '', keyword: searchValue}
@@ -131,8 +134,8 @@ filterItem(searchValue) {
         case 'internet':
         this.system.internet = msg.result.internet;
         break;
-        case 'alerts':
-        this.system.alerts = msg.result.alerts;
+        case 'alert':
+        this.system.alerts = msg.result.alert;
         break;
         case 'interceptor':
         this.system.interceptor = msg.result.interceptor;

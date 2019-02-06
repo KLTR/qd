@@ -16,7 +16,8 @@ serverUrls = {
   search: '/search',
   activeMission: '/dashboard/left',
   getEvents: '/dashboard/right',
-  targets: '/targets'
+  targets: '/targets',
+  alerts: '/alerts'
 }
 config: any;
 token: string;
@@ -83,6 +84,10 @@ token: string;
   }
   getDashboard(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders(this.getToken()));
+  }
+
+  getAlerts() :Observable<any> {
+    return this.http.get(this.getUrlByApiName('alerts'), this.setHeaders(this.getToken()));
   }
 
   getConfig() : any {
