@@ -3,7 +3,7 @@
     <div class="modal-disconnect-header">
       <div class="title-icon">
         <app-svg-icon name="alert" class="alerts-icon" [size]="18"></app-svg-icon>
-        <span class="alert-title">Alerts ({{alerts?.length}})</span>
+        <span class="alert-title">Alerts ({{alerts?.length ? alerts.length : '0'}})</span>
       </div>
 
       <div class="close-button" (click)="isOpen = false;">
@@ -17,7 +17,8 @@
       <div class="table-wrapper">
         <div class="alert-wrapper">
           <ag-grid-angular style="width: 100%; height: 100%;" #agGrid class="ag-theme-material" [rowData]="alerts"  [animateRows]="true" 
-            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [icons]="icons" [rowClassRules]="rowClassRules" rowSelection="multiple">
+            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [icons]="icons" [rowClassRules]="rowClassRules"
+            [overlayNoRowsTemplate] = "overlayNoRowsTemplate" rowSelection="multiple">
           </ag-grid-angular>
         </div>
       </div>

@@ -16,12 +16,12 @@
     <ul class="sources-list">
       <p *ngIf="filteredSources.length === 0" class="no-items">No sources {{filterValue | lowercase}}</p>
       <li class="source-cube" *ngFor="let source of filteredSources">
-        <div class="source-cube-wrapper" >
+        <div class="source-cube-wrapper">
           <div class="info-wrapper" *ngIf="!source.noInfo; else noInfoSource">
-              <div class="source-img">
-                  <img *ngIf="source.ios?.profile_pics[0]" src="{{source.ios?.profile_pics[0]}}">
-                  <app-svg-icon *ngIf="!source.ios?.profile_pics[0]" name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
-                </div>
+            <div class="source-img">
+              <img *ngIf="source.ios?.profile_pics[0]" src="{{source.ios?.profile_pics[0]}}">
+              <app-svg-icon *ngIf="!source.ios?.profile_pics[0]" name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
+            </div>
             <div class="source-info">
               <p class="source-name">{{source.source?.name}}</p>
               <p class="source-number">{{source.source?.device?.ios?.number}}</p>
@@ -34,43 +34,56 @@
                   </app-svg-icon> -->
               </div>
             </div>
-            
-          </div>
-          <ng-template #noInfoSource> 
-              <div class="no-info">
-                <div class="person-img-wrapper">
-                  <app-svg-icon name="avatar" [size]="100" class="cube-person-img"></app-svg-icon>
-                </div>
-                <div class="main">
-                  <div class="shimmer"></div>
-                  <div class="shimmer second"></div>
-                  <div class="shimmer"></div>
-                </div>
-              </div>
-            </ng-template>
-            <div class="device-status">
-                <!-- <app-svg-icon name="inactive" [size]=32></app-svg-icon> -->
-                <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
-                  [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
-                </lottie-animation-view>
-                <ng-template #noAnimatedIcon>
-                  <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
-                </ng-template>
-                <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
-                  {{deviceStatusToText(source)}}</span>
-              </div>
-          </div>
 
-       
-        <div class="cube-on-off" stopPropagation [ngClass]="{'inactive': buttonStatus}" ngbTooltip="Terminate Agent"
-          placement="top">
-          <app-svg-icon name="power" [size]="13"></app-svg-icon>
+          </div>
+          <ng-template #noInfoSource>
+            <div class="no-info">
+              <div class="person-img-wrapper">
+                <app-svg-icon name="avatar" [size]="100" class="cube-person-img"></app-svg-icon>
+              </div>
+              <div class="main">
+                <div class="shimmer"></div>
+                <div class="shimmer second"></div>
+                <div class="shimmer"></div>
+              </div>
+            </div>
+          </ng-template>
+          <div class="device-status">
+            <!-- <app-svg-icon name="inactive" [size]=32></app-svg-icon> -->
+            <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
+              [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
+            </lottie-animation-view>
+            <ng-template #noAnimatedIcon>
+              <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
+            </ng-template>
+            <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
+              {{deviceStatusToText(source)}}</span>
+          </div>
+        </div>
+
+        <div class="source-cube-info">
+            <div class="before-initializing" *ngIf="source.noInfo">
+                <div class="top-bar shimmer"></div>
+                <div class="bottom-wrapper">
+                  <div class="bottom-icons">
+                    <span class="icon-placeholder shimmer" *ngFor="let i of [0,1,2,3,4]"></span>
+                  </div>
+                  <div class="time-wrapper">
+                    <div class="bottom-time-placeholder-upper shimmer">
+                    </div>
+                    <div class="bottom-time-placeholder-bottom shimmer"></div>
+                  </div>
+                </div>
+              </div>
+
+          <div class="cube-on-off" stopPropagation [ngClass]="{'inactive': buttonStatus}" ngbTooltip="Terminate Agent"
+            placement="top">
+            <app-svg-icon name="power" [size]="13"></app-svg-icon>
+          </div>
+          
         </div>
       </li>
     </ul>
   </div>
   <app-right-bar [events]="events"></app-right-bar>
 </div>
-
-
-

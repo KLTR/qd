@@ -39,10 +39,12 @@ export class AlertsModalComponent implements OnInit {
   columnDefs: any;
   rowClassRules: any;
   gridOptions: GridOptions;
-
+  private overlayNoRowsTemplate: string;
 
   
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) {
+    this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";
+  }
 
   ngOnInit() {
     this.columnDefs = [
@@ -164,6 +166,7 @@ export class AlertsModalComponent implements OnInit {
   }
 onGridReady(params){
   this.gridApi = params.api;
+  
 }
 
   clearFilters() {
