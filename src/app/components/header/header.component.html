@@ -23,13 +23,12 @@
       </div>
     </div>
 
-
   </div>
 
   <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal>
         <sat-popover #userPop xAlign="center" yAlign="below">
             <div class="custom-tip user">
-                <div class="header">{{user.user}}</div>
+                <div class="header">{{user?.user}}</div>
                 <ul class="content">
                     <ul class="table-headers">
                         <li>Space name</li>

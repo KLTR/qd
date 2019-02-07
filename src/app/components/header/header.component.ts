@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.searchResults = [];
     this.system.alerts = [];
-    this.httpService.getDashboard().subscribe(res => this.recentAlert = res.alert)
+    this.recentAlert = this.system.alert;
   }
 
   toggleAlerts() {

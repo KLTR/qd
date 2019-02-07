@@ -13,8 +13,8 @@ import {
 export class AppComponent {
   title = 'quantum-ui';
 
-  constructor(
-    private http: HttpService) {
+  constructor(private http: HttpService)
+  {  
     this.http.getConfig().subscribe();
   }
 

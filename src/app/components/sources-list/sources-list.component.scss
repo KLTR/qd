@@ -133,7 +133,6 @@
                   text-transform: capitalize;
                   letter-spacing: 0.5px;
                   line-height: 1.2;
-                  // color: rgba(196, 225, 255, 0.4);
                 }
 
                 .source-number {
@@ -246,7 +245,7 @@
 
             .source-export {
               position: absolute;
-              right: 55px;
+              right: 3.5%;
               top: 37%;
               display: none;
               cursor: pointer;
@@ -269,28 +268,6 @@
               width: 4.5%;
               border-left: 1px solid rgba(26, 34, 42, 0.32);
             }
-
-            //     ::ng-deep .cube-on-off+.tooltip {
-            //     pointer-events: none;
-            //     margin-bottom: -30px !important;
-            //     .arrow {
-            //       &:before {
-            //         border-top-color: #52667b;
-            //         border-right-color: transparent !important;
-            //         border-left-color: transparent !important;
-            //       }
-            //     }
-            //     .tooltip-inner {
-            //       background-color: #52667b;
-            //       border-radius: 0;
-            //       text-transform: capitalize;
-            //       color: #c5e1ff;
-            //       font-size: 10px;
-            //       letter-spacing: 0.1px;
-            //       width: 100%;
-
-            //     }
-            //   }
           }
         }
       }

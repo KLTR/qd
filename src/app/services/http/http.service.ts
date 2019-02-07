@@ -66,13 +66,12 @@ token: string;
   }
   getToken() : any {
     let token =  localStorage.getItem('user');
-    token = token.slice(10,token.length-2);
+    console.log(token);
     this.setToken();
     return token;
   }
   setToken(){
-    let token = localStorage.getItem('user');
-    token = token.slice(10,token.length-2);
+    let token = localStorage.getItem('token');
     this.token = token;
   }
 

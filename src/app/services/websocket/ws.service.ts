@@ -19,7 +19,8 @@ export class WsService {
   constructor() {
     let userToken = localStorage.getItem('user');
     if (userToken) {
-      this.token = JSON.parse(userToken).token
+      console.log(userToken)
+      this.token = userToken;
     }
 
     this.messages = < Rx.Subject < any >>
