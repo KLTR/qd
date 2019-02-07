@@ -1,9 +1,11 @@
 @import "../../../scss/colors.scss";
+
 :host {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+
   #login-video {
     position: fixed;
     right: 0;
@@ -12,9 +14,11 @@
     min-height: 100%;
     z-index: -2;
   }
+
   .login-wrapper {
     width: 319px;
     background-color: transparent;
+
     .company {
       font-size: 39.1px;
       font-weight: bold;
@@ -26,6 +30,7 @@
       color: #c5e1ff;
       text-transform: uppercase;
       margin-bottom: 200px;
+
       .plus {
         position: relative;
         top: -1px;
@@ -33,25 +38,28 @@
         left: 5px;
       }
     }
+
     .header {
-      width:100%;
+      width: 100%;
       height: 62.5px;
       background-color: $slate-two;
       text-align: center;
       font-family: 'Titillium Web', sans-serif;
-      color:#b7d2ee;
-      font-size:15px;
+      color: #b7d2ee;
+      font-size: 15px;
       margin-bottom: 70px;
     }
+
     .member-login {
       font-family: 'Titillium Web', sans-serif;
       font-size: 22.5px;
       line-height: 2.1;
       letter-spacing: 0.04em;
       color: $tiffany-blue;
-      padding-top:10px;
+      padding-top: 10px;
       text-transform: uppercase;
     }
+
     .help-block {
       text-align: center;
       position: absolute;
@@ -59,6 +67,7 @@
       right: 0;
       margin: 0 auto;
     }
+
     .login-error-message {
       opacity: 0;
       font-family: 'Titillium Web', sans-serif;
@@ -69,6 +78,7 @@
       text-align: center;
       height: 67px;
     }
+
     .login-input-box {
       width: 100%;
       height: 40px;
@@ -86,16 +96,20 @@
       outline: none;
       box-shadow: none;
     }
+
     .password-field {
       margin-top: 12px;
       margin-bottom: 52px;
     }
+
     .login-form {
       .user {
         margin-bottom: 60px;
       }
+
       .login-wrapper {
         margin-top: 69px;
+
         .login-button {
           width: 100%;
           height: 49px;
@@ -114,9 +128,11 @@
           text-align: center;
           color: #6cfff8;
           box-shadow: none;
+
           &:hover {
             background-color: rgba(108, 255, 248, 0.2);
           }
+
           &:active {
             background-color: #6cfff8;
             color: #151c23;
@@ -124,12 +140,15 @@
         }
       }
     }
+
     .form-group {
       margin: 0;
     }
+
     .group {
       position: relative;
       margin-bottom: 45px;
+
       input {
         font-size: 18px;
         padding: 10px 10px 10px 5px;
@@ -137,10 +156,13 @@
         width: 100%;
         border: none;
         border-bottom: 2px solid rgba(194, 223, 253, 0.65);
+
         &:focus {
           outline: none;
         }
-        &:focus ~ label, &:valid ~ label {
+
+        &:focus~label,
+        &:valid~label {
           top: -20px;
           font-size: 14px;
           font-weight: normal;
@@ -179,7 +201,7 @@
         opacity: 0.5;
       }
 
-      input:focus ~ .highlight {
+      input:focus~.highlight {
         -webkit-animation: inputHighlighter 0.3s ease;
         -moz-animation: inputHighlighter 0.3s ease;
         animation: inputHighlighter 0.3s ease;
@@ -217,6 +239,7 @@
           background: transparent;
         }
       }
+
       &.password {
         .icon-container {
           color: #c2dffd;
@@ -225,6 +248,7 @@
           right: 0;
           cursor: pointer;
         }
+
         .show-pass {
           color: #6cfff8;
         }
@@ -234,9 +258,11 @@
     .active {
       opacity: 1;
     }
+
     .create-forgot-wrapper {
       display: flex;
       justify-content: space-between;
+
       .create {
         font-size: 14px;
         font-weight: normal;
@@ -247,18 +273,22 @@
         text-align: left;
         color: rgba(194, 223, 253, 0.65);
         cursor: pointer;
+
         &:active {
           color: #6cfff8;
         }
+
         &:hover {
           color: #c2dffd;
         }
       }
+
       .forgot {
         @extend .create;
       }
     }
   }
+
   ::-webkit-input-placeholder {
     font-size: 14px;
     font-weight: normal;
@@ -270,4 +300,3 @@
     color: rgba(194, 223, 253, 0.65);
   }
 }
-

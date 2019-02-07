@@ -1,118 +1,123 @@
 <div class="modal-header">
-    <div class="type">
-      <app-svg-icon [name]="'type-x-caliber'" [size]="15"></app-svg-icon>
-      <span class="type-name">X-Caliber</span>
-    </div>
-    <div class="target-details">
-      <span class="name" *ngIf="target?.name">{{ target.name }}</span>
-    </div>
-    <div class="refresh">
-      <div *ngIf="target?.maxActions > 0 && !isRefreshing && !isAttackingOrChecking" [ngbTooltip]="'Delete target'" placement="left"
-        class="delete-icon" (click)="deleteTarget()"></div>
-      <app-svg-icon *ngIf="target?.maxActions > 0 && !isRefreshing" [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
-        stopPropagation (click)="refreshTarget()"></app-svg-icon>
-      <ng-template #refreshTip>
+  <div class="type">
+    <app-svg-icon [name]="'type-x-caliber'" [size]="15"></app-svg-icon>
+    <span class="type-name">X-Caliber</span>
+  </div>
+  <div class="target-details">
+    <span class="name" *ngIf="target?.name">{{ target.name }}</span>
+  </div>
+  <div class="refresh">
+    <div *ngIf="!isRefreshing && !isAttackingOrChecking" [ngbTooltip]="'Delete target'" placement="left" class="delete-icon"
+      (click)="deleteTarget()"></div>
+    <app-svg-icon *ngIf="!isRefreshing" [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
+      stopPropagation (click)="refreshTarget()"></app-svg-icon>
+    <ng-template #refreshTip>
+      <div [ngStyle]="{ 'min-width': '150px' }">
+        <div>Refresh target info</div>
+        <div class="last-updated">
+          Last refresh: {{ target?.lastRefreshAt ? (target.lastRefreshAt | amTimeAgo) : 'Never' }}
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="body-header">
+    <div class="vector-state">
+      <span>Vector currently:
+        <span [ngClass]="{ 'error': !vectorState}">
+          {{ vectorState ? 'Ready' : 'Busy' }}
+        </span>
+      </span>
+      <ng-template #vectorStateTip>
         <div [ngStyle]="{ 'min-width': '150px' }">
-          <div>Refresh target info</div>
-          <div class="last-updated">
-            Last refresh: {{ target?.lastRefreshAt ? (target.lastRefreshAt | amTimeAgo) : 'Never' }}
-          </div>
+          No. of available resources: {{ target.maxActions }}
         </div>
       </ng-template>
     </div>
-  </div>
-  <div class="modal-body">
-    <div class="body-header">
-      <div class="vector-state">
-        <span>Vector currently:
-          <span  [ngClass]="{ 'error': !vectorState}">
-              {{ vectorState ? 'Ready' : 'Busy' }}
-          </span>
-        </span>
-        <ng-template #vectorStateTip>
-          <div [ngStyle]="{ 'min-width': '150px' }">
-            No. of available resources: {{ target.maxActions }}
-          </div>
-        </ng-template>
-      </div>
-      <!-- <div class="reset-wrapper">
+    <!-- <div class="reset-wrapper">
         <button class="btn reset" (click)="resetVectorServer()">Reset vector</button>
       </div> -->
+  </div>
+  <div class="device-list" *ngIf="deviceList.length > 0; else loadingScreen">
+    <div class="device-list-header">
+      <span class="id">device</span>
+      <span class="status">status</span>
     </div>
-    <div class="device-list" *ngIf="deviceList.length > 0; else loadingScreen">
-      <div class="device-list-header">
-        <span class="id">device</span>
-        <span class="status">status</span>
-      </div>
-      <div class="list-wrapper">
-        <div class="device" [ngClass]="{ 'active': device.status === 'active', 'attack': device.status === 'attacking' }" *ngFor="let device of deviceList; trackBy: trackDevices">
-          <div class="device-details">
-            <span *ngIf="device.name" class="device-name">{{ device.name }}</span>
-            <span *ngIf="device.deviceType" class="device-type">{{ device.type }}
-              <span *ngIf="device.version">({{device.version}})</span>
+    <div class="list-wrapper">
+      <div class="device" [ngClass]="{ 'active': device.state === 'READY', 'attack': device.state === 'ATTACKING' }"
+        *ngFor="let device of deviceList; trackBy: trackDevices">
+        <div class="device-details">
+          <span *ngIf="device.name" class="device-name">{{ device.name }}</span>
+          <span *ngIf="device.type" class="device-type">{{ device.type }}
+            <span *ngIf="device.version">({{device.version}})</span>
+          </span>
+        </div>
+        <div class="device-status">
+          <span class="status-icon" [ngClass]="{ 'thinking': device.state === 'CREATED', 'success': device.state === 'COMPLETED' }"
+            *ngIf="device.state !== 'NOT_SUPPORTED'">
+            <app-svg-icon *ngIf="!['CREATED', 'COMPLETED'].includes(device.state)" [name]="'target_device_' + device.state"
+              [size]="getDeviceIconSize(device.state)"></app-svg-icon>
+            <lottie-animation-view *ngIf="device.state === 'CREATED'" [width]="59" [height]="61" [options]="getAnimatedIcon('device-loading')"></lottie-animation-view>
+            <lottie-animation-view *ngIf="device.state === 'COMPLETED'" [width]="39" [height]="41" [options]="getAnimatedIcon('active')"></lottie-animation-view>
+          </span>
+          <span class="status-text" *ngIf="device.state !== 'ATTACKING'" [ngClass]="{ 'unsupported': device.state === 'NOT_SUPPORTED', 'dimmed': !['READY', 'COMPLETED'].includes(device.state), 'success': device.state === 'COMPLETED' }">
+            {{ getDeviceStatusText(device.state) }}
+            <span class="active-arrow" *ngIf="device.state === 'READY'">
+              <lottie-animation-view [options]="getAnimatedIcon('horizontal-arrow-white')" [height]="20" [width]="30"></lottie-animation-view>
             </span>
-          </div>
-          <div class="device-status">
-            <span class="status-icon" [ngClass]="{ 'thinking': device.state === 'CREATED', 'success': device.state === 'COMPLETED' }"
-              *ngIf="device.state !== 'NOT_SUPPORTED'">
-              <app-svg-icon *ngIf="!['CREATED', 'COMPLETED'].includes(device.state)" [name]="'target_device_' + device.state" [size]="getDeviceIconSize(device.state)"></app-svg-icon>
-              <lottie-animation-view *ngIf="device.state === 'CREATED'" [width]="59" [height]="61" [options]="getAnimatedIcon('device-loading')"></lottie-animation-view>
-              <lottie-animation-view *ngIf="device.state === 'COMPLETED'" [width]="39" [height]="41" [options]="getAnimatedIcon('active')"></lottie-animation-view>
-            </span>
-            <span class="status-text" *ngIf="device.state !== 'ATTACKING'" [ngClass]="{ 'unsupported': device.state === 'NOT_SUPPORTED', 'dimmed': !['READY', 'COMPLETED'].includes(device.state), 'success': device.state === 'COMPLETED' }">
-              {{ getDeviceStatusText(device.state) }}
-              <span class="active-arrow" *ngIf="device.state === 'READY'">
-                <lottie-animation-view [options]="getAnimatedIcon('horizontal-arrow-white')" [height]="20" [width]="30"></lottie-animation-view>
-              </span>
-            </span>
-            <div class="status-text" [ngClass]="{ 'attacking': device.state === 'ATTACKING'}" *ngIf="device.state === 'ATTACKING'">
-              <div class="text">
-                <span class="arrow-left">
-                  <lottie-animation-view [options]="getAnimatedIcon('horizontal-arrow-blue')" [height]="20" [width]="30"></lottie-animation-view>
-                </span>
-                <span class="attacking-text">Attacking {{ now$ | async | amDifference: device?.attacked_at | amDateFormat: 'mm:ss' }}</span>
-                <span class="arrow-right">
-                  <lottie-animation-view [options]="getAnimatedIcon('horizontal-arrow-blue')" [height]="20" [width]="30"></lottie-animation-view>
-                </span>
-              </div>
-              <span class="last-updated">Device response {{ device.updated_at | amTimeAgo }}</span>
+          </span>
+          <div class="status-text" [ngClass]="{ 'attacking': device.state === 'ATTACKING'}" *ngIf="device.state === 'ATTACKING'">
+            <div class="text">
+              <span class="attacking-text">Attacking</span>
             </div>
+            <div class="progress-bar-wrapper">
+              <span class="step completed"></span>
+              <span class="step completed"></span>
+              <span class="step completed"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+            </div>
+            <span class="last-updated">Device response {{ device.updated_at | amTimeAgo }}</span>
           </div>
-          <div class="device-action">
-            <span class="btn" *ngIf="!['CREATED', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CREATED', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
+        </div>
+        <div class="device-action">
+          <span class="btn" *ngIf="!['CREATED', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CREATED', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
                   'no-outline': device.state === 'ATTACKING',
-                  'active': device.state === 'READY' }" stopPropagation (click)="actBasedOnStatus(device.id, device.state)">{{ getButtonText(device.state) }}</span>
-            <span class="btn" [ngClass]="{ 'thinking': device.state === 'CREATED' }" *ngIf="device.state === 'CREATED' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
-              <lottie-animation-view [height]="28" [width]="30" [options]="getAnimatedIcon('btn_thinking')"></lottie-animation-view>
-            </span>
-            <span class="last-updated" *ngIf="!['CREATED', 'ATTACKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">Last seen: {{ device.updated_at? (device.updated_at | amTimeAgo) === 'a few seconds ago' ? 'Now' : (device.updated_at
-              | amTimeAgo) : 'Never' }}</span>
-          </div>
+                  'active': device.state === 'READY' }"
+            stopPropagation (click)="actBasedOnStatus(device.id, device.state)">{{ getButtonText(device.state) }}</span>
+          <span class="btn" [ngClass]="{ 'thinking': device.state === 'CREATED' }" *ngIf="device.state === 'CREATED' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
+            <lottie-animation-view [height]="28" [width]="30" [options]="getAnimatedIcon('btn_thinking')"></lottie-animation-view>
+          </span>
+          <span class="last-updated" *ngIf="!['CREATED', 'ATTACKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">Last
+            seen: {{ device.updated_at? (device.updated_at | amTimeAgo) === 'a few seconds ago' ? 'Now' :
+            (device.updated_at
+            | amTimeAgo) : 'Never' }}</span>
         </div>
       </div>
-    </div>
-    <ng-template #loadingScreen>
-      <ng-container *ngIf="target?.refreshInProgress; else emptyScreen">
-        <div class="no-devices">
-          <div class="Rectangle"></div>
-          <div class="new-device-details">
-            <h2>Waiting for devices</h2>
-          </div>
-        </div>
-      </ng-container>
-    </ng-template>
-    <ng-template #emptyScreen>
-      <div class="empty-state">
-        <div class="empty-state-wrapper">
-          <app-svg-icon name="no_devices" [size]="120"></app-svg-icon>
-          <div class="desc">
-            <span class="desc-first">No devices found for target '{{target.name ? target.name : target.email}}'</span>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-    <div class="btn-wrap">
-      <button class="btn no-outline" (click)="activeModal.dismiss()">Close</button>
     </div>
   </div>
-  
+  <ng-template #loadingScreen>
+    <ng-container *ngIf="target?.refreshInProgress; else emptyScreen">
+      <div class="no-devices">
+        <div class="Rectangle"></div>
+        <div class="new-device-details">
+          <h2>Waiting for devices</h2>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+  <ng-template #emptyScreen>
+    <div class="empty-state">
+      <div class="empty-state-wrapper">
+        <app-svg-icon name="no_devices" [size]="120"></app-svg-icon>
+        <div class="desc">
+          <span class="desc-first">No devices found for target '{{target.name ? target.name : target.email}}'</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div class="btn-wrap">
+    <button class="btn no-outline" (click)="activeModal.dismiss()">Close</button>
+  </div>
+</div>

@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams } from 'ag-grid-community';
+import {
+  Component
+} from '@angular/core';
+import {
+  ICellRendererAngularComp
+} from 'ag-grid-angular';
+import {
+  ICellRendererParams
+} from 'ag-grid-community';
 
 @Component({
   selector: 'app-date-cell',
@@ -13,11 +19,11 @@ import { ICellRendererParams } from 'ag-grid-community';
 
 })
 export class DateCellComponent implements ICellRendererAngularComp {
- params: any;
-refresh(params: any): boolean {
-  this.params = params;
-  return true;
-}
+  params: any;
+  refresh(params: any): boolean {
+    this.params = params;
+    return true;
+  }
 
   agInit(params: ICellRendererParams): void {
     this.params = params;

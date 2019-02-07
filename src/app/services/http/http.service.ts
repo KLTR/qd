@@ -21,7 +21,9 @@ serverUrls = {
   deleteEvent: '/events/{{id}}',
   // Targets
   targets: '/targets',
-  targetDevices: '/targets/{{id}}/devices'
+  targetDevices: '/targets/{{id}}/devices',
+  // Sources
+  exportSource: '/exports/sources/{{id}}'
 }
 config: any;
 token: string;
@@ -43,6 +45,9 @@ token: string;
         url += addiotnal;
       }
       return url;
+  }
+  exportSource(sourceId): Observable<any> {
+    return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
   }
   getTargetDeivces(targetId): Observable<any>{
     return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());

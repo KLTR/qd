@@ -1,12 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
+import {
+  Observable,
+  timer
+} from 'rxjs';
+import {
+  map
+} from 'rxjs/operators';
 import {
   State,
   selectSystem
 } from '@app/state/reducers';
-import { Store } from '@ngrx/store';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  Store
+} from '@ngrx/store';
+import {
+  NgbModal,
+  NgbActiveModal
+} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-device-list-modal',
   templateUrl: './device-list-modal.component.html',
@@ -17,28 +31,25 @@ export class DeviceListModalComponent implements OnInit {
   @Input() targetId;
   @Input() target;
   vectorState: boolean;
-  now$: Observable<any> = timer(0, 1000).pipe(map(() => new Date()));
   isConnected: boolean;
   isRefreshing = false;
   isAttackingOrChecking = false;
   constructor(
-    private store: Store < State >,
+    private store: Store < State > ,
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
 
-    ) { }
+  ) {}
 
   ngOnInit() {
     this.store.select(selectSystem).pipe(map(system => system.internet.indicator.state === 'GREEN')).subscribe(connected => this.isConnected = connected);
     this.store.select(selectSystem).pipe(map(system => system.pioneer.indicator.state === 'GREEN')).subscribe(connected => {
       this.vectorState = connected
     })
-    console.log(this.targetId);
     console.log(this.deviceList);
     // this.deviceList = this.deviceList.map(
-    //   (device: any) => device.infection
+    //   (device: any) => device.infection devil
     // )
-    console.log(this.deviceList);
   }
   getAnimatedIcon(name: string): any {
     return {
@@ -53,7 +64,7 @@ export class DeviceListModalComponent implements OnInit {
   }
 
   getDeviceIconSize(deviceStatus: string): number {
-    if(!deviceStatus){
+    if (!deviceStatus) {
       return;
     }
     switch (deviceStatus.toLowerCase()) {
@@ -67,6 +78,9 @@ export class DeviceListModalComponent implements OnInit {
   }
 
   getDeviceStatusText(deviceStatus: string): string {
+    if (!deviceStatus) {
+      return;
+    }
     switch (deviceStatus.toLowerCase()) {
       case 'failed':
         this.isAttackingOrChecking = false;

@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { HttpService } from './services';
+import {
+  Component
+} from '@angular/core';
+import {
+  HttpService
+} from './services';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +15,7 @@ export class AppComponent {
 
   constructor(
     private http: HttpService) {
-      this.http.getConfig().subscribe();
+    this.http.getConfig().subscribe();
   }
-  
+
 }

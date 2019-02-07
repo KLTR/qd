@@ -1,4 +1,15 @@
-import { Component, OnInit, Input, ChangeDetectorRef, SimpleChange, HostListener, ElementRef, OnDestroy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectorRef,
+  SimpleChange,
+  HostListener,
+  ElementRef,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 @Component({
   selector: 'app-search-modal',
@@ -10,8 +21,8 @@ export class SearchModalComponent implements OnInit, OnDestroy {
   @Output() clearSearchResults = new EventEmitter();
   @HostListener('document:click', ['$event'])
   onClick(event) {
-    if (!this.el.nativeElement.contains(event.target) ) {
-      if(this.searchResult.length > 0){
+    if (!this.el.nativeElement.contains(event.target)) {
+      if (this.searchResult.length > 0) {
         this.searchResult = [];
         this.clearSearchResults.emit();
       }
@@ -19,24 +30,24 @@ export class SearchModalComponent implements OnInit, OnDestroy {
   }
   constructor(
     private cdRef: ChangeDetectorRef,
-    private el: ElementRef) { }
+    private el: ElementRef) {}
 
   ngOnInit() {
 
   }
-  ngOnChanges(changes: { [key: string]: SimpleChange }) {
-  }
+  ngOnChanges(changes: {
+    [key: string]: SimpleChange
+  }) {}
 
   ngAfterViewInit() {
     this.cdRef.detectChanges();
   }
 
-  formatString(str){
+  formatString(str) {
     return str.replace(/\//g, ' > ')
   }
-ngOnDestroy(): void {
-  //Called once, before the instance is destroyed.
-  //Add 'implements OnDestroy' to the class.
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+  }
 }
-}
-

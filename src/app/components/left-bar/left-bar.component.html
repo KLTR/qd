@@ -4,25 +4,19 @@
     <div class="header">Sources</div>
     <div class="content">
       <!-- Sources -->
-      <div class="items" *ngFor="let source of missionData?.sources; let i = index;" 
-      (mouseenter)="source.hover=true;"
-      (mouseleave)="source.hover=false;"
-      >
-      <!-- <app-source [source]="source"></app-source> -->
-      <sat-popover #sourcePopovers xAlign="start" yAlign="center">
+      <div class="items" *ngFor="let source of missionData?.sources; let i = index;" (mouseenter)="source.hover=true;"
+        (mouseleave)="source.hover=false;">
+        <!-- <app-source [source]="source"></app-source> -->
+        <sat-popover #sourcePopovers xAlign="start" yAlign="center">
           <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
         </sat-popover>
 
         <span class="name">{{source.source?.name}}</span>
         <span class="device-status">
 
-          <span class="icon-wrapper"
-           *ngIf="srcPopovers?.first && source.hover"
-           (click)="selectSource(source);getSourcePopover(i).toggle();"
-           [satPopoverAnchorFor]="getSourcePopover(i)"
-           >
-            <app-svg-icon  
-              class="info-icon" name="info-second" [size]="12">
+          <span class="icon-wrapper" *ngIf="srcPopovers?.first && source.hover" (click)="selectSource(source);getSourcePopover(i).toggle();"
+            [satPopoverAnchorFor]="getSourcePopover(i)">
+            <app-svg-icon class="info-icon" name="info-second" [size]="12">
             </app-svg-icon>
           </span>
 
@@ -42,31 +36,27 @@
   <div class="section pending">
     <div class="header">Infecting</div>
     <div class="content">
-      <div class="items" *ngFor="let infection of missionData?.infections; let i = index;"
-       (mouseenter)="infection.hover=true;"
-       (mouseleave)="infection.hover=false;"
-      >
-          <sat-popover #infectionPopovers xAlign="center" yAlign="below">
-              <div class="custom-tip small-tip">
-                <div class="header">
-                  {{hoveredInfection?.tip}}
-                </div>
-              </div>
-            </sat-popover>
+      <div class="items" *ngFor="let infection of missionData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
+        (mouseleave)="infection.hover=false;">
+        <sat-popover #infectionPopovers xAlign="center" yAlign="below">
+          <div class="custom-tip small-tip">
+            <div class="header">
+              {{hoveredInfection?.tip}}
+            </div>
+          </div>
+        </sat-popover>
 
         <span class="name">{{infection.infection?.name}}</span>
-        <span  class="device-status">
- 
-          <app-svg-icon   
-          *ngIf="infPopovers?.first && infPopovers?.length === missionData?.infections.length" 
-          (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();"
-          (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
-          [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state"  [size]="18"></app-svg-icon>
+        <span class="device-status">
+
+          <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === missionData?.infections.length"
+            (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();" (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
+            [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state" [size]="18"></app-svg-icon>
         </span>
       </div>
     </div>
   </div>
-<!-- Targets -->
+  <!-- Targets -->
   <div class="section targets">
     <div class="header">Targets</div>
     <div class="content">
@@ -74,7 +64,7 @@
         <span class="name">{{target.target?.name}}</span>
         <span class="icon" (click)="openDeviceListModal(target.target.id)">
           <span class="device-count {{target.state}}">{{target?.devices_count}}</span>
-          <app-svg-icon [size]="17" name="target_{{target.state}}" ></app-svg-icon>
+          <app-svg-icon [size]="17" name="target_{{target.state}}"></app-svg-icon>
         </span>
       </div>
     </div>
@@ -85,4 +75,3 @@
     <p> Add Target</p>
   </div>
 </div>
-

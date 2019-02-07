@@ -78,7 +78,7 @@ from 'rxjs/operators';
     }
 
     ngOnInit() {
-      
+
       this.http.getConfigLocal().subscribe(res => this.config = res);
       this.pops = [this.internetPop,
         this.alicePop,
@@ -142,7 +142,7 @@ from 'rxjs/operators';
 
     checkInterceptor() {
       if (this.system.interceptor && this.config) {
-        if(this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0){
+        if (this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0) {
           this.selectedInterceptor = this.system.interceptor.interceptors[0];
         }
       }

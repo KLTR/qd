@@ -68,7 +68,8 @@
       </span>
     </div>
     <ul class="content">
-      <li>Status: <span class="status-{{internetStatus}}">{{internetStatus === 'not-connected' ? 'Disconnected' : 'Connected'}}</span></li>
+      <li>Status: <span class="status-{{internetStatus}}">{{internetStatus === 'not-connected' ? 'Disconnected' :
+          'Connected'}}</span></li>
     </ul>
   </div>
 </sat-popover>
@@ -142,13 +143,14 @@
       <div class="single-row name">
         <div class="key">Interceptor name</div>
         <div class="value">
-              <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-outline-primary" id="dropdown_interceptors" ngbDropdownToggle>{{selectedInterceptor?.name || 'select interceptor'}}</button>
-                  <div ngbDropdownMenu aria-labelledby="dropdown_interceptors">
-                    <button class="dropdown-item" *ngFor="let interceptor of system?.interceptor?.interceptors" (click)="selectInterceptor(interceptor)">{{interceptor.name}}</button>
-                  </div>
-                </div>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdown_interceptors" ngbDropdownToggle>{{selectedInterceptor?.name
+              || 'select interceptor'}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdown_interceptors">
+              <button class="dropdown-item" *ngFor="let interceptor of system?.interceptor?.interceptors" (click)="selectInterceptor(interceptor)">{{interceptor.name}}</button>
+            </div>
           </div>
+        </div>
       </div>
       <div class="single-row mode">
         <div class="key">Interceptor mode</div>
@@ -169,6 +171,6 @@
         <div class="content">{{selectedInterceptor?.diagnostics}}</div>
         <button class="close-btn" (click)="closeTip()">Close</button>
       </div>
-    </div> 
+    </div>
   </div>
 </sat-popover>

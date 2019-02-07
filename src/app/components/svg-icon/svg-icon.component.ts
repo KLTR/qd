@@ -1,7 +1,19 @@
-import { SafeHtmlPipe } from '@app/pipes/safe-html.pipe';
-import { Component, HostBinding, Input, OnChanges, OnInit, SimpleChange, ViewEncapsulation } from '@angular/core';
-import { IconService } from '@app/services';
-import { DomSanitizer } from '@angular/platform-browser';
+
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChange,
+  ViewEncapsulation
+} from '@angular/core';
+import {
+  IconService
+} from '@app/services';
+import {
+  DomSanitizer
+} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-svg-icon',
@@ -19,7 +31,7 @@ export class SvgIconComponent implements OnInit, OnChanges {
   svgData = '';
   constructor(private sanitizer: DomSanitizer, private iconService: IconService) {
     this.mobWidth = (window.screen.width);
-   }
+  }
 
   ngOnInit() {
     if (this.name) {
@@ -27,7 +39,9 @@ export class SvgIconComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges(changes: { [key: string]: SimpleChange }) {
+  ngOnChanges(changes: {
+    [key: string]: SimpleChange
+  }) {
     for (const change in changes) {
       if (!changes[change].firstChange) {
         if (changes[change].previousValue !== changes[change].currentValue) {

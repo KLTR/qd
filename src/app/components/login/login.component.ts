@@ -1,7 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, pipe } from 'rxjs';
-import { HttpService, AuthService } from '@app/services';
+import {
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import {
+  ActivatedRoute
+} from '@angular/router';
+import {
+  Observable,
+  pipe
+} from 'rxjs';
+import {
+  HttpService,
+  AuthService
+} from '@app/services';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +24,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   model: any = {};
   returnUrl: string;
   public loginFailed: boolean;
-  error$: Observable<string>;
+  error$: Observable < string > ;
   toShow = false;
   passwordType = 'password';
 
   constructor(private route: ActivatedRoute,
-              private http: HttpService,
-              private auth: AuthService
-              ) {
-  }
+    private http: HttpService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {
     this.error$ = this.auth.error$;

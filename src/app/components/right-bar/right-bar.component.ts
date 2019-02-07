@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 
 @Component({
   selector: 'app-right-bar',
@@ -10,19 +14,18 @@ export class RightBarComponent implements OnInit {
   selected = "today"
   @Input() events: any[];
 
- 
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() {}
 
-  toggleNav(){
+  ngOnInit() {}
+
+  toggleNav() {
     this.isOpen = !this.isOpen;
   }
-  toggleSelected(val){
+  toggleSelected(val) {
     this.selected = val;
   }
-  removeEvent(index){
+  removeEvent(index) {
     this.events.splice(index, 1);
   }
 }

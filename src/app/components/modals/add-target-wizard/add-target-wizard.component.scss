@@ -310,6 +310,7 @@
           .main-area {
             display: flex;
             margin-top: 10px;
+
             .inputs {
               display: flex;
               flex-direction: column;
@@ -362,7 +363,7 @@
                 color: #ff4d6a;
                 margin-left: 2px;
                 // color: rgba(196, 221, 248, 0.4);
-           
+
               }
             }
 
@@ -585,9 +586,10 @@
 
 
 .dropdown {
-.dropdown-menu{
-  background-color: rgb(47, 59, 74);
-}
+  .dropdown-menu {
+    background-color: rgb(47, 59, 74);
+  }
+
   &>.btn {
     width: 206px;
     height: 32px;
@@ -619,6 +621,7 @@
       cursor: pointer;
     }
   }
+
   .dropdown-item {
     font-size: 13.5px;
     font-weight: normal;
@@ -628,6 +631,7 @@
     text-align: left;
     color: #bcd8f5;
     text-transform: capitalize;
+
     &:hover {
       background-color: #52667b;
       cursor: pointer;

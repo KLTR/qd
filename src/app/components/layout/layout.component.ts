@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State, selectUser, selectSystem } from '@app/state';
-import { Observable, forkJoin, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { User, SystemInfo } from '@app/models';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '@app/services';
-import {systemActions} from '@app/state/actions';
 
 @Component({
   selector: 'app-layout',

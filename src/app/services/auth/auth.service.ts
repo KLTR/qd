@@ -1,40 +1,53 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { fromUser, selectUser, userActions } from '@app/state';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { HttpService } from '../http/http.service';
+import {
+  Injectable
+} from '@angular/core';
+import {
+  Store
+} from '@ngrx/store';
+import {
+  fromUser,
+  selectUser,
+  userActions
+} from '@app/state';
+import {
+  Observable
+} from 'rxjs';
+import {
+  map
+} from 'rxjs/operators';
+import {
+  HttpService
+} from '../http/http.service';
 
 @Injectable()
 export class AuthService {
-  public user$: Observable<fromUser.State> = this.store.select(selectUser);
+  public user$: Observable < fromUser.State > = this.store.select(selectUser);
 
   constructor(
-    private store: Store<fromUser.State>,
-    private http: HttpService) {
-  }
+    private store: Store < fromUser.State > ,
+    private http: HttpService) {}
 
-  get token$(): Observable<string> {
+  get token$(): Observable < string > {
     return this.user$.pipe(
       map((user) => {
-         return user.token;
+        return user.token;
       })
     );
   }
 
-  get error$(): Observable<string> {
+  get error$(): Observable < string > {
     return this.user$.pipe(
       map(user => user.error)
     );
   }
 
-  get role$(): Observable<string> {
+  get role$(): Observable < string > {
     return this.user$.pipe(
       map(user => user.role)
     );
   }
 
-  get isSignedIn$(): Observable<boolean> {
+  get isSignedIn$(): Observable < boolean > {
     return this.user$.pipe(
       map(user => !!user.token)
     );
@@ -45,7 +58,10 @@ export class AuthService {
     this.store.dispatch(new userActions.Logout());
   }
 
-  login(credentials: { user: string, password: string }): void {
+  login(credentials: {
+    user: string,
+    password: string
+  }): void {
     this.store.dispatch(new userActions.Login(credentials));
     this.http.setToken()
   }

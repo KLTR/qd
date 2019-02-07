@@ -1,23 +1,34 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { fromLoader, selectLoader, loaderActions } from '@app/state';
-import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import {
+  Injectable
+} from '@angular/core';
+import {
+  Store
+} from '@ngrx/store';
+import {
+  fromLoader,
+  selectLoader,
+  loaderActions
+} from '@app/state';
+import {
+  Observable
+} from 'rxjs';
+import {
+  pluck
+} from 'rxjs/operators';
 
 @Injectable()
 export class LoaderService {
-  public loader$: Observable<fromLoader.State> = this.store.select(selectLoader);
+  public loader$: Observable < fromLoader.State > = this.store.select(selectLoader);
 
-  constructor(private store: Store<fromLoader.State>) {
-  }
+  constructor(private store: Store < fromLoader.State > ) {}
 
-  get pendingRequests$(): Observable<string[]> {
+  get pendingRequests$(): Observable < string[] > {
     return this.loader$.pipe(
       pluck('pendingRequests')
     );
   }
 
-  get isLoading$(): Observable<boolean> {
+  get isLoading$(): Observable < boolean > {
     return this.loader$.pipe(
       pluck('loading')
     );
