@@ -19,7 +19,7 @@ import {
 })
 export class SourcesListComponent implements OnInit {
 
-  missionData: any;
+  leftBarData: any;
   events: any;
   filteredSources = [];
   filterValue = '';
@@ -35,49 +35,47 @@ export class SourcesListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.getActiveMission().subscribe(res => {
-      this.missionData = res;
+    this.http.getDashboard().subscribe(res => {
+      this.leftBarData = res;
 
-      if (!this.missionData.sources) {
-        this.missionData.sources = [];
+      if (!this.leftBarData.sources) {
+        this.leftBarData.sources = [];
       }
-      if (!this.missionData.targets) {
-        this.missionData.targets = [];
+      if (!this.leftBarData.targets) {
+        this.leftBarData.targets = [];
       }
-      if (!this.missionData.infections) {
-        this.missionData.infections = [];
+      if (!this.leftBarData.infections) {
+        this.leftBarData.infections = [];
       }
       this.assignFilteredSources();
       this.setSourcesNumbers();
       this.filterPendingInfections();
-      this.missionData.sources.forEach(source => {
-        this.setSourceInfoStatus(source);
-      });
+
     })
     this.http.getEvents().subscribe(res => {
       this.events = res.events;
+        if (!this.events) {
+         this.events = [];
+      }
     })
-    if (!this.events) {
-      this.events = [];
-    }
+  
   }
   assignFilteredSources() {
-    this.filteredSources = this.missionData.sources;
+    this.filteredSources = this.leftBarData.sources;
     this.setFilter(this.filterValue);
   }
   setFilter(value) {
     this.filterValue = value;
     if (!value || value === '') {
-      this.filteredSources = this.missionData.sources;
+      this.filteredSources = this.leftBarData.sources;
     } else {
-      this.filteredSources = this.missionData.sources.filter(item => item.status === value)
+      this.filteredSources = this.leftBarData.sources.filter(item => item.state === value)
 
     }
   }
   filterPendingInfections() {
-    this.missionData.infections = this.missionData.infections.filter(infection => infection.infection.state !== 'PENDING');
+    this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.infection.state !== 'PENDING');
   }
-
   getWifiSignal(wifi) {
     switch (wifi) {
       case 4:
@@ -98,119 +96,8 @@ export class SourcesListComponent implements OnInit {
     }
   }
 
-  isAnimatedIcon(source): boolean {
-    switch (source.state) {
-      case 'DOWNLOADING_AGENT':
-      case 'INITIALIZING':
-      case 'DOWNLOADING':
-      case 'ACTIVE':
-      case 'TERMINATING':
-      case 'COLLECTING_DATA':
-        return true;
-      default:
-        return false;
-    }
-  }
-  setAnimatedIcon(source) {
-    switch (source.state) {
-      // 0
-      case 'DOWNLOADING_AGENT':
-        return {
-          height: 23,
-          width: 25,
-          options: {
-            path: 'assets/svg-jsons/downloading-agent.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet',
-              scaleMode: 'noScale'
-            }
-          }
-        };
-        // 1
-      case 'INITIALIZING':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/initializing.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-        // 2
-      case 'DOWNLOADING':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/downloading.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-        // 3
-      case 'ACTIVE':
-        return {
-          height: 30,
-          width: 30,
-          options: {
-            path: 'assets/svg-jsons/active.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-        //4
-      case 'TERMINATING':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/shutting-down.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-    }
-  }
-  deviceStatusToText(source): string {
-    switch (source.state) {
-      case 'DOWNLOADING_AGENT':
-        return 'Downloading agent';
-      case 'INITIALIZING':
-        return 'Initiazlizing';
-      case 'DOWNLOADING':
-        return 'Downloading';
-      case 'ACTIVE':
-        return 'Active'
-      case 'TERMINATING':
-        return 'Terminating';
-      case 'COLLECTING_DATA':
-        return 'Collecting data';
-      case 'TERMINATED':
-        return 'Terminated';
-      case 'LOST_CONNECTION':
-        return 'Lost conn.'
-    }
-  }
+  
+
   catchWebSocketEvents(msg) {
 
     if (Object.keys(msg)[0] === 'error') {
@@ -223,17 +110,16 @@ export class SourcesListComponent implements OnInit {
       switch (Object.keys(msg.result)[0]) {
         case 'target':
           this.handleTarget(msg.result.target);
-          this.missionData = Object.assign({}, this.missionData);
+          this.leftBarData = Object.assign({}, this.leftBarData);
           break;
         case 'infection':
           this.handleInfection(msg.result.infection);
-          this.missionData = Object.assign({}, this.missionData);
+          this.leftBarData = Object.assign({}, this.leftBarData);
           break;
         case 'source':
           this.handleSource(msg.result.source);
-          this.missionData = Object.assign({}, this.missionData);
+          this.leftBarData = Object.assign({}, this.leftBarData);
           this.assignFilteredSources();
-          this.setSourcesNumbers();
           break;
         case 'event':
           this.events.unshift(msg.result.event);
@@ -246,16 +132,16 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleTarget(target) {
-    // let t = this.missionData.targets.find( (t) => t.id === target.id );
+    // let t = this.leftBarData.targets.find( (t) => t.id === target.id );
     if (!target.state) {
       return;
     }
-    this.missionData.targets = this.missionData.targets.filter(x => {
+    this.leftBarData.targets = this.leftBarData.targets.filter(x => {
       if (x.target.id !== target.target.id) {
         return x
       }
     });
-    this.missionData.targets.unshift(target);
+    this.leftBarData.targets.unshift(target);
   }
 
   handleInfection(infection) {
@@ -265,16 +151,16 @@ export class SourcesListComponent implements OnInit {
     }
 
     if (infectionObj.state === 'IN_PROGRESS') {
-      this.missionData.infections.unshift(infection);
+      this.leftBarData.infections.unshift(infection);
       return;
     } else {
-      this.missionData.infections = this.missionData.infections.filter((x) => {
+      this.leftBarData.infections = this.leftBarData.infections.filter((x) => {
         if (x.infection.id !== infectionObj.id) {
           return x
         }
       });
       if (infectionObj.state === 'FAILED') {
-        this.missionData.infections.unshift(infection);
+        this.leftBarData.infections.unshift(infection);
       }
     }
   }
@@ -285,34 +171,26 @@ export class SourcesListComponent implements OnInit {
       return;
     }
 
-    this.missionData.sources = this.missionData.sources.filter((x) => {
+    this.leftBarData.sources = this.leftBarData.sources.filter((x) => {
       if (x.source.id !== sourceObj.id) {
         return x
       }
     });
-    this.setSourceInfoStatus(source);
-    this.missionData.sources.unshift(source)
+    this.leftBarData.sources.unshift(source)
 
   }
 
   setSourcesNumbers() {
-    if (!this.missionData || !this.missionData.sources) {
+    if (!this.leftBarData || !this.leftBarData.sources) {
       return;
     }
-    this.allSourcesNumber = this.missionData.sources.length;
-    this.downloadingSourcesNumber = this.missionData.sources.filter((src) => src.state === 'DOWNLOADING').length;
-    this.acitveSourcesNumber = this.missionData.sources.filter((src) => src.state === 'ACTIVE').length;
-    this.lostConnectionSourcesNumber = this.missionData.sources.filter((src) => src.state === 'LOST_CONNECTION').length;
-    this.terminatedSourcesNumber = this.missionData.sources.filter((src) => src.state === 'TERMINATED').length;
+    this.allSourcesNumber = this.leftBarData.sources.length;
+    this.downloadingSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'DOWNLOADING').length;
+    this.acitveSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'ACTIVE').length;
+    this.lostConnectionSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'LOST_CONNECTION').length;
+    this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
-
-
-  setSourceInfoStatus(source) {
-    if (source.state === 'INITIALIZING' || source.state === 'DOWNLOADING_AGENT') {
-      source.noInfo = true;
-    }
-  }
-  exportSource(sourceId) {
-    this.http.exportSource(sourceId).subscribe();
+  trackFn(index, item) {
+    return item.id;
   }
 }

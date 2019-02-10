@@ -135,7 +135,8 @@ $image-base: '../../../../../../assets/img/mission-cube/';
       }
 
       .table-wrapper {
-        height: 85%;
+        // height: 85%;
+        height: fit-content;
         display: flex;
         overflow-y: hidden;
         align-items: center;

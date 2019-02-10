@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { WsService } from '../websocket/ws.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +13,9 @@ serverUrls = {
   getChatAppInfo: '/messengers/{{type}}/about',
   login: '/users/login',
   logout: '/users/logout',
-  dashboardTop: '/dashboard/top',
+  top: '/dashboard/top',
   search: '/search',
-  activeMission: '/dashboard/left',
+  dashboard: '/dashboard/left',
   // Alerts & events
   alerts: '/alerts',
   getEvents: '/dashboard/right',
@@ -29,6 +30,7 @@ config: any;
 token: string;
   constructor(
     private http: HttpClient,
+    private WsService: WsService
     ) { 
    
   }
@@ -83,8 +85,8 @@ token: string;
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }
-  getActiveMission(): Observable<any> {
-    return this.http.get(this.getUrlByApiName('activeMission'), this.setHeaders());
+  getDashboard(): Observable<any> {
+    return this.http.get(this.getUrlByApiName('dashboard'), this.setHeaders());
   }
   search( search: {scope: string, keyword: string}): Observable<any> {
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders());
@@ -97,8 +99,8 @@ token: string;
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders());
     
   }
-  getDashboard(): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders());
+  getTop(): Observable<any> {
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('top'), this.setHeaders());
   }
 
   getAlerts() :Observable<any> {

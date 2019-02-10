@@ -31,7 +31,7 @@ import {
   styleUrls: ['./left-bar.component.scss']
 })
 export class LeftBarComponent implements OnInit {
-  @Input() missionData: any;
+  @Input() leftBarData: any;
   temp: any;
   isWizardOpen = false;
   selectedSource: any;
@@ -93,14 +93,16 @@ export class LeftBarComponent implements OnInit {
       case 'DOWNLOADING':
       case 'ACTIVE':
       case 'TERMINATING':
-      case 'COLLECTING_DATA':
+      // case 'COLLECTING_DATA':
         return true;
       default:
         return false;
     }
   }
   setAnimatedIcon(source) {
-
+    if(!source.state){
+      return
+    }
     switch (source.state) {
       // 0
       case 'DOWNLOADING_AGENT':

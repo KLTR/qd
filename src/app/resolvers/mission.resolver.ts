@@ -15,7 +15,7 @@ export class MissionResolver implements Resolve<Observable<any>> {
 
     this.missionId = route.paramMap.get('missionId');
     return Observable.create({
-        missionData: 'mission Data'
+      leftBarData: 'mission Data'
     })
     // return forkJoin([
     //   this.httpService.getMissionDetails(this.missionId).pipe(

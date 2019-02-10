@@ -15,10 +15,10 @@ const routes: Routes = [
       {
         path:'',
         pathMatch: 'full',
-        redirectTo: 'activeMission'
+        redirectTo: 'dashboard'
       },
       {
-        path: 'activeMission',
+        path: 'dashboard',
         component: SourcesListComponent,
         // resolve: {
         //   missionData: MissionResolver

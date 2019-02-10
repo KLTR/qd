@@ -7,7 +7,8 @@ import {
 import * as Rx from 'rxjs';
 import {
   map,
-  share
+  share,
+  catchError
 } from 'rxjs/operators';
 @Injectable()
 export class WsService {
@@ -21,14 +22,14 @@ export class WsService {
     if (userToken) {
       this.token = JSON.parse(userToken).token
     }
-
-    this.messages = < Rx.Subject < any >>
+      this.messages = < Rx.Subject < any >>
       this.connect(environment.websocketUrl)
       .pipe(
         map((response: MessageEvent): any => {
+          // console.log(response.data);
           let data = JSON.parse(response.data);
           return data;
-        }),
+        })
       )
   }
 
@@ -40,8 +41,15 @@ export class WsService {
     return this.subject;
   }
 
+
+
   private create(url): Rx.Subject < MessageEvent > {
-    let token = this.token.replace('Bearer ', '')
+    let token;
+    if(this.token){
+       token = this.token.replace('Bearer ', '')
+    } else{
+       token = this.token;
+    }
     this.ws = new WebSocket(
       url,
       [environment.wsProtocol, token]

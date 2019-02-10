@@ -4,7 +4,7 @@
     <div class="header">Sources</div>
     <div class="content">
       <!-- Sources -->
-      <div class="items" *ngFor="let source of missionData?.sources; let i = index;" (mouseenter)="source.hover=true;"
+      <div class="items" *ngFor="let source of leftBarData?.sources; let i = index;" (mouseenter)="source.hover=true;"
         (mouseleave)="source.hover=false;">
         <!-- <app-source [source]="source"></app-source> -->
         <sat-popover #sourcePopovers xAlign="start" yAlign="center">
@@ -36,7 +36,7 @@
   <div class="section pending">
     <div class="header">Infecting</div>
     <div class="content">
-      <div class="items" *ngFor="let infection of missionData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
+      <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
         (mouseleave)="infection.hover=false;">
         <sat-popover #infectionPopovers xAlign="center" yAlign="below">
           <div class="custom-tip small-tip">
@@ -49,7 +49,7 @@
         <span class="name">{{infection.infection?.name}}</span>
         <span class="device-status">
 
-          <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === missionData?.infections.length"
+          <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === leftBarData?.infections.length"
             (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();" (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
             [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state" [size]="18"></app-svg-icon>
         </span>
@@ -60,7 +60,7 @@
   <div class="section targets">
     <div class="header">Targets</div>
     <div class="content">
-      <div class="items" *ngFor="let target of missionData?.targets">
+      <div class="items" *ngFor="let target of leftBarData?.targets">
         <span class="name">{{target.target?.name}}</span>
         <span class="icon" (click)="openDeviceListModal(target.target.id)">
           <span class="device-count {{target.state}}">{{target?.devices_count}}</span>
