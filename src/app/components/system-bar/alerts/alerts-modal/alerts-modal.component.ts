@@ -40,7 +40,7 @@ export class AlertsModalComponent implements OnInit {
   columnDefs: any;
   rowClassRules: any;
   gridOptions: GridOptions;
-  private overlayNoRowsTemplate: string;
+  public overlayNoRowsTemplate: string;
 
   
   constructor(
