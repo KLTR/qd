@@ -16,10 +16,12 @@ serverUrls = {
   top: '/dashboard/top',
   search: '/search',
   dashboard: '/dashboard/left',
+  resetPioneer: '/infection/pioneers/{{id}}/reset',
   // Alerts & events
   alerts: '/alerts',
   getEvents: '/dashboard/right',
   deleteEvent: '/events/{{id}}',
+  deleteAlert: '/alerts/{{id}}',
   // Targets
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
@@ -28,10 +30,8 @@ serverUrls = {
   terminateAgent: '/sources/{{id}}/shutdown'
 }
 config: any;
-token: string;
   constructor(
     private http: HttpClient,
-    private WsService: WsService
     ) { 
    
   }
@@ -49,17 +49,23 @@ token: string;
       }
       return url;
   }
-  exportSource(sourceId): Observable<any> {
+  resetPioneer(pioneerId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());
+  }
+  exportSource(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
   }
-  terminateAgent(sourceId): Observable<any>{
+  terminateAgent(sourceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
   }
-  getTargetDeivces(targetId): Observable<any>{
+  getTargetDeivces(targetId: string): Observable<any>{
     return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
   }
-  deleteEvent(eventId): Observable<any>{
+  deleteEvent(eventId: string): Observable<any>{
     return this.http.delete(this.getUrlByApiName('deleteEvent', eventId), this.setHeaders());
+  }
+  deleteAlert(alertId: string): Observable<any>{
+    return this.http.put(this.getUrlByApiName('deleteAlert', alertId), this.setHeaders());
   }
   setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {
@@ -71,15 +77,8 @@ token: string;
     return httpOptions;
   }
   getToken() : any {
-    let token =  localStorage.getItem('user');
-    token = token.slice(10,token.length-2);
-    this.setToken();
-    return token;
-  }
-  setToken(){
     let token = localStorage.getItem('user');
-    token = token.slice(10,token.length-2);
-    this.token = token;
+    return token;
   }
 
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{

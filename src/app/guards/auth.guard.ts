@@ -7,7 +7,6 @@ import {
 } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -15,9 +14,12 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.auth.isSignedIn$.pipe(
-      tap(signedIn => !signedIn ? this.router.navigate(['/login'], { queryParams: { return: state.url } }) : signedIn)
-    );
+               if(localStorage.getItem('user')){
+                 return true
+               } else {
+                console.log('redirecting ..')
+                  this.router.navigate(['login'])
+               }
   }
 }
 

@@ -44,7 +44,8 @@ export class AlertsModalComponent implements OnInit {
 
   
   constructor(
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private httpService: HttpService
     ) {
     this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";
   }
@@ -149,24 +150,10 @@ onGridReady(params){
   }
 
 
-  deleteAlert(alert, index) {
-    // this.httpService.deleteAlert(alert.id).subscribe(() => {
-    // });
-    let indexOg = this.rowData.indexOf(alert);
-    let indexFd = this.filteredAlerts.indexOf(alert);
-    if (indexOg != -1) {
-      this.filteredAlerts.splice(indexFd, 1);
-    }
-    this.rowData.splice(indexOg, 1);
-  }
-
-
-  delete(row){
-    // TODO: 
-    // this.http.deleteAlert(row.id);
+  delete(row: any){
+    this.httpService.deleteAlert(row.id).subscribe( res => console.log(res));
     this.gridApi.redrawRows();
   }
-
 
   severityComparator(s1, s2): number {
 

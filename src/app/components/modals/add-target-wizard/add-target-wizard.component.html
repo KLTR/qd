@@ -6,10 +6,9 @@
   <div *ngIf="!isLoading; else loadingScreen" class="picks-wrapper">
     <ul class="options">
       <li class="list-item">
-        <input type="checkbox" class="hidden-box" id="{{vector.vector+'-box'}}" [ngModel]="vector.checked" (change)="updateCheckedVectors(i, $event)">
         <div class="option-box" stopPropagation (click)="updateCheckedVectors(i)">
           <div class="vector-icon-wrapper">
-            <app-svg-icon name="type-{{vector.vectorType}}" [size]="19"></app-svg-icon>
+            <app-svg-icon name="type-{{vector?.vectorType}}" [size]="19"></app-svg-icon>
           </div>
           <div class="vector-info">
             <div class="vector-name">{{vector.name}}<span class="licenses">

@@ -121,8 +121,8 @@
       <ul class="table-values" *ngFor="let pioneer of system.pioneer?.pioneers">
         <li>{{pioneer.host}}</li>
         <li class="status-value">{{pioneer.state}}</li>
-        <li class="reset">
-          <span>{{pioneer.updated_at | date:'dd.MM.yyyy'}} </span>
+        <li class="reset" (click)="resetPioneer(pioneer.id)">
+          <span>{{pioneer.updated_at | amDateFormat:'DD.MM.YYYY'}} </span>
           <div class="icon-button">
             <span class="button-img"><img class="rotating" src="../../../assets/img/refresh.png">Reset</span>
           </div>

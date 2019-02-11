@@ -20,7 +20,7 @@ export class WsService {
   constructor() {
     let userToken = localStorage.getItem('user');
     if (userToken) {
-      this.token = JSON.parse(userToken).token
+      this.token = userToken;
     }
       this.messages = < Rx.Subject < any >>
       this.connect(environment.websocketUrl)

@@ -24,22 +24,6 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http'
 import {
-  CustomRouterStateSerializer,
-  effects,
-  metaReducers,
-  reducers
-} from '@app/state'
-import {
-  EffectsModule
-} from '@ngrx/effects';
-import {
-  RouterStateSerializer,
-  StoreRouterConnectingModule
-} from '@ngrx/router-store';
-import {
-  StoreDevtoolsModule
-} from '@ngrx/store-devtools';
-import {
   BrowserAnimationsModule
 } from '@angular/platform-browser/animations';
 import {
@@ -55,7 +39,6 @@ import {
 import {
   HttpService,
   AuthService,
-  LoaderService,
   IconService,
   MenuService,
   InterceptorService,
@@ -63,9 +46,7 @@ import {
 } from "@app/services";
 
 // Components
-import {
-  LayoutResolver,
-} from "@app/resolvers"
+
 import {
   SystemBarComponent
 } from './components/system-bar/system-bar.component';
@@ -84,9 +65,6 @@ import {
 import {
   SourcesListComponent
 } from './components/sources-list/sources-list.component';
-import {
-  StoreModule
-} from '@ngrx/store';
 import {
   AddTargetWizardComponent
 } from './components/modals/add-target-wizard/add-target-wizard.component';
@@ -212,14 +190,6 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     AppRoutingModule,
     HttpClientModule,
     ScrollingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
-    StoreRouterConnectingModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: 25
-    }),
-    EffectsModule.forRoot(effects),
     BrowserAnimationsModule,
     // Libraries
     NgbModule,
@@ -235,10 +205,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     AgGridModule.withComponents([]),
     // WebSocketModule.forRoot(environment.websocketUrl),
   ],
-  providers: [{
-      provide: RouterStateSerializer,
-      useClass: CustomRouterStateSerializer
-    },
+  providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
@@ -246,14 +213,11 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     },
     HttpService,
     AuthService,
-    LoaderService,
     IconService,
     MenuService,
     InterceptorService,
     // WebsocketService,
     WsService,
-    // Resolvers
-    LayoutResolver,
     // Guards
     AuthGuard,
   ],
