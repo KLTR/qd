@@ -8,12 +8,6 @@ import { HttpService } from '@app/services';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-<<<<<<< HEAD
-
-=======
-  user$: Observable<User> = this.store.select(selectUser);
-  // system$: Observable<SystemInfo> = this.store.select(selectSystem);
->>>>>>> develop
   alerts = [];
   user: any;
   system: any;

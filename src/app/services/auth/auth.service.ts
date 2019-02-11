@@ -21,19 +21,17 @@ export class AuthService {
 
   logout(): void {
     this.http.logout().subscribe()
-    // this.store.dispatch(new userActions.Logout());
   }
 
   login(credentials: {
     user: string,
     password: string
   }): void {
-    // this.store.dispatch(new userActions.Login(credentials));
     this.http.login(credentials).pipe(
       tap(token => localStorage.setItem('token', token.token)),
       map(token => token.swagger_ui),
       tap(token => localStorage.setItem('user', token)),
-    ).subscribe(res => {this.isSignedIn = true, this.router.navigate(['/activeMission'])})
+    ).subscribe(res => {this.isSignedIn = true, this.router.navigate(['/dashboard'])})
   }
 
 

@@ -57,13 +57,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.searchResults = [];
-<<<<<<< HEAD
-    this.system.alerts = [];
-    this.recentAlert = this.system.alert;
-=======
    
     this.httpService.getTop().subscribe(res => {this.system = res})
->>>>>>> develop
   }
 
   toggleAlerts() {
@@ -149,7 +144,7 @@ export class HeaderComponent implements OnInit {
     }
     // this triggers on changes
     console.log(this.system)
-    // this.system = Object.assign({}, this.system);
+    this.system = Object.assign({}, this.system);
   }
   clearSearchResults() {
     this.searchResults = [];

@@ -190,6 +190,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     AppRoutingModule,
     HttpClientModule,
     ScrollingModule,
+    BrowserAnimationsModule,
     // Libraries
     NgbModule,
     SatPopoverModule,

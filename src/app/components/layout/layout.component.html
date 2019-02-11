@@ -1,11 +1,7 @@
 <div class="layout-wrapper">
   <app-alerts-strip></app-alerts-strip>
   <div class="main-header">
-<<<<<<< HEAD
-    <app-header [system]="system" [user]="user" [alerts]="alerts"></app-header>
-=======
     <app-header [user]="user$ | async" [alerts]="alerts"></app-header>
->>>>>>> develop
   </div>
   <div class="main-content-area">
     <!-- <app-page-loader></app-page-loader> -->
