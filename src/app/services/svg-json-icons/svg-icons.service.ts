@@ -22,7 +22,8 @@ export class IconService {
             rendererSettings: {
               progressiveLoad: true,
               preserveAspectRatio: 'xMidYMid meet',
-              scaleMode: 'noScale'
+              scaleMode: 'noScale',
+              className: 'downloading-agent-animation'
             }
           }
         };
@@ -37,7 +38,8 @@ export class IconService {
             loop: true,
             rendererSettings: {
               progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'init-animation'
             }
           }
         };
@@ -52,22 +54,24 @@ export class IconService {
             loop: true,
             rendererSettings: {
               progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'downloading-animation'
             }
           }
         };
         // 3
       case 'ACTIVE':
         return {
-          height: 25,
-          width: 28,
+          height: 27,
+          width: 23,
           options: {
             path: 'assets/svg-jsons/active.json',
             autoplay: true,
             loop: true,
             rendererSettings: {
               progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'active-animation'
             }
           }
         };
@@ -82,7 +86,8 @@ export class IconService {
             loop: true,
             rendererSettings: {
               progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'terminating-animation'
             }
           }
         };

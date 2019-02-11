@@ -69,7 +69,9 @@
         .device-status {
           display: flex;
           margin-left: auto;
-
+          align-items: center;
+          justify-content: center;
+          width: 15px;
           .icon-wrapper {
             position: absolute;
             right: 40px;

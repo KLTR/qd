@@ -72,9 +72,9 @@ export class AddTargetWizardComponent implements OnInit {
   }
 
   ngOnInit() {
-   
     this.httpService.getTop().subscribe( (res) => {
-      res.internet.indictaor.state === 'GREEN' ? this.isConnected = true : this.isConnected = false,
+      console.log(res);
+      res.internet.indicator.state === 'GREEN' ? this.isConnected = true : this.isConnected = false,
       res.pioneer.indicator.state === 'GREEN' ? this.vector.vectorState = true : this.vector.vectorState = false;
     })
 

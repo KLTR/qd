@@ -27,7 +27,9 @@ serverUrls = {
   targetDevices: '/targets/{{id}}/devices',
   // Sources
   exportSource: '/exports/sources/{{id}}',
-  terminateAgent: '/sources/{{id}}/shutdown'
+  terminateAgent: '/sources/{{id}}/shutdown',
+  // Devices
+  checkDevice: '/devices/{{id}}/check',
 }
 config: any;
   constructor(
@@ -48,6 +50,9 @@ config: any;
         url += addiotnal;
       }
       return url;
+  }
+  checkDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('checkDevice', deviceId), this.setHeaders());
   }
   resetPioneer(pioneerId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());

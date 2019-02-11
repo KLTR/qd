@@ -512,3 +512,16 @@ a:focus {
   color: #ff9f39;
 }
 
+.red{
+  color: #ff536f
+}
+.green{
+  color: #65efe8;
+}
+
+.cdk-virtual-scroll-orientation-vertical{
+  .cdk-virtual-scroll-content-wrapper{
+    top: -8px;
+    left: -8px;
+  }
+}

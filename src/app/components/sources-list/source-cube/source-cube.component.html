@@ -1,4 +1,4 @@
-<li class="source-cube">
+<li class="source-cube" [ngClass]="['ACTIVE', 'DOWNLOADING', 'COLLECTING_DATA'].includes(source.state) ? '' : 'dimmed'">
     <div class="source-cube-wrapper">
       <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
         <div class="source-img">
@@ -33,14 +33,14 @@
         </div>
       </ng-template>
       <div class="device-status">
-        <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
+        <lottie-animation-view *ngIf="isAnimatedIcon(); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
           [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
         </lottie-animation-view>
         <ng-template #noAnimatedIcon>
           <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
         </ng-template>
         <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
-          {{deviceStatusToText(source)}}</span>
+          {{deviceStatusToText()}}</span>
       </div>
     </div>
     <div class="source-cube-info" [ngClass]="['ACTIVE', 'DOWNLOADING', 'COLLECTING_DATA'].includes(source.state) ? '' : 'dimmed'">
@@ -62,7 +62,7 @@
       </ng-template>
       <div *ngIf="!isNoInfo(); else noInfoTasks" class="after-initializing">
         <div class="cube-progress-bar" *ngIf="source.tasks.progress_bar">
-          <div class="downloading-percent">{{source.tasks.progress ? source.tasks.progress : '0'}}%
+          <div class="downloading-percent" [ngClass]="source.tasks.progress_bar ? 'green' : ''">{{source.tasks.progress ? source.tasks.progress : '0'}}%
             <!-- <span class="remaining-time">{{device.progress.time.eta | millToMinFilter}} Min</span> -->
           </div>
           <ngb-progressbar type="custom" [value]="source.tasks.progress" height="3px" showValue="false">.5rem
@@ -95,13 +95,13 @@
         </div>
 
       </div>
-      <div class="source-export" stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.source.id)">
+      <div class="source-export"  stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.source.id)">
         <svg height="18" viewBox="0 0 19.07 18" width="19.07">
           <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
           <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
         </svg>
       </div>
-      <div class="cube-on-off" stopPropagation [ngClass]="{'inactive': buttonStatus}" ngbTooltip="Terminate Agent"
+      <div class="cube-on-off" stopPropagation  ngbTooltip="Terminate Agent" (click)="terminateAgent(source.source.id)"
         placement="top" container="body">
         <app-svg-icon name="power" [size]="13"></app-svg-icon>
       </div>

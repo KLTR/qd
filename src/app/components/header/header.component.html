@@ -13,7 +13,7 @@
       </div>
       <div class="navbar-menu">
         <div class="alerts" (click)="toggleAlerts()">
-            <span *ngIf="system?.alert.indicator.state === 'RED'" class="alerts-number">{{system.alert?.count}}</span>
+            <span *ngIf="system?.alert?.indicator.state === 'RED'" class="alerts-number">{{system.alert?.count}}</span>
             <app-svg-icon name="alert" [size]="20" ></app-svg-icon>
         </div>
 
@@ -28,7 +28,7 @@
   <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal>
         <sat-popover #userPop xAlign="center" yAlign="below">
             <div class="custom-tip user">
-                <div class="header">{{system?.user.user}}</div>
+                <div class="header">{{system?.user?.user}}</div>
                 <ul class="content">
                     <ul class="table-headers">
                         <li>Space name</li>

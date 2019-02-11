@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit {
     private ws: WsService,
     private modalService: NgbModal,
   ) {
+    this.system = [];
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
-
   }
 
   ngOnInit() {
@@ -135,6 +135,7 @@ export class HeaderComponent implements OnInit {
         break;
     }
     // this triggers on changes
+    console.log(this.system);
     this.system = Object.assign({}, this.system);
   }
   clearSearchResults() {

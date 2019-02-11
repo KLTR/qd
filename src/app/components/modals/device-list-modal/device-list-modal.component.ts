@@ -1,3 +1,4 @@
+import { HttpService } from '@app/services';
 import {
   Component,
   OnInit,
@@ -34,7 +35,7 @@ export class DeviceListModalComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
-
+    private http: HttpService,
   ) {}
 
   ngOnInit() {
@@ -56,6 +57,11 @@ export class DeviceListModalComponent implements OnInit {
       }
     };
   }
+
+  checkDevice(deviceId){
+    this.http.checkDevice(deviceId).subscribe(res => console.log(res));
+  }
+
 
   getDeviceIconSize(deviceStatus: string): number {
     if (!deviceStatus) {

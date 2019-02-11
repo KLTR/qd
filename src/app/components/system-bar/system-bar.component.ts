@@ -133,9 +133,20 @@ ngOnChanges(){
     }
 
     checkInterceptor() {
+      if(this.selectedInterceptor){
+        return;
+      }
       if (this.system.interceptor && this.config) {
         if (this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0) {
-          this.selectedInterceptor = this.system.interceptor.interceptors[0];
+          this.system.interceptor.interceptors.forEach(element => {
+            if(element.connected ){
+              this.selectedInterceptor = element;
+              return;
+            }
+          });
+        }
+        if(!this.selectedInterceptor){
+          this.selectedInterceptor = this.system.interceptor.interceptors[0]
         }
       }
     }
@@ -236,8 +247,9 @@ ngOnChanges(){
       this.selectedInterceptor = interceptor;
     }
 
-    resetPioneer(pioneerId: string) {
-      this.http.resetPioneer(pioneerId).subscribe( res => {console.log(res)});
+    resetPioneer(pioneer: string) {
+      console.log(pioneer);
+      // this.http.resetPioneer(pioneer).subscribe( res => {console.log(res)});
     }
 
   }
