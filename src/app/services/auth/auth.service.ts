@@ -16,11 +16,14 @@ export class AuthService {
   constructor(
     private router: Router,
     private http: HttpService) {
-
     }
 
   logout(): void {
-    this.http.logout().subscribe()
+    this.http.logout().subscribe(res => {
+      console.log(res);
+      localStorage.clear();
+      this.router.navigate(['/login'])
+    })
   }
 
   login(credentials: {

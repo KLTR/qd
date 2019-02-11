@@ -28,10 +28,8 @@ serverUrls = {
   terminateAgent: '/sources/{{id}}/shutdown'
 }
 config: any;
-token: string;
   constructor(
     private http: HttpClient,
-    private WsService: WsService
     ) { 
    
   }
@@ -71,14 +69,8 @@ token: string;
     return httpOptions;
   }
   getToken() : any {
-    let token =  localStorage.getItem('user');
-    console.log(token);
-    this.setToken();
+    let token = localStorage.getItem('user');
     return token;
-  }
-  setToken(){
-    let token = localStorage.getItem('token');
-    this.token = token;
   }
 
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
