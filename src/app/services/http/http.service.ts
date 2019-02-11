@@ -16,10 +16,12 @@ serverUrls = {
   top: '/dashboard/top',
   search: '/search',
   dashboard: '/dashboard/left',
+  resetPioneer: '/infection/pioneers/{{id}}/reset',
   // Alerts & events
   alerts: '/alerts',
   getEvents: '/dashboard/right',
   deleteEvent: '/events/{{id}}',
+  deleteAlert: '/alerts/{{id}}',
   // Targets
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
@@ -47,17 +49,23 @@ config: any;
       }
       return url;
   }
-  exportSource(sourceId): Observable<any> {
+  resetPioneer(pioneerId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());
+  }
+  exportSource(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
   }
-  terminateAgent(sourceId): Observable<any>{
+  terminateAgent(sourceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
   }
-  getTargetDeivces(targetId): Observable<any>{
+  getTargetDeivces(targetId: string): Observable<any>{
     return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
   }
-  deleteEvent(eventId): Observable<any>{
+  deleteEvent(eventId: string): Observable<any>{
     return this.http.delete(this.getUrlByApiName('deleteEvent', eventId), this.setHeaders());
+  }
+  deleteAlert(alertId: string): Observable<any>{
+    return this.http.put(this.getUrlByApiName('deleteAlert', alertId), this.setHeaders());
   }
   setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {

@@ -135,7 +135,6 @@ export class HeaderComponent implements OnInit {
         break;
     }
     // this triggers on changes
-    console.log(this.system)
     this.system = Object.assign({}, this.system);
   }
   clearSearchResults() {

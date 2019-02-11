@@ -8,7 +8,7 @@
       <li class="list-item">
         <div class="option-box" stopPropagation (click)="updateCheckedVectors(i)">
           <div class="vector-icon-wrapper">
-            <app-svg-icon name="type-{{vector.vectorType}}" [size]="19"></app-svg-icon>
+            <app-svg-icon name="type-{{vector?.vectorType}}" [size]="19"></app-svg-icon>
           </div>
           <div class="vector-info">
             <div class="vector-name">{{vector.name}}<span class="licenses">

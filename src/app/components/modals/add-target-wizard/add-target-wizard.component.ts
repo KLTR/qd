@@ -15,12 +15,11 @@ import {
   NgbModal,
   NgbActiveModal,
 } from '@ng-bootstrap/ng-bootstrap';
-import {
-  map
-} from 'rxjs/operators';
+
 import {
   DeviceListModalComponent
 } from './../device-list-modal/device-list-modal.component'
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-target-wizard',
@@ -45,15 +44,8 @@ export class AddTargetWizardComponent implements OnInit {
     private httpService: HttpService,
     private modalService: NgbModal,
     private ws: WsService,
-    private _cd: ChangeDetectorRef
   ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
-  }
-
-  ngOnInit() {
-    this.isConnected = true;
-    this.vector.vectorState = true;
-    this.error = null;
     this.vector = {
       name: "X-Caliber",
       license: {
@@ -69,16 +61,30 @@ export class AddTargetWizardComponent implements OnInit {
       }],
       identifier: ""
     }
+    this.isConnected = true;
+    this.vector.vectorState = true;
+    this.error = null;
     this.selectedType = 'email';
     this.identifiers = [{
       type: this.selectedType,
       value: this.vector.identifier
     }]
-    // this.store.select(selectSystem).pipe(map(system => system.internet.indicator.state === 'GREEN')).subscribe(connected => this.isConnected = connected);
+  }
+
+  ngOnInit() {
+   
+    this.httpService.getTop().subscribe( (res) => {
+      res.internet.indictaor.state === 'GREEN' ? this.isConnected = true : this.isConnected = false,
+      res.pioneer.indicator.state === 'GREEN' ? this.vector.vectorState = true : this.vector.vectorState = false;
+    })
+
+    // this.httpService.getTop()
+    // .pipe
+    // (map(system => system.internet.indicator.state === 'GREEN')).subscribe(connected => this.isConnected = connected);
     // this.store.select(selectSystem).pipe(map(system => system.pioneer.indicator.state === 'GREEN')).subscribe(connected => {
     //   this.vector.vectorState = connected
     // })
-
+    
   }
 
   addTarget() {

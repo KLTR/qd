@@ -112,6 +112,9 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
   getButtonText(deviceStatus: string): string {
+    if(!deviceStatus){
+      return;
+    }
     switch (deviceStatus.toLowerCase()) {
       case 'failed':
       case 'aborted':

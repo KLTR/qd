@@ -232,8 +232,12 @@ ngOnChanges(){
       }
     }
 
-    selectInterceptor(interceptor) {
+    selectInterceptor(interceptor: Object) {
       this.selectedInterceptor = interceptor;
+    }
+
+    resetPioneer(pioneerId: string) {
+      this.http.resetPioneer(pioneerId).subscribe( res => {console.log(res)});
     }
 
   }
