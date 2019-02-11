@@ -135,7 +135,8 @@ $image-base: '../../../../../../assets/img/mission-cube/';
       }
 
       .table-wrapper {
-        height: 85%;
+        // height: 85%;
+        height: fit-content;
         display: flex;
         overflow-y: hidden;
         align-items: center;
@@ -281,3 +282,12 @@ $image-base: '../../../../../../assets/img/mission-cube/';
 }
 
 
+.no-alerts{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  height: 50vh;
+  span{
+    font-size: 24px
+  }
+}

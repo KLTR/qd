@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   isChanged = false;
   moreAlerts = false;
   isAlertsOpen = false;
-  recentAlert: any;
+ 
 
   constructor(
     private menuService: MenuService,
@@ -57,8 +57,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.searchResults = [];
+<<<<<<< HEAD
     this.system.alerts = [];
     this.recentAlert = this.system.alert;
+=======
+   
+    this.httpService.getTop().subscribe(res => {this.system = res})
+>>>>>>> develop
   }
 
   toggleAlerts() {
@@ -127,7 +132,10 @@ export class HeaderComponent implements OnInit {
         this.system.internet = msg.result.internet;
         break;
       case 'alert':
-        this.recentAlert = msg.result.alert;
+        this.system.alert = msg.result.alert;
+        if(!this.system.alerts){
+          this.system.alerts = [];
+        }
         this.system.alerts.unshift(msg.result.alert.log);
         break;
       case 'interceptor':
@@ -140,7 +148,8 @@ export class HeaderComponent implements OnInit {
         break;
     }
     // this triggers on changes
-    this.system = Object.assign({}, this.system);
+    console.log(this.system)
+    // this.system = Object.assign({}, this.system);
   }
   clearSearchResults() {
     this.searchResults = [];

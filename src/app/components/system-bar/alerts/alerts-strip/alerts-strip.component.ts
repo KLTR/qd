@@ -50,7 +50,7 @@ export class AlertsStripComponent implements OnInit {
     switch (Object.keys(msg.result)[0]) {
       case 'alert':
         let alert = msg.result.alert.log;
-        if (alert.severity === 'CRITICAL') {
+        if (['FATAL', 'CRITICAL'].includes(alert.severity)) {
           this.showStrip = true;
           this.message = alert.msg;
           // setTimeout(() => {this.showStrip = false;}, 30000);

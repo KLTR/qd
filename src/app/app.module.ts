@@ -5,6 +5,7 @@ import {
 import {
   NgModule
 } from '@angular/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import {
   FormsModule,
   ReactiveFormsModule
@@ -139,6 +140,7 @@ import {
 import {
   DateCellComponent
 } from './components/ag-grid/date-cell-component';
+import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
 @NgModule({
   declarations: [
     // Components
@@ -160,6 +162,7 @@ import {
     DeviceListModalComponent,
     SourceComponent,
     InfectionComponent,
+    SourceCubeComponent,
     // Cells
     TemplateRendererComponent,
     OwnersCellComponent,
@@ -177,7 +180,7 @@ import {
     GetFilenameFromUrlPipe,
     SetActiveMailPipe,
     BitesToKbPipe,
-    OrderByPipe
+    OrderByPipe,
   ],
   imports: [
     BrowserModule,
@@ -186,7 +189,7 @@ import {
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    ScrollingModule,
     // Libraries
     NgbModule,
     SatPopoverModule,

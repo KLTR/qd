@@ -9,11 +9,11 @@
                     >
               </form>  
           </div>
-        <app-system-bar [system]="system" [user]="user"></app-system-bar>
+        <app-system-bar *ngIf="system" [system]="system" [user]="user"></app-system-bar>
       </div>
       <div class="navbar-menu">
         <div class="alerts" (click)="toggleAlerts()">
-            <span *ngIf="recentAlert?.indicator?.state === 'RED'" class="alerts-number">{{recentAlert?.count}}</span>
+            <span *ngIf="system?.alert.indicator.state === 'RED'" class="alerts-number">{{system.alert?.count}}</span>
             <app-svg-icon name="alert" [size]="20" ></app-svg-icon>
         </div>
 

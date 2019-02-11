@@ -40,11 +40,10 @@ export class AlertsModalComponent implements OnInit {
   columnDefs: any;
   rowClassRules: any;
   gridOptions: GridOptions;
-  private overlayNoRowsTemplate: string;
+  public overlayNoRowsTemplate: string;
 
   
   constructor(
-    private httpService: HttpService,
     public activeModal: NgbActiveModal
     ) {
     this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";
@@ -67,7 +66,7 @@ ngOnChanges(): void {
         },
         cellClassRules: {
           "critical-border": function(params){
-              return params.data.severity === 'CRITICAL';
+              return params.data.severity === 'CRITICAL' || params.data.severity === 'FATAL';
           },
           "info-border": function(params){
             return params.data.severity === 'INFO';
@@ -106,7 +105,7 @@ ngOnChanges(): void {
         comparator: this.severityComparator,
         cellClassRules: {
           "WARNING": function (params) {
-            return params.value === 'CRITICAL';
+            return params.value === 'CRITICAL' || params.value === 'FATAL';;
           },
           "MAJOR": function (params) {
             return params.value === 'MAJOR';

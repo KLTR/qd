@@ -1,7 +1,5 @@
 <div class="sources-wrapper">
-
-  <app-left-bar [missionData]="missionData"></app-left-bar>
-
+  <app-left-bar [leftBarData]="leftBarData"></app-left-bar>
   <div class="center-area">
     <div class="filters">
       <span [class.selected]="filterValue === ''" (click)="setFilter('')">All sources ({{allSourcesNumber}})</span>
@@ -14,85 +12,15 @@
         ({{terminatedSourcesNumber}})</span>
     </div>
     <div class="sources-list-wrapper">
-
       <ul class="sources-list">
         <p *ngIf="filteredSources.length === 0" class="no-items">No sources {{filterValue | lowercase}}</p>
-        <li class="source-cube" *ngFor="let source of filteredSources">
-          <div class="source-cube-wrapper">
-            <div class="info-wrapper" *ngIf="!source.noInfo; else noInfoSource">
-              <div class="source-img">
-                <img *ngIf="source.ios?.profile_pics[0]" src="{{source.ios?.profile_pics[0]}}">
-                <app-svg-icon *ngIf="!source.ios?.profile_pics[0]" name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
-              </div>
-              <div class="source-info">
-                <p class="source-name">{{source.source?.name}}</p>
-                <p class="source-number">{{source.source?.device?.ios?.number}}</p>
-                <div class="source-phone-info">
-                  <span class="phone-model">{{source.source?.device?.name}} </span>
-                  <span class="phone-version"> ({{source.source?.device?.ios?.version}})</span>
-                  <!-- <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
-                      </app-svg-icon> -->
-                  <!-- <app-svg-icon class="phone-wifi" [name]="getWifiStatus()" [size]="13">
-                      </app-svg-icon> -->
-                </div>
-              </div>
-
-            </div>
-            <ng-template #noInfoSource>
-              <div class="no-info">
-                <div class="person-img-wrapper">
-                  <app-svg-icon name="avatar" [size]="100" class="cube-person-img"></app-svg-icon>
-                </div>
-                <div class="main">
-                  <div class="shimmer"></div>
-                  <div class="shimmer second"></div>
-                  <div class="shimmer"></div>
-                </div>
-              </div>
-            </ng-template>
-            <div class="device-status">
-              <!-- <app-svg-icon name="inactive" [size]=32></app-svg-icon> -->
-              <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
-                [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
-              </lottie-animation-view>
-              <ng-template #noAnimatedIcon>
-                <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
-              </ng-template>
-              <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
-                {{deviceStatusToText(source)}}</span>
-            </div>
-          </div>
-
-          <div class="source-cube-info">
-            <div class="before-initializing" *ngIf="source.noInfo">
-              <div class="top-bar shimmer"></div>
-              <div class="bottom-wrapper">
-                <div class="bottom-icons">
-                  <span class="icon-placeholder shimmer" *ngFor="let i of [0,1,2,3,4]"></span>
-                </div>
-                <div class="time-wrapper">
-                  <div class="bottom-time-placeholder-upper shimmer">
-                  </div>
-                  <div class="bottom-time-placeholder-bottom shimmer"></div>
-                </div>
-              </div>
-            </div>
-            <div class="source-export" stopPropagation ngbTooltip="Export" placement="top" container="body" (click)="exportSource(source.source.id)">
-              <svg height="18" viewBox="0 0 19.07 18" width="19.07">
-                <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
-                <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
-              </svg>
-            </div>
-            <div class="cube-on-off" stopPropagation [ngClass]="{'inactive': buttonStatus}" ngbTooltip="Terminate Agent"
-              placement="top" container="body">
-              <app-svg-icon name="power" [size]="13"></app-svg-icon>
-            </div>
-
-          </div>
-        </li>
+        <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12">
+          <ng-container *cdkVirtualFor="let source of filteredSources; trackBy: trackFn">
+            <app-source-cube [source]="source"></app-source-cube>
+          </ng-container>
+        </cdk-virtual-scroll-viewport>
       </ul>
     </div>
   </div>
-
   <app-right-bar [events]="events"></app-right-bar>
 </div>
