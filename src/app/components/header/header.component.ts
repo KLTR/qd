@@ -29,9 +29,7 @@ import {
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() user: any;
   @Input() system: any;
-  @Input() alerts: any;
   title = 'app';
   highestLevel: string;
   activeAlerts = [];
@@ -57,18 +55,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.searchResults = [];
-   
     this.httpService.getTop().subscribe(res => {this.system = res})
   }
 
   toggleAlerts() {
     this.httpService.getAlerts().subscribe(res => {
-      this.system.alerts = res.alerts;
       let alertsModalRef = this.modalService.open(AlertsModalComponent, {
         windowClass: 'alerts-window',
         backdrop: 'static'
       });
-      alertsModalRef.componentInstance.alerts = this.system.alerts;
+      alertsModalRef.componentInstance.alerts = res.alerts;
     });
   }
 
@@ -128,10 +124,6 @@ export class HeaderComponent implements OnInit {
         break;
       case 'alert':
         this.system.alert = msg.result.alert;
-        if(!this.system.alerts){
-          this.system.alerts = [];
-        }
-        this.system.alerts.unshift(msg.result.alert.log);
         break;
       case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
