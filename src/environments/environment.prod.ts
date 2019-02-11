@@ -4,7 +4,8 @@ const port = 8091;
 const websocketPort = 8091;
 // const host = '172.20.2.2'
 // const host = '192.168.3.2' 
-const host = 'quantum-gateway';
+const host = 'gateway.quantum';
+const wshost = 'ws.gateway.quantum';
 export const environment = {
   fetchPageSize: 50,
   version: '0.0.3',
@@ -13,7 +14,7 @@ export const environment = {
   socketPort: `${websocketPort}`,
   baseUrl: `${protocol}//${host}:${port}`,
   apiUrl: `${protocol}//${host}:${port}`,
-  websocketUrl: `ws://${host}:${websocketPort}/dashboard/ws`,
+  websocketUrl: `ws://${wshost}:${websocketPort}/dashboard/ws`,
   wsProtocol: 'Bearer',
   debug: true,
   addAttackVector: false,
