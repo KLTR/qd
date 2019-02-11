@@ -1,7 +1,5 @@
 <div class="sources-wrapper">
-
   <app-left-bar [leftBarData]="leftBarData"></app-left-bar>
-
   <div class="center-area">
     <div class="filters">
       <span [class.selected]="filterValue === ''" (click)="setFilter('')">All sources ({{allSourcesNumber}})</span>
@@ -14,7 +12,6 @@
         ({{terminatedSourcesNumber}})</span>
     </div>
     <div class="sources-list-wrapper">
-
       <ul class="sources-list">
         <p *ngIf="filteredSources.length === 0" class="no-items">No sources {{filterValue | lowercase}}</p>
         <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12">
@@ -25,6 +22,5 @@
       </ul>
     </div>
   </div>
-
   <app-right-bar [events]="events"></app-right-bar>
 </div>

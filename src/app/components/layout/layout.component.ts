@@ -13,7 +13,7 @@ import { HttpService } from '@app/services';
 })
 export class LayoutComponent implements OnInit {
   user$: Observable<User> = this.store.select(selectUser);
-  system$: Observable<SystemInfo> = this.store.select(selectSystem);
+  // system$: Observable<SystemInfo> = this.store.select(selectSystem);
   alerts = [];
   constructor(private store: Store<State>, private route: ActivatedRoute, private httpService: HttpService) {
   }

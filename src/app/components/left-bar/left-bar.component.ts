@@ -36,6 +36,7 @@ export class LeftBarComponent implements OnInit {
   isWizardOpen = false;
   selectedSource: any;
   hoveredInfection: any;
+  sources: any[]
   @ViewChildren('sourcePopovers') public srcPopovers: QueryList < SatPopover > ;
   @ViewChildren('infectionPopovers') public infPopovers: QueryList < SatPopover > ;
   constructor(
@@ -46,9 +47,12 @@ export class LeftBarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    this.sources = [];
+    this.filterSources();
   }
-
+ngOnChanges(): void {
+  this.filterSources()
+}
   ngAfterViewChecked(): void {
     this._cd.detectChanges();
   }
@@ -61,7 +65,11 @@ export class LeftBarComponent implements OnInit {
     return this.infPopovers.find((p, i) => i === index);
   }
 
-
+  filterSources(){
+    if(this.leftBarData){
+      this.sources = this.leftBarData.sources.filter( source => source.state !== 'TERMINATED')
+    }
+  }
 
   setInfectionIcon(state) {
     switch (state) {
@@ -138,8 +146,8 @@ export class LeftBarComponent implements OnInit {
         // 2
       case 'DOWNLOADING':
         return {
-          height: 27,
-          width: 27,
+          height: 25,
+          width: 24,
           options: {
             path: 'assets/svg-jsons/downloading.json',
             autoplay: true,
@@ -169,7 +177,7 @@ export class LeftBarComponent implements OnInit {
       case 'TERMINATING':
         return {
           height: 27,
-          width: 27,
+          width: 23,
           options: {
             path: 'assets/svg-jsons/shutting-down.json',
             autoplay: true,

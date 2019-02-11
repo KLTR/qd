@@ -24,7 +24,8 @@ serverUrls = {
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
   // Sources
-  exportSource: '/exports/sources/{{id}}'
+  exportSource: '/exports/sources/{{id}}',
+  terminateAgent: '/sources/{{id}}/shutdown'
 }
 config: any;
 token: string;
@@ -50,6 +51,9 @@ token: string;
   }
   exportSource(sourceId): Observable<any> {
     return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
+  }
+  terminateAgent(sourceId): Observable<any>{
+    return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
   }
   getTargetDeivces(targetId): Observable<any>{
     return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());

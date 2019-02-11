@@ -120,6 +120,7 @@ export class SourcesListComponent implements OnInit {
           this.handleSource(msg.result.source);
           this.leftBarData = Object.assign({}, this.leftBarData);
           this.assignFilteredSources();
+          this.setSourcesNumbers();
           break;
         case 'event':
           this.events.unshift(msg.result.event);
@@ -179,7 +180,9 @@ export class SourcesListComponent implements OnInit {
     this.leftBarData.sources.unshift(source)
 
   }
-
+ngOnChanges(): void {
+  this.setSourcesNumbers()
+}
   setSourcesNumbers() {
     if (!this.leftBarData || !this.leftBarData.sources) {
       return;
@@ -191,6 +194,6 @@ export class SourcesListComponent implements OnInit {
     this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
   trackFn(index, item) {
-    return item.id;
+    return item.source.id;
   }
 }

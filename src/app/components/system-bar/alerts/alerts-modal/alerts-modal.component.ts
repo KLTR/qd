@@ -44,7 +44,6 @@ export class AlertsModalComponent implements OnInit {
 
   
   constructor(
-    private httpService: HttpService,
     public activeModal: NgbActiveModal
     ) {
     this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";

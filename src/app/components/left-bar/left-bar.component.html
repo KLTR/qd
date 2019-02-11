@@ -4,13 +4,13 @@
     <div class="header">Sources</div>
     <div class="content">
       <!-- Sources -->
-      <div class="items" *ngFor="let source of leftBarData?.sources; let i = index;" (mouseenter)="source.hover=true;"
+      <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
         (mouseleave)="source.hover=false;">
         <!-- <app-source [source]="source"></app-source> -->
         <sat-popover #sourcePopovers xAlign="start" yAlign="center">
           <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
         </sat-popover>
-
+        <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{source.source?.name}}</span>
         <span class="device-status">
 
@@ -25,7 +25,7 @@
           </lottie-animation-view>
 
           <ng-template #noAnimatedIcon>
-            <app-svg-icon class="device-status-icon" [size]="18" [name]="source.state"></app-svg-icon>
+            <app-svg-icon class="device-status-icon" [size]="22" [name]="source.state"></app-svg-icon>
           </ng-template>
 
         </span>
@@ -45,7 +45,7 @@
             </div>
           </div>
         </sat-popover>
-
+        <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{infection.infection?.name}}</span>
         <span class="device-status">
 
@@ -61,6 +61,7 @@
     <div class="header">Targets</div>
     <div class="content">
       <div class="items" *ngFor="let target of leftBarData?.targets">
+          <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{target.target?.name}}</span>
         <span class="icon" (click)="openDeviceListModal(target.target.id)">
           <span class="device-count {{target.state}}">{{target?.devices_count}}</span>

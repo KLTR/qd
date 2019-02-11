@@ -11,20 +11,19 @@ export class SourceCubeComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    this.setSourceInfoStatus();
-    this.setIsanimatedIcon();
+ 
   }
-  setIsanimatedIcon(): boolean {
+
+  isAnimatedIcon() {
     switch (this.source.state) {
       case 'DOWNLOADING_AGENT':
       case 'INITIALIZING':
       case 'DOWNLOADING':
       case 'ACTIVE':
       case 'TERMINATING':
-      // case 'COLLECTING_DATA':
-        return this.source.isAnimatedIcon = true;
+     return true
       default:
-        return this.source.isAnimatedIcon = false;
+         return false;
     }
   }
   setAnimatedIcon() {
@@ -48,7 +47,7 @@ export class SourceCubeComponent implements OnInit {
         // 1
       case 'INITIALIZING':
         return {
-          height: 27,
+          height: 23,
           width: 27,
           options: {
             path: 'assets/svg-jsons/initializing.json',
@@ -63,7 +62,7 @@ export class SourceCubeComponent implements OnInit {
         // 2
       case 'DOWNLOADING':
         return {
-          height: 20,
+          height: 23,
           width: 27,
           options: {
             path: 'assets/svg-jsons/downloading.json',
@@ -78,8 +77,8 @@ export class SourceCubeComponent implements OnInit {
         // 3
       case 'ACTIVE':
         return {
-          height: 30,
-          width: 30,
+          height: 25,
+          width: 28,
           options: {
             path: 'assets/svg-jsons/active.json',
             autoplay: true,
@@ -127,12 +126,13 @@ export class SourceCubeComponent implements OnInit {
         return 'Lost conn.'
     }
   }
-  setSourceInfoStatus() {
-    if (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state)) {
-      this.source.noInfo = true;
-    }
+  isNoInfo() {
+    return (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state))
   }
   exportSource(sourceId) {
     this.http.exportSource(sourceId).subscribe();
+  }
+  terminateAgent(sourceId){
+    this.http.terminateAgent(sourceId).subscribe();
   }
 }

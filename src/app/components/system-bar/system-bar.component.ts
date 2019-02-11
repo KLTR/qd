@@ -89,11 +89,21 @@ from 'rxjs/operators';
 
     }
 
-    ngOnChanges(changes: {
-        [key: string]: SimpleChange
-      }
+ngOnChanges(){
+  this.getBatteryMode();
+  this.getInternetMode();
+  this.getDiskSpace();
+  this.getDeviceStatus();
+  this.getAliceStatus();
+  this.getPioneerStatus();
+  this.getCloudStatus();
+  this.checkInterceptor();
+}
 
-    ) {
+    
+
+    ngAfterViewInit() {
+      this.checkInterceptor();
       this.getBatteryMode();
       this.getInternetMode();
       this.getDiskSpace();
@@ -101,10 +111,6 @@ from 'rxjs/operators';
       this.getAliceStatus();
       this.getPioneerStatus();
       this.getCloudStatus();
-      this.checkInterceptor();
-    }
-
-    ngAfterViewInit() {
       this.checkInterceptor();
       this.cdRef.detectChanges();
     }

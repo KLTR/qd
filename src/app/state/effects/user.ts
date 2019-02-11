@@ -63,6 +63,6 @@ export class UserEffects {
     private router: Router,
     private actions$: Actions,
     private http: HttpService) {
-    this.router.routerState.root.queryParams.subscribe(query => this.returnUrl = query['return'] || 'activeMission');
+    this.router.routerState.root.queryParams.subscribe(query => this.returnUrl = query['return'] || 'dashboard');
   }
 }

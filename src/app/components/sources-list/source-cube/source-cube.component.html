@@ -1,25 +1,24 @@
 <li class="source-cube">
     <div class="source-cube-wrapper">
-      <div class="info-wrapper" *ngIf="!source.noInfo; else noInfoSource">
+      <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
         <div class="source-img">
           <img *ngIf="source.source.device.ios.profile_pics[0]; else avatar" src="{{source.source.device.ios.profile_pics[0]}}">
           <ng-template #avatar>
             <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
           </ng-template>
         </div>
-        <div class="source-info">
-          <p class="source-name">{{source.source?.name}}</p>
-          <p class="source-number">{{source.source?.device.ios.number}}</p>
-          <div class="source-phone-info">
-            <span class="phone-model">{{source.source?.device.name}} </span>
-            <span class="phone-version"> ({{source.source?.device.ios.version}})</span>
-            <!-- <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
+        <div *ngIf="source.source" class="source-info">
+          <p class="source-name">{{source.source.name}}</p>
+          <p class="source-number">{{source.source.device.ios.number}}</p>
+          <div *ngIf="source.device" class="source-phone-info">
+            <span class="phone-model">{{source.source.device.name}} </span>
+            <span class="phone-version"> ({{source.source.device.ios.version}})</span>
+            <!-- <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.source.device.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
             </app-svg-icon> -->
             <!-- <app-svg-icon class="phone-wifi" [name]="getWifiStatus()" [size]="13">
             </app-svg-icon> -->
           </div>
         </div>
-
       </div>
       <ng-template #noInfoSource>
         <div class="no-info">
@@ -34,8 +33,7 @@
         </div>
       </ng-template>
       <div class="device-status">
-        <!-- <app-svg-icon name="inactive" [size]=32></app-svg-icon> -->
-        <lottie-animation-view *ngIf="source.isAnimatedIcon; else noAnimatedIcon" [options]="setAnimatedIcon().options"
+        <lottie-animation-view *ngIf="isAnimatedIcon(); else noAnimatedIcon" [options]="setAnimatedIcon().options"
           [width]="setAnimatedIcon().width" [height]="setAnimatedIcon().height">
         </lottie-animation-view>
         <ng-template #noAnimatedIcon>
@@ -62,7 +60,7 @@
         </div>
 
       </ng-template>
-      <div *ngIf="!source.noInfo; else noInfoTasks" class="after-initializing">
+      <div *ngIf="!isNoInfo(); else noInfoTasks" class="after-initializing">
         <div class="cube-progress-bar" *ngIf="source.tasks.progress_bar">
           <div class="downloading-percent">{{source.tasks.progress ? source.tasks.progress : '0'}}%
             <!-- <span class="remaining-time">{{device.progress.time.eta | millToMinFilter}} Min</span> -->
