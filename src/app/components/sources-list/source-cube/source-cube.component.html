@@ -10,7 +10,7 @@
         <div *ngIf="source.source" class="source-info">
           <p class="source-name">{{source.source.name}}</p>
           <p class="source-number">{{source.source.device.ios.number}}</p>
-          <div *ngIf="source.device" class="source-phone-info">
+          <div *ngIf="source.source.device" class="source-phone-info">
             <span class="phone-model">{{source.source.device.name}} </span>
             <span class="phone-version"> ({{source.source.device.ios.version}})</span>
             <!-- <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.source.device.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
@@ -92,6 +92,9 @@
           <span class="source-duration">{{sourceDuration}}</span>
         </span>
       </div> -->
+      <span class="cube-info-duration">Duration
+          <span class="source-duration">{{source.source.created_at | amDuration: 'hours'}}</span>
+        </span>
         </div>
 
       </div>

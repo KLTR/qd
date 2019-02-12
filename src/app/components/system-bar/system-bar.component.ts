@@ -144,9 +144,9 @@ ngOnChanges(){
               return;
             }
           });
-        }
-        if(!this.selectedInterceptor){
-          this.selectedInterceptor = this.system.interceptor.interceptors[0]
+          if(!this.selectedInterceptor){
+            this.selectedInterceptor = this.system.interceptor.interceptors[0]
+          }
         }
       }
     }

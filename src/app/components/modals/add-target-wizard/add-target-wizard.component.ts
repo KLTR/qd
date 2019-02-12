@@ -61,8 +61,6 @@ export class AddTargetWizardComponent implements OnInit {
       }],
       identifier: ""
     }
-    this.isConnected = true;
-    this.vector.vectorState = true;
     this.error = null;
     this.selectedType = 'email';
     this.identifiers = [{

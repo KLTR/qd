@@ -420,6 +420,9 @@
   .cube-on-off{
     pointer-events: none;
   }
+  &:hover{
+    background-color: #364556;
+  }
 }
 
 svg#inactive{
