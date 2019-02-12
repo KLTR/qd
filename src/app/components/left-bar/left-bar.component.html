@@ -4,13 +4,13 @@
     <div class="header">Sources</div>
     <div class="content">
       <!-- Sources -->
-      <div class="items" *ngFor="let source of missionData?.sources; let i = index;" (mouseenter)="source.hover=true;"
+      <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
         (mouseleave)="source.hover=false;">
         <!-- <app-source [source]="source"></app-source> -->
         <sat-popover #sourcePopovers xAlign="start" yAlign="center">
           <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
         </sat-popover>
-
+        <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{source.source?.name}}</span>
         <span class="device-status">
 
@@ -20,12 +20,12 @@
             </app-svg-icon>
           </span>
 
-          <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="setAnimatedIcon(source).options"
-            [width]="setAnimatedIcon(source).width" [height]="setAnimatedIcon(source).height">
+          <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
+            [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
           </lottie-animation-view>
 
           <ng-template #noAnimatedIcon>
-            <app-svg-icon class="device-status-icon" [size]="18" [name]="source.state"></app-svg-icon>
+            <app-svg-icon class="device-status-icon" [size]="22" [name]="source.state"></app-svg-icon>
           </ng-template>
 
         </span>
@@ -36,7 +36,7 @@
   <div class="section pending">
     <div class="header">Infecting</div>
     <div class="content">
-      <div class="items" *ngFor="let infection of missionData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
+      <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
         (mouseleave)="infection.hover=false;">
         <sat-popover #infectionPopovers xAlign="center" yAlign="below">
           <div class="custom-tip small-tip">
@@ -45,13 +45,13 @@
             </div>
           </div>
         </sat-popover>
-
+        <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{infection.infection?.name}}</span>
         <span class="device-status">
 
-          <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === missionData?.infections.length"
+          <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === leftBarData?.infections.length"
             (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();" (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
-            [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state" [size]="18"></app-svg-icon>
+            [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state" [size]="20"></app-svg-icon>
         </span>
       </div>
     </div>
@@ -60,7 +60,8 @@
   <div class="section targets">
     <div class="header">Targets</div>
     <div class="content">
-      <div class="items" *ngFor="let target of missionData?.targets">
+      <div class="items" *ngFor="let target of leftBarData?.targets">
+          <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{target.target?.name}}</span>
         <span class="icon" (click)="openDeviceListModal(target.target.id)">
           <span class="device-count {{target.state}}">{{target?.devices_count}}</span>

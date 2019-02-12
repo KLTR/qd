@@ -39,7 +39,7 @@
         <button class="btn reset" (click)="resetVectorServer()">Reset vector</button>
       </div> -->
   </div>
-  <div class="device-list" *ngIf="deviceList.length > 0; else loadingScreen">
+  <div class="device-list" *ngIf="deviceList?.length > 0; else loadingScreen">
     <div class="device-list-header">
       <span class="id">device</span>
       <span class="status">status</span>
@@ -85,7 +85,7 @@
           <span class="btn" *ngIf="!['CREATED', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CREATED', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
                   'no-outline': device.state === 'ATTACKING',
                   'active': device.state === 'READY' }"
-            stopPropagation (click)="actBasedOnStatus(device.id, device.state)">{{ getButtonText(device.state) }}</span>
+            stopPropagation (click)="checkDevice(device.id)">{{ getButtonText(device.state) }}</span>
           <span class="btn" [ngClass]="{ 'thinking': device.state === 'CREATED' }" *ngIf="device.state === 'CREATED' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
             <lottie-animation-view [height]="28" [width]="30" [options]="getAnimatedIcon('btn_thinking')"></lottie-animation-view>
           </span>

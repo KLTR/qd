@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { WsService } from '../websocket/ws.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,21 +13,25 @@ serverUrls = {
   getChatAppInfo: '/messengers/{{type}}/about',
   login: '/users/login',
   logout: '/users/logout',
-  dashboardTop: '/dashboard/top',
+  top: '/dashboard/top',
   search: '/search',
-  activeMission: '/dashboard/left',
+  dashboard: '/dashboard/left',
+  resetPioneer: '/infection/pioneers/{{id}}/reset',
   // Alerts & events
   alerts: '/alerts',
   getEvents: '/dashboard/right',
   deleteEvent: '/events/{{id}}',
+  deleteAlert: '/alerts/{{id}}',
   // Targets
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
   // Sources
-  exportSource: '/exports/sources/{{id}}'
+  exportSource: '/exports/sources/{{id}}',
+  terminateAgent: '/sources/{{id}}/shutdown',
+  // Devices
+  checkDevice: '/devices/{{id}}/check',
 }
 config: any;
-token: string;
   constructor(
     private http: HttpClient,
     ) { 
@@ -46,14 +51,26 @@ token: string;
       }
       return url;
   }
-  exportSource(sourceId): Observable<any> {
+  checkDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('checkDevice', deviceId), this.setHeaders());
+  }
+  resetPioneer(pioneerId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());
+  }
+  exportSource(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
   }
-  getTargetDeivces(targetId): Observable<any>{
+  terminateAgent(sourceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
+  }
+  getTargetDeivces(targetId: string): Observable<any>{
     return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
   }
-  deleteEvent(eventId): Observable<any>{
+  deleteEvent(eventId: string): Observable<any>{
     return this.http.delete(this.getUrlByApiName('deleteEvent', eventId), this.setHeaders());
+  }
+  deleteAlert(alertId: string): Observable<any>{
+    return this.http.put(this.getUrlByApiName('deleteAlert', alertId), this.setHeaders());
   }
   setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {
@@ -65,15 +82,8 @@ token: string;
     return httpOptions;
   }
   getToken() : any {
-    let token =  localStorage.getItem('user');
-    token = token.slice(10,token.length-2);
-    this.setToken();
-    return token;
-  }
-  setToken(){
     let token = localStorage.getItem('user');
-    token = token.slice(10,token.length-2);
-    this.token = token;
+    return token;
   }
 
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
@@ -83,8 +93,8 @@ token: string;
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }
-  getActiveMission(): Observable<any> {
-    return this.http.get(this.getUrlByApiName('activeMission'), this.setHeaders());
+  getDashboard(): Observable<any> {
+    return this.http.get(this.getUrlByApiName('dashboard'), this.setHeaders());
   }
   search( search: {scope: string, keyword: string}): Observable<any> {
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders());
@@ -97,8 +107,8 @@ token: string;
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders());
     
   }
-  getDashboard(): Observable<any> {
-    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('dashboardTop'), this.setHeaders());
+  getTop(): Observable<any> {
+    return this.http[this.getHttpMethod('get')](this.getUrlByApiName('top'), this.setHeaders());
   }
 
   getAlerts() :Observable<any> {

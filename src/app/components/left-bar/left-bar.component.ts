@@ -31,24 +31,28 @@ import {
   styleUrls: ['./left-bar.component.scss']
 })
 export class LeftBarComponent implements OnInit {
-  @Input() missionData: any;
+  @Input() leftBarData: any;
   temp: any;
   isWizardOpen = false;
   selectedSource: any;
   hoveredInfection: any;
+  sources: any[]
   @ViewChildren('sourcePopovers') public srcPopovers: QueryList < SatPopover > ;
   @ViewChildren('infectionPopovers') public infPopovers: QueryList < SatPopover > ;
   constructor(
     private http: HttpService,
-    public iconService: IconService,
+    private iconService: IconService,
     private _cd: ChangeDetectorRef,
     private modalService: NgbModal,
   ) {}
 
   ngOnInit() {
-
+    this.sources = [];
+    this.filterSources();
   }
-
+ngOnChanges(): void {
+  this.filterSources()
+}
   ngAfterViewChecked(): void {
     this._cd.detectChanges();
   }
@@ -61,7 +65,11 @@ export class LeftBarComponent implements OnInit {
     return this.infPopovers.find((p, i) => i === index);
   }
 
-
+  filterSources(){
+    if(this.leftBarData){
+      this.sources = this.leftBarData.sources.filter( source => source.state !== 'TERMINATED')
+    }
+  }
 
   setInfectionIcon(state) {
     switch (state) {
@@ -93,91 +101,10 @@ export class LeftBarComponent implements OnInit {
       case 'DOWNLOADING':
       case 'ACTIVE':
       case 'TERMINATING':
-      case 'COLLECTING_DATA':
+      // case 'COLLECTING_DATA':
         return true;
       default:
         return false;
-    }
-  }
-  setAnimatedIcon(source) {
-
-    switch (source.state) {
-      // 0
-      case 'DOWNLOADING_AGENT':
-        return {
-          height: 23,
-          width: 25,
-          options: {
-            path: 'assets/svg-jsons/downloading-agent.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet',
-              scaleMode: 'noScale'
-            }
-          }
-        };
-        // 1
-      case 'INITIALIZING':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/initializing.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-        // 2
-      case 'DOWNLOADING':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/downloading.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-        // 3
-      case 'ACTIVE':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/active.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
-        // 4
-      case 'TERMINATING':
-        return {
-          height: 27,
-          width: 27,
-          options: {
-            path: 'assets/svg-jsons/shutting-down.json',
-            autoplay: true,
-            loop: true,
-            rendererSettings: {
-              progressiveLoad: true,
-              preserveAspectRatio: 'xMidYMid meet'
-            }
-          }
-        };
     }
   }
 

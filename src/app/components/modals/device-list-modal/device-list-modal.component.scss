@@ -28,17 +28,17 @@
   .target-details {
     margin-left: auto;
 
-    .number,
-    .name {
-      &:after {
-        content: '';
-        display: inline-block;
-        width: 1px;
-        margin: 0px 7px -3px 10px;
-        background-color: #c4e1ff;
-        height: 15px;
-      }
-    }
+    // .number,
+    // .name {
+    //   &:after, &:before {
+    //     content: '';
+    //     display: inline-block;
+    //     width: 1px;
+    //     margin: 0px 7px -3px 10px;
+    //     background-color: #c4e1ff;
+    //     height: 15px;
+    //   }
+    // }
   }
 
   .refresh {

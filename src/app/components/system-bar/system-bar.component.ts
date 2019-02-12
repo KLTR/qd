@@ -42,7 +42,6 @@ from 'rxjs/operators';
   OnChanges,
   AfterViewInit {
 
-    @Input() user: User;
     @Input() system: any;
     @ViewChild('t') public tooltip: NgbTooltip;
 
@@ -56,7 +55,6 @@ from 'rxjs/operators';
     pops: any[];
     isMenuOpen: boolean;
     date: any;
-    isAlertsOpen = false;
     clock$: Observable < number >= interval(1000).pipe(map(() => Date.now()));
     layoutInterval: any;
     batteryStatus: String;
@@ -89,28 +87,22 @@ from 'rxjs/operators';
 
     }
 
-    ngOnChanges(changes: {
-        [key: string]: SimpleChange
-      }
+ngOnChanges(){
+  this.getBatteryMode();
+  this.getInternetMode();
+  this.getDiskSpace();
+  this.getDeviceStatus();
+  this.getAliceStatus();
+  this.getPioneerStatus();
+  this.getCloudStatus();
+  this.checkInterceptor();
+}
 
-    ) {
-      this.getBatteryMode();
-      this.getInternetMode();
-      this.getDiskSpace();
-      this.getDeviceStatus();
-      this.getAliceStatus();
-      this.getPioneerStatus();
-      this.getCloudStatus();
-      this.checkInterceptor();
-    }
+    
 
     ngAfterViewInit() {
       this.checkInterceptor();
       this.cdRef.detectChanges();
-    }
-
-    toggleAlerts() {
-      this.isAlertsOpen = !this.isAlertsOpen;
     }
 
     // Close other popover that is currently open;
@@ -141,9 +133,20 @@ from 'rxjs/operators';
     }
 
     checkInterceptor() {
+      if(this.selectedInterceptor){
+        return;
+      }
       if (this.system.interceptor && this.config) {
         if (this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0) {
-          this.selectedInterceptor = this.system.interceptor.interceptors[0];
+          this.system.interceptor.interceptors.forEach(element => {
+            if(element.connected ){
+              this.selectedInterceptor = element;
+              return;
+            }
+          });
+          if(!this.selectedInterceptor){
+            this.selectedInterceptor = this.system.interceptor.interceptors[0]
+          }
         }
       }
     }
@@ -188,9 +191,6 @@ from 'rxjs/operators';
       }
     }
 
-    toggleInternetTip(event) {
-      this.showInternetTip = !this.showInternetTip;
-    }
 
     getInternetMode() {
       if (this.system.internet && this.config) {
@@ -243,8 +243,13 @@ from 'rxjs/operators';
       }
     }
 
-    selectInterceptor(interceptor) {
+    selectInterceptor(interceptor: Object) {
       this.selectedInterceptor = interceptor;
+    }
+
+    resetPioneer(pioneer: string) {
+      console.log(pioneer);
+      // this.http.resetPioneer(pioneer).subscribe( res => {console.log(res)});
     }
 
   }

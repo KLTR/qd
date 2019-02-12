@@ -1,3 +1,4 @@
+import { HttpService } from '@app/services';
 import {
   Component,
   OnInit,
@@ -10,10 +11,7 @@ import {
 import {
   map
 } from 'rxjs/operators';
-import {
-  State,
-  selectSystem
-} from '@app/state/reducers';
+
 import {
   Store
 } from '@ngrx/store';
@@ -35,17 +33,14 @@ export class DeviceListModalComponent implements OnInit {
   isRefreshing = false;
   isAttackingOrChecking = false;
   constructor(
-    private store: Store < State > ,
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
-
+    private http: HttpService,
   ) {}
 
   ngOnInit() {
-    this.store.select(selectSystem).pipe(map(system => system.internet.indicator.state === 'GREEN')).subscribe(connected => this.isConnected = connected);
-    this.store.select(selectSystem).pipe(map(system => system.pioneer.indicator.state === 'GREEN')).subscribe(connected => {
-      this.vectorState = connected
-    })
+    this.isConnected = true;
+    this.vectorState = true;
     console.log(this.deviceList);
     // this.deviceList = this.deviceList.map(
     //   (device: any) => device.infection devil
@@ -62,6 +57,11 @@ export class DeviceListModalComponent implements OnInit {
       }
     };
   }
+
+  checkDevice(deviceId){
+    this.http.checkDevice(deviceId).subscribe(res => console.log(res));
+  }
+
 
   getDeviceIconSize(deviceStatus: string): number {
     if (!deviceStatus) {
@@ -118,6 +118,9 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
   getButtonText(deviceStatus: string): string {
+    if(!deviceStatus){
+      return;
+    }
     switch (deviceStatus.toLowerCase()) {
       case 'failed':
       case 'aborted':

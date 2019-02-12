@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.error$ = this.auth.error$;
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
   }
 

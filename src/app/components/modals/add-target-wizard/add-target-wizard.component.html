@@ -6,10 +6,9 @@
   <div *ngIf="!isLoading; else loadingScreen" class="picks-wrapper">
     <ul class="options">
       <li class="list-item">
-        <input type="checkbox" class="hidden-box" id="{{vector.vector+'-box'}}" [ngModel]="vector.checked" (change)="updateCheckedVectors(i, $event)">
-        <div class="option-box" stopPropagation (click)="updateCheckedVectors(i)">
+        <div class="option-box">
           <div class="vector-icon-wrapper">
-            <app-svg-icon name="type-{{vector.vectorType}}" [size]="19"></app-svg-icon>
+            <app-svg-icon name="type-{{vector?.vectorType}}" [size]="19"></app-svg-icon>
           </div>
           <div class="vector-info">
             <div class="vector-name">{{vector.name}}<span class="licenses">
@@ -17,8 +16,8 @@
                 )
               </span></div>
             <div class="vector-state">
-              <span>Vector currently: <span [ngClass]="{ 'error': !vector?.vectorState}">
-                  {{ vector?.vectorState ? 'Ready' : 'Busy' }}
+              <span>Pioneer currently: <span [ngClass]="{ 'error': !isPionnerConnected}">
+                  {{ isPionnerConnected ? 'Ready' : 'Busy' }}
                 </span>
               </span>
             </div>
@@ -49,8 +48,8 @@
   <div class="buttons-wrapper">
     <!-- <button class="apply-button modal-btn" (click)="">Test Viewer</button> -->
     <button class="cancel-button modal-btn" (click)="activeModal.close()">Close</button>
-    <button *ngIf="!isLoading" class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isConnected"
-      [ngClass]="{ 'disabled': isEmpty || hasErrors || !isConnected }" (click)="addTarget()">Add target
+    <button *ngIf="!isLoading" class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isPionnerConnected"
+      [ngClass]="{ 'disabled': isEmpty || hasErrors || !isPionnerConnected }" (click)="addTarget()">Add target
     </button>
   </div>
 </div>

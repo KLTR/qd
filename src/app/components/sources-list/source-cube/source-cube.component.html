@@ -1,0 +1,112 @@
+<li class="source-cube" [ngClass]="['ACTIVE', 'DOWNLOADING', 'COLLECTING_DATA'].includes(source.state) ? '' : 'dimmed'">
+    <div class="source-cube-wrapper">
+      <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
+        <div class="source-img">
+          <img *ngIf="source.source.device.ios.profile_pics[0]; else avatar" src="{{source.source.device.ios.profile_pics[0]}}">
+          <ng-template #avatar>
+            <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
+          </ng-template>
+        </div>
+        <div *ngIf="source.source" class="source-info">
+          <p class="source-name">{{source.source.name}}</p>
+          <p class="source-number">{{source.source.device.ios.number}}</p>
+          <div *ngIf="source.source.device" class="source-phone-info">
+            <span class="phone-model">{{source.source.device.name}} </span>
+            <span class="phone-version"> ({{source.source.device.ios.version}})</span>
+            <!-- <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.source.device.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
+            </app-svg-icon> -->
+            <!-- <app-svg-icon class="phone-wifi" [name]="getWifiStatus()" [size]="13">
+            </app-svg-icon> -->
+          </div>
+        </div>
+      </div>
+      <ng-template #noInfoSource>
+        <div class="no-info">
+          <div class="person-img-wrapper">
+            <app-svg-icon name="avatar" [size]="100" class="cube-person-img"></app-svg-icon>
+          </div>
+          <div class="main">
+            <div class="shimmer"></div>
+            <div class="shimmer second"></div>
+            <div class="shimmer"></div>
+          </div>
+        </div>
+      </ng-template>
+      <div class="device-status">
+        <lottie-animation-view *ngIf="isAnimatedIcon(); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
+          [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
+        </lottie-animation-view>
+        <ng-template #noAnimatedIcon>
+          <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
+        </ng-template>
+        <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
+          {{deviceStatusToText()}}</span>
+      </div>
+    </div>
+    <div class="source-cube-info" [ngClass]="['ACTIVE', 'DOWNLOADING', 'COLLECTING_DATA'].includes(source.state) ? '' : 'dimmed'">
+      <ng-template #noInfoTasks>
+        <div class="before-initializing">
+          <div class="top-bar shimmer"></div>
+          <div class="bottom-wrapper">
+            <div class="bottom-icons">
+              <span class="icon-placeholder shimmer" *ngFor="let i of source.tasks.tasks"></span>
+            </div>
+            <div class="time-wrapper">
+              <div class="bottom-time-placeholder-upper shimmer">
+              </div>
+              <div class="bottom-time-placeholder-bottom shimmer"></div>
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+      <div *ngIf="!isNoInfo(); else noInfoTasks" class="after-initializing">
+        <div class="cube-progress-bar" *ngIf="source.tasks.progress_bar">
+          <div class="downloading-percent" [ngClass]="source.tasks.progress_bar ? 'green' : ''">{{source.tasks.progress ? source.tasks.progress : '0'}}%
+            <!-- <span class="remaining-time">{{device.progress.time.eta | millToMinFilter}} Min</span> -->
+          </div>
+          <ngb-progressbar type="custom" [value]="source.tasks.progress ? source.tasks.progress : 0" height="3px" showValue="false">
+          </ngb-progressbar>
+        </div>
+        <div class="cube-sources-icons-info">
+          <div class="icon-placeholder" *ngFor="let item of source.tasks.tasks" ngbTooltip="{{item.name |lowercase}}"
+            container="body" placement="bottom">
+            <div class="tooltip-placeholder">
+              <app-svg-icon *ngIf="!item.progress_bar" (click)="fetchIntels(item)" [name]="item.name" [size]="23"
+                [ngClass]="{'in-proccess': item.progress_bar}"></app-svg-icon>
+              <div class="download-proccess" [ngStyle]="{'width': item.progress + '%'}" *ngIf="item.progress_bar">
+                <app-svg-icon [name]="item.name" [size]="23"></app-svg-icon>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="cube-sources-info-value-duration" *ngIf="source.progress">
+        <span class="cube-info-value" *ngIf="source.progress">{{source.progress| bitesToKb}}
+          <div class="source-export" stopPropagation ngbTooltip="Export" placement="top" (click)="exportData('source')">
+            <svg height="18" viewBox="0 0 19.07 18" width="19.07">
+              <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
+              <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
+            </svg>
+          </div>
+        </span>
+        <span class="cube-info-duration" *ngIf="source.progress.time">Duration
+          <span class="source-duration">{{sourceDuration}}</span>
+        </span>
+      </div> -->
+      <span class="cube-info-duration">Duration
+          <span class="source-duration">{{source.source.created_at | amDuration: 'hours'}}</span>
+        </span>
+        </div>
+
+      </div>
+      <div class="source-export"  stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.source.id)">
+        <svg height="18" viewBox="0 0 19.07 18" width="19.07">
+          <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
+          <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
+        </svg>
+      </div>
+      <div class="cube-on-off" stopPropagation  ngbTooltip="Terminate Agent" (click)="terminateAgent(source.source.id)"
+        placement="top" container="body">
+        <app-svg-icon name="power" [size]="13"></app-svg-icon>
+      </div>
+    </div>
+  </li>

@@ -3,32 +3,22 @@ import {
 } from '@env/environment.prod';
 import {
   WsService,
-  HttpService
+  HttpService,
+  ConnectionService
 } from '@app/services';
 import {
   Component,
   OnInit,
   Input,
-  ChangeDetectorRef,
 } from '@angular/core';
 import {
   NgbModal,
   NgbActiveModal,
 } from '@ng-bootstrap/ng-bootstrap';
-import {
-  Store
-} from '@ngrx/store';
-import {
-  State,
-  selectSystem
-} from '@app/state/reducers';
-import {
-  map
-} from 'rxjs/operators';
+
 import {
   DeviceListModalComponent
 } from './../device-list-modal/device-list-modal.component'
-
 @Component({
   selector: 'app-add-target-wizard',
   templateUrl: './add-target-wizard.component.html',
@@ -46,21 +36,15 @@ export class AddTargetWizardComponent implements OnInit {
   identifiers: any;
   selectedType: any
   targetId: any;
-  @Input() devices: []; // hold missionData.infections where infection.state === 'PENDING'
+  @Input() devices: [];
   constructor(
     public activeModal: NgbActiveModal,
     private httpService: HttpService,
     private modalService: NgbModal,
     private ws: WsService,
-    private store: Store < State > ,
-    private _cd: ChangeDetectorRef
+    private connectionService: ConnectionService
   ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
-  }
-
-  ngOnInit() {
-
-    this.error = null;
     this.vector = {
       name: "X-Caliber",
       license: {
@@ -68,24 +52,24 @@ export class AddTargetWizardComponent implements OnInit {
         total: 100,
         tip: "Tip"
       },
-      vectorState: "",
       vectorStateTip: "",
+      vectorState: "",
       vectorType: 'x-caliber',
       inputs: [{
         identifiers: []
       }],
       identifier: ""
     }
+    this.error = null;
     this.selectedType = 'email';
     this.identifiers = [{
       type: this.selectedType,
       value: this.vector.identifier
     }]
-    this.store.select(selectSystem).pipe(map(system => system.internet.indicator.state === 'GREEN')).subscribe(connected => this.isConnected = connected);
-    this.store.select(selectSystem).pipe(map(system => system.pioneer.indicator.state === 'GREEN')).subscribe(connected => {
-      this.vector.vectorState = connected
-    })
+    this.connectionService.isPioneer.subscribe(res => { this.isPionnerConnected = res});
+  }
 
+  ngOnInit() {
   }
 
   addTarget() {
@@ -101,7 +85,6 @@ export class AddTargetWizardComponent implements OnInit {
         console.log(targetId);
         this.isLoading = true;
         this.targetId = targetId;
-
       },
       err => {
         console.log(err), this.activeModal.close()

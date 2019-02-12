@@ -7,6 +7,93 @@ export class IconService {
 
   constructor() {}
 
+
+  setAnimatedIcon(source) {
+    switch (source.state) {
+      // 0
+      case 'DOWNLOADING_AGENT':
+        return {
+          height: 23,
+          width: 25,
+          options: {
+            path: 'assets/svg-jsons/downloading-agent.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+              scaleMode: 'noScale',
+              className: 'downloading-agent-animation'
+            }
+          }
+        };
+        // 1
+      case 'INITIALIZING':
+        return {
+          height: 23,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/initializing.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'init-animation'
+            }
+          }
+        };
+        // 2
+      case 'DOWNLOADING':
+        return {
+          height: 23,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/downloading.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'downloading-animation'
+            }
+          }
+        };
+        // 3
+      case 'ACTIVE':
+        return {
+          height: 27,
+          width: 23,
+          options: {
+            path: 'assets/svg-jsons/active.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'active-animation'
+            }
+          }
+        };
+        //4
+      case 'TERMINATING':
+        return {
+          height: 27,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/shutting-down.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+              className: 'terminating-animation'
+            }
+          }
+        };
+    }
+  }
+
   getSourceStatusIcon(status) {
     switch (status) {
       case 'active':
@@ -137,12 +224,12 @@ export class IconService {
       <path fill="#6cfff8" d="M7.44 0H.56A.56.56 0 0 0 0 .56v12.88a.56.56 0 0 0 .56.56h6.88a.56.56 0 0 0 .56-.56V.56A.56.56 0 0 0 7.44 0zm-.16.72V10H.72V.72zM3 12a1 1 0 1 1 1 1 1 1 0 0 1-1-1z" id="fLayer_1-2" data-name="Layer 1" />
     </g>
     </svg>`;
-      case 'COLLECTING_DATA':
+      case 'collecting_data':
         return `
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="35" viewBox="0 0 25 35">
     <g id="Group_187" data-name="Group 187" transform="translate(-452 -449)">
         <path id="Path_423" d="M1861 933h-15a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1v-26a1 1 0 0 0-1-1zm-7.5 26a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5zm7.5-5h-15v-20h15z" fill="#6cfff8" data-name="Path 423" transform="translate(-1385 -477)"/>
-        <circle id="Ellipse_43" cx="8.5" cy="8.5" r="8.5" class="cls-2" data-name="Ellipse 43" transform="translate(452 449)"/>
+        <circle id="Ellipse_43" cx="8.5" cy="8.5" r="8.5" data-name="Ellipse 43" transform="translate(452 449)"/>
         <path id="Path_118" d="M1430.64 1075.9l-1.11-1.12a.1.1 0 0 1 .08-.17l3.96-.61a.105.105 0 0 1 .12.12l-.6 3.97a.109.109 0 0 1-.18.07l-1.11-1.11a4.2 4.2 0 0 0 3.39 7.13l-.25 1.63a5.8 5.8 0 0 1-3.73-1.25 6.013 6.013 0 0 1-1.5-1.78 5.831 5.831 0 0 1 .93-6.88zm8.17-.47a5.854 5.854 0 0 0-3.73-1.25l-.28 1.64a4.135 4.135 0 0 1 4.28 2.6 4.206 4.206 0 0 1-.88 4.53l-1.11-1.11a.108.108 0 0 0-.18.08l-.6 3.96a.1.1 0 0 0 .11.12l3.97-.6a.11.11 0 0 0 .08-.18l-1.12-1.11a5.822 5.822 0 0 0 .94-6.88 5.666 5.666 0 0 0-1.48-1.8z" fill="#6cfff8"
         fill-rule="evenodd" data-name="Path 118" transform="translate(-975 -623)"/>
     </g>
@@ -376,6 +463,7 @@ export class IconService {
         </g>
     </svg>`;
       case 'info':
+      case 'device_info':
         return `<svg viewBox="0 0 83 83" id="info" preserveAspectRatio="none" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
 
         <g id="arLayer_2" data-name="Layer 2" width="35px" height="35px">
@@ -498,6 +586,7 @@ export class IconService {
         </g>
     </svg>`;
       case 'passwords':
+      case 'keychains':
         return `<svg viewBox="0 0 83 83" id="passwords" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
                 <g id="beLayer_2" data-name="Layer 2">
             <g id="beLayer_1-2" data-name="Layer 1">
@@ -614,7 +703,7 @@ export class IconService {
         </g>
     </svg>`;
       case 'whatsapp':
-        return `<svg viewBox="0 0 83 83" id="whatsapp" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
+        return `<svg viewBox="0 0 83 83" id="whatsapp" width="${size ? size : '23px'}" height="${size ? size : '23px'}">
                 <g id="brLayer_2" data-name="Layer 2">
             <g id="brLayer_1-2" data-name="Layer 1">
                 <path fill="currentColor" d="M78 0H5a5 5 0 0 0-5 5v73a5 5 0 0 0 5 5h73a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM42 69.67a29.28 29.28 0 0 1-14.1-3.6L11.8 71.2l5.26-15.52a28.69 28.69 0 0 1-4.18-14.94A29.16 29.16 0 1 1 42 69.67z" />

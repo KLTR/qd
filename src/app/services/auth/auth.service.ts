@@ -1,19 +1,9 @@
+import { Router } from '@angular/router';
 import {
   Injectable
 } from '@angular/core';
 import {
-  Store
-} from '@ngrx/store';
-import {
-  fromUser,
-  selectUser,
-  userActions
-} from '@app/state';
-import {
-  Observable
-} from 'rxjs';
-import {
-  map
+  map, tap
 } from 'rxjs/operators';
 import {
   HttpService
@@ -21,49 +11,30 @@ import {
 
 @Injectable()
 export class AuthService {
-  public user$: Observable < fromUser.State > = this.store.select(selectUser);
-
+  public user:any ;
+  public isSignedIn: boolean;
   constructor(
-    private store: Store < fromUser.State > ,
-    private http: HttpService) {}
-
-  get token$(): Observable < string > {
-    return this.user$.pipe(
-      map((user) => {
-        return user.token;
-      })
-    );
-  }
-
-  get error$(): Observable < string > {
-    return this.user$.pipe(
-      map(user => user.error)
-    );
-  }
-
-  get role$(): Observable < string > {
-    return this.user$.pipe(
-      map(user => user.role)
-    );
-  }
-
-  get isSignedIn$(): Observable < boolean > {
-    return this.user$.pipe(
-      map(user => !!user.token)
-    );
-  }
+    private router: Router,
+    private http: HttpService) {
+    }
 
   logout(): void {
-    this.http.logout().subscribe()
-    this.store.dispatch(new userActions.Logout());
+    this.http.logout().subscribe(res => {
+      console.log(res);
+      localStorage.clear();
+      this.router.navigate(['/login'])
+    })
   }
 
   login(credentials: {
     user: string,
     password: string
   }): void {
-    this.store.dispatch(new userActions.Login(credentials));
-    this.http.setToken()
+    this.http.login(credentials).pipe(
+      tap(token => localStorage.setItem('token', token.token)),
+      map(token => token.swagger_ui),
+      tap(token => localStorage.setItem('user', token)),
+    ).subscribe(res => {this.isSignedIn = true, this.router.navigate(['/dashboard'])})
   }
 
 

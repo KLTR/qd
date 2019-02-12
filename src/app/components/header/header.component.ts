@@ -14,7 +14,8 @@ import {
 } from '../../services/http/http.service';
 import {
   Observable,
-  Subscription
+  Subscription,
+  Subject
 } from 'rxjs';
 import * as $ from 'jquery';
 import {
@@ -29,9 +30,7 @@ import {
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() user: any;
   @Input() system: any;
-  @Input() alerts: any;
   title = 'app';
   highestLevel: string;
   activeAlerts = [];
@@ -43,7 +42,7 @@ export class HeaderComponent implements OnInit {
   isChanged = false;
   moreAlerts = false;
   isAlertsOpen = false;
-  recentAlert: any;
+
 
   constructor(
     private menuService: MenuService,
@@ -51,24 +50,25 @@ export class HeaderComponent implements OnInit {
     private ws: WsService,
     private modalService: NgbModal,
   ) {
+    this.system = [];
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
-
   }
 
   ngOnInit() {
+
     this.searchResults = [];
-    this.system.alerts = [];
-    this.httpService.getDashboard().subscribe(res => this.recentAlert = res.alert)
+    this.httpService.getTop().subscribe(res => {
+      this.system = res;
+    })
   }
 
   toggleAlerts() {
     this.httpService.getAlerts().subscribe(res => {
-      this.system.alerts = res.alerts;
       let alertsModalRef = this.modalService.open(AlertsModalComponent, {
         windowClass: 'alerts-window',
         backdrop: 'static'
       });
-      alertsModalRef.componentInstance.alerts = this.system.alerts;
+      alertsModalRef.componentInstance.alerts = res.alerts;
     });
   }
 
@@ -83,20 +83,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  colorEventCircle() {
-    if (this.activeAlerts.length > 0) {
-      if (this.activeAlerts.find(event => event.severity === 'critical') !== undefined) {
-        this.highestLevel = 'critical';
-      } else if (this.activeAlerts.find(event => event.severity === 'major') !== undefined) {
-        this.highestLevel = 'major';
-      } else if (this.activeAlerts.find(event => event.severity === 'info') !== undefined) {
-        this.highestLevel = 'info';
-      }
-    }
-    if (this.activeAlerts.length > 99) {
-      this.moreAlerts = true;
-    }
-  }
 
   toggleMenu() {
     this.menuService.toggleMenu();
@@ -127,8 +113,7 @@ export class HeaderComponent implements OnInit {
         this.system.internet = msg.result.internet;
         break;
       case 'alert':
-        this.recentAlert = msg.result.alert;
-        this.system.alerts.unshift(msg.result.alert.log);
+        this.system.alert = msg.result.alert;
         break;
       case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
@@ -139,7 +124,6 @@ export class HeaderComponent implements OnInit {
         this.searchResults = this.searchResults.slice();
         break;
     }
-    // this triggers on changes
     this.system = Object.assign({}, this.system);
   }
   clearSearchResults() {

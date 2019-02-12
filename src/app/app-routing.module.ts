@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { LayoutResolver } from '@app/resolvers';
 import {AuthGuard} from '@app/guards'
-import { MissionResolver } from '@app/resolvers'
 import { SourcesListComponent } from './components/sources-list/sources-list.component';
 const routes: Routes = [
   {
@@ -15,19 +13,13 @@ const routes: Routes = [
       {
         path:'',
         pathMatch: 'full',
-        redirectTo: 'activeMission'
+        redirectTo: 'dashboard'
       },
       {
-        path: 'activeMission',
+        path: 'dashboard',
         component: SourcesListComponent,
-        // resolve: {
-        //   missionData: MissionResolver
-        // },
       },
     ],
-    resolve: {
-      layoutData: LayoutResolver
-    }
   },
   {
     path: 'login',
