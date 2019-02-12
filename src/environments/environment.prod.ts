@@ -1,19 +1,12 @@
-const protocol = window.location.protocol;
-const port = 8091;
-const websocketPort = 8091;
-// const host = '172.20.2.2'
-// const host = '192.168.3.2' 
-// const host = '${K8S_QUANTUM_GATEWAY_NODE}';
-const host = 'gateway.default';
 export const environment = {
   fetchPageSize: 50,
   version: '0.0.3',
   production: true,
   envName: 'prod',
-  socketPort: `${websocketPort}`,
-  baseUrl: `${protocol}//${host}:${port}`,
-  apiUrl: `${protocol}//${host}:${port}`,
-  websocketUrl: `ws://${host}:${websocketPort}/dashboard/ws`,
+  socketPort: '80',
+  baseUrl: 'http://gateway.${K8S_NODE}:80',
+  apiUrl: 'http://gateway.${K8S_NODE}:80',
+  websocketUrl: 'ws://gateway.${K8S_NODE}:80/dashboard/ws',
   wsProtocol: 'Bearer',
   debug: true,
   addAttackVector: false,
