@@ -14,7 +14,8 @@ import {
 } from '../../services/http/http.service';
 import {
   Observable,
-  Subscription
+  Subscription,
+  Subject
 } from 'rxjs';
 import * as $ from 'jquery';
 import {
@@ -41,7 +42,7 @@ export class HeaderComponent implements OnInit {
   isChanged = false;
   moreAlerts = false;
   isAlertsOpen = false;
- 
+
 
   constructor(
     private menuService: MenuService,
@@ -54,8 +55,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.searchResults = [];
-    this.httpService.getTop().subscribe(res => {this.system = res})
+    this.httpService.getTop().subscribe(res => {
+      this.system = res;
+    })
   }
 
   toggleAlerts() {
@@ -79,20 +83,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  colorEventCircle() {
-    if (this.activeAlerts.length > 0) {
-      if (this.activeAlerts.find(event => event.severity === 'critical') !== undefined) {
-        this.highestLevel = 'critical';
-      } else if (this.activeAlerts.find(event => event.severity === 'major') !== undefined) {
-        this.highestLevel = 'major';
-      } else if (this.activeAlerts.find(event => event.severity === 'info') !== undefined) {
-        this.highestLevel = 'info';
-      }
-    }
-    if (this.activeAlerts.length > 99) {
-      this.moreAlerts = true;
-    }
-  }
 
   toggleMenu() {
     this.menuService.toggleMenu();
@@ -134,8 +124,6 @@ export class HeaderComponent implements OnInit {
         this.searchResults = this.searchResults.slice();
         break;
     }
-    // this triggers on changes
-    console.log(this.system);
     this.system = Object.assign({}, this.system);
   }
   clearSearchResults() {

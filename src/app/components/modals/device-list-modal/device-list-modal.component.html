@@ -39,7 +39,7 @@
         <button class="btn reset" (click)="resetVectorServer()">Reset vector</button>
       </div> -->
   </div>
-  <div class="device-list" *ngIf="deviceList.length > 0; else loadingScreen">
+  <div class="device-list" *ngIf="deviceList?.length > 0; else loadingScreen">
     <div class="device-list-header">
       <span class="id">device</span>
       <span class="status">status</span>

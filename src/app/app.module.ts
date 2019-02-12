@@ -42,7 +42,8 @@ import {
   IconService,
   MenuService,
   InterceptorService,
-  WsService
+  WsService,
+  ConnectionService
 } from "@app/services";
 
 // Components
@@ -218,6 +219,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     InterceptorService,
     // WebsocketService,
     WsService,
+    ConnectionService,
     // Guards
     AuthGuard,
   ],
