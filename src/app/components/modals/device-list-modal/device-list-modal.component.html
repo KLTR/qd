@@ -8,9 +8,9 @@
   </div>
   <div class="refresh">
     <div *ngIf="!isRefreshing && !isAttackingOrChecking" [ngbTooltip]="'Delete target'" placement="left" class="delete-icon"
-      (click)="deleteTarget()"></div>
-    <app-svg-icon *ngIf="!isRefreshing" [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
-      stopPropagation (click)="refreshTarget()"></app-svg-icon>
+      (click)="archiveTarget()"></div>
+    <app-svg-icon *ngIf="!isRefreshing"  [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
+      stopPropagation (click)="refreshTargetDevices()"></app-svg-icon>
     <ng-template #refreshTip>
       <div [ngStyle]="{ 'min-width': '150px' }">
         <div>Refresh target info</div>
