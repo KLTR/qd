@@ -42,11 +42,11 @@ push-docker:
   - set -x && docker push ${DOCKER_CANONICAL_IMAGE}
   <<: *limit_branches
 
-deploy-to-dev:
-  stage: deployment
-  script:
-  - set -x && ${deploy_to_dev}
-  <<: *limit_branches
+#deploy-to-dev:
+#  stage: deployment
+#  script:
+#  - set -x && ${deploy_to_dev}
+#  <<: *limit_branches
   
 cleanup:
   stage: cleanup
