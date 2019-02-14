@@ -1,6 +1,6 @@
 import {
   environment as env
-} from '@env/environment.prod';
+} from '@env/environment';
 import {
   HttpService,
   WsService
