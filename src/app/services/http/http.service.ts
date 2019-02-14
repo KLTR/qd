@@ -25,6 +25,8 @@ serverUrls = {
   // Targets
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
+  archiveTarget: '/targets/{{id}}/archive',
+  refreshTargetDevices: '/targets/{{id}}/devices/refresh',
   // Sources
   exportSource: '/sources/{{id}}/export',
   terminateAgent: '/sources/{{id}}/shutdown',
@@ -50,6 +52,12 @@ config: any;
         url += addiotnal;
       }
       return url;
+  }
+  archiveTarget(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('archiveTarget', targetId), this.setHeaders());
+  }
+  refreshTargetDevices(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('refreshTargetDevices', targetId), this.setHeaders());
   }
   checkDevice(deviceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('checkDevice', deviceId), this.setHeaders());

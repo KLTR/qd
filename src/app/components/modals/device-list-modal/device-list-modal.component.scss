@@ -266,6 +266,13 @@
 
             &.completed {
               background: #6cfff8;
+            //   &.shimmer {
+            //     background-image: linear-gradient(90deg, rgb(36, 202, 197) 0, #30FFF9 20%, rgb(36, 202, 197) 40%, rgb(36, 202, 197));
+            //     background-size: 99% 100%;
+            //     background-repeat: no-repeat;
+            //     animation: shimmer 1.5s linear 1ms infinite backwards;
+            // }
+                
             }
           }
         }
@@ -508,4 +515,17 @@
   width: 16px;
   height: 16px;
   margin-right: 10px;
+}
+
+
+
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% * 5 100%;
+  }
+
+  100% {
+    background-position: 100% * 100 100%;
+  }
 }

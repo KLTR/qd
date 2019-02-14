@@ -247,9 +247,9 @@ ngOnChanges(){
       this.selectedInterceptor = interceptor;
     }
 
-    resetPioneer(pioneer: string) {
-      console.log(pioneer);
-      // this.http.resetPioneer(pioneer).subscribe( res => {console.log(res)});
+    resetPioneer(pioneerId: string) {
+      console.log(pioneerId);
+      this.http.resetPioneer(pioneerId).subscribe( res => {console.log(res)});
     }
 
   }

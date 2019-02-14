@@ -1,3 +1,4 @@
+import { HttpService } from '@app/services';
 import {
   Component,
   OnInit,
@@ -15,7 +16,7 @@ export class RightBarComponent implements OnInit {
   @Input() events: any[];
 
 
-  constructor() {}
+  constructor(private http:HttpService) {}
 
   ngOnInit() {}
 
@@ -25,7 +26,9 @@ export class RightBarComponent implements OnInit {
   toggleSelected(val) {
     this.selected = val;
   }
-  removeEvent(index) {
-    this.events.splice(index, 1);
+  removeEvent(eventId) {
+    console.log(eventId);
+    this.http.deleteEvent(eventId).subscribe(res => console.log(res));
+    // this.events.splice(index, 1);
   }
 }

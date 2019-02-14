@@ -98,6 +98,13 @@
           .phone-version {
             margin-left: 3px;
           }
+          .phone-battery{
+            margin-left: 5px;
+          }
+          .phone-wifi{
+            margin-left: 5px;
+            margin-bottom: 2px;
+          }
         }
       }
     }
@@ -153,7 +160,12 @@
         display: flex;
         align-items: center;
         margin-top: 4px;
-
+        .cube-info-duration{
+          margin-left: auto;
+          font-size: 12px;
+          color: #85a0bc;
+          line-height: 0.93;
+        }
         .icon-placeholder {
           position: relative;
           margin-right: 3px;

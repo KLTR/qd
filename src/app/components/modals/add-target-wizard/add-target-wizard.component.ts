@@ -142,16 +142,16 @@ export class AddTargetWizardComponent implements OnInit {
         // console.log(msg.result);
       }
       switch (Object.keys(msg.result)[0]) {
-        case 'infection':
-          let infection = msg.result.infection;
-          if (this.targetId && infection.infection.state === "PENDING" && infection.infection.target_id === this.targetId) {
+        case 'pioneer_device':
+          let device = msg.result.pioneer_device;
+          if (this.targetId &&  device.target_id === this.targetId) {
             this.activeModal.close();
             let deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
               centered: true,
               size: 'lg',
               backdrop: 'static'
             });
-            deviceListModalRef.componentInstance.deviceList = [infection];
+            deviceListModalRef.componentInstance.deviceList = [device];
             deviceListModalRef.componentInstance.targetId = this.targetId;
           }
           break;

@@ -25,8 +25,8 @@
   <div class="body-header">
     <div class="vector-state">
       <span>Vector currently:
-        <span [ngClass]="{ 'error': !vectorState}">
-          {{ vectorState ? 'Ready' : 'Busy' }}
+        <span [ngClass]="{ 'error': !isPioneer}">
+          {{ isPioneer ? 'Ready' : 'Busy' }}
         </span>
       </span>
       <ng-template #vectorStateTip>
@@ -54,11 +54,11 @@
           </span>
         </div>
         <div class="device-status">
-          <span class="status-icon" [ngClass]="{ 'thinking': device.state === 'CREATED', 'success': device.state === 'COMPLETED' }"
+          <span class="status-icon" [ngClass]="{ 'thinking': device.state === 'CHECKING', 'success': device.state === 'COMPLETED' }"
             *ngIf="device.state !== 'NOT_SUPPORTED'">
-            <app-svg-icon *ngIf="!['CREATED', 'COMPLETED'].includes(device.state)" [name]="'target_device_' + device.state"
+            <app-svg-icon *ngIf="!['CHECKING', 'COMPLETED'].includes(device.state)" [name]="'target_device_' + device.state"
               [size]="getDeviceIconSize(device.state)"></app-svg-icon>
-            <lottie-animation-view *ngIf="device.state === 'CREATED'" [width]="59" [height]="61" [options]="getAnimatedIcon('device-loading')"></lottie-animation-view>
+            <lottie-animation-view *ngIf="device.state === 'CHECKING'" [width]="59" [height]="61" [options]="getAnimatedIcon('device-loading')"></lottie-animation-view>
             <lottie-animation-view *ngIf="device.state === 'COMPLETED'" [width]="39" [height]="41" [options]="getAnimatedIcon('active')"></lottie-animation-view>
           </span>
           <span class="status-text" *ngIf="device.state !== 'ATTACKING'" [ngClass]="{ 'unsupported': device.state === 'NOT_SUPPORTED', 'dimmed': !['READY', 'COMPLETED'].includes(device.state), 'success': device.state === 'COMPLETED' }">
@@ -72,25 +72,25 @@
               <span class="attacking-text">Attacking</span>
             </div>
             <div class="progress-bar-wrapper">
-              <span class="step completed"></span>
-              <span class="step completed"></span>
-              <span class="step completed"></span>
-              <span class="step"></span>
-              <span class="step"></span>
+              <span class="step" [ngClass]="{'completed': device.state_metadata.code >= 1}"></span>
+              <span class="step" [ngClass]="{'completed': device.state_metadata.code >= 2}"></span>
+              <span class="step" [ngClass]="{'completed': device.state_metadata.code >= 3}"></span>
+              <span class="step" [ngClass]="{'completed': device.state_metadata.code >= 4}"></span>
+              <span class="step" [ngClass]="{'completed': device.state_metadata.code >= 5}"></span>
             </div>
-            <span class="last-updated">Device response {{ device.updated_at | amTimeAgo }}</span>
+            <span class="last-updated">Device response {{ device.last_seen | amTimeAgo }}</span>
           </div>
         </div>
         <div class="device-action">
-          <span class="btn" *ngIf="!['CREATED', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CREATED', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
+          <span class="btn" *ngIf="!['CHECKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CHECKING', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
                   'no-outline': device.state === 'ATTACKING',
                   'active': device.state === 'READY' }"
             stopPropagation (click)="checkDevice(device.id)">{{ getButtonText(device.state) }}</span>
-          <span class="btn" [ngClass]="{ 'thinking': device.state === 'CREATED' }" *ngIf="device.state === 'CREATED' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
+          <span class="btn" [ngClass]="{ 'thinking': device.state === 'CHECKING' }" *ngIf="device.state === 'CHECKING' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
             <lottie-animation-view [height]="28" [width]="30" [options]="getAnimatedIcon('btn_thinking')"></lottie-animation-view>
           </span>
-          <span class="last-updated" *ngIf="!['CREATED', 'ATTACKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">Last
-            seen: {{ device.updated_at? (device.updated_at | amTimeAgo) === 'a few seconds ago' ? 'Now' :
+          <span class="last-updated" *ngIf="!['CHECKING', 'ATTACKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">Last
+            seen: {{ device.last_seen? (device.last_seen | amTimeAgo) === 'a few seconds ago' ? 'Now' :
             (device.updated_at
             | amTimeAgo) : 'Never' }}</span>
         </div>

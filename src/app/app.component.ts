@@ -2,7 +2,7 @@ import {
   Component
 } from '@angular/core';
 import {
-  HttpService
+  HttpService, ConnectionService
 } from './services';
 
 @Component({
@@ -13,7 +13,9 @@ import {
 export class AppComponent {
   title = 'quantum-ui';
 
-  constructor(private http: HttpService)
+  constructor(
+    private http: HttpService,
+    private connectionService: ConnectionService)
   {  
     this.http.getConfig().subscribe();
   }
