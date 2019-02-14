@@ -26,7 +26,7 @@ serverUrls = {
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
   // Sources
-  exportSource: '/exports/sources/{{id}}',
+  exportSource: '/sources/{{id}}/export',
   terminateAgent: '/sources/{{id}}/shutdown',
   // Devices
   checkDevice: '/devices/{{id}}/check',
@@ -57,9 +57,6 @@ config: any;
   resetPioneer(pioneerId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());
   }
-  exportSource(sourceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
-  }
   terminateAgent(sourceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
   }
@@ -88,8 +85,12 @@ config: any;
 
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
     return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
-  
   }
+
+  exportSource(sourceId: string): Observable<any> {
+    return this.http.post(this.getUrlByApiName('exportSource', sourceId), null,this.setHeaders());
+  }
+
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }
