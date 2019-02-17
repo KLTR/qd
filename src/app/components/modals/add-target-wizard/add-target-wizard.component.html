@@ -1,7 +1,7 @@
 <div id="add-attack-modal-wrapper">
   <div class="modal-header-attack">
     <app-svg-icon name="add_attack_vector" [size]="15" class="vector-icon"></app-svg-icon>
-    Attack vectors
+    Target details
   </div>
   <div *ngIf="!isLoading; else loadingScreen" class="picks-wrapper">
     <ul class="options">
@@ -16,7 +16,7 @@
                 )
               </span></div>
             <div class="vector-state">
-              <span>Pioneer currently: <span [ngClass]="{ 'error': !isPionnerConnected}">
+              <span>Pioneer status: <span [ngClass]="{ 'error': !isPionnerConnected}">
                   {{ isPionnerConnected ? 'Ready' : 'Busy' }}
                 </span>
               </span>

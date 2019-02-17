@@ -30,8 +30,8 @@ import {
   LottieAnimationViewModule
 } from 'ng-lottie';
 import {
-  ToastrModule,
-  ToastNoAnimation,
+  // ToastrModule,
+  // ToastNoAnimation,
   ToastNoAnimationModule
 } from 'ngx-toastr';
 
@@ -204,7 +204,6 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     LottieAnimationViewModule.forRoot(),
 
     AgGridModule.withComponents([]),
-    // WebSocketModule.forRoot(environment.websocketUrl),
   ],
   providers: [
     {
@@ -230,7 +229,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     AlertsModalComponent,
     TemplateRendererComponent,
     OwnersCellComponent,
-    DateCellComponent
+    DateCellComponent,
   ],
   bootstrap: [AppComponent]
 })

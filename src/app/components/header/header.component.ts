@@ -55,7 +55,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.searchResults = [];
     this.httpService.getTop().subscribe(res => {
       this.system = res;

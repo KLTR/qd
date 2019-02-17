@@ -12,7 +12,7 @@ import {
 } from 'rxjs/operators';
 @Injectable()
 export class WsService {
-  public messages: Rx.Subject < any > ;
+  public messages: Rx.Subject < string > ;
   public ws: any;
   private subject: Rx.Subject < MessageEvent > ;
   private token: string;
@@ -26,7 +26,6 @@ export class WsService {
       this.connect(environment.websocketUrl)
       .pipe(
         map((response: MessageEvent): any => {
-          // console.log(response.data);
           let data = JSON.parse(response.data);
           return data;
         })

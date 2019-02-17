@@ -16,7 +16,7 @@
               <span *ngIf="event.log?.metadata?.name" class="event-owner2">{{event.log.metadata.name}}</span>
             </div>
             <div class="buttons">
-              <span class="dismiss" (click)="removeEvent(i)">DISMISS </span>
+              <span class="dismiss" (click)="removeEvent(event.log.id)">DISMISS </span>
             </div>
           </li>
         </ul>

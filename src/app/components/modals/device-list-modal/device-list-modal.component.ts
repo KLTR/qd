@@ -1,4 +1,6 @@
-import { HttpService } from '@app/services';
+import { environment } from './../../../../environments/environment.prod';
+import { WsService } from './../../../services/websocket/ws.service';
+import { HttpService, ConnectionService } from '@app/services';
 import {
   Component,
   OnInit,
@@ -28,7 +30,7 @@ export class DeviceListModalComponent implements OnInit {
   @Input() deviceList: any[];
   @Input() targetId;
   @Input() target;
-  vectorState: boolean;
+  isPioneer: boolean;
   isConnected: boolean;
   isRefreshing = false;
   isAttackingOrChecking = false;
@@ -36,15 +38,20 @@ export class DeviceListModalComponent implements OnInit {
     private modalService: NgbModal,
     public activeModal: NgbActiveModal,
     private http: HttpService,
-  ) {}
+    private ws: WsService,
+    private connectionService: ConnectionService
+  ) {
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+
+  }
 
   ngOnInit() {
-    this.isConnected = true;
-    this.vectorState = true;
+    if (!this.deviceList){
+      this.deviceList = [];
+    }
+    this.connectionService.isPioneer.subscribe( res => this.isPioneer = res);
+    this.connectionService.isInternet.subscribe( res => this.isConnected = res);
     console.log(this.deviceList);
-    // this.deviceList = this.deviceList.map(
-    //   (device: any) => device.infection devil
-    // )
   }
   getAnimatedIcon(name: string): any {
     return {
@@ -61,7 +68,12 @@ export class DeviceListModalComponent implements OnInit {
   checkDevice(deviceId){
     this.http.checkDevice(deviceId).subscribe(res => console.log(res));
   }
-
+  archiveTarget(){
+    this.http.archiveTarget(this.targetId).subscribe(res=>console.log(res));
+  }
+  refreshTargetDevices(){
+    this.http.refreshTargetDevices(this.targetId).subscribe(res=>console.log(res));
+  }
 
   getDeviceIconSize(deviceStatus: string): number {
     if (!deviceStatus) {
@@ -83,37 +95,38 @@ export class DeviceListModalComponent implements OnInit {
     }
     switch (deviceStatus.toLowerCase()) {
       case 'failed':
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return 'Failed';
       case 'aborted':
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return 'Aborted';
       case 'offline':
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return 'Offline';
       case 'unknown':
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return 'Not Recently Checked';
       case 'ready':
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return 'Ready to attack';
       case 'attacking':
-        this.isAttackingOrChecking = true;
+        // this.isAttackingOrChecking = true;
         return 'attacking';
-      case 'NOT_SUPPORTED':
-        this.isAttackingOrChecking = false;
+      case 'not_supported':
+        // this.isAttackingOrChecking = false;
         return 'Not supported';
-      case 'success':
-        this.isAttackingOrChecking = false;
+      case 'completed':
+        // this.isAttackingOrChecking = false;
         return 'Successfull infection';
       case 'terminated':
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return 'Agent terminated';
       case 'created':
-        this.isAttackingOrChecking = true;
+      case 'checking':
+        // this.isAttackingOrChecking = true;
         return 'Checking status (It may take a few minutes)...';
       default:
-        this.isAttackingOrChecking = false;
+        // this.isAttackingOrChecking = false;
         return '';
     }
   }
@@ -135,6 +148,35 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
 
+
+  catchWebSocketEvents(msg) {
+    if (Object.keys(msg)[0] === 'error') {
+      return;
+    }
+    if (msg.result) {
+      if (environment.debug) {
+        // console.log(msg.result);
+      }
+      switch (Object.keys(msg.result)[0]) {
+        case 'pioneer_device':
+          let device = msg.result.pioneer_device;
+          if (this.targetId &&  device.target_id === this.targetId) { 
+            this.handleDevice(device);           
+          }
+          break;
+      }
+    } else {
+      console.log('err', msg.result);
+    }
+  }
+handleDevice(device){
+  this.deviceList = this.deviceList.filter((x) => {
+    if (x.id !== device.id) {
+      return x
+    }
+  });
+  this.deviceList.unshift(device);
+}
   // actBasedOnStatus(deviceId: string, deviceStatus: string): void {
   //   const deviceName = this.target.devices.filter(device => device.id === deviceId)[0].name;
   //   let confirmModal;

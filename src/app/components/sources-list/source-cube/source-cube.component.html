@@ -1,4 +1,4 @@
-<li class="source-cube" [ngClass]="['ACTIVE', 'DOWNLOADING', 'COLLECTING_DATA'].includes(source.state) ? '' : 'dimmed'">
+<li class="source-cube" [ngClass]="['LOST_CONNECTION', 'TERMINATED', 'TERMINATING'].includes(source.state) ? 'dimmed' : ''">
     <div class="source-cube-wrapper">
       <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
         <div class="source-img">
@@ -13,10 +13,10 @@
           <div *ngIf="source.source.device" class="source-phone-info">
             <span class="phone-model">{{source.source.device.name}} </span>
             <span class="phone-version"> ({{source.source.device.ios.version}})</span>
-            <!-- <app-svg-icon class="phone-battery" [name]="getBatteryIcon(source.source.device.ios?.indicators?.battery)" [size]="13" [ngStyle]="{'color': getBatteryIcon(source.ios?.indicators?.battery) === 'device-battery-empty'? '#ff4d6a' : '#c4e1ff'}">
-            </app-svg-icon> -->
-            <!-- <app-svg-icon class="phone-wifi" [name]="getWifiStatus()" [size]="13">
-            </app-svg-icon> -->
+            <app-svg-icon ngbTooltip="{{source.source.device?.ios?.indicators?.battery}}%" container="body" placement="top" class="phone-battery" [name]="getBatteryStatus()">
+            </app-svg-icon>
+            <app-svg-icon class="phone-wifi" [name]="getWifiStatus()">
+            </app-svg-icon>
           </div>
         </div>
       </div>
@@ -34,8 +34,8 @@
       </ng-template>
       <div class="device-status">
         <lottie-animation-view *ngIf="isAnimatedIcon(); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
-          [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
-        </lottie-animation-view>
+        [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
+      </lottie-animation-view>
         <ng-template #noAnimatedIcon>
           <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
         </ng-template>
@@ -43,7 +43,7 @@
           {{deviceStatusToText()}}</span>
       </div>
     </div>
-    <div class="source-cube-info" [ngClass]="['ACTIVE', 'DOWNLOADING', 'COLLECTING_DATA'].includes(source.state) ? '' : 'dimmed'">
+    <div class="source-cube-info">
       <ng-template #noInfoTasks>
         <div class="before-initializing">
           <div class="top-bar shimmer"></div>
@@ -69,7 +69,7 @@
           </ngb-progressbar>
         </div>
         <div class="cube-sources-icons-info">
-          <div class="icon-placeholder" *ngFor="let item of source.tasks.tasks" ngbTooltip="{{item.name |lowercase}}"
+          <div class="icon-placeholder" *ngFor="let item of source.tasks.tasks" ngbTooltip="{{item.display_name}}"
             container="body" placement="bottom">
             <div class="tooltip-placeholder">
               <app-svg-icon *ngIf="!item.progress_bar" (click)="fetchIntels(item)" [name]="item.name" [size]="23"
@@ -92,8 +92,8 @@
           <span class="source-duration">{{sourceDuration}}</span>
         </span>
       </div> -->
-      <span class="cube-info-duration">Duration
-          <span class="source-duration">{{source.source.created_at | amDuration: 'hours'}}</span>
+      <span class="cube-info-duration">Duration: 
+          <span class="source-duration">{{source.source.created_at | amLocal | amDifference | amDuration: 'milliseconds'}}</span>
         </span>
         </div>
 

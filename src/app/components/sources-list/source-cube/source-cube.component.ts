@@ -1,6 +1,14 @@
-import { HttpService } from './../../../services/http/http.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { IconService } from '@app/services';
+import {
+  HttpService
+} from './../../../services/http/http.service';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
+import {
+  IconService
+} from '@app/services';
 
 @Component({
   selector: 'app-source-cube',
@@ -8,15 +16,44 @@ import { IconService } from '@app/services';
   styleUrls: ['./source-cube.component.scss']
 })
 export class SourceCubeComponent implements OnInit {
-@Input() source;
+  @Input() source;
   constructor(
     private http: HttpService,
-    private iconService: IconService) { }
+    private iconService: IconService) {}
 
   ngOnInit() {
- 
+    // this.source.animatedIcon = this.setAnimatedIcon();
   }
+  getWifiStatus() {
+    if(!this.source.source.device.ios.indicators.wifi_signal){
+      return;
+    }
+    switch (this.source.source.device.ios.indicators.wifi_signal) {
+      case "HIGH":
+        // this.device.indicators.wifiTooltip = 'Excellent';
+        return 'wifi-excellent';
+      case 'MID':
+        // this.device.indicators.wifiTooltip = 'Good';
+        return 'wifi-mid';
+      case 'LOW':
+        // this.device.indicators.wifiTooltip = 'Bad';
+        return 'wifi-low';
+      case 'NOT_AVAILABE':
+        // this.device.indicators.wifiTooltip = 'Communication lost with device';
+        return 'no-wifi';
 
+    }
+  }
+  getBatteryStatus(){
+    if(!this.source.source.device.ios.indicators.battery){
+      return;
+    }
+    if(this.source.source.device.ios.indicators.battery > 20){
+      return 'device-battery-high'
+    } else {
+      return 'device-battery-low'
+    }
+  }
   isAnimatedIcon() {
     switch (this.source.state) {
       case 'DOWNLOADING_AGENT':
@@ -24,12 +61,87 @@ export class SourceCubeComponent implements OnInit {
       case 'DOWNLOADING':
       case 'ACTIVE':
       case 'TERMINATING':
-     return true
+      // case 'COLLECTING_DATA':
+        return true;
       default:
-         return false;
+        return false;
     }
   }
-
+  setAnimatedIcon() {
+    switch (this.source.state) {
+      case 'DOWNLOADING_AGENT':
+        return {
+          height: 23,
+          width: 25,
+          options: {
+            path: 'assets/svg-jsons/downloading-agent.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet',
+              scaleMode: 'noScale'
+            }
+          }
+        };
+      case 'INITIALIZING':
+        return {
+          height: 23,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/initializing.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet'
+            }
+          }
+        };
+      case 'DOWNLOADING':
+        return {
+          height: 23,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/downloading.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet'
+            }
+          }
+        };
+      case 'ACTIVE':
+        return {
+          height: 27,
+          width: 23,
+          options: {
+            path: 'assets/svg-jsons/active.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet'
+            }
+          }
+        };
+      case 'TERMINATING':
+        return {
+          height: 27,
+          width: 27,
+          options: {
+            path: 'assets/svg-jsons/shutting-down.json',
+            autoplay: true,
+            loop: true,
+            rendererSettings: {
+              progressiveLoad: true,
+              preserveAspectRatio: 'xMidYMid meet'
+            }
+          }
+        };
+    }
+  }
   deviceStatusToText(): string {
     switch (this.source.state) {
       case 'DOWNLOADING_AGENT':
@@ -56,7 +168,7 @@ export class SourceCubeComponent implements OnInit {
   exportSource(sourceId) {
     this.http.exportSource(sourceId).subscribe();
   }
-  terminateAgent(sourceId){
+  terminateAgent(sourceId) {
     this.http.terminateAgent(sourceId).subscribe();
   }
 }

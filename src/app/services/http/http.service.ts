@@ -25,8 +25,10 @@ serverUrls = {
   // Targets
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
+  archiveTarget: '/targets/{{id}}/archive',
+  refreshTargetDevices: '/targets/{{id}}/devices/refresh',
   // Sources
-  exportSource: '/exports/sources/{{id}}',
+  exportSource: '/sources/{{id}}/export',
   terminateAgent: '/sources/{{id}}/shutdown',
   // Devices
   checkDevice: '/devices/{{id}}/check',
@@ -51,14 +53,17 @@ config: any;
       }
       return url;
   }
+  archiveTarget(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('archiveTarget', targetId), this.setHeaders());
+  }
+  refreshTargetDevices(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('refreshTargetDevices', targetId), this.setHeaders());
+  }
   checkDevice(deviceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('checkDevice', deviceId), this.setHeaders());
   }
   resetPioneer(pioneerId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());
-  }
-  exportSource(sourceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('exportSource', sourceId), this.setHeaders());
   }
   terminateAgent(sourceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
@@ -88,8 +93,12 @@ config: any;
 
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
     return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
-  
   }
+
+  exportSource(sourceId: string): Observable<any> {
+    return this.http.post(this.getUrlByApiName('exportSource', sourceId), null,this.setHeaders());
+  }
+
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }

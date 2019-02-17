@@ -50,7 +50,7 @@ export class InterceptorService implements HttpInterceptor {
             title: "Unauthorized request",
             msg: "User have no permissions"
           };
-          this.toastr.error(err.title, err.msg);
+          this.toastr.info(err.title, err.msg);
         }
         // Any other server error response 
         // else {

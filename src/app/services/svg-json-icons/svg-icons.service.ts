@@ -151,6 +151,9 @@ export class IconService {
   }
 
   getIcon(name: string, size ? : number): string {
+      if(!name){
+          return;
+      }
     switch (name.toLowerCase()) {
       case 'target_device_completed':
       case 'active':
@@ -235,6 +238,16 @@ export class IconService {
     </g>
 </svg>
 `
+      case 'device-battery-low':
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 8 14">
+        <path id="Path_455" d="M1379.657 1214.167h-1.943v-.817a.346.346 0 0 0-.343-.35h-2.743a.346.346 0 0 0-.343.35v.817h-1.943a.346.346 0 0 0-.343.35v12.133a.346.346 0 0 0 .343.35h7.314a.346.346 0 0 0 .343-.35v-12.133a.346.346 0 0 0-.342-.35zm-.8 9.333h-5.714v-8.167h5.714v8.167z" fill="#ff4d6a" data-name="Path 455" transform="translate(-1372 -1213)"/>
+    </svg>
+    `;
+    case 'device-battery-high':
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 8 14">
+    <path id="Path_454" d="M1344.657 1214.167h-1.943v-.817a.346.346 0 0 0-.343-.35h-2.743a.346.346 0 0 0-.343.35v.817h-1.943a.346.346 0 0 0-.343.35v12.133a.346.346 0 0 0 .343.35h7.314a.346.346 0 0 0 .343-.35v-12.133a.346.346 0 0 0-.342-.35zm-.8 3.5h-5.714v-2.333h5.714v2.333z" fill="#c5e1ff" data-name="Path 454" transform="translate(-1337 -1213)"/>
+</svg>
+`
       case 'terminated':
       case 'inactive':
         return `<svg viewBox="0 0 12.86 18.86" id="inactive" width="${size ? size : ''}" height="${size ? size : ''}">
@@ -287,15 +300,13 @@ export class IconService {
       <path fill="#6a8699" d="M12.86 5.36a5.35 5.35 0 0 0-10.67-.5H.56a.56.56 0 0 0-.56.56V18.3a.56.56 0 0 0 .56.56h6.88A.56.56 0 0 0 8 18.3v-7.63a5.34 5.34 0 0 0 4.86-5.31zM4 17.86a1 1 0 1 1 1-1 1 1 0 0 1-1 1zm-3.28-3V5.59h1.44a5.35 5.35 0 0 0 5.12 5.11v4.16zM7.5 10a4.64 4.64 0 1 1 4.64-4.64A4.64 4.64 0 0 1 7.5 10zM5.37 7.58a.31.31 0 0 1-.22-.09.33.33 0 0 1 0-.45L9 3.24a.31.31 0 0 1 .53.22v2.88a.31.31 0 0 1-.31.31.32.32 0 0 1-.32-.31V4.22L5.6 7.49a.35.35 0 0 1-.23.09zm3.81-3.81H6.52a.31.31 0 0 1-.32-.31.32.32 0 0 1 .32-.32h2.66a.32.32 0 0 1 .31.32.31.31 0 0 1-.31.31z" id="lLayer_1-2" data-name="Layer 1" />
     </g>
     </svg>`;
-      case 'wifi-issue':
-        return `<svg viewBox="0 0 12.86 18.86" id="wifi-issue" width="${size ? size : ''}" height="${size ? size : ''}">
-     <g id="mLayer_2" data-name="Layer 2">
-      <g id="mLayer_1-2" data-name="Layer 1">
-        <path fill="currentColor" d="M12.86 5.36a5.35 5.35 0 0 0-10.67-.5H.56a.56.56 0 0 0-.56.56V18.3a.56.56 0 0 0 .56.56h6.88A.56.56 0 0 0 8 18.3v-7.63a5.34 5.34 0 0 0 4.86-5.31zM4 17.86a1 1 0 1 1 1-1 1 1 0 0 1-1 1zm-3.28-3V5.59h1.44a5.35 5.35 0 0 0 5.12 5.11v4.16zM7.5 10a4.64 4.64 0 1 1 4.64-4.64A4.64 4.64 0 0 1 7.5 10z" />
-        <path fill="currentColor" d="M6.9 7.2h.72v.96H6.9zm.46-4.3a4.91 4.91 0 0 0-1.22.21L6 3.14l.08.61.33-.09a4.3 4.3 0 0 1 .88-.12 1.33 1.33 0 0 1 .71.15.52.52 0 0 1 .19.45 1 1 0 0 1-.1.5 2.48 2.48 0 0 1-.47.48 6 6 0 0 0-.57.57.93.93 0 0 0-.2.54 1.52 1.52 0 0 0 .15.45v.08h.59v-.38A.55.55 0 0 1 7.71 6a3.6 3.6 0 0 1 .52-.51 2.28 2.28 0 0 0 .54-.6 1.53 1.53 0 0 0 .15-.75 1.14 1.14 0 0 0-.41-1 2 2 0 0 0-1.15-.24z" />
-      </g>
-    </g>
-    </svg>`;
+      case 'no-wifi':
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="12.852" height="12.336" viewBox="0 0 15.852 15.336">
+        <defs>
+        </defs>
+        <path id="Path_469" d="M1539.484 1211.619l8.726 14.179-1.851 1.157-8.725-14.179zm8.586 8.679a9.6 9.6 0 0 0-2.548-.948l1.946 3.162 1.145-1.922a9.558 9.558 0 0 0-.4-.216zm-4.5-5.888q-.532 0-1.059.042l1.663 2.7a10.641 10.641 0 0 1 5.7 2.063l1.606-2.2a13.318 13.318 0 0 0-7.913-2.605zm-.465 9.332a2.943 2.943 0 0 0-1.458.513l1.923 2.256.719-.844zm-5.008-8.136a13.739 13.739 0 0 0-2.471 1.441l1.613 2.192a11.054 11.054 0 0 1 2.3-1.3zm2.486 4.038a9.882 9.882 0 0 0-1.515.654c-.176.1-.349.2-.522.305l1.437 2.311c.129-.081.259-.156.391-.228a6.991 6.991 0 0 1 1.678-.654z" fill="#ff4d6a" data-name="Path 469" transform="translate(-1535.623 -1211.619)"/>
+    </svg>
+    `;
       case 'Asset_43':
         return `<svg viewBox="0 0 83 83" id="Asset_43" width="${size ? size : ''}" height="${size ? size : ''}">
         <g id="aaLayer_2" data-name="Layer 2">
@@ -718,43 +729,33 @@ export class IconService {
             <path fill="currentColor" d="M78 0H5a5 5 0 0 0-5 5v73a5 5 0 0 0 5 5h73a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM10 55.72l34.28-34.31 5.87 5.87-34.32 34.31zm28.76 5.87l-5.87-5.87 34.28-34.31L73 27.28z" id="bsLayer_1-2" data-name="Layer 1" />
         </g>
     </svg>`;
-      case 'wifi_excellent':
-        return `<svg viewBox="0 0 35.34 18.52" id="wifi_exellent" width="${size ? size : ''}" height="${size ? size : ''}">
-
-        <g id="aLayer_2" data-name="Layer 2">
-            <path fill="currentColor" d="M0 13.67h6.43v4.85H0zm9.64-3.82h6.42v8.67H9.64zm9.64-4.21h6.42v12.88h-6.42zM28.92 0h6.42v18.52h-6.42z" id="aLayer_1-2" data-name="Layer 1" />
-        </g>
-    </svg>`;
-      case 'wifi_high':
-        return `<svg viewBox="0 0 35.34 18.52" id="wifi_high" width="${size ? size : ''}" height="${size ? size : ''}">
-
-        <g id="bLayer_2" data-name="Layer 2">
-            <g id="bLayer_1-2" data-name="Layer 1">
-                <path fill="currentColor" d="M0 13.67h6.43v4.85H0zm9.64-3.82h6.43v8.67H9.64zm9.64-4.21h6.43v12.88h-6.43z" />
-                <path fill="currentColor" d="M28.92 0h6.43v18.52h-6.43z" />
-            </g>
-        </g>
-    </svg>`;
-      case 'wifi-low':
-        return `<svg viewBox="0 0 35.34 18.52" id="wifi-low" width="${size ? size : ''}" height="${size ? size : ''}">
-
-        <g id="cLayer_2" data-name="Layer 2">
-            <g id="cLayer_1-2" data-name="Layer 1">
-                <path fill="currentColor" d="M0 13.67h6.43v4.85H0z" />
-                <path fill="currentColor" d="M9.64 9.85h6.43v8.67H9.64zm9.64-4.21h6.43v12.88h-6.43zM28.92 0h6.43v18.52h-6.43z" />
-            </g>
-        </g>
-    </svg>`;
       case 'wifi-excellent':
-        return `<svg viewBox="0 0 35.34 18.52" id="wifi-exellent" width="${size ? size : ''}" height="${size ? size : ''}">
-
-        <g id="dLayer_2" data-name="Layer 2">
-            <g id="dLayer_1-2" data-name="Layer 1">
-                <path fill="currentColor" d="M0 13.67h6.43v4.85H0zm9.64-3.82h6.43v8.67H9.64z" />
-                <path fill="currentColor" d="M19.28 5.64h6.43v12.88h-6.43zM28.92 0h6.43v18.52h-6.43z" />
-            </g>
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="12.852" height="10.101" viewBox="0 0 15.852 12.101">
+    <g id="Group_197" data-name="Group 197" transform="translate(-1409 -1213.41)">
+        <path id="Path_460" d="M1415.02 1223.255l1.923 2.256 1.933-2.267a3.72 3.72 0 0 0-3.856.011z" fill="#c5e1ff" data-name="Path 460"/>
+        <path id="Path_461" d="M1409 1216.047l1.613 2.192a10.556 10.556 0 0 1 12.633-.021l1.606-2.2a13.281 13.281 0 0 0-15.852.025z" fill="#c5e1ff" data-name="Path 461"/>
+        <path id="Path_462" d="M1421.446 1219.3a9.2 9.2 0 0 0-9 0c-.176.1-.35.2-.522.305l1.436 2.311c.129-.081.259-.156.391-.228a6.465 6.465 0 0 1 6.4 0l.189.1c.1.051.214.111.267.141l1.392-2.337a9.558 9.558 0 0 0-.4-.216z" fill="#c5e1ff" data-name="Path 462"/>
+    </g>
+</svg>
+`;
+      case 'wifi-mid':
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="12.852" height="10.101" viewBox="0 0 15.852 12.101">
+        <g id="Group_198" data-name="Group 198" transform="translate(-1451.905 -1213.41)">
+            <path id="Path_463" d="M1457.925 1223.255l1.923 2.256 1.933-2.267a3.72 3.72 0 0 0-3.856.011z" fill="#c5e1ff" data-name="Path 463"/>
+            <path id="Path_464" d="M1451.905 1216.047l1.612 2.192a10.556 10.556 0 0 1 12.633-.021l1.607-2.2a13.281 13.281 0 0 0-15.852.025z" fill="#4a6170" data-name="Path 464"/>
+            <path id="Path_465" d="M1464.351 1219.3a9.2 9.2 0 0 0-9 0c-.177.1-.35.2-.523.305l1.437 2.311c.129-.081.259-.156.391-.228a6.465 6.465 0 0 1 6.4 0l.189.1c.1.051.214.111.266.141l1.393-2.337a10.25 10.25 0 0 0-.4-.216z" fill="#c5e1ff" data-name="Path 465"/>
         </g>
-    </svg>`;
+    </svg>
+    `;
+      case 'wifi-low':
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="12.852" height="10.941" viewBox="0 0 15.852 12.941">
+        <g id="Group_199" data-name="Group 199" transform="translate(-1492.628 -1213.41)">
+            <path id="Path_466" d="M1497.862 1223.173l2.709 3.178 2.741-3.214-.5-.342a4.24 4.24 0 0 0-4.5.029z" fill="#ff4d6a" data-name="Path 466"/>
+            <path id="Path_467" d="M1492.628 1216.047l1.613 2.192a10.556 10.556 0 0 1 12.633-.021l1.606-2.2a13.281 13.281 0 0 0-15.852.025z" fill="#4a6170" data-name="Path 467"/>
+            <path id="Path_468" d="M1505.074 1219.3a9.2 9.2 0 0 0-9 0c-.176.1-.35.2-.522.305l1.436 2.311c.129-.081.259-.156.391-.228a6.465 6.465 0 0 1 6.4 0l.189.1c.1.051.214.111.267.141l1.392-2.337a9.558 9.558 0 0 0-.4-.216z" fill="#4a6170" data-name="Path 468"/>
+        </g>
+    </svg>
+    `;
       case 'wifi-signal-full':
         return `<svg viewBox="0 0 14.53 11.09" id="wifi-signal-full" width="${size ? size : ''}" height="${size ? size : ''}">
         <g id="aLayer_2" data-name="Layer 2">

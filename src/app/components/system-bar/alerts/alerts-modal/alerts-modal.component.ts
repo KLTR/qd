@@ -64,7 +64,7 @@ ngOnChanges(): void {
         cellRendererFramework: DateCellComponent,
         cellRendererParams: {
           ngTemplate: this.ownersCell
-        },
+      },
         cellClassRules: {
           "critical-border": function(params){
               return params.data.severity === 'CRITICAL' || params.data.severity === 'FATAL';

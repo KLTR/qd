@@ -76,30 +76,11 @@ export class SourcesListComponent implements OnInit {
   filterPendingInfections() {
     this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.infection.state !== 'PENDING');
   }
-  getWifiSignal(wifi) {
-    switch (wifi) {
-      case 4:
-        return 'signal_full';
-      case 3:
-        // this.device.indicators.wifiTooltip = 'Excellent';
-        return 'signal_full';
-      case 2:
-        // this.device.indicators.wifiTooltip = 'Good';
-        return 'signal_middle';
-      case 1:
-        // this.device.indicators.wifiTooltip = 'Bad';
-        return 'signal_low';
-      case 0:
-        // this.device.indicators.wifiTooltip = 'Communication lost with device';
-        return 'signal-no';
 
-    }
-  }
 
   
 
   catchWebSocketEvents(msg) {
-
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
@@ -134,9 +115,6 @@ export class SourcesListComponent implements OnInit {
 
   handleTarget(target) {
     // let t = this.leftBarData.targets.find( (t) => t.id === target.id );
-    if (!target.state) {
-      return;
-    }
     this.leftBarData.targets = this.leftBarData.targets.filter(x => {
       if (x.target.id !== target.target.id) {
         return x
