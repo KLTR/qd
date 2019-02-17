@@ -8,7 +8,7 @@ class QuantumUI(Recipe):
 
         d = kube.Deployment(
             name='quantum-ui',
-            image='sr-rnd-105.swg.local:5000/go-ng-ui-quantum:{}'.format(
+            image='sr-rnd-105.swg.local:5000/go-client-quantum-ui:{}'.format(
                 os.environ.get('GO_SERVER_QUANTUM_UI_IMAGE_TAG', 'latest')),
             ports=[
                 {'containerPort': 80},

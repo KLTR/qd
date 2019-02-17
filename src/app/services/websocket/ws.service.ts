@@ -1,6 +1,6 @@
 import {
   environment
-} from '@env/environment.prod';
+} from '@env/environment';
 import {
   Injectable
 } from '@angular/core';

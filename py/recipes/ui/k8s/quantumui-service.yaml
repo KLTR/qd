@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 80
       protocol: TCP
-      targetPort: 80
+      nodePort:
   selector:
     app: quantum-ui
-  type: NodePort
+  type: ClusterIP
