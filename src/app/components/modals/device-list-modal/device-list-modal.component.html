@@ -7,9 +7,9 @@
     <span class="name" *ngIf="target?.name">{{ target.name }}</span>
   </div>
   <div class="refresh">
-    <div *ngIf="!isRefreshing && !isAttackingOrChecking" [ngbTooltip]="'Delete target'" placement="left" class="delete-icon"
+    <div  [ngbTooltip]="'Delete target'" placement="left" class="delete-icon"
       (click)="archiveTarget()"></div>
-    <app-svg-icon *ngIf="!isRefreshing"  [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
+    <app-svg-icon [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
       stopPropagation (click)="refreshTargetDevices()"></app-svg-icon>
     <ng-template #refreshTip>
       <div [ngStyle]="{ 'min-width': '150px' }">
@@ -85,7 +85,7 @@
           <span class="btn" *ngIf="!['CHECKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CHECKING', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
                   'no-outline': device.state === 'ATTACKING',
                   'active': device.state === 'READY' }"
-            stopPropagation (click)="checkDevice(device.id)">{{ getButtonText(device.state) }}</span>
+            stopPropagation (click)="actBasedOnStatus(device)">{{ getButtonText(device.state) }}</span>
           <span class="btn" [ngClass]="{ 'thinking': device.state === 'CHECKING' }" *ngIf="device.state === 'CHECKING' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
             <lottie-animation-view [height]="28" [width]="30" [options]="getAnimatedIcon('btn_thinking')"></lottie-animation-view>
           </span>

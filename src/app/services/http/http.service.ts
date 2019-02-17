@@ -32,6 +32,8 @@ serverUrls = {
   terminateAgent: '/sources/{{id}}/shutdown',
   // Devices
   checkDevice: '/devices/{{id}}/check',
+  attackDevice: '/devices/{{id}}/attack',
+  abortDevice: '/devices/{{id}}/abort',
 }
 config: any;
   constructor(
@@ -61,6 +63,12 @@ config: any;
   }
   checkDevice(deviceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('checkDevice', deviceId), this.setHeaders());
+  }
+  attackDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('attackDevice', deviceId), this.setHeaders());
+  }
+  abortDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('abortDevice', deviceId), this.setHeaders());
   }
   resetPioneer(pioneerId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());

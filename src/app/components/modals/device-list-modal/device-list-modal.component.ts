@@ -1,26 +1,26 @@
-import { environment } from './../../../../environments/environment.prod';
-import { WsService } from './../../../services/websocket/ws.service';
-import { HttpService, ConnectionService } from '@app/services';
+import {
+  environment
+} from './../../../../environments/environment.prod';
+import {
+  WsService
+} from './../../../services/websocket/ws.service';
+import {
+  HttpService,
+  ConnectionService
+} from '@app/services';
 import {
   Component,
   OnInit,
   Input
 } from '@angular/core';
-import {
-  Observable,
-  timer
-} from 'rxjs';
-import {
-  map
-} from 'rxjs/operators';
 
-import {
-  Store
-} from '@ngrx/store';
 import {
   NgbModal,
   NgbActiveModal
 } from '@ng-bootstrap/ng-bootstrap';
+import {
+  ConfirmModalComponent
+} from '../confirm-modal/confirm-modal.component';
 @Component({
   selector: 'app-device-list-modal',
   templateUrl: './device-list-modal.component.html',
@@ -46,11 +46,11 @@ export class DeviceListModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.deviceList){
+    if (!this.deviceList) {
       this.deviceList = [];
     }
-    this.connectionService.isPioneer.subscribe( res => this.isPioneer = res);
-    this.connectionService.isInternet.subscribe( res => this.isConnected = res);
+    this.connectionService.isPioneer.subscribe(res => this.isPioneer = res);
+    this.connectionService.isInternet.subscribe(res => this.isConnected = res);
     console.log(this.deviceList);
   }
   getAnimatedIcon(name: string): any {
@@ -65,14 +65,93 @@ export class DeviceListModalComponent implements OnInit {
     };
   }
 
-  checkDevice(deviceId){
-    this.http.checkDevice(deviceId).subscribe(res => console.log(res));
+  checkDevice(deviceName, deviceId) {
+    const confirmModal = this.modalService.open(ConfirmModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
+    });
+    confirmModal.componentInstance.title = 'Refresh';
+    confirmModal.componentInstance.message = `Are you sure you want to refresh '${deviceName}'?`;
+    confirmModal.result.then(res => {
+      if (res) {
+        this.isAttackingOrChecking = true;
+        this.http.checkDevice(deviceId).subscribe(res => {
+          console.log(res),
+            this.isAttackingOrChecking = false;
+        })
+      }
+    })
   }
-  archiveTarget(){
-    this.http.archiveTarget(this.targetId).subscribe(res=>console.log(res));
+
+  attackDevice(deviceName, deviceId) {
+    const confirmModal = this.modalService.open(ConfirmModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
+    });
+    confirmModal.componentInstance.title = 'Attack ';
+    confirmModal.componentInstance.message = `Are you sure you want to attack '${deviceName}'?`;
+    confirmModal.result.then(res => {
+      if (res) {
+        this.isAttackingOrChecking = true;
+        this.http.attackDevice(deviceId).subscribe(res => {
+          console.log(res),
+            this.isAttackingOrChecking = false;
+        })
+      }
+    })
   }
-  refreshTargetDevices(){
-    this.http.refreshTargetDevices(this.targetId).subscribe(res=>console.log(res));
+
+  abortDevice(deviceName, deviceId) {
+    const confirmModal = this.modalService.open(ConfirmModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
+    });
+    confirmModal.componentInstance.title = 'Abort ';
+    confirmModal.componentInstance.message = `Are you sure you want to abort attack on '${deviceName}'?`;
+    confirmModal.result.then(res => {
+      if (res) {
+        this.http.abortDevice(deviceId).subscribe(res => {
+          console.log(res)
+        })
+      }
+    })
+  }
+  archiveTarget() {
+    const confirmModal = this.modalService.open(ConfirmModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
+    });
+    confirmModal.componentInstance.title = 'Refresh';
+    confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
+    confirmModal.result.then(res => {
+      if (res) {
+        this.http.archiveTarget(this.targetId).subscribe(res => {
+          console.log(res)
+        })
+      }
+    })
+  }
+  refreshTargetDevices() {
+    const confirmModal = this.modalService.open(ConfirmModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
+    });
+    confirmModal.componentInstance.title = 'Refresh';
+    confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
+    confirmModal.result.then(res => {
+      if (res) {
+        this.isRefreshing = true;
+        this.http.refreshTargetDevices(this.targetId).subscribe(res => {
+          console.log(res),
+            this.isRefreshing = false;
+        })
+      }
+    })
   }
 
   getDeviceIconSize(deviceStatus: string): number {
@@ -131,7 +210,7 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
   getButtonText(deviceStatus: string): string {
-    if(!deviceStatus){
+    if (!deviceStatus) {
       return;
     }
     switch (deviceStatus.toLowerCase()) {
@@ -160,8 +239,8 @@ export class DeviceListModalComponent implements OnInit {
       switch (Object.keys(msg.result)[0]) {
         case 'pioneer_device':
           let device = msg.result.pioneer_device;
-          if (this.targetId &&  device.target_id === this.targetId) { 
-            this.handleDevice(device);           
+          if (this.targetId && device.target_id === this.targetId) {
+            this.handleDevice(device);
           }
           break;
       }
@@ -169,48 +248,30 @@ export class DeviceListModalComponent implements OnInit {
       console.log('err', msg.result);
     }
   }
-handleDevice(device){
-  this.deviceList = this.deviceList.filter((x) => {
-    if (x.id !== device.id) {
-      return x
+  handleDevice(device) {
+    this.deviceList = this.deviceList.filter((x) => {
+      if (x.id !== device.id) {
+        return x
+      }
+    });
+    this.deviceList.unshift(device);
+  }
+  actBasedOnStatus(device: any): void {
+    const deviceName = device.name;
+    const deviceStatus = device.state;
+    const deviceId = device.id;
+    switch (deviceStatus.toLowerCase()) {
+      case 'failed':
+      case 'aborted':
+      case 'offline':
+      case 'terminated':
+      case 'unknown':
+        return this.checkDevice(deviceName, deviceId);
+      case 'ready':
+        return this.attackDevice(deviceName, deviceId);
+      case 'attacking':
+        return this.abortDevice(deviceName, deviceId);
     }
-  });
-  this.deviceList.unshift(device);
-}
-  // actBasedOnStatus(deviceId: string, deviceStatus: string): void {
-  //   const deviceName = this.target.devices.filter(device => device.id === deviceId)[0].name;
-  //   let confirmModal;
-  //   if ((deviceStatus !== 'attacking' && this.target.maxActions === 0 && this.target.vectorState === 'OK')
-  //     || ['OFF', 'INIT'].includes(this.target.vectorState)
-  //     || (this.target.vectorState === 'NO_LICENSE' && deviceStatus !== 'attacking')
-  //     || !this.isConnected)
-  //     return;
-  //   switch (deviceStatus) {
-  //     case 'failed':
-  //     case 'aborted':
-  //     case 'offline':
-  //     case 'terminated':
-  //     case 'unknown':
-  //       return this.setDeviceState(deviceId, 'loading');
-  //     case 'active':
-  //       confirmModal = this.modalService.open(StopModalComponent, { size: 'sm', centered: true, backdrop: 'static' });
-  //       confirmModal.componentInstance.title = 'Attack';
-  //       confirmModal.componentInstance.message = `Are you sure you want to attack '${deviceName}'?`;
-  //       confirmModal.result.then(res => {
-  //         if (res) this.setDeviceState(deviceId, 'attacking');
-  //       });
-  //       break;
-  //     case 'attacking':
-  //       confirmModal = this.modalService.open(StopModalComponent, { size: 'sm', centered: true, backdrop: 'static' });
-  //       confirmModal.componentInstance.title = 'Abort';
-  //       confirmModal.componentInstance.message = `Are you sure you want to abort attack on '${deviceName}'?`;
-  //       confirmModal.result.then(res => {
-  //         if (res) this.setDeviceState(deviceId, 'aborted');
-  //       });
-  //       break;
-  //   }
-  // }
-  // setDeviceState(deviceId: string, nextState: string): void {
-  //   this.http.modifyDeviceStatus(this.target.id, deviceId, nextState).subscribe();
-  // }
+  }
+
 }

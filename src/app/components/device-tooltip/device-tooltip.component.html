@@ -1,7 +1,7 @@
 <div *ngIf="device" class="tooltip-wrapper">
   <div class="tooltip-header">
     <div class="device-name">{{device.source.name}}</div>
-    <!-- <i class="close-icon fa fa-close" (click)="closeTooltip()"></i> -->
+    <i class="close-icon fa fa-close" (click)="closeTooltip()"></i>
   </div>
   <div *ngIf="device.tip" class="tooltip-content">
     <div class="field">

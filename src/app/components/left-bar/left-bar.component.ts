@@ -86,8 +86,9 @@ ngOnChanges(): void {
     this.selectedSource = null;
   }
 
-  selectSource(source) {
+  selectSource(source, index) {
     this.selectedSource = source;
+    this.selectedSource.index = index;
   }
 
   selectHoveredInfection(infection) {

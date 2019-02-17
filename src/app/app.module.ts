@@ -73,6 +73,9 @@ import {
   AlertsModalComponent
 } from './components/system-bar/alerts/alerts-modal/alerts-modal.component'
 import {
+  ConfirmModalComponent
+} from './components/modals/confirm-modal/confirm-modal.component';
+import {
   AlertsStripComponent
 } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
 import {
@@ -164,6 +167,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     SourceComponent,
     InfectionComponent,
     SourceCubeComponent,
+    ConfirmModalComponent,
     // Cells
     TemplateRendererComponent,
     OwnersCellComponent,
@@ -230,6 +234,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     TemplateRendererComponent,
     OwnersCellComponent,
     DateCellComponent,
+    ConfirmModalComponent,
   ],
   bootstrap: [AppComponent]
 })

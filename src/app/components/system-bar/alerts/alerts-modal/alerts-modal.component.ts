@@ -82,7 +82,7 @@ ngOnChanges(): void {
         field: 'owners',
         sortable: true,
         filter: true,
-        width:250,
+        width:260,
         resizable:true,
         cellRendererFramework: OwnersCellComponent,
         cellRendererParams: {

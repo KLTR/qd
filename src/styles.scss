@@ -254,6 +254,7 @@ a:focus {
     border-radius: 2px;
     background-color: #52667b;
     color: #fff;
+    z-index: 999;
   }
 
   &.bs-tooltip-bottom{
@@ -548,6 +549,8 @@ a:focus {
   color: #65efe8 !important;
 }
 
+
+
 [class="GREEN"] {
   color: #65efe8 !important;
 }
@@ -581,4 +584,11 @@ a:focus {
 
 .progress-bar{
   color: transparent;
+}
+
+.ready{
+  color: #2bec97 !important;
+}
+.busy{
+  color: #ff536f !important;
 }

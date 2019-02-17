@@ -283,13 +283,13 @@ color: transparent;
     .table-headers{
       li.roles{
         margin-right: auto;
-        margin-left: 60px;
+        margin-left: 45px;
       }
     }
     .table-values{
       li.roles{
         margin-right: auto;
-        margin-left: 35px !important;
+        margin-left: 0 !important;
       }
     }
   }
@@ -366,15 +366,13 @@ color: transparent;
       }
       span{
         white-space: nowrap;
-        width: 97px;
+        width: 120px;
         overflow: hidden;
         text-overflow: ellipsis;
       }
     }
   }
-  span{
-    margin-left: 5px;
-  }
+
  }
 }
 .icon-wrapper{

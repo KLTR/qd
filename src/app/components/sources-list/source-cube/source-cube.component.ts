@@ -17,12 +17,21 @@ import {
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
+  profilePicIndex = 0;
   constructor(
     private http: HttpService,
     private iconService: IconService) {}
 
   ngOnInit() {
     // this.source.animatedIcon = this.setAnimatedIcon();
+  }
+  changeImg(){
+    let maxIndex = this.source.source.device.ios.profile_pics.length - 1;
+    if(this.profilePicIndex < maxIndex){
+      this.profilePicIndex++;
+    } else {
+      this.profilePicIndex = 0;
+    }
   }
   getWifiStatus() {
     if(!this.source.source.device.ios.indicators.wifi_signal){
