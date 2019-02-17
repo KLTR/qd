@@ -10,7 +10,7 @@ variables:
   QD_GO_ROOT: /home/gitlab-runner/src
   PROJECT_ROOT_PATH: ${QD_GO_ROOT}/sr-rnd-00.swg.local/go/client/quantum/quantum-ui
   MAKEFILE_PROJECT_PATH: ${QD_GO_ROOT}/sr-rnd-00.swg.local/go/makefile
-  DOCKER_CANONICAL_IMAGE: sr-rnd-105.swg.local:5000/go-client-${PROJECT}:${CI_COMMIT_REF_NAME}
+  DOCKER_CANONICAL_IMAGE: sr-rnd-105.swg.local:5000/go-ng-ui-quantum:${CI_COMMIT_REF_NAME}
   deploy_to_dev: "curl --request POST -F ref=${CI_COMMIT_REF_NAME} -F token=622bd3e8e8c49b91c9400d24284de6  https://sr-rnd-00.swg.local/api/v4/projects/205/trigger/pipeline"
   DOCKER_IMAGE_TAG: ${CI_COMMIT_REF_NAME}
 
