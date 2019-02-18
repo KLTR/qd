@@ -6,20 +6,12 @@ metadata:
   labels:
     k8s-app: quantum-ui
 data:
-  runtime.json: |-
+  appConfig.json: |-
     {
-      "fetchPageSize": 50, 
-      "version": "0.0.3",
-      "production": true,
-      "envName": "prod",
-      "socketPort": "8090",
-      "baseUrl": "http://quantum-gateway",
-      "apiUrl": "http://quantum-gateway",
-      "websocketUrl": "ws://quantum-gateway:8090/dashboard/ws",
-      "wsProtocol": "Bearer",
-      "debug": true,
-      "addAttackVector": false,
-      "export": {
-        "isZipEnabled": false
-        }
-    } 
+      "protocol": "http",
+      "port": "8091",
+      "host": "quantum-gateway",
+      "apiUrl": "http://quantum-gateway:8091",
+      "webSocketUrl": "ws://quantum-gateway:8091/dashboard/ws",
+      "wsProtocol": "Bearer"
+    }

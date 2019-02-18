@@ -8,18 +8,10 @@ metadata:
 data:
   appConfig.json: |-
     {
-      "fetchPageSize": 50, 
-      "version": "0.0.3",
-      "production": true,
-      "envName": "prod",
-      "socketPort": "80",
-      "baseUrl": "http://gateway.quantum",
-      "apiUrl": "http://gateway.quantum",
-      "websocketUrl": "ws://gateway.quantum:80/dashboard/ws",
-      "wsProtocol": "Bearer",
-      "debug": true,
-      "addAttackVector": false,
-      "export": {
-        "isZipEnabled": false
-        }
-    } 
+      "protocol": "http",
+      "port": "80",
+      "host": "gateway.quantum",
+      "apiUrl": "http://gateway.quantum:80",
+      "webSocketUrl": "ws://gateway.quantum:80/dashboard/ws",
+      "wsProtocol": "Bearer"
+    }
