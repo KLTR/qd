@@ -13,7 +13,7 @@ export const environment = {
   socketPort: `${websocketPort}`,
   baseUrl: `${protocol}//${host}:${port}`,
   apiUrl: `${protocol}//${host}:${port}`,
-  websocketUrl: `ws://${host}:${websocketPort}/dashboard/ws`,
+  webSocketUrl: `ws://${host}:${websocketPort}/dashboard/ws`,
   wsProtocol: 'Bearer',
   debug: true,
   addAttackVector: false,

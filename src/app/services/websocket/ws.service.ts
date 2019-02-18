@@ -10,20 +10,22 @@ import {
   share,
   catchError
 } from 'rxjs/operators';
+import { AppConfigService } from '../app-config/app-config.service';
 @Injectable()
 export class WsService {
   public messages: Rx.Subject < string > ;
   public ws: any;
   private subject: Rx.Subject < MessageEvent > ;
   private token: string;
-
-  constructor() {
+  private env: any;
+  constructor(private appConfig: AppConfigService) {
+    this.env = this.appConfig.getConfig();
     let userToken = localStorage.getItem('user');
     if (userToken) {
       this.token = userToken;
     }
       this.messages = < Rx.Subject < any >>
-      this.connect(environment.websocketUrl)
+      this.connect(this.env.webSocketUrl)
       .pipe(
         map((response: MessageEvent): any => {
           let data = JSON.parse(response.data);
@@ -51,7 +53,7 @@ export class WsService {
     }
     this.ws = new WebSocket(
       url,
-      [environment.wsProtocol, token]
+      [this.env.wsProtocol, token]
     );
     const observable = Rx.Observable.create(
       (obs: Rx.Observer < MessageEvent > ) => {
