@@ -36,6 +36,7 @@ export class AddTargetWizardComponent implements OnInit {
   identifiers: any;
   selectedType: any
   targetId: any;
+
   @Input() devices: [];
   constructor(
     public activeModal: NgbActiveModal,

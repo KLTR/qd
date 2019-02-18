@@ -9,3 +9,4 @@ export * from '../components/menu/menu.service'
 // export * from './websocket/websocket.service'
 export * from './websocket/ws.service';
 export * from './connection/connection.service'
+export * from './app-config/app-config.service'

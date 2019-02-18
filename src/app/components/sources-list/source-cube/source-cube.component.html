@@ -2,7 +2,8 @@
     <div class="source-cube-wrapper">
       <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
         <div class="source-img">
-          <img *ngIf="source.source.device.ios.profile_pics[0]; else avatar" src="{{source.source.device.ios.profile_pics[0]}}">
+          <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.source.device.ios.profile_pics.length > 1"></app-svg-icon>
+          <img *ngIf="source.source.device.ios.profile_pics[0]; else avatar"  src="{{source.source.device.ios.profile_pics[profilePicIndex]}}">
           <ng-template #avatar>
             <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
           </ng-template>
@@ -37,9 +38,9 @@
         [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
       </lottie-animation-view>
         <ng-template #noAnimatedIcon>
-          <app-svg-icon [size]="23" [name]="source.state"></app-svg-icon>
+          <app-svg-icon [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
         </ng-template>
-        <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (source.state === 'DOWNLOADING' ? 'green' : '')">
+        <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
           {{deviceStatusToText()}}</span>
       </div>
     </div>
@@ -74,7 +75,7 @@
             <div class="tooltip-placeholder">
               <app-svg-icon *ngIf="!item.progress_bar" (click)="fetchIntels(item)" [name]="item.name" [size]="23"
                 [ngClass]="{'in-proccess': item.progress_bar}"></app-svg-icon>
-              <div class="download-proccess" [ngStyle]="{'width': item.progress + '%'}" *ngIf="item.progress_bar">
+              <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}" *ngIf="item.progress_bar">
                 <app-svg-icon [name]="item.name" [size]="23"></app-svg-icon>
               </div>
             </div>

@@ -338,7 +338,9 @@
 
       li {
         color: #c5e1ff;
-
+        &.status-value{
+          width: 65px;
+        }
         &.reset {
           display: flex;
           align-items: center;

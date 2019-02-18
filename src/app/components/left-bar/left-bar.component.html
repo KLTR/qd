@@ -14,9 +14,9 @@
         <span class="name">{{source.source?.name}}</span>
         <span class="device-status">
 
-          <span class="icon-wrapper" *ngIf="srcPopovers?.first && source.hover" (click)="selectSource(source);getSourcePopover(i).toggle();"
+          <span class="icon-wrapper" *ngIf="srcPopovers?.first && source.hover || selectedSource?.index === i" (click)="selectSource(source, i);getSourcePopover(i).toggle();"
             [satPopoverAnchorFor]="getSourcePopover(i)">
-            <app-svg-icon class="info-icon" name="info-second" [size]="12">
+            <app-svg-icon class="info-icon" name="info-second"  [size]="12">
             </app-svg-icon>
           </span>
 
@@ -25,7 +25,7 @@
           </lottie-animation-view>
 
           <ng-template #noAnimatedIcon>
-            <app-svg-icon class="device-status-icon" [size]="22" [name]="source.state"></app-svg-icon>
+            <app-svg-icon class="device-status-icon" id="{{source.state | lowercase}}" [size]="22" [name]="source.state"></app-svg-icon>
           </ng-template>
 
         </span>

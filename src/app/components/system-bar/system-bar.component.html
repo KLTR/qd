@@ -7,7 +7,7 @@
       <span class="icon-wrapper">
         <div class="icon-wrapper pioneer-wrapper" *ngIf="pioneerStatus" [satPopoverAnchorFor]="pioneerPop" (click)="handlePops(3);">
           <span [ngClass]="pioneerStatus === 'pioneer-green' ? 'circle-green' : 'circle-red'">
-            <span class="number-counter">{{system.pioneer?.pioneers?.length}}</span>
+            <span class="number-counter">{{system.pioneer?.pioneers?.length ? system.pioneer.pioneers.length : '0'}}</span>
           </span>
           <app-svg-icon class="pioneer" [name]="'pioneer'" [size]="15">
           </app-svg-icon>
@@ -120,7 +120,7 @@
       </ul>
       <ul class="table-values" *ngFor="let pioneer of system.pioneer?.pioneers">
         <li>{{pioneer.host}}</li>
-        <li class="status-value">{{pioneer.state}}</li>
+        <li class="status-value {{pioneer.state | lowercase}}">{{pioneer.state}}</li>
         <li class="reset" (click)="resetPioneer(pioneer.id)">
           <span>{{pioneer.updated_at | amDateFormat:'DD.MM.YYYY'}} </span>
           <div class="icon-button">

@@ -5,10 +5,9 @@ export const environment = {
   production: true,
   envName: 'prod',
   socketPort: '80',
-  baseUrl: 'http://gateway.${K8S_NODE}',
-  apiUrl: 'http://gateway.${K8S_NODE}',
-  websocketUrl: 'ws://gateway.${K8S_NODE}:80/dashboard/ws',
+  websocketUrl: 'ws://gateway.quantum:80/dashboard/ws',
   wsProtocol: 'Bearer',
+  apiUrl: `http://quantum-gateway:8091`,
   debug: true,
   addAttackVector: false,
   export: {

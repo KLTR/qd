@@ -30,12 +30,17 @@
 
   .source-img {
     width: 85px;
+    position: relative;
+    .more-photos-icon{
+      position: absolute;
+      right: 7px;
+      top: 0;
+      height: 13px;
+      width: 13px;
+    }
   }
 
   .source-img>* {
-
-    background-color: rgba(98, 131, 164, 0.6);
-    min-height: 82px;
     height: 100%;
     width: 82px;
     border-bottom-left-radius: 4px;
@@ -271,7 +276,7 @@
 
     .source-export {
       position: absolute;
-      right: 55px;
+      right: 3.5%;
       top: 37%;
       display: none;
       cursor: pointer;
@@ -427,7 +432,7 @@
     cursor: default;
   }
   .source-export{
-    // pointer-events: none;
+    pointer-events: none;
   }
   .cube-on-off{
     pointer-events: none;
@@ -441,3 +446,6 @@ svg#inactive{
   margin-left: 4px;
 }
 
+#collecting_data{
+  margin-right: 6px;
+}

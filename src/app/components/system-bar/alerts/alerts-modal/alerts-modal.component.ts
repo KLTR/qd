@@ -1,3 +1,4 @@
+import { WsService } from './../../../../services/websocket/ws.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   Component,
@@ -45,14 +46,14 @@ export class AlertsModalComponent implements OnInit {
   
   constructor(
     public activeModal: NgbActiveModal,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private ws: WsService
     ) {
+      this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+
     this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";
   }
-ngOnChanges(): void {
-  console.log(this.alerts);
-  this.gridApi.redrawRows();
-}
+
   ngOnInit() {
     this.columnDefs = [
       {
@@ -82,7 +83,7 @@ ngOnChanges(): void {
         field: 'owners',
         sortable: true,
         filter: true,
-        width:250,
+        width:260,
         resizable:true,
         cellRendererFramework: OwnersCellComponent,
         cellRendererParams: {
@@ -175,4 +176,20 @@ onGridReady(params){
 
     return severityNumber1 - severityNumber2;
   }
+
+  catchWebSocketEvents(msg) {
+    if (Object.keys(msg)[0] === 'error') {
+      return;
+    }
+    switch (Object.keys(msg.result)[0]) {
+      // System 
+      case 'alert':
+        console.log(msg.result.alert.log);
+        this.alerts.unshift(msg.result.alert.log);
+        this.alerts = this.alerts.slice();
+        break;
+
+    }
+  }
+
 }
