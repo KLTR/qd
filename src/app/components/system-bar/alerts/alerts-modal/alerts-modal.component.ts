@@ -151,7 +151,7 @@ onGridReady(params){
 
 
   delete(row: any){
-    this.httpService.deleteAlert(row.id).subscribe( res => console.log(res));
+    this.httpService.dismissAlert(row.id).subscribe( res => console.log(res));
     this.gridApi.redrawRows();
   }
 
