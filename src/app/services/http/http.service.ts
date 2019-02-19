@@ -1,9 +1,10 @@
+import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.prod';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { WsService } from '../websocket/ws.service';
+import { AppConfigService } from '../app-config/app-config.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -42,12 +43,13 @@ serverUrls = {
   abortDevice: '/devices/{{id}}/abort',
 }
 config: any;
+env: any;
   constructor(
     private http: HttpClient,
+    private appConfig: AppConfigService
     ) { 
-   
+      this.env = this.appConfig.getConfig();
   }
-
   getHttpMethod(original: string) {
     if (environment.envName === 'DEV') {
       return 'get';
@@ -55,41 +57,11 @@ config: any;
     return original;
   }
   getUrlByApiName(apiName: string, id?: string, addiotnal?: string): string {
-      let url = environment.baseUrl + this.serverUrls[apiName].replace('{{id}}', id);
+      let url = this.env.apiUrl + this.serverUrls[apiName].replace('{{id}}', id);
       if (addiotnal) {
         url += addiotnal;
       }
       return url;
-  }
-  archiveTarget(targetId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('archiveTarget', targetId), this.setHeaders());
-  }
-  refreshTargetDevices(targetId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('refreshTargetDevices', targetId), this.setHeaders());
-  }
-  checkDevice(deviceId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('checkDevice', deviceId), this.setHeaders());
-  }
-  attackDevice(deviceId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('attackDevice', deviceId), this.setHeaders());
-  }
-  abortDevice(deviceId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('abortDevice', deviceId), this.setHeaders());
-  }
-  resetPioneer(pioneerId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId), this.setHeaders());
-  }
-  terminateAgent(sourceId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('terminateAgent',sourceId), this.setHeaders())
-  }
-  getTargetDeivces(targetId: string): Observable<any>{
-    return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
-  }
-  dismissEvent(eventId: string): Observable<any>{
-    return this.http.delete(this.getUrlByApiName('dismissEvent', eventId), this.setHeaders());
-  }
-  dismissAlert(alertId: string): Observable<any>{
-    return this.http.delete(this.getUrlByApiName('dismissAlert', alertId), this.setHeaders());
   }
   setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {
@@ -100,6 +72,37 @@ config: any;
     };
     return httpOptions;
   }
+  archiveTarget(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('archiveTarget', targetId),'', this.setHeaders());
+  }
+  refreshTargetDevices(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('refreshTargetDevices', targetId),'', this.setHeaders());
+  }
+  checkDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('checkDevice', deviceId),'', this.setHeaders());
+  }
+  attackDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('attackDevice', deviceId),'', this.setHeaders());
+  }
+  abortDevice(deviceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('abortDevice', deviceId),'', this.setHeaders());
+  }
+  resetPioneer(pioneerId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId),'', this.setHeaders());
+  }
+  terminateAgent(sourceId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('terminateAgent',sourceId),'', this.setHeaders())
+  }
+  getTargetDeivces(targetId: string): Observable<any>{
+    return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
+  }
+  dismissEvent(eventId: string): Observable<any>{
+    return this.http.delete(this.getUrlByApiName('dismissEvent', eventId), this.setHeaders());
+  }
+  dismissAlert(alertId: string): Observable<any>{
+    return this.http.delete(this.getUrlByApiName('dismissAlert', alertId), this.setHeaders());
+  }
+
   getToken() : any {
     let token = localStorage.getItem('user');
     return token;
@@ -142,6 +145,8 @@ config: any;
     this.config =  this.http.get('../../../assets/config/config.json');
     return this.config;
   }
+
+
 
   getConfigLocal(): any{
     return this.config;

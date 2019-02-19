@@ -276,7 +276,7 @@
 
     .source-export {
       position: absolute;
-      right: 55px;
+      right: 3.5%;
       top: 37%;
       display: none;
       cursor: pointer;
@@ -432,7 +432,7 @@
     cursor: default;
   }
   .source-export{
-    // pointer-events: none;
+    pointer-events: none;
   }
   .cube-on-off{
     pointer-events: none;
@@ -447,5 +447,5 @@ svg#inactive{
 }
 
 #collecting_data{
-  margin-right: 7px;
+  margin-right: 6px;
 }

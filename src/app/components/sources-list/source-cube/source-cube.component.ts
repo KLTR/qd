@@ -9,7 +9,8 @@ import {
 import {
   IconService
 } from '@app/services';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -17,13 +18,18 @@ import {
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
+  animatedIcon: any;
   profilePicIndex = 0;
   constructor(
     private http: HttpService,
-    private iconService: IconService) {}
+    private iconService: IconService,
+    private modalService: NgbModal,
+  ) {}
 
   ngOnInit() {
-    // this.source.animatedIcon = this.setAnimatedIcon();
+    this.source.isAnimated = this.setAnimatedIcon();
+    this.animatedIcon = this.setAnimatedIcon();
+
   }
   changeImg(){
     let maxIndex = this.source.source.device.ios.profile_pics.length - 1;
@@ -77,6 +83,12 @@ export class SourceCubeComponent implements OnInit {
     }
   }
   setAnimatedIcon() {
+    // if (this.animatedIcon) {
+    //   if (!this.animatedIcon.options.path.includes(this.device.status)) {
+    //     this.timedOut = true;
+    //     setTimeout(() => this.timedOut = false, 10);
+    //   }
+    // }
     switch (this.source.state) {
       case 'DOWNLOADING_AGENT':
         return {
@@ -175,7 +187,15 @@ export class SourceCubeComponent implements OnInit {
     return (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state))
   }
   exportSource(sourceId) {
-    this.http.exportSource(sourceId).subscribe();
+    this.http.exportSource(sourceId).subscribe(res => {
+    const exportModal =   this.modalService.open(ExportModalComponent,{
+        size: 'sm',
+        centered: true,
+        backdrop: 'static'
+      });
+      exportModal.componentInstance.dataType = 'Source';
+      exportModal.componentInstance.data = this.source.source;
+    });
   }
   terminateAgent(sourceId) {
     this.http.terminateAgent(sourceId).subscribe();

@@ -3,7 +3,8 @@ import {
   BrowserModule
 } from '@angular/platform-browser';
 import {
-  NgModule
+  NgModule,
+  APP_INITIALIZER
 } from '@angular/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {
@@ -43,7 +44,8 @@ import {
   MenuService,
   InterceptorService,
   WsService,
-  ConnectionService
+  ConnectionService,
+  AppConfigService,
 } from "@app/services";
 
 // Components
@@ -84,6 +86,9 @@ import {
 import {
   RightBarComponent
 } from './components/right-bar/right-bar.component';
+import {
+  ExportModalComponent
+} from './components/modals/export-modal/export-modal.component'
 import {
   SatPopoverModule
 } from '@ncstate/sat-popover';
@@ -145,6 +150,13 @@ import {
   DateCellComponent
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
+
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  };
+};
+
 @NgModule({
   declarations: [
     // Components
@@ -168,6 +180,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     InfectionComponent,
     SourceCubeComponent,
     ConfirmModalComponent,
+    ExportModalComponent,
     // Cells
     TemplateRendererComponent,
     OwnersCellComponent,
@@ -225,6 +238,13 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     ConnectionService,
     // Guards
     AuthGuard,
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+    }
   ],
   entryComponents: [
     SearchModalComponent,
@@ -235,6 +255,7 @@ import { SourceCubeComponent } from './components/sources-list/source-cube/sourc
     OwnersCellComponent,
     DateCellComponent,
     ConfirmModalComponent,
+    ExportModalComponent,
   ],
   bootstrap: [AppComponent]
 })
