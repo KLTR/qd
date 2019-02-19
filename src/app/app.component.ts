@@ -2,7 +2,7 @@ import {
   Component
 } from '@angular/core';
 import {
-  HttpService, ConnectionService
+  HttpService,WsService
 } from './services';
 
 @Component({
@@ -15,9 +15,11 @@ export class AppComponent {
 
   constructor(
     private http: HttpService,
-    private connectionService: ConnectionService)
+    private ws: WsService,
+    )
   {  
     this.http.getConfig().subscribe();
+    this.ws.open();
   }
 
 }

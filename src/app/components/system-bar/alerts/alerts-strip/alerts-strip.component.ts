@@ -23,7 +23,7 @@ export class AlertsStripComponent implements OnInit {
   constructor(
     private ws: WsService
   ) {
-
+    
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
   }
 

@@ -1,25 +1,33 @@
 <div class="sources-wrapper">
-  <app-left-bar [leftBarData]="leftBarData"></app-left-bar>
+  <app-left-bar [leftBarData]="leftBarData" (filterByTarget)="filterByTarget($event)"></app-left-bar>
   <div class="center-area">
     <div class="filters">
-      <span [class.selected]="filterValue === ''" (click)="setFilter('')">All sources ({{allSourcesNumber ? allSourcesNumber : '0'}})</span>
+      <span [class.selected]="filterValue === ''" (click)="setFilter('')">All sources ({{allSourcesNumber ?
+        allSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'DOWNLOADING'" (click)="setFilter('DOWNLOADING')">Downloading
         ({{downloadingSourcesNumber ? downloadingSourcesNumber : '0'}})</span>
-      <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active ({{acitveSourcesNumber ? acitveSourcesNumber : '0'}})</span>
+      <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active ({{acitveSourcesNumber ?
+        acitveSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'LOST_CONNECTION'" (click)="setFilter('LOST_CONNECTION')">Lost Connection
         ({{lostConnectionSourcesNumber ? lostConnectionSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'TERMINATED'" (click)="setFilter('TERMINATED')">Terminated
         ({{terminatedSourcesNumber ? terminatedSourcesNumber : '0'}})</span>
+      <span *ngIf="selectedTarget" class="selected selected-target">{{selectedTarget.name}}</span>
     </div>
     <div class="sources-list-wrapper">
       <ul class="sources-list">
         <p *ngIf="filteredSources.length === 0" class="no-items">No sources {{filterValue | lowercase}}</p>
         <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12">
           <ng-container *cdkVirtualFor="let source of filteredSources; trackBy: trackFn">
-            <app-source-cube [source]="source"></app-source-cube>
+            <app-source-cube [source]="source" [showImages]="isImagesShown"></app-source-cube>
           </ng-container>
         </cdk-virtual-scroll-viewport>
       </ul>
+      <div class="toggle-images" (click)="toggleImg()">
+        <app-svg-icon name="show-photo" [size]="16" *ngIf="!isImagesShown"></app-svg-icon>
+        <app-svg-icon name="hide-photo" *ngIf="isImagesShown"></app-svg-icon>
+        <span class="hide-text">{{isImagesShown ? 'Hide images' : 'Show images'}}</span>
+      </div>
     </div>
   </div>
   <app-right-bar [events]="events"></app-right-bar>

@@ -21,12 +21,13 @@ import {
   map,
   catchError
 } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private router: Router) {}
 
   intercept(request: HttpRequest < any > , next: HttpHandler): Observable < HttpEvent < any >> {
     // const token: string = localStorage.getItem('token');
@@ -46,11 +47,29 @@ export class InterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         // Unauthorized
         if (error.status === 401 || error.status === 403) {
+          if(error.error.code === 16){
+            // Unable to parse token
+            localStorage.clear();
+            this.router.navigate(['login'])
+            let err = {
+              title: "Inavlid token",
+              msg: "Unable to parse token"
+            };
+            this.toastr.info(err.msg,err.title);
+            return throwError(error);
+          }
           let err = {
             title: "Unauthorized request",
             msg: "User have no permissions"
           };
-          this.toastr.info(err.title, err.msg);
+          this.toastr.info(err.msg,err.title);
+        }
+          if (error.status === 404) {
+          let err = {
+            title: `${error.statusText}`,
+            msg: `${error.error.message}`
+          };
+          this.toastr.error(err.msg, err.title);
         }
         // Any other server error response 
         // else {

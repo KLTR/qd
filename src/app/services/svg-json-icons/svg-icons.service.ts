@@ -487,7 +487,7 @@ return `<svg viewBox="0 0 83 83" id="hangout" width="${size ? size : ''}" height
   </g>
 </svg>`;
 case 'hide-photo':
-return `<svg viewBox="0 0 14 17.47" id="hide-photo" width="${size ? size : ''}" height="${size ? size : ''}">
+return `<svg viewBox="0 0 14 17.47" id="hide-photo" width="${size ? size : '19'}" height="${size ? size : '21'}">
   <g id="aqLayer_2" data-name="Layer 2">
     <g id="aqLayer_1-2" data-name="Layer 1">
       <path fill="currentColor" d="M1 14.55v-11h2.28l-.37-1H0v13h7.75l-.37-1H1zm5.11-12l.37 1H13v11h-2.42l.37 1H14v-13H6.11z" />
@@ -827,7 +827,7 @@ return `<svg viewBox="0 0 54.67 54.67" id="internet" width="${size ? size : '2.5
   </g>
 </svg>`;
 case 'signal_no':
-return `<svg viewBox="0 0 11 13.56" id="signal_no" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}">
+return `<svg viewBox="0 0 11 13.56" id="signal_no" width="11" height="13.6">
   <defs>
     <style>
       .cls-1-no {
@@ -847,7 +847,7 @@ return `<svg viewBox="0 0 11 13.56" id="signal_no" width="${size ? size : '4vw'}
   </g>
 </svg>`;
 case 'signal_full':
-return `<svg viewBox="0 0 11 11" id="signal_full" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}">
+return `<svg viewBox="0 0 11 11" id="signal_full "width="11" height="11">
   <defs>
     <style>
       .cls-1-full {
@@ -866,7 +866,7 @@ return `<svg viewBox="0 0 11 11" id="signal_full" width="${size ? size : '4vw'}"
   </g>
 </svg>`;
 case 'signal_full_inactive':
-return `<svg viewBox="0 0 11 11" id="signal_full_inactive" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}">
+return `<svg viewBox="0 0 11 11" id="signal_full_inactive" width="11" height="13.6">
   <defs>
     <style>
       .cls-1-inactive {
@@ -885,7 +885,7 @@ return `<svg viewBox="0 0 11 11" id="signal_full_inactive" width="${size ? size 
   </g>
 </svg>`;
 case 'signal_low':
-return `<svg viewBox="0 0 11 11" id="signal_low" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}">
+return `<svg viewBox="0 0 11 11" id="signal_low" width="11" height="11">
   <defs>
     <style>
       .cls-1-low {
@@ -908,7 +908,7 @@ return `<svg viewBox="0 0 11 11" id="signal_low" width="${size ? size : '4vw'}" 
   </g>
 </svg>`;
 case 'signal_middle':
-return `<svg viewBox="0 0 11 11" id="signal_middle" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}">
+return `<svg viewBox="0 0 11 11" id="signal_middle" "width="11" height="11">
   <defs>
     <style>
       .cls-1-middle {
@@ -930,7 +930,16 @@ return `<svg viewBox="0 0 11 11" id="signal_middle" width="${size ? size : '4vw'
     </g>
   </g>
 </svg>`;
-
+case 'signal_high':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11">
+<g id="Group_193" data-name="Group 193" transform="translate(-1442 -1191)">
+    <path id="Rectangle_358" d="M0 0h2v5H0z" fill="#c5e1ff" data-name="Rectangle 358" transform="translate(1445 1197)"/>
+    <path id="Rectangle_359" d="M0 0h2v3H0z" fill="#c5e1ff" data-name="Rectangle 359" transform="translate(1442 1199)"/>
+    <path id="Rectangle_360" d="M0 0h2v8H0z" fill="#c5e1ff" data-name="Rectangle 360" transform="translate(1448 1194)"/>
+    <path id="Rectangle_361" d="M0 0h2v11H0z" fill="#4a6170" data-name="Rectangle 361" transform="translate(1451 1191)"/>
+</g>
+</svg>
+`
 case 'target_pending':
 return `<svg viewBox="0 0 16 16" id="target" width="${size ? size : ''}" height="${size ? size : ''}">
   <g id="aLayer_2" data-name="Layer 2">

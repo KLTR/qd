@@ -1,6 +1,4 @@
-import {
-  environment as env
-} from '@env/environment';
+
 import {
   HttpService,
   WsService
@@ -9,9 +7,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {
-  Subscription
-} from 'rxjs';
+
 @Component({
   selector: 'app-sources-list',
   templateUrl: './sources-list.component.html',
@@ -23,18 +19,21 @@ export class SourcesListComponent implements OnInit {
   events: any;
   filteredSources = [];
   filterValue = '';
+  selectedTarget: any;
   allSourcesNumber: number;
   downloadingSourcesNumber: number;
   acitveSourcesNumber: number;
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
+  isImagesShown: boolean;
+
   constructor(private http: HttpService, private ws: WsService) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
   }
 
 
   ngOnInit() {
-
+    this.isImagesShown = true;
     this.http.getDashboard().subscribe(res => {
       this.leftBarData = res;
 
@@ -60,11 +59,16 @@ export class SourcesListComponent implements OnInit {
     })
   
   }
+  filterByTarget(target){
+    this.selectedTarget = target;
+    this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_ids[0] === target.id)
+  }
   assignFilteredSources() {
     this.filteredSources = this.leftBarData.sources;
     this.setFilter(this.filterValue);
   }
   setFilter(value) {
+    this.selectedTarget = null;
     this.filterValue = value;
     if (!value || value === '') {
       this.filteredSources = this.leftBarData.sources;
@@ -78,16 +82,16 @@ export class SourcesListComponent implements OnInit {
   }
 
 
-  
+  toggleImg() {
+    this.isImagesShown = !this.isImagesShown;
+  }
+
 
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
     if (msg.result) {
-      if (env.debug) {
-        console.log(msg.result);
-      }
       switch (Object.keys(msg.result)[0]) {
         case 'target':
           this.handleTarget(msg.result.target);
