@@ -186,7 +186,7 @@ export class SourceCubeComponent implements OnInit {
   isNoInfo() {
     return (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state))
   }
-  exportSource(sourceId, sourceName) {
+  exportSource(sourceId) {
     this.http.exportSource(sourceId).subscribe(res => {
     const exportModal =   this.modalService.open(ExportModalComponent,{
         size: 'sm',
