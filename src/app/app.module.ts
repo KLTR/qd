@@ -31,8 +31,6 @@ import {
   LottieAnimationViewModule
 } from 'ng-lottie';
 import {
-  // ToastrModule,
-  // ToastNoAnimation,
   ToastNoAnimationModule
 } from 'ngx-toastr';
 
@@ -97,17 +95,12 @@ import {
 import {
   CharactersPipe,
   SafeHtmlPipe,
-  CaseFilterPipe,
-  SignalStrenghtPipe,
-  TooltipDataFilterPipe,
   FilterAlertsPipe,
-  SortAppsPipe,
-  RemoveDuplicatesPipe,
   DayMonthOnlyPipe,
   GetFilenameFromUrlPipe,
-  SetActiveMailPipe,
   FileSizePipe,
   OrderByPipe,
+  MillToMinFilterPipe
 } from '@app/pipes';
 import {
   AuthGuard
@@ -187,18 +180,13 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     DateCellComponent,
     // Pipes
     CharactersPipe,
-    CaseFilterPipe,
     SafeHtmlPipe,
-    SignalStrenghtPipe,
-    TooltipDataFilterPipe,
     FilterAlertsPipe,
-    SortAppsPipe,
-    RemoveDuplicatesPipe,
     DayMonthOnlyPipe,
     GetFilenameFromUrlPipe,
-    SetActiveMailPipe,
     FileSizePipe,
     OrderByPipe,
+    MillToMinFilterPipe
   ],
   imports: [
     BrowserModule,

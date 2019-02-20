@@ -18,7 +18,7 @@ export class SourcesListComponent implements OnInit {
   leftBarData: any;
   events: any;
   filteredSources = [];
-  filterValue = '';
+  filterValue = 'ALL';
   selectedTarget: any;
   allSourcesNumber: number;
   downloadingSourcesNumber: number;
@@ -60,6 +60,7 @@ export class SourcesListComponent implements OnInit {
   
   }
   filterByTarget(target){
+    this.filterValue = '';
     this.selectedTarget = target;
     this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_ids[0] === target.id)
   }
@@ -70,7 +71,7 @@ export class SourcesListComponent implements OnInit {
   setFilter(value) {
     this.selectedTarget = null;
     this.filterValue = value;
-    if (!value || value === '') {
+    if (!value || value === 'ALL') {
       this.filteredSources = this.leftBarData.sources;
     } else {
       this.filteredSources = this.leftBarData.sources.filter(item => item.state === value)

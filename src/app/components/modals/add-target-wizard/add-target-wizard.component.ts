@@ -34,7 +34,7 @@ export class AddTargetWizardComponent implements OnInit {
   identifiers: any;
   selectedType: any
   targetId: any;
-
+  target: any;
   @Input() devices: [];
   constructor(
     public activeModal: NgbActiveModal,
@@ -154,6 +154,7 @@ export class AddTargetWizardComponent implements OnInit {
         case 'target':
           let target = msg.result.target;
           if (target.state === "PENDING") {
+            this.target = target.target;
             this.targetId = target.target.id;
             this.isLoading = true;
           }

@@ -223,7 +223,9 @@
           display: flex;
           justify-content: center;
         }
-
+        .remaining-time{
+          margin-left: 5px;
+        }
         ::ng-deep ngb-progressbar {
           .progress {
             background-color: rgba(35, 45, 56, 1);

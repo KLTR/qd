@@ -243,7 +243,9 @@ export class DeviceListModalComponent implements OnInit {
             this.handleDevice(device);
           }
           break;
+      
       }
+      
     } else {
       console.log('err', msg.result);
     }

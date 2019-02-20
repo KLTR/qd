@@ -50,7 +50,7 @@
 
       .items {
         display: flex;
-        padding: 5px 15px 5px 10px;
+        padding: 5px 10px 5px 10px;
         align-items: center;
         justify-content: space-between;
         position: relative;
@@ -71,15 +71,20 @@
           margin-left: auto;
           align-items: center;
           justify-content: center;
-          width: 15px;
+          .device-icon{
+            width: 20px;
+          }
+          .downloading-percent{
+            margin-left: auto;
+            margin-right: 3px;
+          }
           .icon-wrapper {
-            position: absolute;
-            right: 40px;
+            margin-left: auto;
           }
 
-          .device-status-icon {
-            margin-right: 1px;
-          }
+          // .device-status-icon {
+          //   margin-right: 1px;
+          // }
         }
       }
 

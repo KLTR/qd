@@ -26,9 +26,17 @@ export class RightBarComponent implements OnInit {
   toggleSelected(val) {
     this.selected = val;
   }
-  removeEvent(eventId) {
-    console.log(eventId);
-    this.http.dismissEvent(eventId).subscribe(res => console.log(res));
-    // this.events.splice(index, 1);
+  removeEvent(event) {
+    console.log(event);
+    this.http.dismissEvent(event.log.id).subscribe(res => {
+      console.log(res);
+      const index: number = this.events.indexOf(event);
+      console.log(index);
+      if(index !== -1){
+        this.events.splice(index, 1)
+            this.events = this.events.slice();
+      }
+    });
+
   }
 }
