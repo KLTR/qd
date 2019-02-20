@@ -106,7 +106,7 @@ import {
   DayMonthOnlyPipe,
   GetFilenameFromUrlPipe,
   SetActiveMailPipe,
-  BitesToKbPipe,
+  FileSizePipe,
   OrderByPipe,
 } from '@app/pipes';
 import {
@@ -197,7 +197,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     DayMonthOnlyPipe,
     GetFilenameFromUrlPipe,
     SetActiveMailPipe,
-    BitesToKbPipe,
+    FileSizePipe,
     OrderByPipe,
   ],
   imports: [

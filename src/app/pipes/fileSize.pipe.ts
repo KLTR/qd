@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'bitesToKb',
+  name: 'fileSize',
   pure: false
 })
-export class BitesToKbPipe implements PipeTransform {
+export class FileSizePipe implements PipeTransform {
 
 
   private units = [

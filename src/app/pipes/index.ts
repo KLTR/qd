@@ -16,5 +16,5 @@ export * from './remove-duplicates-values.pipe';
 export * from './dayMonthOnly.pipe';
 export * from './getFilenameFromUrl.pipe';
 export * from './setActiveMail.pipe';
-export * from './bitestoKb.pipe';
+export * from './fileSize.pipe';
 export * from './order-by.pipe'

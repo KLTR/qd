@@ -10,7 +10,9 @@ import {
   Input,
   QueryList,
   ViewChildren,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   IconService
@@ -32,11 +34,13 @@ import {
 })
 export class LeftBarComponent implements OnInit {
   @Input() leftBarData: any;
+  @Output() filterByTarget: EventEmitter<any> = new EventEmitter();
   temp: any;
   isWizardOpen = false;
   selectedSource: any;
   hoveredInfection: any;
   sources: any[]
+
   @ViewChildren('sourcePopovers') public srcPopovers: QueryList < SatPopover > ;
   @ViewChildren('infectionPopovers') public infPopovers: QueryList < SatPopover > ;
   constructor(
@@ -55,6 +59,10 @@ ngOnChanges(): void {
 }
   ngAfterViewChecked(): void {
     this._cd.detectChanges();
+  }
+
+  filterTargetSources(target){
+    this.filterByTarget.emit(target);
   }
 
   getSourcePopover(index): SatPopover {

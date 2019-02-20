@@ -19,7 +19,7 @@ import {
 } from 'rxjs';
 import * as $ from 'jquery';
 import {
-  WsService
+  WsService, ConnectionService
 } from '@app/services';
 import {
   NgbModal
@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
     private httpService: HttpService,
     private ws: WsService,
     private modalService: NgbModal,
+    private connectionService: ConnectionService
   ) {
     this.system = [];
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
@@ -91,6 +92,7 @@ export class HeaderComponent implements OnInit {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
+    console.log(msg.result);
     switch (Object.keys(msg.result)[0]) {
       // System 
       case 'alice':
@@ -129,3 +131,4 @@ export class HeaderComponent implements OnInit {
     this.searchResults = [];
   }
 }
+

@@ -11,6 +11,7 @@ import {
 } from '@app/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
+import {FileSizePipe} from '@app/pipes/fileSize.pipe'
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -18,8 +19,13 @@ import { ExportModalComponent } from '@app/components/modals/export-modal/export
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
-  animatedIcon: any;
+  @Input() showImages;
+  timedOut = false;
+  isAnimated: boolean;
   profilePicIndex = 0;
+  sourceDuration: string;
+  ONE_MINUTE = 60 * 1000;
+  now = new Date();
   constructor(
     private http: HttpService,
     private iconService: IconService,
@@ -27,10 +33,22 @@ export class SourceCubeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.source.isAnimated = this.setAnimatedIcon();
-    this.animatedIcon = this.setAnimatedIcon();
-
+   this.initSourceCube();
+   // this updates the duration of source through the amDifference pipe
+   setInterval(() => { this.now = new Date() }, this.ONE_MINUTE);
   }
+
+  ngOnChanges(){
+    this.initSourceCube();
+  }
+
+  initSourceCube() {
+    this.source.animatedIcon = this.setAnimatedIcon();
+    this.isAnimated = this.isAnimatedIcon();
+  }
+
+
+
   changeImg(){
     let maxIndex = this.source.source.device.ios.profile_pics.length - 1;
     if(this.profilePicIndex < maxIndex){
@@ -45,16 +63,12 @@ export class SourceCubeComponent implements OnInit {
     }
     switch (this.source.source.device.ios.indicators.wifi_signal) {
       case "HIGH":
-        // this.device.indicators.wifiTooltip = 'Excellent';
         return 'wifi-excellent';
       case 'MID':
-        // this.device.indicators.wifiTooltip = 'Good';
         return 'wifi-mid';
       case 'LOW':
-        // this.device.indicators.wifiTooltip = 'Bad';
         return 'wifi-low';
       case 'NOT_AVAILABE':
-        // this.device.indicators.wifiTooltip = 'Communication lost with device';
         return 'no-wifi';
 
     }
@@ -83,12 +97,12 @@ export class SourceCubeComponent implements OnInit {
     }
   }
   setAnimatedIcon() {
-    // if (this.animatedIcon) {
-    //   if (!this.animatedIcon.options.path.includes(this.device.status)) {
-    //     this.timedOut = true;
-    //     setTimeout(() => this.timedOut = false, 10);
-    //   }
-    // }
+    if (this.source.animatedIcon) {
+      if (!this.source.animatedIcon.options.path.includes(this.source.state)) {
+        this.timedOut = true;
+        setTimeout(() => this.timedOut = false, 10);
+      }
+    }
     switch (this.source.state) {
       case 'DOWNLOADING_AGENT':
         return {

@@ -1,9 +1,7 @@
 import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { WsService } from '../websocket/ws.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { AppConfigService } from '../app-config/app-config.service';
 @Injectable({
   providedIn: 'root'

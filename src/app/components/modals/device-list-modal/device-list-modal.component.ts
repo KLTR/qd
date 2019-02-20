@@ -71,8 +71,8 @@ export class DeviceListModalComponent implements OnInit {
       centered: true,
       backdrop: 'static'
     });
-    confirmModal.componentInstance.title = 'Refresh';
-    confirmModal.componentInstance.message = `Are you sure you want to refresh '${deviceName}'?`;
+    confirmModal.componentInstance.title = 'Check';
+    confirmModal.componentInstance.message = `Are you sure you want to check '${deviceName}'?`;
     confirmModal.result.then(res => {
       if (res) {
         this.isAttackingOrChecking = true;
@@ -125,7 +125,7 @@ export class DeviceListModalComponent implements OnInit {
       centered: true,
       backdrop: 'static'
     });
-    confirmModal.componentInstance.title = 'Refresh';
+    confirmModal.componentInstance.title = 'Archive';
     confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {

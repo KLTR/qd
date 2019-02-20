@@ -1,6 +1,4 @@
-import {
-  environment as env
-} from '@env/environment';
+
 import {
   WsService,
   HttpService,
@@ -139,9 +137,6 @@ export class AddTargetWizardComponent implements OnInit {
       return;
     }
     if (msg.result) {
-      if (env.debug) {
-        // console.log(msg.result);
-      }
       switch (Object.keys(msg.result)[0]) {
         case 'pioneer_device':
           let device = msg.result.pioneer_device;
