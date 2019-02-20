@@ -8,19 +8,25 @@ import { AppConfigService } from '../app-config/app-config.service';
 })
 export class HttpService {
 serverUrls = {
-  getChatAppChats: '/messengers/{{type}}/sessions',
-  getChatAppInfo: '/messengers/{{type}}/about',
+  // User
   login: '/users/login',
   logout: '/users/logout',
+
+  // Dashboard
   top: '/dashboard/top',
   search: '/search',
   dashboard: '/dashboard/left',
+
+  // Messengers
+  getChatAppChats: '/messengers/{{type}}/sessions',
+  getChatAppInfo: '/messengers/{{type}}/about',
+
   resetPioneer: '/infection/pioneers/{{id}}/reset',
-  // Alerts & events
-  alerts: '/alerts',
+  // Applog
+  getAlerts: '/alerts',
   getEvents: '/dashboard/right',
-  deleteEvent: '/events/{{id}}',
-  deleteAlert: '/alerts/{{id}}',
+  dismissEvent: '/events/{{id}}',
+  dismissAlert: '/alerts/{{id}}',
   // Targets
   targets: '/targets',
   targetDevices: '/targets/{{id}}/devices',
@@ -88,11 +94,11 @@ env: any;
   getTargetDeivces(targetId: string): Observable<any>{
     return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
   }
-  deleteEvent(eventId: string): Observable<any>{
-    return this.http.delete(this.getUrlByApiName('deleteEvent', eventId), this.setHeaders());
+  dismissEvent(eventId: string): Observable<any>{
+    return this.http.delete(this.getUrlByApiName('dismissEvent', eventId), this.setHeaders());
   }
-  deleteAlert(alertId: string): Observable<any>{
-    return this.http.delete(this.getUrlByApiName('deleteAlert', alertId), this.setHeaders());
+  dismissAlert(alertId: string): Observable<any>{
+    return this.http.delete(this.getUrlByApiName('dismissAlert', alertId), this.setHeaders());
   }
 
   getToken() : any {
@@ -130,7 +136,7 @@ env: any;
   }
 
   getAlerts() :Observable<any> {
-    return this.http.get(this.getUrlByApiName('alerts'), this.setHeaders());
+    return this.http.get(this.getUrlByApiName('getAlerts'), this.setHeaders());
   }
 
   getConfig() : any {

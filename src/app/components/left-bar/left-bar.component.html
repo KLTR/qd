@@ -1,7 +1,7 @@
 <div class="sidebar">
   <!-- This section shoudl be at the TOP-->
   <div class="section sources">
-    <div class="header">Sources</div>
+    <div class="header">Sources ({{sources?.length}})</div>
     <div class="content">
       <!-- Sources -->
       <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
@@ -13,13 +13,16 @@
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{source.source?.name}}</span>
         <span class="device-status">
-
-          <span class="icon-wrapper" *ngIf="srcPopovers?.first && source.hover || selectedSource?.index === i" (click)="selectSource(source, i);getSourcePopover(i).toggle();"
+          
+          <span class="icon-wrapper"  *ngIf="srcPopovers?.first && source.hover || selectedSource?.index === i" (click)="selectSource(source, i);getSourcePopover(i).toggle();"
             [satPopoverAnchorFor]="getSourcePopover(i)">
             <app-svg-icon class="info-icon" name="info-second"  [size]="12">
             </app-svg-icon>
           </span>
-
+          <span *ngIf="source.tasks.progress_bar" class="downloading-percent green">{{source.tasks.progress ?
+              source.tasks.progress : '0'}}%
+            </span>
+          <span class="device-icon">
           <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
             [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
           </lottie-animation-view>
@@ -27,14 +30,14 @@
           <ng-template #noAnimatedIcon>
             <app-svg-icon class="device-status-icon" id="{{source.state | lowercase}}" [size]="22" [name]="source.state"></app-svg-icon>
           </ng-template>
-
+        </span>
         </span>
       </div>
     </div>
   </div>
   <!-- Infections -->
   <div class="section pending">
-    <div class="header">Infecting</div>
+    <div class="header">Infecting ({{leftBarData?.infections.length}})</div>
     <div class="content">
       <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
         (mouseleave)="infection.hover=false;">
@@ -58,7 +61,7 @@
   </div>
   <!-- Targets -->
   <div class="section targets">
-    <div class="header">Targets</div>
+    <div class="header">Targets ({{leftBarData?.targets.length}})</div>
     <div class="content">
       <div class="items" *ngFor="let target of leftBarData?.targets" >
           <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>

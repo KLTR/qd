@@ -150,7 +150,7 @@ onGridReady(params){
 
 
   delete(row: any){
-    this.httpService.deleteAlert(row.id).subscribe( res => {
+    this.httpService.dismissAlert(row.id).subscribe( res => {
       console.log(res);
       const index: number = this.alerts.indexOf(row);
       console.log(index);

@@ -73,7 +73,7 @@
       <div class="cube-progress-bar" *ngIf="source.tasks?.progress_bar">
         <div class="downloading-percent" [ngClass]="source.tasks.progress_bar ? 'green' : ''">{{source.tasks.progress ?
           source.tasks.progress : '0'}}%
-          <!-- <span class="remaining-time">{{device.progress.time.eta | millToMinFilter}} Min</span> -->
+          <!-- <span class="remaining-time">{{ source.tasks.eta | amLocal | amTimeAgo }}</span> -->
         </div>
         <ngb-progressbar type="custom" [value]="source.tasks.progress ? source.tasks.progress : 0" height="3px"
           showValue="false">

@@ -28,7 +28,7 @@ export class RightBarComponent implements OnInit {
   }
   removeEvent(event) {
     console.log(event);
-    this.http.deleteEvent(event.log.id).subscribe(res => {
+    this.http.dismissEvent(event.log.id).subscribe(res => {
       console.log(res);
       const index: number = this.events.indexOf(event);
       console.log(index);

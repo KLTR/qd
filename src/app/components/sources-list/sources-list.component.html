@@ -2,7 +2,7 @@
   <app-left-bar [leftBarData]="leftBarData" (filterByTarget)="filterByTarget($event)"></app-left-bar>
   <div class="center-area">
     <div class="filters">
-      <span [class.selected]="filterValue === ''" (click)="setFilter('')">All sources ({{allSourcesNumber ?
+      <span [class.selected]="filterValue === 'ALL'" (click)="setFilter('ALL')">All sources ({{allSourcesNumber ?
         allSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'DOWNLOADING'" (click)="setFilter('DOWNLOADING')">Downloading
         ({{downloadingSourcesNumber ? downloadingSourcesNumber : '0'}})</span>

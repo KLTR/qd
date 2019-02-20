@@ -24,7 +24,7 @@ export class SourceCubeComponent implements OnInit {
   isAnimated: boolean;
   profilePicIndex = 0;
   sourceDuration: string;
-  ONE_MINUTE = 60 * 1000;
+  ONE_SECOND = 1 * 1000;
   now = new Date();
   constructor(
     private http: HttpService,
@@ -43,7 +43,7 @@ export class SourceCubeComponent implements OnInit {
     if(changes['source']){
       this.initSourceCube();
       if(this.source.source.state !== 'TERMINATED'){
-        setInterval(() => { this.now = new Date() }, this.ONE_MINUTE);
+        setInterval(() => { this.now = new Date() }, this.ONE_SECOND);
       }
     }
   }
