@@ -135,8 +135,7 @@ ngOnChanges(): void {
     // this.AddTargetModalRef.componentInstance._cd.detectChanges();
   }
   openDeviceListModal(targetId) {
-
-    this.http.getTargetDeivces(targetId).subscribe(res => {
+    this.http.findPioneerDevices(targetId).subscribe(res => {
       console.log(res);
       let deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
         centered: true,

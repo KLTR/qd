@@ -135,7 +135,7 @@ export class DeviceListModalComponent implements OnInit {
       }
     })
   }
-  refreshTargetDevices() {
+  queryPioneerDevices() {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
       size: 'sm',
       centered: true,
@@ -146,7 +146,7 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isRefreshing = true;
-        this.http.refreshTargetDevices(this.targetId).subscribe(res => {
+        this.http.queryPioneerDevices(this.targetId).subscribe(res => {
           console.log(res),
             this.isRefreshing = false;
         })
