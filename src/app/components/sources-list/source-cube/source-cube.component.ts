@@ -4,14 +4,14 @@ import {
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  SimpleChange,
 } from '@angular/core';
 import {
   IconService
 } from '@app/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
-import {FileSizePipe} from '@app/pipes/fileSize.pipe'
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -35,11 +35,17 @@ export class SourceCubeComponent implements OnInit {
   ngOnInit() {
    this.initSourceCube();
    // this updates the duration of source through the amDifference pipe
-   setInterval(() => { this.now = new Date() }, this.ONE_MINUTE);
   }
 
-  ngOnChanges(){
-    this.initSourceCube();
+  ngOnChanges(changes: SimpleChange){
+    // only init cube when changes is in source and not on showImages - this cause
+    // bad animation rendering
+    if(changes['source']){
+      this.initSourceCube();
+      if(this.source.source.state !== 'TERMINATED'){
+        setInterval(() => { this.now = new Date() }, this.ONE_MINUTE);
+      }
+    }
   }
 
   initSourceCube() {

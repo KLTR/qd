@@ -10,8 +10,8 @@
         <div class="field-value">{{device.tip.device}}</div>
       </div>
       <div *ngIf="device.tip?.ip">
-        <div class="field-name">IP: </div>
-        <div class="field-value">{{device.tip.ip}}</div>
+        <div class="field-name">IP: {{device.tip.ip === 'N/A' ? 'N/A' : ''}} </div>
+        <div *ngIf="device.tip?.ip !== 'N/A'" class="field-value">{{device.tip.ip }}</div>
       </div>
       <div *ngIf="device.tip?.mac">
         <div class="field-name">MAC: </div>

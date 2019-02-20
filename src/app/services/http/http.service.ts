@@ -92,7 +92,7 @@ env: any;
     return this.http.delete(this.getUrlByApiName('deleteEvent', eventId), this.setHeaders());
   }
   deleteAlert(alertId: string): Observable<any>{
-    return this.http.put(this.getUrlByApiName('deleteAlert', alertId), this.setHeaders());
+    return this.http.delete(this.getUrlByApiName('deleteAlert', alertId), this.setHeaders());
   }
 
   getToken() : any {

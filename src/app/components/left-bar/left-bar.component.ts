@@ -95,6 +95,10 @@ ngOnChanges(): void {
   }
 
   selectSource(source, index) {
+    if(this.selectedSource === source){
+      this.selectedSource = null;
+      return;
+    }
     this.selectedSource = source;
     this.selectedSource.index = index;
   }

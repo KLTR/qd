@@ -41,7 +41,6 @@ export class AlertsModalComponent implements OnInit {
   columnDefs: any;
   rowClassRules: any;
   gridOptions: GridOptions;
-  public overlayNoRowsTemplate: string;
 
   
   constructor(
@@ -51,7 +50,6 @@ export class AlertsModalComponent implements OnInit {
     ) {
       this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
 
-    this.overlayNoRowsTemplate = "<span>No Alerts To Show</span>";
   }
 
   ngOnInit() {
@@ -152,8 +150,17 @@ onGridReady(params){
 
 
   delete(row: any){
-    this.httpService.deleteAlert(row.id).subscribe( res => console.log(res));
-    this.gridApi.redrawRows();
+    this.httpService.deleteAlert(row.id).subscribe( res => {
+      console.log(res);
+      const index: number = this.alerts.indexOf(row);
+      console.log(index);
+      if(index !== -1){
+        this.alerts.splice(index, 1)
+        // trigger alerts on change
+        this.alerts = this.alerts.slice();
+      }
+    });
+   
   }
 
   severityComparator(s1, s2): number {

@@ -38,14 +38,14 @@
     <div class="device-status">
       <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
       <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING'" [options]="source.animatedIcon?.options"
-      [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
-    </lottie-animation-view>
-    <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
-    [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
-  </lottie-animation-view>
+        [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+      </lottie-animation-view>
+      <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
+        [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+      </lottie-animation-view>
       <ng-template #animated>
-        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE'" [options]="source.animatedIcon?.options"
-          [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE'"
+          [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
         </lottie-animation-view>
       </ng-template>
       <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
@@ -83,9 +83,9 @@
         <div class="icon-placeholder" *ngFor="let item of source?.tasks?.tasks" ngbTooltip="{{item.display_name}}"
           container="body" placement="bottom">
           <div class="tooltip-placeholder">
-            <app-svg-icon *ngIf="!item.progress_bar" (click)="fetchIntels(item)" [name]="item.name" [size]="23"
+            <app-svg-icon *ngIf="!item.progress_bar || !source.tasks.progress_bar" (click)="fetchIntels(item)" [name]="item.name" [size]="23"
               [ngClass]="{'in-proccess': item.progress_bar}"></app-svg-icon>
-            <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}" *ngIf="item.progress_bar">
+            <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}" *ngIf="item.progress_bar && source.tasks.progress_bar">
               <app-svg-icon [name]="item.name" [size]="23"></app-svg-icon>
             </div>
           </div>
@@ -103,15 +103,16 @@
           <span class="source-duration">{{sourceDuration}}</span>
         </span>
       </div> -->
-      <div class="cube-info">
-        <span *ngIf="source.source.created_at" class="cube-info-duration">Duration:
-          <span class="source-duration">{{source.source.created_at | amLocal | amDifference : now | amDuration:
-            'milliseconds'}}</span>
-        </span>
-        <span *ngIf="source.source.activity_metadata.receiving.kbs" class="cube-info-value">{{source.source.activity_metadata.receiving.kbs | fileSize}} / {{source.source.activity_metadata.receiving.kbs_total | fileSize}}</span>
+        <div class="cube-info">
+          <span *ngIf="source.source.created_at" class="cube-info-duration">Duration:
+            <span class="source-duration">{{source.source.created_at | amLocal | amDifference : now | amDuration:
+              'milliseconds'}}</span>
+          </span>
+          <span *ngIf="source.source.activity_metadata.receiving.kbs" class="cube-info-value">{{source.source.activity_metadata.receiving.kbs
+            | fileSize}} / {{source.source.activity_metadata.receiving.kbs_total | fileSize}}</span>
+        </div>
       </div>
-      </div>
-      
+
     </div>
     <div class="source-export" stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.source.id)">
       <svg height="18" viewBox="0 0 19.07 18" width="19.07">

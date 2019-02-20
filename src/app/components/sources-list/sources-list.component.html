@@ -23,7 +23,7 @@
           </ng-container>
         </cdk-virtual-scroll-viewport>
       </ul>
-      <div class="toggle-images" (click)="toggleImg()">
+      <div *ngIf="leftBarData?.sources.length > 0" class="toggle-images" (click)="toggleImg()">
         <app-svg-icon name="show-photo" [size]="16" *ngIf="!isImagesShown"></app-svg-icon>
         <app-svg-icon name="hide-photo" *ngIf="isImagesShown"></app-svg-icon>
         <span class="hide-text">{{isImagesShown ? 'Hide images' : 'Show images'}}</span>

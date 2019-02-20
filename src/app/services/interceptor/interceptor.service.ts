@@ -55,7 +55,7 @@ export class InterceptorService implements HttpInterceptor {
               title: "Inavlid token",
               msg: "Unable to parse token"
             };
-            this.toastr.info(err.msg,err.title);
+            this.toastr.error(err.msg,err.title);
             return throwError(error);
           }
           let err = {
@@ -64,7 +64,7 @@ export class InterceptorService implements HttpInterceptor {
           };
           this.toastr.info(err.msg,err.title);
         }
-          if (error.status === 404) {
+          if (error.status === 404 && error.error.code === 5) {
           let err = {
             title: `${error.statusText}`,
             msg: `${error.error.message}`
