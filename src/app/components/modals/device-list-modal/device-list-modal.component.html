@@ -39,7 +39,7 @@
         <button class="btn reset" (click)="resetVectorServer()">Reset vector</button>
       </div> -->
   </div>
-  <div class="device-list" *ngIf="deviceList?.length > 0; else loadingScreen">
+  <div class="device-list" *ngIf="deviceList?.length > 0 && !isRefreshing; else loadingScreen">
     <div class="device-list-header">
       <span class="id">device</span>
       <span class="status">status</span>
@@ -98,7 +98,7 @@
     </div>
   </div>
   <ng-template #loadingScreen>
-    <ng-container *ngIf="target?.refreshInProgress; else emptyScreen">
+    <ng-container *ngIf="isRefreshing; else emptyScreen">
       <div class="no-devices">
         <div class="Rectangle"></div>
         <div class="new-device-details">

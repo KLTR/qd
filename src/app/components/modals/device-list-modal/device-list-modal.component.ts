@@ -147,8 +147,8 @@ export class DeviceListModalComponent implements OnInit {
       if (res) {
         this.isRefreshing = true;
         this.http.refreshTargetDevices(this.targetId).subscribe(res => {
-          console.log(res),
-            this.isRefreshing = false;
+          console.log(res);
+            // this.isRefreshing = false;
         })
       }
     })
