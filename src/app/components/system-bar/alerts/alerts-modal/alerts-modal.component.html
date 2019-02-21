@@ -15,7 +15,7 @@
     </div>
     <div class="modal-content">
       <div class="table-wrapper">
-        <div class="alert-wrapper" *ngIf="alerts.length > 0; else noAlerts">
+        <div class="alert-wrapper" *ngIf="alerts?.length > 0; else noAlerts">
           <ag-grid-angular style="width: 100%; height: 100%;" #agGrid class="ag-theme-material" [rowData]="alerts"  [animateRows]="true" 
             [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [icons]="icons" [rowClassRules]="rowClassRules"
           rowSelection="multiple">

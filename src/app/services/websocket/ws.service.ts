@@ -23,7 +23,7 @@ export class WsService {
 
   public open(){
     this.token = localStorage.getItem('token');
-      console.log("Websocket successfully connected to : ", this.env.webSocketUrl);
+    if(this.token){
       this.messages = < Rx.Subject < any >>
       this.connect(this.env.webSocketUrl)
       .pipe(
@@ -32,6 +32,8 @@ export class WsService {
           return data;
         })
       )
+      console.log("Websocket successfully connected to : ", this.env.webSocketUrl);
+    }
   }
 
 

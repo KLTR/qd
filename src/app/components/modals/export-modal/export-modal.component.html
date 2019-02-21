@@ -4,14 +4,14 @@
           <div class="progress-wrapper">
             <div class="progress-info">
               <!-- <span class="title" [ngStyle]="{'color': '#6cfff8'}" *ngIf="preparingExport">Preparing...</span> -->
-              <span class="title" [ngStyle]="{'color': '#6cfff8'}" *ngIf="exportData?.progress > 0 && exportData?.progress < 100">Processing</span>
-              <span class="title" [ngStyle]="{'color': '#6cfff8'}" *ngIf="exportData?.progress == 100">Completed</span>
+              <span class="title" [ngStyle]="{'color': '#6cfff8'}">{{exportData.state}}</span>
               <span class="title" [ngStyle]="{'color': '#6cfff8'}" *ngIf="exportData?.progress">{{exportData.progress}}%</span>
             </div>
             <div class="progress-bar-element">
               <span class="export-notice" *ngIf="data.device?.name">{{data.device.name}}</span>
               <div class="progress-bar-over-element">
                 <span class="progress-fill" [ngStyle]="{'width': exportData?.progress + '%'}"></span>
+                <span *ngIf="exportData?.state === 'Completed!'" class="progress-fill" [ngStyle]="{'width': '100%'}"></span>
                 <span class="progress-indicator" *ngIf="exportData?.progress > 0"></span>
               </div>
             </div>
@@ -19,8 +19,7 @@
         </div>
         <div class="export-data-options">
           <button class="cancel-button" (click)="cancelExport()" >CANCEL</button>
-          <a  class="export-button" [href]="fileUrl" download="export.zip" (click)="activeModal.close()">DOWNLOAD</a>
-          <!-- <a [href]="fileUrl" download="file.zip" class="export-button" *ngIf="exportData.progress == 100" [ngClass]="{'disable': exportData.progress && exportData.progress < 100 }">DONE</a> -->
+          <a  class="export-button" [ngClass]="{'disable': exportData.state !== 'Completed!'}" [href]="exportData.fileUrl" download="export.zip" (click)="activeModal.close()">DOWNLOAD</a>
         </div>
       </div>
       

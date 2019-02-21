@@ -27,7 +27,10 @@ export class ExportModalComponent implements OnInit {
 
   ngOnInit() {
     this.exportData = {
-      progress: 24
+      progress: null,
+      state: 'pending',
+      download_file: '5c6dba156c686f5ffa0668f5.zip',
+      fileUrl: ''
     }
     console.log(this.data);
   }
@@ -53,9 +56,10 @@ export class ExportModalComponent implements OnInit {
         return;
       }
       switch (Object.keys(msg.result)[0]) {
-        // System 
-        case 'export_data':
-          this.exportData = msg.result.exportData;
+        case 'export_status':
+          console.log(msg.result.export_status);
+          this.exportData = msg.result.export_status;
+          this.exportData.fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.exportData.download_file}`;
           break;
         
       }

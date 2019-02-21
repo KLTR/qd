@@ -74,7 +74,7 @@ export class SourceCubeComponent implements OnInit {
         return 'wifi-mid';
       case 'LOW':
         return 'wifi-low';
-      case 'NOT_AVAILABE':
+      case 'NOT_AVAILABlE':
         return 'no-wifi';
 
     }

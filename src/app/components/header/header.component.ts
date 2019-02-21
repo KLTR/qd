@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth/auth.service';
 import {
   AlertsModalComponent
 } from './../system-bar/alerts/alerts-modal/alerts-modal.component';
@@ -49,7 +50,8 @@ export class HeaderComponent implements OnInit {
     private httpService: HttpService,
     private ws: WsService,
     private modalService: NgbModal,
-    private connectionService: ConnectionService
+    private connectionService: ConnectionService,
+    private authService: AuthService
   ) {
     this.system = [];
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
@@ -71,7 +73,9 @@ export class HeaderComponent implements OnInit {
       alertsModalRef.componentInstance.alerts = res.alerts;
     });
   }
-
+logout(){
+  this.authService.logout();
+}
 
   filterItem(searchValue) {
     let search = {

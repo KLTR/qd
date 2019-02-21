@@ -5,7 +5,8 @@ import {
 } from '@app/services';
 import {
   Component,
-  OnInit
+  OnInit,
+  HostListener
 } from '@angular/core';
 
 @Component({
@@ -26,11 +27,10 @@ export class SourcesListComponent implements OnInit {
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
   isImagesShown: boolean;
-
-  constructor(private http: HttpService, private ws: WsService) {
+  
+  constructor(private http: HttpService, private ws: WsService, ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
   }
-
 
   ngOnInit() {
     this.isImagesShown = true;
