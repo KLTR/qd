@@ -6,5 +6,6 @@ export const environment = {
   websocketUrl: 'ws://gateway.quantum:80/dashboard/ws',
   wsProtocol: 'Bearer',
   apiUrl: `http://quantum-gateway:8091`,
+  exportURI: 'archives',
   debug: true,
 };

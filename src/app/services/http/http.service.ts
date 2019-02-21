@@ -31,7 +31,7 @@ serverUrls = {
   archiveTarget: '/targets/{{id}}/archive',
 
   // Sources
-  exportSource: '/sources/{{id}}/export',
+  exportSource: '/exports/sources/{{id}}',
   terminateAgent: '/sources/{{id}}/shutdown',
 
   // Pioneer Devices
