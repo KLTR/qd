@@ -33,7 +33,7 @@ serverUrls = {
   // Sources
   exportSource: '/exports/sources/{{id}}',
   terminateAgent: '/sources/{{id}}/shutdown',
-
+  abortExport: '/exports/{{id}}/abort',
   // Pioneer Devices
   findPioneerDevices: '/infections/pioneers/targets/{{id}}',
   queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
@@ -53,6 +53,10 @@ env: any;
     private appConfig: AppConfigService
     ) { 
       this.env = this.appConfig.getConfig();
+  }
+  getToken() : any {
+    let token = localStorage.getItem('user');
+    return token;
   }
   getHttpMethod(original: string) {
     if (environment.envName === 'DEV') {
@@ -106,20 +110,15 @@ env: any;
   dismissAlert(alertId: string): Observable<any>{
     return this.http.delete(this.getUrlByApiName('dismissAlert', alertId), this.setHeaders());
   }
-
-  getToken() : any {
-    let token = localStorage.getItem('user');
-    return token;
+  abortExport(exportId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('abortExport', exportId),'', this.setHeaders());
   }
-
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
     return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
   }
-
   exportSource(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('exportSource', sourceId), null,this.setHeaders());
   }
-
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }
@@ -129,29 +128,22 @@ env: any;
   search( search: {scope: string, keyword: string}): Observable<any> {
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('search'), search, this.setHeaders());
   }
-
   login(credentials: { user: string, password: string }): Observable<{ token: string, swagger_ui: string }> {
    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials);
   }
   logout() : Observable<any> {
     return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders());
-    
   }
   getTop(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('top'), this.setHeaders());
   }
-
   getAlerts() :Observable<any> {
     return this.http.get(this.getUrlByApiName('getAlerts'), this.setHeaders());
   }
-
   getConfig() : any {
     this.config =  this.http.get('../../../assets/config/config.json');
     return this.config;
   }
-
-
-
   getConfigLocal(): any{
     return this.config;
   }

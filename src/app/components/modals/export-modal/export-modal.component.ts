@@ -30,7 +30,8 @@ export class ExportModalComponent implements OnInit {
       progress: null,
       state: 'pending',
       download_file: '5c6dba156c686f5ffa0668f5.zip',
-      fileUrl: ''
+      fileUrl: '',
+      id: ''
     }
     console.log(this.data);
   }
@@ -42,9 +43,9 @@ export class ExportModalComponent implements OnInit {
       confirmModal.componentInstance.message = 'Are you sure you want to cancel this export?';
       confirmModal.result.then((result) => {
         if (result) {
-          // this.httpService.cancelExport(this.exportId).subscribe(() => {
+          this.httpService.abortExport(this.exportData.id).subscribe(() => {
             this.activeModal.close();
-          // });
+          });
         }
       });
     } else {
@@ -57,7 +58,6 @@ export class ExportModalComponent implements OnInit {
       }
       switch (Object.keys(msg.result)[0]) {
         case 'export_status':
-          console.log(msg.result.export_status);
           this.exportData = msg.result.export_status;
           this.exportData.fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.exportData.download_file}`;
           break;

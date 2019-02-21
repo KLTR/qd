@@ -153,7 +153,6 @@ onGridReady(params){
     this.httpService.dismissAlert(row.id).subscribe( res => {
       console.log(res);
       const index: number = this.alerts.indexOf(row);
-      console.log(index);
       if(index !== -1){
         this.alerts.splice(index, 1)
         // trigger alerts on change
@@ -189,7 +188,6 @@ onGridReady(params){
       return;
     }
     switch (Object.keys(msg.result)[0]) {
-      // System 
       case 'alert':
         console.log(msg.result.alert.log);
         this.alerts.unshift(msg.result.alert.log);
