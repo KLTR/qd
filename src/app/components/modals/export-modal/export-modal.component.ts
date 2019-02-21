@@ -1,5 +1,6 @@
 import { HttpService } from '@app/services';
 import { WsService } from './../../../services/websocket/ws.service';
+import { environment } from './../../../../environments/environment.prod';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,7 +14,8 @@ export class ExportModalComponent implements OnInit {
   @Input() dataType: string;
   @Input() data: any;
   exportData: any;
-  fileUrl = 'https://www.sample-videos.com/zip/10mb.zip';
+  fileName = '5c6dba156c686f5ffa0668f5.zip';
+  fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.fileName}`;
   constructor(
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
