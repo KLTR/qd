@@ -10,7 +10,7 @@
     <div  [ngbTooltip]="'Delete target'" placement="left" class="delete-icon"
       (click)="archiveTarget()"></div>
     <app-svg-icon [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
-      stopPropagation (click)="refreshTargetDevices()"></app-svg-icon>
+      stopPropagation (click)="queryPioneerDevices()"></app-svg-icon>
     <ng-template #refreshTip>
       <div [ngStyle]="{ 'min-width': '150px' }">
         <div>Refresh target info</div>

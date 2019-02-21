@@ -83,7 +83,7 @@
         <div class="icon-placeholder" *ngFor="let item of source?.tasks?.tasks" ngbTooltip="{{item.display_name}}"
           container="body" placement="bottom">
           <div class="tooltip-placeholder">
-            <app-svg-icon *ngIf="!item.progress_bar || !source.tasks.progress_bar" (click)="fetchIntels(item)" [name]="item.name" [size]="23"
+            <app-svg-icon *ngIf="!item.progress_bar || !source.tasks.progress_bar"  [name]="item.name" [size]="23"
               [ngClass]="{'in-proccess': item.progress_bar}"></app-svg-icon>
             <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}" *ngIf="item.progress_bar && source.tasks.progress_bar">
               <app-svg-icon [name]="item.name" [size]="23"></app-svg-icon>

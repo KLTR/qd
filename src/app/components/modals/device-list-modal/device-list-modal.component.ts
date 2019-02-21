@@ -126,7 +126,7 @@ export class DeviceListModalComponent implements OnInit {
       backdrop: 'static'
     });
     confirmModal.componentInstance.title = 'Archive';
-    confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
+    confirmModal.componentInstance.message = `Are you sure you want to archive '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
         this.http.archiveTarget(this.targetId).subscribe(res => {
@@ -135,7 +135,7 @@ export class DeviceListModalComponent implements OnInit {
       }
     })
   }
-  refreshTargetDevices() {
+  queryPioneerDevices() {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
       size: 'sm',
       centered: true,
@@ -145,10 +145,9 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.isRefreshing = true;
-        this.http.refreshTargetDevices(this.targetId).subscribe(res => {
+        this.http.queryPioneerDevices(this.targetId).subscribe(res => {
+          this.isRefreshing = true;
           console.log(res);
-            // this.isRefreshing = false;
         })
       }
     })
@@ -240,6 +239,7 @@ export class DeviceListModalComponent implements OnInit {
         case 'pioneer_device':
           let device = msg.result.pioneer_device;
           if (this.targetId && device.target_id === this.targetId) {
+            this.isRefreshing = false;
             this.handleDevice(device);
           }
           break;

@@ -21,7 +21,6 @@ serverUrls = {
   getChatAppChats: '/messengers/{{type}}/sessions',
   getChatAppInfo: '/messengers/{{type}}/about',
 
-  resetPioneer: '/infection/pioneers/{{id}}/reset',
   // Applog
   getAlerts: '/alerts',
   getEvents: '/dashboard/right',
@@ -29,17 +28,24 @@ serverUrls = {
   dismissAlert: '/alerts/{{id}}',
   // Targets
   targets: '/targets',
-  targetDevices: '/targets/{{id}}/devices',
   archiveTarget: '/targets/{{id}}/archive',
-  refreshTargetDevices: '/targets/{{id}}/devices/refresh',
+
   // Sources
   exportSource: '/sources/{{id}}/export',
   terminateAgent: '/sources/{{id}}/shutdown',
-  // Devices
+
+  // Pioneer Devices
+  findPioneerDevices: '/infections/pioneers/targets/{{id}}',
+  queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
+
   checkDevice: '/devices/{{id}}/check',
   attackDevice: '/devices/{{id}}/attack',
   abortDevice: '/devices/{{id}}/abort',
-}
+
+  // Pioneer Machines
+  resetPioneerMachine: '/infections/pioneers/machines/{{id}}/reset',
+};
+
 config: any;
 env: any;
   constructor(
@@ -73,8 +79,8 @@ env: any;
   archiveTarget(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('archiveTarget', targetId),'', this.setHeaders());
   }
-  refreshTargetDevices(targetId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('refreshTargetDevices', targetId),'', this.setHeaders());
+  queryPioneerDevices(targetId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId),'', this.setHeaders());
   }
   checkDevice(deviceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('checkDevice', deviceId),'', this.setHeaders());
@@ -85,14 +91,14 @@ env: any;
   abortDevice(deviceId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('abortDevice', deviceId),'', this.setHeaders());
   }
-  resetPioneer(pioneerId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('resetPioneer', pioneerId),'', this.setHeaders());
+  resetPioneerMachine(pioneerId: string): Observable<any>{
+    return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerId),'', this.setHeaders());
   }
   terminateAgent(sourceId: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('terminateAgent',sourceId),'', this.setHeaders())
+    return this.http.post(this.getUrlByApiName('terminateAgent',sourceId),null, this.setHeaders())
   }
-  getTargetDeivces(targetId: string): Observable<any>{
-    return this.http.get(this.getUrlByApiName('targetDevices', targetId), this.setHeaders());
+  findPioneerDevices(targetId: string): Observable<any>{
+    return this.http.get(this.getUrlByApiName('findPioneerDevices', targetId), this.setHeaders());
   }
   dismissEvent(eventId: string): Observable<any>{
     return this.http.delete(this.getUrlByApiName('dismissEvent', eventId), this.setHeaders());
