@@ -83,7 +83,7 @@
         <div class="icon-placeholder" *ngFor="let item of source?.tasks?.tasks" ngbTooltip="{{item.display_name}}"
           container="body" placement="bottom">
           <div class="tooltip-placeholder">
-            <app-svg-icon *ngIf="!item.progress_bar || !source.tasks.progress_bar"  [name]="item.name" [size]="23"
+            <app-svg-icon *ngIf="!item.progress_bar || !source.tasks.progress_bar" [name]="item.name" [size]="23"
               [ngClass]="{'in-proccess': item.progress_bar}"></app-svg-icon>
             <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}" *ngIf="item.progress_bar && source.tasks.progress_bar">
               <app-svg-icon [name]="item.name" [size]="23"></app-svg-icon>
@@ -108,7 +108,7 @@
             <span class="source-duration">{{source.source.created_at | amLocal | amDifference : now | amDuration:
               'milliseconds'}}</span>
           </span>
-          <span *ngIf="source.source.activity_metadata.receiving.kbs" class="cube-info-value">{{source.source.activity_metadata.receiving.kbs
+          <span *ngIf="source.source.activity_metadata.receiving?.kbs" class="cube-info-value">{{source.source.activity_metadata.receiving.kbs
             | fileSize}} / {{source.source.activity_metadata.receiving.kbs_total | fileSize}}</span>
         </div>
       </div>
