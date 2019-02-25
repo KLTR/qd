@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantum-ui-config
+  namespace: {{ namespace }}
+  labels:
+    k8s-app: quantum-ui
+data:
+  appConfig.json: |-
+    {
+      "protocol": "http",
+      "port": "31080",
+      "host": "gateway.quantum",
+      "apiUrl": "http://gateway.quantum:31080",
+      "webSocketUrl": "ws://gateway.quantum:31080/dashboard/ws",
+      "wsProtocol": "Bearer"
+    }
