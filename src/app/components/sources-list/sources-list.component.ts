@@ -150,7 +150,7 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleSource(source) {
-    let sourceObj = source.source;
+    let sourceObj = source;
     if (!source.state) {
       return;
     }
