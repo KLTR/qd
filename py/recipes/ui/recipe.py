@@ -36,10 +36,10 @@ class QuantumUI(Recipe):
         self.add_component(kube.File(os.path.join(self.dir_path, 'k8s/quantumui-service.yaml')))
 
         if is_env_enabled('K8S_INGRESS'):
-            if os.environ['K8S_CONTEXT'] == 'docker-for-desktop':
-                self.add_component(kube.File(os.path.join(self.dir_path, 'k8s/quantumui-ingress-mac-config.yaml')))
+            if is_env_enabled('K8S_LOCAL_DEV'):
+                self.add_component(kube.File(os.path.join(self.dir_path, 'k8s/quantumui-ingress-dev-config.yaml')))
             else:
-                self.add_component(kube.File(os.path.join(self.dir_path, 'k8s/quantumui-ingress-config.yaml')))
+                self.add_component(kube.File(os.path.join(self.dir_path, 'k8s/quantumui-ingress-prod-config.yaml')))
         else:
             self.add_component(kube.File(os.path.join(self.dir_path, 'k8s/quantumui-default-config.yaml')))
 
