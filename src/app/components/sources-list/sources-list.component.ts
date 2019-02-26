@@ -177,6 +177,6 @@ ngOnChanges(): void {
     this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
   trackFn(index, item) {
-    return item.source.id;
+    return item.id;
   }
 }
