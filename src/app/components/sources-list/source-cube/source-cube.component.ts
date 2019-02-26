@@ -94,7 +94,7 @@ export class SourceCubeComponent implements OnInit {
       case 'DOWNLOADING_AGENT':
       case 'INITIALIZING':
       case 'DOWNLOADING':
-      case 'ACTIVE':
+      case 'IDLE':
       case 'TERMINATING':
       // case 'COLLECTING_DATA':
         return true;
@@ -153,7 +153,7 @@ export class SourceCubeComponent implements OnInit {
             }
           }
         };
-      case 'ACTIVE':
+      case 'IDLE':
         return {
           height: 27,
           width: 23,
@@ -191,7 +191,7 @@ export class SourceCubeComponent implements OnInit {
         return 'Initiazlizing';
       case 'DOWNLOADING':
         return 'Downloading';
-      case 'ACTIVE':
+      case 'IDLE':
         return 'Active'
       case 'TERMINATING':
         return 'Terminating';
