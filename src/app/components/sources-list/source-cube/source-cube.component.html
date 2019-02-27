@@ -2,19 +2,19 @@
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
-        <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.device?.ios.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.device?.ios.profile_pics[0] && showImages; else avatar" src="{{source.device.ios.profile_pics[profilePicIndex]}}">
+        <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
+        <img *ngIf="source.profile_pics[0] && showImages; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
       </div>
       <div *ngIf="source" class="source-info">
         <p class="source-name">{{source.name}}</p>
-        <p class="source-number">{{source.device?.ios.number}}</p>
+        <p class="source-number">{{source.device?.number}}</p>
         <div *ngIf="source.device" class="source-phone-info">
           <span class="phone-model">{{source.device.name}} </span>
-          <span class="phone-version"> ({{source.device.ios.version}})</span>
-          <app-svg-icon ngbTooltip="{{source.device?.ios?.indicators?.battery}}%" container="body" placement="top"
+          <span class="phone-version"> ({{source.device.version}})</span>
+          <app-svg-icon ngbTooltip="{{source.device?.battery}}%" container="body" placement="top"
             class="phone-battery" [name]="getBatteryStatus()">
           </app-svg-icon>
           <app-svg-icon class="phone-wifi" [name]="getWifiStatus()">

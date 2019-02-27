@@ -64,10 +64,10 @@ export class SourceCubeComponent implements OnInit {
     }
   }
   getWifiStatus() {
-    if(!this.source.device.ios.indicators.wifi_signal){
+    if(!this.source.device.wifi){
       return;
     }
-    switch (this.source.device.ios.indicators.wifi_signal) {
+    switch (this.source.device.wifi) {
       case "HIGH":
         return 'wifi-excellent';
       case 'MID':
@@ -80,10 +80,10 @@ export class SourceCubeComponent implements OnInit {
     }
   }
   getBatteryStatus(){
-    if(!this.source.device.ios.indicators.battery){
+    if(!this.source.device.battery){
       return;
     }
-    if(this.source.device.ios.indicators.battery > 20){
+    if(this.source.device.battery > 20){
       return 'device-battery-high'
     } else {
       return 'device-battery-low'
