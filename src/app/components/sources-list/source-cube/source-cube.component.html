@@ -3,7 +3,7 @@
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
         <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.profile_pics[0] && showImages; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
+        <img *ngIf="source.profile_pics[0].id && showImages; else avatar" src="{{source.profile_pics[profilePicIndex].id}}">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
@@ -48,7 +48,7 @@
           [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
         </lottie-animation-view>
       </ng-template>
-      <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
+      <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','TOOL_IS_COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
         {{deviceStatusToText()}}</span>
     </div>
   </div>
