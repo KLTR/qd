@@ -17,3 +17,12 @@ ng-docker:
 	make docker-ui-image
 
 quantum-ui: ng-docker
+
+install-common: 
+	sed -i '/@common\/intels/d' ./package.json
+	npm install 
+	cd ../../common && ng build  
+	cd ../../common/dist/intels && npm pack && cp common-intels-0.0.1.tgz ../../../quantum-ui/
+	npm install common-intels-0.0.1.tgz
+	ng s
+	

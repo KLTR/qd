@@ -27,7 +27,7 @@ export class SourcesListComponent implements OnInit {
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
   isImagesShown: boolean;
-  
+  selectedSource: any;
   constructor(private http: HttpService, private ws: WsService, ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
   }
@@ -86,7 +86,15 @@ export class SourcesListComponent implements OnInit {
   toggleImg() {
     this.isImagesShown = !this.isImagesShown;
   }
-
+selectSource(source){
+  if(source === this.selectedSource){
+    this.selectedSource = null;
+    
+  } else {
+    this.selectedSource = source;
+  }
+  console.log(this.selectedSource);
+}
 
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {
