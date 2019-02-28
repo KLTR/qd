@@ -6,7 +6,8 @@
 
   .center-area {
     width: 100%;
-
+    max-height: calc(100vh - 43px);
+    position: relative;
     .filters {
       display: flex;
       margin: 15px;
