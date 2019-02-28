@@ -10,7 +10,7 @@
     <div  [ngbTooltip]="'Delete target'" placement="left" class="delete-icon"
       (click)="archiveTarget()"></div>
     <app-svg-icon [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
-      stopPropagation (click)="queryPioneerDevices()"></app-svg-icon>
+       (click)="queryPioneerDevices()"></app-svg-icon>
     <ng-template #refreshTip>
       <div [ngStyle]="{ 'min-width': '150px' }">
         <div>Refresh target info</div>
@@ -85,7 +85,7 @@
           <span class="btn" *ngIf="!['CHECKING', 'NOT_SUPPORTED', 'COMPLETED'].includes(device.state)" [ngClass]="{ 'disabled': ['CHECKING', 'OFFLINE', 'NOT_SUPPORTED', 'ABORTED', 'FAILED'].includes(target.state),
                   'no-outline': device.state === 'ATTACKING',
                   'active': device.state === 'READY' }"
-            stopPropagation (click)="actBasedOnStatus(device)">{{ getButtonText(device.state) }}</span>
+             (click)="actBasedOnStatus(device)">{{ getButtonText(device.state) }}</span>
           <span class="btn" [ngClass]="{ 'thinking': device.state === 'CHECKING' }" *ngIf="device.state === 'CHECKING' && !['NOT_SUPPORTED', 'COMPLETED'].includes(device.state)">
             <lottie-animation-view [height]="28" [width]="30" [options]="getAnimatedIcon('btn_thinking')"></lottie-animation-view>
           </span>
