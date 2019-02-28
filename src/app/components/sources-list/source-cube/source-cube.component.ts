@@ -139,6 +139,7 @@ export class SourceCubeComponent implements OnInit {
             }
           }
         };
+      case 'SERVER_IS_PROCESSING_DATA':  
       case 'DOWNLOADING':
         return {
           height: 23,
@@ -191,6 +192,8 @@ export class SourceCubeComponent implements OnInit {
         return 'Initiazlizing';
       case 'DOWNLOADING':
         return 'Downloading';
+      case 'SERVER_IS_PROCESSING_DATA':
+        return 'Processing';
       case 'IDLE':
         return 'Active'
       case 'TERMINATING':
