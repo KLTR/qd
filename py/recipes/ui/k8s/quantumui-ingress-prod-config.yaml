@@ -10,8 +10,8 @@ data:
     {
       "protocol": "http",
       "port": "80",
-      "host": "gateway.quantum.local",
-      "apiUrl": "http://gateway.quantum.local:80",
-      "webSocketUrl": "ws://gateway.quantum.local:80/dashboard/ws",
+      "host": "gateway.quantum.{{ K8S_NODE }}",
+      "apiUrl": "http://gateway.quantum.{{ K8S_NODE }}:80",
+      "webSocketUrl": "ws://gateway.quantum.{{ K8S_NODE }}:80/dashboard/ws",
       "wsProtocol": "Bearer"
     }
