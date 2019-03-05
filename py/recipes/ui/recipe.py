@@ -66,10 +66,3 @@ class QuantumUI(Recipe):
 
     self._add_ingress()
 
-
-class ReignUI(Recipe):
-  pass
-
-
-class AliceUI(Recipe):
-  pass
