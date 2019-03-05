@@ -56,7 +56,7 @@ class QuantumUI(Recipe):
         s = kube.Service(
             name='quantum-ui',
             service_port=80,
-            target_port=8080,
+            target_port=80,
         )
 
         self.add_component(d)
