@@ -11,7 +11,7 @@
           <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
         </sat-popover>
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
-        <span class="name">{{source.source?.name}}</span>
+        <span class="name">{{source.name}}</span>
         <span class="device-status">
           
           <span class="icon-wrapper"  *ngIf="srcPopovers?.first && source.hover || selectedSource?.index === i" (click)="selectSource(source, i);getSourcePopover(i).toggle();"

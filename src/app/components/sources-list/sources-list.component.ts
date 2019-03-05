@@ -127,13 +127,16 @@ selectSource(source){
   }
 
   handleTarget(target) {
-    // let t = this.leftBarData.targets.find( (t) => t.id === target.id );
-    this.leftBarData.targets = this.leftBarData.targets.filter(x => {
+     // filters new target from array
+     this.leftBarData.targets = this.leftBarData.targets.filter(x => {
       if (x.target.id !== target.target.id) {
         return x
       }
     });
-    this.leftBarData.targets.unshift(target);
+    // only push if target state is not DELETED
+    if(target.state !== 'DELETED'){
+      this.leftBarData.targets.unshift(target);
+    }
   }
 
   handleInfection(infection) {
@@ -158,7 +161,7 @@ selectSource(source){
   }
 
   handleSource(source) {
-    let sourceObj = source.source;
+    let sourceObj = source;
     if (!source.state) {
       return;
     }
@@ -185,6 +188,6 @@ ngOnChanges(): void {
     this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
   trackFn(index, item) {
-    return item.source.id;
+    return item.id;
   }
 }

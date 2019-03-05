@@ -42,7 +42,7 @@ export class SourceCubeComponent implements OnInit {
     // bad animation rendering
     if(changes['source']){
       this.initSourceCube();
-      if(this.source.source.state !== 'TERMINATED'){
+      if(this.source.state !== 'TERMINATED'){
         setInterval(() => { this.now = new Date() }, this.ONE_SECOND);
       }
     }
@@ -57,7 +57,7 @@ export class SourceCubeComponent implements OnInit {
 
   changeImg(event){
     event.stopPropagation()
-    let maxIndex = this.source.source.device.ios.profile_pics.length - 1;
+    let maxIndex = this.source.profile_pics.length - 1;
     if(this.profilePicIndex < maxIndex){
       this.profilePicIndex++;
     } else {
@@ -65,10 +65,10 @@ export class SourceCubeComponent implements OnInit {
     }
   }
   getWifiStatus() {
-    if(!this.source.source.device.ios.indicators.wifi_signal){
+    if(!this.source.device.wifi){
       return;
     }
-    switch (this.source.source.device.ios.indicators.wifi_signal) {
+    switch (this.source.device.wifi) {
       case "HIGH":
         return 'wifi-excellent';
       case 'MID':
@@ -81,10 +81,10 @@ export class SourceCubeComponent implements OnInit {
     }
   }
   getBatteryStatus(){
-    if(!this.source.source.device.ios.indicators.battery){
+    if(!this.source.device.battery){
       return;
     }
-    if(this.source.source.device.ios.indicators.battery > 20){
+    if(this.source.device.battery > 20){
       return 'device-battery-high'
     } else {
       return 'device-battery-low'
@@ -95,7 +95,7 @@ export class SourceCubeComponent implements OnInit {
       case 'DOWNLOADING_AGENT':
       case 'INITIALIZING':
       case 'DOWNLOADING':
-      case 'ACTIVE':
+      case 'IDLE':
       case 'TERMINATING':
       // case 'COLLECTING_DATA':
         return true;
@@ -140,6 +140,7 @@ export class SourceCubeComponent implements OnInit {
             }
           }
         };
+      case 'SERVER_IS_PROCESSING_DATA':  
       case 'DOWNLOADING':
         return {
           height: 23,
@@ -154,7 +155,7 @@ export class SourceCubeComponent implements OnInit {
             }
           }
         };
-      case 'ACTIVE':
+      case 'IDLE':
         return {
           height: 27,
           width: 23,
@@ -192,11 +193,13 @@ export class SourceCubeComponent implements OnInit {
         return 'Initiazlizing';
       case 'DOWNLOADING':
         return 'Downloading';
-      case 'ACTIVE':
+      case 'SERVER_IS_PROCESSING_DATA':
+        return 'Processing';
+      case 'IDLE':
         return 'Active'
       case 'TERMINATING':
         return 'Terminating';
-      case 'COLLECTING_DATA':
+      case 'TOOL_IS_COLLECTING_DATA':
         return 'Collecting data';
       case 'TERMINATED':
         return 'Terminated';
@@ -215,7 +218,7 @@ export class SourceCubeComponent implements OnInit {
         backdrop: 'static'
       });
       exportModal.componentInstance.dataType = 'Source';
-      exportModal.componentInstance.data = this.source.source;
+      exportModal.componentInstance.data = this.source;
     });
   }
   terminateAgent(sourceId) {

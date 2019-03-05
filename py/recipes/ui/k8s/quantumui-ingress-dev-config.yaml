@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantum-ui-config
+  namespace: {{ namespace }}
+  labels:
+    k8s-app: quantum-ui
+data:
+  appConfig.json: |-
+    {
+      "protocol": "http",
+      "port": "80",
+      "host": "gateway.quantum.local",
+      "apiUrl": "http://gateway.quantum.local:80",
+      "webSocketUrl": "ws://gateway.quantum.local:80/dashboard/ws",
+      "wsProtocol": "Bearer"
+    }

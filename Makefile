@@ -13,6 +13,7 @@ include ${QD_GO_MAKEFILE_PATH}/k8s/Makefile.k8s
 include ${MAKEFILE_ROOT}/Makefile.docker
 include ${MAKEFILE_ROOT}/Makefile.gitlab
 
+ng-docker: export DOCKER_IMAGE_TAG := $(shell git branch | grep \* | cut -d ' ' -f2)
 ng-docker:
 	make docker-ui-image
 
