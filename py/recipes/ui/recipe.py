@@ -67,8 +67,11 @@ class QuantumUI(Recipe):
                 self.dir_path,
                 'k8s/quantumui-ingress-dev-config.yaml')))
         else:
-            self.add_component(kube.File(os.path.join(
-                self.dir_path,
-                'k8s/quantumui-ingress-prod-config.yaml')))
+            self.add_component(
+                kube.File(
+                    os.path.join(self.dir_path, 'k8s/quantumui-ingress-prod-config.yaml'),
+                    k8s_node=os.environ['K8S_NODE'],
+                )
+            )
 
         self._add_ingress()
