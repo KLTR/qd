@@ -1,33 +1,10 @@
 import os
 
-from server.deployment.util import is_env_enabled
-from server.deployment import kube, Recipe
+from server.deployment import kube, Recipe, is_env_enabled
 
 
 class QuantumUI(Recipe):
-    def _add_ingress(self):
-        rules = [
-            {
-                'host': os.environ['K8S_INGRESS_QUANTUM_UI'],
-                'http': {
-                    'paths': [
-                        {
-                            'path': '/',
-                            'backend': {
-                                'serviceName': 'quantum-ui',
-                                'servicePort': 80
-                            }
-                        }
-                    ]
-                }
-            }
-        ]
-        i = kube.Ingress(name='quantum-ui-ingress', rules=rules)
-        self.add_component(i)
-
-    def load_components(self):
-        super(QuantumUI, self).load_components()
-
+    def _load_deployment(self):
         d = kube.Deployment(
             name='quantum-ui',
             image='sr-rnd-105.swg.local:5000/go-client-quantum-ui:{}'.format(
@@ -62,16 +39,44 @@ class QuantumUI(Recipe):
         self.add_component(d)
         self.add_component(s)
 
+    def _load_ingress(self):
         if is_env_enabled('K8S_LOCAL_DEV'):
             self.add_component(kube.File(os.path.join(
                 self.dir_path,
                 'k8s/quantumui-ingress-dev-config.yaml')))
         else:
             self.add_component(
-                kube.File(
-                    os.path.join(self.dir_path, 'k8s/quantumui-ingress-prod-config.yaml'),
+                kube.File(os.path.join(
+                    self.dir_path,
+                    'k8s/quantumui-ingress-prod-config.yaml'),
                     k8s_node=os.environ['K8S_NODE'],
                 )
             )
 
-        self._add_ingress()
+        rules = [
+            {
+                'host': os.environ['K8S_INGRESS_QUANTUM_UI'],
+                'http': {
+                    'paths': [
+                        {
+                            'path': '/',
+                            'backend': {
+                                'serviceName': 'quantum-ui',
+                                'servicePort': 80
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+
+        self.add_component(
+            kube.Ingress(
+                name='quantum-ui-ingress',
+                rules=rules,
+            ))
+
+    def load_components(self):
+        super(QuantumUI, self).load_components()
+        self._load_deployment()
+        self._load_ingress()
