@@ -158,9 +158,9 @@ export class SourcesListComponent implements OnInit {
       return;
     }
 
-    this.leftBarData.sources = this.leftBarData.sources.filter((x) => {
-      if (x.source.id !== sourceObj.id) {
-        return x
+    this.leftBarData.sources = this.leftBarData.sources.filter((src) => {
+      if (src.id !== sourceObj.id) {
+        return src
       }
     });
     this.leftBarData.sources.unshift(source)
