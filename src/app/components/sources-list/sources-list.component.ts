@@ -79,7 +79,7 @@ export class SourcesListComponent implements OnInit {
     }
   }
   filterPendingInfections() {
-    this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.infection.state !== 'PENDING');
+    this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.state !== 'PENDING');
   }
 
 
@@ -132,7 +132,7 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleInfection(infection) {
-    let infectionObj = infection.infection;
+    let infectionObj = infection;
     if (!infectionObj.state || infectionObj.state === 'PENDING') {
       return;
     }
@@ -141,9 +141,9 @@ export class SourcesListComponent implements OnInit {
       this.leftBarData.infections.unshift(infection);
       return;
     } else {
-      this.leftBarData.infections = this.leftBarData.infections.filter((x) => {
-        if (x.infection.id !== infectionObj.id) {
-          return x
+      this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
+        if (inf.id !== infectionObj.id) {
+          return inf
         }
       });
       if (infectionObj.state === 'FAILED') {
