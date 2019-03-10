@@ -49,12 +49,12 @@
           </div>
         </sat-popover>
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
-        <span class="name">{{infection.infection?.name}}</span>
+        <span class="name">{{infection.name}}</span>
         <span class="device-status">
 
           <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === leftBarData?.infections.length"
             (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();" (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
-            [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.infection.state" [size]="20"></app-svg-icon>
+            [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.state" [size]="20"></app-svg-icon>
         </span>
       </div>
     </div>
