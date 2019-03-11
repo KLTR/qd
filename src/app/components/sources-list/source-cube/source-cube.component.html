@@ -2,13 +2,8 @@
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
-<<<<<<< HEAD
-        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.source.device.ios.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.source.device.ios.profile_pics[0] && showImages; else avatar" src="{{source.source.device.ios.profile_pics[profilePicIndex]}}">
-=======
-        <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.profile_pics[0].id && showImages; else avatar" src="{{source.profile_pics[profilePicIndex].id}}">
->>>>>>> e6d549386bbf2e208feaf510c92a0dcbc5ffd274
+        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
+        <img *ngIf="source.profile_pics[0] && showImages; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
