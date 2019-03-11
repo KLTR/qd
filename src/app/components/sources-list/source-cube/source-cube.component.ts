@@ -55,14 +55,8 @@ export class SourceCubeComponent implements OnInit {
 
 
 
-<<<<<<< HEAD
-  changeImg(event){
-    event.stopPropagation()
-    let maxIndex = this.source.source.device.ios.profile_pics.length - 1;
-=======
   changeImg(){
     let maxIndex = this.source.profile_pics.length - 1;
->>>>>>> e6d549386bbf2e208feaf510c92a0dcbc5ffd274
     if(this.profilePicIndex < maxIndex){
       this.profilePicIndex++;
     } else {
