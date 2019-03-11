@@ -57,7 +57,7 @@
       <div class="before-initializing">
         <div class="top-bar shimmer"></div>
         <div class="bottom-wrapper">
-          <div class="bottom-icons">
+          <div class="bottom-icons" *ngIf="source.tasks?.tasks">
             <span class="icon-placeholder shimmer" *ngFor="let i of source.tasks.tasks"></span>
           </div>
           <div class="time-wrapper">

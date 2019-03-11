@@ -33,6 +33,8 @@
   <app-right-bar [events]="events"></app-right-bar>
 </div>
 <ng-template #sourceInfo style="height: 100%">
-  <app-source-cube [source]="selectedSource" [showImages]="isImagesShown" (click)="selectSource(source)"></app-source-cube>
-  <app-source-info [source]="selectedSource"></app-source-info>
+  <div class="source-info-wrapper"  *ngIf="selectedSource?.state === filterValue || filterValue === 'ALL'">
+    <app-source-cube [source]="selectedSource" [showImages]="isImagesShown" (click)="selectSource(source)"></app-source-cube>
+    <app-source-info [source]="selectedSource" ></app-source-info>
+  </div>
 </ng-template>
