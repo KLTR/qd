@@ -235,7 +235,7 @@ return `<svg viewBox="0 0 8 14" id="downloading" width="${size ? size : ''}" hei
       id="fLayer_1-2" data-name="Layer 1" />
   </g>
 </svg>`;
-case 'collecting_data':
+case 'tool_is_collecting_data':
 return `
 <svg xmlns="http://www.w3.org/2000/svg" width="18 " height="28" viewBox="0 0 25 35">
   <g id="Group_187" data-name="Group 187" transform="translate(-452 -449)">
@@ -335,6 +335,7 @@ return `<svg viewBox="0 0 23.6 18.82" id="alert" width="${size ? size : ''}" hei
   </g>
 </svg>`;
 case 'apps':
+case 'containers':
 return `<svg viewBox="0 0 83 83" id="apps" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
   <g id="acLayer_2" data-name="Layer 2">
     <path fill="currentColor" d="M78 0H5a5 5 0 0 0-5 5v73a5 5 0 0 0 5 5h73a5 5 0 0 0 5-5V5a5 5 0 0 0-5-5zM29.06 65.27a1 1 0 0 1-1 1H16.9a1 1 0 0 1-1-1V54.12a1 1 0 0 1 1-1h11.16a1 1 0 0 1 1 1zm0-18.19a1 1 0 0 1-1 1H16.9a1 1 0 0 1-1-1V35.92a1 1 0 0 1 1-1h11.16a1 1 0 0 1 1 1zm0-18.2a1 1 0 0 1-1 1H16.9a1 1 0 0 1-1-1V17.73a1 1 0 0 1 1-1h11.16a1 1 0 0 1 1 1zm19 36.39a1 1 0 0 1-1 1H35.92a1 1 0 0 1-1-1V54.12a1 1 0 0 1 1-1h11.16a1 1 0 0 1 1 1zm0-18.19a1 1 0 0 1-1 1H35.92a1 1 0 0 1-1-1V35.92a1 1 0 0 1 1-1h11.16a1 1 0 0 1 1 1zm0-18.2a1 1 0 0 1-1 1H35.92a1 1 0 0 1-1-1V17.73a1 1 0 0 1 1-1h11.16a1 1 0 0 1 1 1zm19 36.39a1 1 0 0 1-1 1H54.94a1 1 0 0 1-1-1V54.12a1 1 0 0 1 1-1H66.1a1 1 0 0 1 1 1zm0-18.19a1 1 0 0 1-1 1H54.94a1 1 0 0 1-1-1V35.92a1 1 0 0 1 1-1H66.1a1 1 0 0 1 1 1zm0-18.2a1 1 0 0 1-1 1H54.94a1 1 0 0 1-1-1V17.73a1 1 0 0 1 1-1H66.1a1 1 0 0 1 1 1z"
@@ -521,7 +522,7 @@ return `<svg viewBox="0 0 14 17.47" id="hide-photo" width="${size ? size : '19'}
   </g>
 </svg>`;
 case 'info':
-case 'device_info':
+case 'device info':
 return `<svg viewBox="0 0 83 83" id="info" preserveAspectRatio="none" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
 
   <g id="arLayer_2" data-name="Layer 2" width="35px" height="35px">

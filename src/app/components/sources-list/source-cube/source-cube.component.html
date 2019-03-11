@@ -2,19 +2,24 @@
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
+<<<<<<< HEAD
         <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.source.device.ios.profile_pics.length > 1 && showImages"></app-svg-icon>
         <img *ngIf="source.source.device.ios.profile_pics[0] && showImages; else avatar" src="{{source.source.device.ios.profile_pics[profilePicIndex]}}">
+=======
+        <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
+        <img *ngIf="source.profile_pics[0].id && showImages; else avatar" src="{{source.profile_pics[profilePicIndex].id}}">
+>>>>>>> e6d549386bbf2e208feaf510c92a0dcbc5ffd274
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
       </div>
-      <div *ngIf="source.source" class="source-info">
-        <p class="source-name">{{source.source.name}}</p>
-        <p class="source-number">{{source.source.device.ios.number}}</p>
-        <div *ngIf="source.source.device" class="source-phone-info">
-          <span class="phone-model">{{source.source.device.name}} </span>
-          <span class="phone-version"> ({{source.source.device.ios.version}})</span>
-          <app-svg-icon ngbTooltip="{{source.source.device?.ios?.indicators?.battery}}%" container="body" placement="top"
+      <div *ngIf="source" class="source-info">
+        <p class="source-name">{{source.name}}</p>
+        <p class="source-number">{{source.device?.number}}</p>
+        <div *ngIf="source.device" class="source-phone-info">
+          <span class="phone-model">{{source.device.name}} </span>
+          <span class="phone-version"> ({{source.device.version}})</span>
+          <app-svg-icon ngbTooltip="{{source.device?.battery}}%" container="body" placement="top"
             class="phone-battery" [name]="getBatteryStatus()">
           </app-svg-icon>
           <app-svg-icon class="phone-wifi" [name]="getWifiStatus()">
@@ -48,7 +53,7 @@
           [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
         </lottie-animation-view>
       </ng-template>
-      <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
+      <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','TOOL_IS_COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
         {{deviceStatusToText()}}</span>
     </div>
   </div>
@@ -104,23 +109,23 @@
         </span>
       </div> -->
         <div class="cube-info">
-          <span *ngIf="source.source.created_at" class="cube-info-duration">Duration:
-            <span class="source-duration">{{source.source.created_at | amLocal | amDifference : now | amDuration:
+          <span *ngIf="source.created_at" class="cube-info-duration">Duration:
+            <span class="source-duration">{{source.created_at | amLocal | amDifference : now | amDuration:
               'milliseconds'}}</span>
           </span>
-          <span *ngIf="source.source.activity_metadata.receiving?.kbs" class="cube-info-value">{{source.source.activity_metadata.receiving.kbs
-            | fileSize}} / {{source.source.activity_metadata.receiving.kbs_total | fileSize}}</span>
+          <span *ngIf="source.activity_metadata?.receiving?.kbs" class="cube-info-value">{{source.activity_metadata.receiving.kbs
+            | fileSize}} / {{source.activity_metadata.receiving.kbs_total | fileSize}}</span>
         </div>
       </div>
 
     </div>
-    <div class="source-export" stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.source.id)">
+    <div class="source-export" stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.id)">
       <svg height="18" viewBox="0 0 19.07 18" width="19.07">
         <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
         <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
       </svg>
     </div>
-    <div class="cube-on-off" stopPropagation ngbTooltip="Terminate Agent" (click)="terminateAgent(source.source.id)"
+    <div class="cube-on-off" stopPropagation ngbTooltip="Terminate Agent" (click)="terminateAgent(source.id)"
       placement="top" container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>

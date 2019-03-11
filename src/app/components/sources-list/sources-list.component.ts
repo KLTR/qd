@@ -79,7 +79,7 @@ export class SourcesListComponent implements OnInit {
     }
   }
   filterPendingInfections() {
-    this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.infection.state !== 'PENDING');
+    this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.state !== 'PENDING');
   }
 
 
@@ -127,17 +127,20 @@ selectSource(source){
   }
 
   handleTarget(target) {
-    // let t = this.leftBarData.targets.find( (t) => t.id === target.id );
-    this.leftBarData.targets = this.leftBarData.targets.filter(x => {
+     // filters new target from array
+     this.leftBarData.targets = this.leftBarData.targets.filter(x => {
       if (x.target.id !== target.target.id) {
         return x
       }
     });
-    this.leftBarData.targets.unshift(target);
+    // only push if target state is not DELETED
+    if(target.state !== 'DELETED'){
+      this.leftBarData.targets.unshift(target);
+    }
   }
 
   handleInfection(infection) {
-    let infectionObj = infection.infection;
+    let infectionObj = infection;
     if (!infectionObj.state || infectionObj.state === 'PENDING') {
       return;
     }
@@ -146,9 +149,9 @@ selectSource(source){
       this.leftBarData.infections.unshift(infection);
       return;
     } else {
-      this.leftBarData.infections = this.leftBarData.infections.filter((x) => {
-        if (x.infection.id !== infectionObj.id) {
-          return x
+      this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
+        if (inf.id !== infectionObj.id) {
+          return inf
         }
       });
       if (infectionObj.state === 'FAILED') {
@@ -158,14 +161,14 @@ selectSource(source){
   }
 
   handleSource(source) {
-    let sourceObj = source.source;
+    let sourceObj = source;
     if (!source.state) {
       return;
     }
 
-    this.leftBarData.sources = this.leftBarData.sources.filter((x) => {
-      if (x.source.id !== sourceObj.id) {
-        return x
+    this.leftBarData.sources = this.leftBarData.sources.filter((src) => {
+      if (src.id !== sourceObj.id) {
+        return src
       }
     });
     this.leftBarData.sources.unshift(source)
@@ -185,6 +188,6 @@ ngOnChanges(): void {
     this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
   trackFn(index, item) {
-    return item.source.id;
+    return item.id;
   }
 }
