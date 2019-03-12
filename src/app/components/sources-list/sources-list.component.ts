@@ -8,6 +8,7 @@ import {
   OnInit,
   HostListener
 } from '@angular/core';
+import {passBoolean} from "protractor/built/util";
 
 @Component({
   selector: 'app-sources-list',
@@ -132,23 +133,21 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleInfection(infection) {
-    let infectionObj = infection;
-    if (!infectionObj.state || infectionObj.state === 'PENDING') {
+    if (!infection.state) {
       return;
     }
-
-    if (infectionObj.state === 'IN_PROGRESS') {
-      this.leftBarData.infections.unshift(infection);
-      return;
-    } else {
-      this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
-        if (inf.id !== infectionObj.id) {
-          return inf
-        }
-      });
-      if (infectionObj.state === 'FAILED') {
-        this.leftBarData.infections.unshift(infection);
+    this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
+      if (inf.device_id !== infection.device_id) {
+        return inf
       }
+    });
+    switch (infection.state) {
+      case 'IN_PROGRESS':
+      case 'FAILED':
+        this.leftBarData.infections.unshift(infection);
+        break;
+      default:
+        return;
     }
   }
 
