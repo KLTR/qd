@@ -522,7 +522,7 @@ return `<svg viewBox="0 0 14 17.47" id="hide-photo" width="${size ? size : '19'}
   </g>
 </svg>`;
 case 'info':
-case 'device info':
+case 'device_info':
 return `<svg viewBox="0 0 83 83" id="info" preserveAspectRatio="none" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
 
   <g id="arLayer_2" data-name="Layer 2" width="35px" height="35px">

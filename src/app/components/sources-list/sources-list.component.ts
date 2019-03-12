@@ -93,7 +93,6 @@ selectSource(source){
   } else {
     this.selectedSource = source;
   }
-  console.log(this.selectedSource);
 }
 
   catchWebSocketEvents(msg) {

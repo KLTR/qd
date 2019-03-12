@@ -12,7 +12,6 @@ selectedIntel = 'device-info'
   constructor() { }
 
   ngOnInit() {
-    console.log(this.source);
   }
 
 
