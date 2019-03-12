@@ -91,6 +91,8 @@ import {
   SatPopoverModule
 } from '@ncstate/sat-popover';
 
+// Intels lib
+import {IntelsModule} from '@common/intels'
 // Pipes
 import {
   CharactersPipe,
@@ -140,6 +142,7 @@ import {
   DateCellComponent
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -182,7 +185,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     GetFilenameFromUrlPipe,
     FileSizePipe,
     OrderByPipe,
-    MillToMinFilterPipe
+    MillToMinFilterPipe,
+    SourceInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -194,6 +198,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ScrollingModule,
     BrowserAnimationsModule,
     // Libraries
+    IntelsModule,
     NgbModule,
     SatPopoverModule,
     ToastNoAnimationModule.forRoot({

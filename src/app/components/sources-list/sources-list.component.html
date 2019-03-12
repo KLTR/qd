@@ -19,7 +19,7 @@
         <p *ngIf="filteredSources.length === 0" class="no-items">No sources</p>
         <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12">
           <ng-container *cdkVirtualFor="let source of filteredSources; trackBy: trackFn">
-            <app-source-cube [source]="source" [showImages]="isImagesShown"></app-source-cube>
+            <app-source-cube [source]="source" [showImages]="isImagesShown" (click)="selectSource(source)"></app-source-cube>
           </ng-container>
         </cdk-virtual-scroll-viewport>
       </ul>
@@ -27,3 +27,9 @@
   </div>
   <app-right-bar [events]="events"></app-right-bar>
 </div>
+<ng-template #sourceInfo style="height: 100%">
+  <div class="source-info-wrapper"  *ngIf="selectedSource?.state === filterValue || filterValue === 'ALL'">
+    <app-source-cube [source]="selectedSource" [showImages]="isImagesShown" (click)="selectSource(source)"></app-source-cube>
+    <app-source-info [source]="selectedSource" ></app-source-info>
+  </div>
+</ng-template>

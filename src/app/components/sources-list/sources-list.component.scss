@@ -6,7 +6,8 @@
 
   .center-area {
     width: 100%;
-
+    max-height: calc(100vh - 43px);
+    position: relative;
     .filters {
       display: flex;
       margin: 15px;
@@ -52,7 +53,7 @@
       .sources-list {
         //ul
         margin-bottom: 0;
-        height: 98%;
+        height: 97%;
         app-source-cube:first-child {
           margin-top: 0;
         }
@@ -68,4 +69,7 @@
     margin: 0 2px;
   }
 }
+}
+.source-info-wrapper{
+  height: 100%;
 }
