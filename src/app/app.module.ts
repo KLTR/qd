@@ -118,8 +118,8 @@ import {
   AgGridModule
 } from 'ag-grid-angular';
 import {
-  DeviceTooltipComponent
-} from './components/device-tooltip/device-tooltip.component';
+  SourceTooltipComponent
+} from './components/source-tooltip/source-tooltip.component';
 import {
   DeviceListModalComponent
 } from './components/modals/device-list-modal/device-list-modal.component';
@@ -127,9 +127,6 @@ import {
 import {
   MomentModule
 } from 'ngx-moment';
-import {
-  SourceComponent
-} from './components/left-bar/source/source.component';
 import {
   InfectionComponent
 } from './components/left-bar/infection/infection.component';
@@ -167,9 +164,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     LeftBarComponent,
     SourcesListComponent,
     RightBarComponent,
-    DeviceTooltipComponent,
+    SourceTooltipComponent,
     DeviceListModalComponent,
-    SourceComponent,
     InfectionComponent,
     SourceCubeComponent,
     ConfirmModalComponent,
