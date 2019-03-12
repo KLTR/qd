@@ -9,9 +9,9 @@ data:
   appConfig.json: |-
     {
       "protocol": "http",
-      "port": "31080",
-      "host": "gateway.quantum",
-      "apiUrl": "http://gateway.quantum:31080",
-      "webSocketUrl": "ws://gateway.quantum:31080/dashboard/ws",
+      "port": "80",
+      "host": "gateway.quantum.{{ k8s_node }}",
+      "apiUrl": "http://gateway.quantum.{{ k8s_node }}:80",
+      "webSocketUrl": "ws://gateway.quantum.{{ k8s_node }}:80/dashboard/ws",
       "wsProtocol": "Bearer"
     }

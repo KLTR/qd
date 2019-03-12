@@ -24,7 +24,7 @@ export class SourceComponent implements OnInit {
       case 'DOWNLOADING' :
       case 'ACTIVE' :
       case 'TERMINATING' :
-      case 'COLLECTING_DATA':
+      case 'TOOL_IS_COLLECTING_DATA':
         return true;
       default:
         return false;

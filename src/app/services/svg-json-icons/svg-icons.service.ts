@@ -235,7 +235,7 @@ return `<svg viewBox="0 0 8 14" id="downloading" width="${size ? size : ''}" hei
       id="fLayer_1-2" data-name="Layer 1" />
   </g>
 </svg>`;
-case 'collecting_data':
+case 'tool_is_collecting_data':
 return `
 <svg xmlns="http://www.w3.org/2000/svg" width="18 " height="28" viewBox="0 0 25 35">
   <g id="Group_187" data-name="Group 187" transform="translate(-452 -449)">

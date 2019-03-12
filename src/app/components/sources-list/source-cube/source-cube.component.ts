@@ -56,7 +56,7 @@ export class SourceCubeComponent implements OnInit {
 
 
   changeImg(){
-    let maxIndex = this.source.device.ios.profile_pics.length - 1;
+    let maxIndex = this.source.profile_pics.length - 1;
     if(this.profilePicIndex < maxIndex){
       this.profilePicIndex++;
     } else {
@@ -139,6 +139,7 @@ export class SourceCubeComponent implements OnInit {
             }
           }
         };
+      case 'SERVER_IS_PROCESSING_DATA':  
       case 'DOWNLOADING':
         return {
           height: 23,
@@ -191,11 +192,13 @@ export class SourceCubeComponent implements OnInit {
         return 'Initiazlizing';
       case 'DOWNLOADING':
         return 'Downloading';
+      case 'SERVER_IS_PROCESSING_DATA':
+        return 'Processing';
       case 'IDLE':
         return 'Active'
       case 'TERMINATING':
         return 'Terminating';
-      case 'COLLECTING_DATA':
+      case 'TOOL_IS_COLLECTING_DATA':
         return 'Collecting data';
       case 'TERMINATED':
         return 'Terminated';

@@ -82,9 +82,9 @@ ngOnChanges(): void {
   setInfectionIcon(state) {
     switch (state) {
       case "IN_PROGRESS":
-        return 'infection-attacking'
+        return 'infection-attacking';
       case "FAILED":
-        return 'infection-failed'
+        return 'infection-failed';
     }
   }
 
