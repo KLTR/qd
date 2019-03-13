@@ -39,20 +39,22 @@ class QuantumUI(Recipe):
         self.add_component(d)
         self.add_component(s)
 
-    def _load_ingress(self):
+    def _load_config(self):
         if is_env_enabled('K8S_LOCAL_DEV'):
             self.add_component(kube.File(os.path.join(
                 self.dir_path,
-                'k8s/quantumui-ingress-dev-config.yaml')))
+                'k8s/dev-config.yaml',
+            )))
         else:
             self.add_component(
                 kube.File(os.path.join(
                     self.dir_path,
-                    'k8s/quantumui-ingress-prod-config.yaml'),
+                    'k8s/prod-config.yaml'
+                ),
                     k8s_node=os.environ['K8S_NODE'],
-                )
-            )
+                ))
 
+    def _load_ingress(self):
         rules = [
             {
                 'host': os.environ['K8S_INGRESS_QUANTUM_UI'],
@@ -71,12 +73,58 @@ class QuantumUI(Recipe):
         ]
 
         self.add_component(
+            kube.IngressController(
+                name='ui-ingress-controller',
+                host_network=True,
+                ingress_class='ui',
+                ports=[
+                    {
+                        'name': 'http',
+                        'containerPort': 80,
+                    },
+                    {
+                        'name': 'default',
+                        'containerPort': 5481,
+                    },
+                    {
+                        'name': 'healthz',
+                        'containerPort': 5482,
+                    },
+                    {
+                        'name': 'https',
+                        'containerPort': 443,
+                    },
+                ]
+            ))
+
+        if os.environ['K8S_CONTEXT'] == 'docker-for-desktop':
+            self.add_component(kube.Docker4DesktopIngressNginxLoadBalancer(
+                name='ui-ingress-controller-lb',
+                selector='ui-ingress-controller',
+                ports=[
+                    {
+                        'name': 'http',
+                        'port': 80,
+                        'targetPort': 'http',
+                    },
+                    {
+                        'name': 'https',
+                        'port': 443,
+                        'targetPort': 'https',
+                    }
+                ],
+            ))
+
+        self.add_component(
             kube.Ingress(
-                name='quantum-ui-ingress',
+                name='ui-ingress',
+                ingress_class='ui',
                 rules=rules,
+                cors=True,
             ))
 
     def load_components(self):
         super(QuantumUI, self).load_components()
         self._load_deployment()
+        self._load_config()
         self._load_ingress()
