@@ -8,19 +8,21 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-device-tooltip',
-  templateUrl: './device-tooltip.component.html',
-  styleUrls: ['./device-tooltip.component.scss']
+  selector: 'app-source-tooltip',
+  templateUrl: './source-tooltip.component.html',
+  styleUrls: ['./source-tooltip.component.scss']
 })
-export class DeviceTooltipComponent implements OnInit, OnDestroy {
-  @Input() device;
+export class SourceTooltipComponent implements OnInit, OnDestroy {
+  @Input() source;
   @Output() close = new EventEmitter();
   deviceName: string;
   constructor() {}
 
 
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.source);
+  }
 
   closeTooltip() {
     this.close.emit();

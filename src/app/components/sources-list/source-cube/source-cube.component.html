@@ -2,8 +2,8 @@
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
-        <app-svg-icon (click)="changeImg()" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.profile_pics[0].id && showImages; else avatar" src="{{source.profile_pics[profilePicIndex].id}}">
+        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
+        <img *ngIf="source.profile_pics[0] && showImages; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
@@ -26,7 +26,7 @@
     <ng-template #noInfoSource>
       <div class="no-info">
         <div class="person-img-wrapper">
-          <app-svg-icon name="avatar" [size]="100" class="cube-person-img"></app-svg-icon>
+          <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </div>
         <div class="main">
           <div class="shimmer"></div>
@@ -57,7 +57,7 @@
       <div class="before-initializing">
         <div class="top-bar shimmer"></div>
         <div class="bottom-wrapper">
-          <div class="bottom-icons">
+          <div class="bottom-icons" *ngIf="source.tasks?.tasks">
             <span class="icon-placeholder shimmer" *ngFor="let i of source.tasks.tasks"></span>
           </div>
           <div class="time-wrapper">
