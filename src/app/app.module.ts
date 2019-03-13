@@ -91,6 +91,8 @@ import {
   SatPopoverModule
 } from '@ncstate/sat-popover';
 
+// Intels lib
+import {IntelsModule} from '@common/intels'
 // Pipes
 import {
   CharactersPipe,
@@ -118,8 +120,8 @@ import {
   AgGridModule
 } from 'ag-grid-angular';
 import {
-  DeviceTooltipComponent
-} from './components/device-tooltip/device-tooltip.component';
+  SourceTooltipComponent
+} from './components/source-tooltip/source-tooltip.component';
 import {
   DeviceListModalComponent
 } from './components/modals/device-list-modal/device-list-modal.component';
@@ -127,9 +129,6 @@ import {
 import {
   MomentModule
 } from 'ngx-moment';
-import {
-  SourceComponent
-} from './components/left-bar/source/source.component';
 import {
   InfectionComponent
 } from './components/left-bar/infection/infection.component';
@@ -143,6 +142,7 @@ import {
   DateCellComponent
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -167,9 +167,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     LeftBarComponent,
     SourcesListComponent,
     RightBarComponent,
-    DeviceTooltipComponent,
+    SourceTooltipComponent,
     DeviceListModalComponent,
-    SourceComponent,
     InfectionComponent,
     SourceCubeComponent,
     ConfirmModalComponent,
@@ -186,7 +185,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     GetFilenameFromUrlPipe,
     FileSizePipe,
     OrderByPipe,
-    MillToMinFilterPipe
+    MillToMinFilterPipe,
+    SourceInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -198,6 +198,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ScrollingModule,
     BrowserAnimationsModule,
     // Libraries
+    IntelsModule,
     NgbModule,
     SatPopoverModule,
     ToastNoAnimationModule.forRoot({

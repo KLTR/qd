@@ -6,9 +6,8 @@
       <!-- Sources -->
       <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
         (mouseleave)="source.hover=false;">
-        <!-- <app-source [source]="source"></app-source> -->
         <sat-popover #sourcePopovers xAlign="start" yAlign="center">
-          <app-device-tooltip *ngIf="selectedSource" [device]="selectedSource" (close)="closeT(i)"></app-device-tooltip>
+          <app-source-tooltip *ngIf="selectedSource" [source]="selectedSource" (close)="closeT(i)"></app-source-tooltip>
         </sat-popover>
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{source.name}}</span>
