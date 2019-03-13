@@ -16,6 +16,7 @@
     }
 &.info-cube{
   border-bottom: 1px solid #11161c;
+  min-width: 186px;
 }
 &.intel-cube{
   height: 47px;
@@ -30,7 +31,10 @@
     .icon {
       margin-left: 19px;
     }
-
+    .state-icon{
+      margin-left: auto;
+      margin-right: 10px;
+    }
     .text {
       margin-left: 15px;
       font-size: 14px;
@@ -61,5 +65,8 @@
     flex-basis: 261px;
     height: 100%;
     border-right: 1px solid #11161c;
+  }
+  .tasks-view{
+    width: 100%;
   }
 }

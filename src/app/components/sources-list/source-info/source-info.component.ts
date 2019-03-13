@@ -1,3 +1,4 @@
+import { HttpService } from '@app/services';
 import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
@@ -7,11 +8,14 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class SourceInfoComponent implements OnInit {
 @Input() source: any
+tasks: any;
 selectedInfo = 'apps';
 selectedIntel = 'device-info'
-  constructor() { }
+
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
+    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks})
   }
 
 

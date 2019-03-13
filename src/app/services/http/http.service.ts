@@ -34,6 +34,7 @@ serverUrls = {
   exportSource: '/exports/sources/{{id}}',
   terminateAgent: '/sources/{{id}}/shutdown',
   abortExport: '/exports/{{id}}/abort',
+  getSourceTasks: '',
   // Pioneer Devices
   findPioneerDevices: '/infections/pioneers/targets/{{id}}',
   queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
@@ -83,6 +84,11 @@ env: any;
   archiveTarget(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('archiveTarget', targetId),'', this.setHeaders());
   }
+  getSourcesTasks(sourceId: string): Observable<any>{
+    return this.http.get('../../assets/config/tasks.json');
+      // return this.http.post(this.getUrlByApiName('getSourceTasks', sourceId), '', this.setHeaders());
+  }
+  
   queryPioneerDevices(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId),'', this.setHeaders());
   }
