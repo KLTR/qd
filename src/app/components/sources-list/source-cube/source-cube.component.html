@@ -104,8 +104,8 @@
         </span>
       </div> -->
         <div class="cube-info">
-          <span *ngIf="source.created_at" class="cube-info-duration">Duration:
-            <span class="source-duration">{{source.created_at | amLocal | amDifference : now | amDuration:
+          <span *ngIf="source.last_infection_at" class="cube-info-duration">Duration:
+            <span class="source-duration">{{source.last_infection_at | amLocal | amDifference : now | amDuration:
               'milliseconds'}}</span>
           </span>
           <span *ngIf="source.activity_metadata?.receiving?.kbs" class="cube-info-value">{{source.activity_metadata.receiving.kbs
