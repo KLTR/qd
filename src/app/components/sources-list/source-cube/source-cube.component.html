@@ -1,4 +1,4 @@
-<li class="source-cube" [ngClass]="['LOST_CONNECTION', 'TERMINATED', 'TERMINATING'].includes(source.state) ? 'dimmed' : ''">
+<li *ngIf="source" class="source-cube" [ngClass]="['LOST_CONNECTION', 'TERMINATED', 'TERMINATING'].includes(source?.state) ? 'dimmed' : ''">
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
@@ -36,7 +36,7 @@
       </div>
     </ng-template>
     <div class="device-status">
-      <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
+      <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source?.state"></app-svg-icon>
       <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING'" [options]="source.animatedIcon?.options"
         [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
       </lottie-animation-view>

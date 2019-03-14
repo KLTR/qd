@@ -81,15 +81,8 @@
     }
   }
 
-  .toggle-images {
-    margin-left: 5px;
 
-    &:hover {
-      cursor: pointer;
-    }
-
-    app-svg-icon {
-      margin: 0 2px;
-    }
+  .source-info-wrapper{
+    height: 100%;
   }
 }

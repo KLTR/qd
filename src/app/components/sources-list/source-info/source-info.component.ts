@@ -10,7 +10,7 @@ export class SourceInfoComponent implements OnInit {
 @Input() source: any
 tasks: any;
 selectedInfo = 'apps';
-selectedIntel = 'device-info'
+selectedIntel = 'DEVICE_INFO'
 
   constructor(private http: HttpService) { }
 

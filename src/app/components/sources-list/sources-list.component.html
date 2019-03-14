@@ -16,7 +16,7 @@
     </div>
     <div class="sources-list-wrapper">
       <ul class="sources-list" *ngIf="filteredSources.length > 0; else emptyScreen">
-        <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12" *ngIf="!selectSource; else sourceInfo">
+        <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12" *ngIf="!selectedSource; else sourceInfo">
           <ng-container *cdkVirtualFor="let source of filteredSources; trackBy: trackFn">
             <app-source-cube [source]="source" [showImages]="isImagesShown" (click)="selectSource(source)"></app-source-cube>
           </ng-container>
