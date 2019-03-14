@@ -24,6 +24,7 @@ export class SourcesListComponent implements OnInit {
   acitveSourcesNumber: number;
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
+  selectedSource: any;
   isLoading: boolean;
   constructor(private http: HttpService, private ws: WsService, ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
@@ -80,9 +81,16 @@ export class SourcesListComponent implements OnInit {
     this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.state !== 'PENDING');
   }
 
-
- 
-
+  selectSource(source){
+    console.log(source);
+    if(source === this.selectedSource){
+      this.selectedSource = null;
+      
+    } else {
+      this.selectedSource = source;
+    }
+  }
+  
 
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {

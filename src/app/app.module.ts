@@ -1,3 +1,4 @@
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 // Modules
 import {
   BrowserModule
@@ -173,6 +174,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     SourceCubeComponent,
     ConfirmModalComponent,
     ExportModalComponent,
+    SourceInfoComponent,
     // Cells
     TemplateRendererComponent,
     OwnersCellComponent,
