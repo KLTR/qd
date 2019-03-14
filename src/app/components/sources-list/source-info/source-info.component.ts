@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
@@ -9,9 +11,13 @@ export class SourceInfoComponent implements OnInit {
 @Input() source: any
 selectedInfo = 'apps';
 selectedIntel = 'device-info'
-  constructor() { }
+contacts$ : Observable<any>;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    // TODO: switch to live data.
+    this.contacts$ = this.http.get('./assets/jsons/contacts.json'); 
   }
 
 
