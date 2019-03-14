@@ -4,6 +4,7 @@
   background-color: #26303c;
   border-radius: 4px;
   display: flex;
+  position: relative;
   .cube {
     &.selected {
       background-color: #354455;
@@ -69,5 +70,14 @@
   }
   .tasks-view{
     width: 100%;
+    display: flex;
+    position: relative;
   }
+}
+
+intel-tasks{
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
