@@ -1,0 +1,26 @@
+<div *ngIf="source" class="tooltip-wrapper">
+  <div class="tooltip-header">
+    <div class="device-name">{{source.name}}</div>
+    <i class="close-icon fa fa-close" (click)="closeTooltip()"></i>
+  </div>
+  <div *ngIf="source.tip" class="tooltip-content">
+    <div class="field">
+      <div *ngIf="source.tip?.device">
+        <div class="field-name">Device: {{source.tip.device === 'N/A' ? 'N/A' : ''}}</div>
+        <div *ngIf="source.tip?.device !== 'N/A'" class="field-value">{{source.tip.device}}</div>
+      </div>
+      <div *ngIf="source.tip?.ip">
+        <div class="field-name">IP: {{source.tip.ip === 'N/A' ? 'N/A' : ''}} </div>
+        <div *ngIf="source.tip?.ip !== 'N/A'" class="field-value">{{source.tip.ip }}</div>
+      </div>
+      <div *ngIf="source.tip?.mac">
+        <div class="field-name">MAC: {{source.tip.mac === 'N/A' ? 'N/A' : ''}} </div>
+        <div *ngIf="source.tip?.mac !== 'N/A'" class="field-value">{{source.tip.mac}}</div>
+      </div>
+      <div *ngIf="source.tip?.phone_number">
+        <div class="field-name">Phone Number: {{source.tip.phone_number === 'N/A' ? 'N/A' : ''}}</div>
+        <div *ngIf="source.tip?.phone_number !== 'N/A'" class="field-value">{{source.tip.phone_number}}</div>
+      </div>
+    </div>
+  </div>
+</div>

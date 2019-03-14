@@ -342,6 +342,30 @@ return `<svg viewBox="0 0 83 83" id="apps" width="${size ? size : '9.6vw'}" heig
       id="acLayer_1-2" data-name="Layer 1" />
   </g>
 </svg>`;
+case 'info-apps':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+<g id="Group_638" data-name="Group 638" transform="translate(-370 -304)">
+    <path id="Rectangle_227" d="M0 0h5v5H0z" fill="#c5e1ff" data-name="Rectangle 227" transform="translate(377 304)"/>
+    <path id="Rectangle_228" d="M0 0h5v5H0z" fill="#c5e1ff" data-name="Rectangle 228" transform="translate(377 311)"/>
+    <path id="Rectangle_229" d="M0 0h5v5H0z" fill="#c5e1ff" data-name="Rectangle 229" transform="translate(370 311)"/>
+    <path id="Rectangle_230" d="M0 0h5v5H0z" fill="#c5e1ff" data-name="Rectangle 230" transform="translate(370 304)"/>
+</g>
+</svg>
+`
+case 'info-online':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="13.002" height="17.015" viewBox="0 0 13.002 17.015">
+<path id="Path_189" d="M4808.99 449.117a.6.6 0 0 0-.41-.367l-6.47-1.735a.649.649 0 0 0-.73.284l-4.35 7.839a.516.516 0 0 0-.01.469.608.608 0 0 0 .39.312l2.49.666-3.82 6.606a.528.528 0 0 0 .18.7.651.651 0 0 0 .37.114.661.661 0 0 0 .42-.149l10.08-8.428a.527.527 0 0 0 .18-.533.6.6 0 0 0-.43-.406l-1.91-.513 3.91-4.342a.514.514 0 0 0 .109-.517z" fill="#b6d1ed" fill-rule="evenodd" data-name="Path 189" transform="translate(-4796.016 -446.99)"/>
+</svg>
+`
+case 'info-tasks':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" viewBox="0 0 15 20">
+<g id="Group_202" data-name="Group 202" transform="translate(-1726.89 -1125.5)">
+    <path id="Path_470" d="M1738.765 1126.5v1.25h1.875V1144h-12.5v-16.25h1.875v-1.25h-3.125v18.75h15v-18.75z" fill="#c5e1ff" data-name="Path 470" transform="translate(0 .25)"/>
+    <path id="Path_471" d="M1736.64 1127.244a1.745 1.745 0 0 0-1.744-1.744h-2.764a1.745 1.745 0 0 0-1.743 1.744v3.256h6.25zm-1.25 2.006h-3.75v-2.006a.493.493 0 0 1 .493-.494h2.764a.494.494 0 0 1 .494.494z" fill="#c5e1ff" data-name="Path 471" transform="translate(.875)"/>
+    <path id="Path_472" d="M1737.795 1132.03l-.884-.884-4.558 4.558-1.433-1.433-.884.884 2.317 2.317z" fill="#c5e1ff" data-name="Path 472" transform="translate(.787 1.412)"/>
+</g>
+</svg>
+`
 case 'battery-low':
 return `<svg viewBox="0 0 24.03 9.83" id="battery-low" width="${size ? size : '4vw'}" height="${size ? size : '4vw'}">
   <g id="adLayer_2" data-name="Layer 2">

@@ -6,9 +6,7 @@ import {
 import {
   Component,
   OnInit,
-  HostListener
 } from '@angular/core';
-
 @Component({
   selector: 'app-sources-list',
   templateUrl: './sources-list.component.html',
@@ -26,15 +24,15 @@ export class SourcesListComponent implements OnInit {
   acitveSourcesNumber: number;
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
-  isImagesShown: boolean;
-  
+  isLoading: boolean;
   constructor(private http: HttpService, private ws: WsService, ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
   }
 
   ngOnInit() {
-    this.isImagesShown = true;
+    this.isLoading = true;
     this.http.getDashboard().subscribe(res => {
+      this.isLoading = false;
       this.leftBarData = res;
 
       if (!this.leftBarData.sources) {
@@ -83,9 +81,7 @@ export class SourcesListComponent implements OnInit {
   }
 
 
-  toggleImg() {
-    this.isImagesShown = !this.isImagesShown;
-  }
+ 
 
 
   catchWebSocketEvents(msg) {
@@ -132,23 +128,21 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleInfection(infection) {
-    let infectionObj = infection;
-    if (!infectionObj.state || infectionObj.state === 'PENDING') {
+    if (!infection.state) {
       return;
     }
-
-    if (infectionObj.state === 'IN_PROGRESS') {
-      this.leftBarData.infections.unshift(infection);
-      return;
-    } else {
-      this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
-        if (inf.id !== infectionObj.id) {
-          return inf
-        }
-      });
-      if (infectionObj.state === 'FAILED') {
-        this.leftBarData.infections.unshift(infection);
+    this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
+      if (inf.device_id !== infection.device_id) {
+        return inf
       }
+    });
+    switch (infection.state) {
+      case 'IN_PROGRESS':
+      case 'FAILED':
+        this.leftBarData.infections.unshift(infection);
+        break;
+      default:
+        return;
     }
   }
 

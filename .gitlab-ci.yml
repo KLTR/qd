@@ -1,7 +1,5 @@
 stages:
-  - pre-build
   - build
-  - push
   - deployment
   - cleanup
 
@@ -13,6 +11,9 @@ variables:
   DOCKER_CANONICAL_IMAGE: sr-rnd-105.swg.local:5000/go-client-quantum-ui:${CI_COMMIT_REF_NAME}
   deploy_to_dev: "curl --request POST -F ref=${CI_COMMIT_REF_NAME} -F token=622bd3e8e8c49b91c9400d24284de6  https://sr-rnd-00.swg.local/api/v4/projects/205/trigger/pipeline"
   DOCKER_IMAGE_TAG: ${CI_COMMIT_REF_NAME}
+  K8S_NODE: none
+  K8S_CONTEXT: kubernetes-admin@kubernetes
+  SKIP_DL: 1
 
   
 .limit_branches: &limit_branches
@@ -21,24 +22,13 @@ variables:
     - develop
     - master
     - tags
-    
-pre-build:
-  stage: pre-build
-  script:
-  - export
-  - set -x && cd ${MAKEFILE_PROJECT_PATH} && git fetch && git checkout ${CI_COMMIT_REF_NAME} && git pull
-  - set -x && cd ${PROJECT_ROOT_PATH} && make gitlab-pipeline-reset-all-projects
-  <<: *limit_branches
 
 build-project:
   stage: build
   script:
+  - set -x && cd ${MAKEFILE_PROJECT_PATH} && git fetch && git checkout ${CI_COMMIT_REF_NAME} && git pull
+  - set -x && cd ${PROJECT_ROOT_PATH} && make gitlab-pipeline-reset-all-projects
   - set -x && cd ${PROJECT_ROOT_PATH} && make ${PROJECT}
-  <<: *limit_branches
-
-push-docker:
-  stage: push
-  script:
   - set -x && docker push ${DOCKER_CANONICAL_IMAGE}
   <<: *limit_branches
 

@@ -44,7 +44,7 @@
     </li>
     <!-- Clock -->
     <li class="sep-line clear-fix clock">
-      <span class="general-clock">{{date | date:'dd.MM.yyyy'}}</span>{{ clock$ | async | date:'HH:mm:ss' }}
+      <span *ngIf="clock$ | async" class="general-clock">{{date | date:'dd.MM.yyyy'}}</span>{{ clock$ | async | date:'HH:mm:ss' }}
     </li>
   </ul>
 </div>
