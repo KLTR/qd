@@ -142,7 +142,7 @@ import {
   DateCellComponent
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
-import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -186,7 +186,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     FileSizePipe,
     OrderByPipe,
     MillToMinFilterPipe,
-    SourceInfoComponent
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
