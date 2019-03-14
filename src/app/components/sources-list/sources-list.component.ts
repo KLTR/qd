@@ -6,10 +6,7 @@ import {
 import {
   Component,
   OnInit,
-  HostListener
 } from '@angular/core';
-import {passBoolean} from "protractor/built/util";
-
 @Component({
   selector: 'app-sources-list',
   templateUrl: './sources-list.component.html',
@@ -27,15 +24,15 @@ export class SourcesListComponent implements OnInit {
   acitveSourcesNumber: number;
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
-  isImagesShown: boolean;
-  
+  isLoading: boolean;
   constructor(private http: HttpService, private ws: WsService, ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
   }
 
   ngOnInit() {
-    this.isImagesShown = true;
+    this.isLoading = true;
     this.http.getDashboard().subscribe(res => {
+      this.isLoading = false;
       this.leftBarData = res;
 
       if (!this.leftBarData.sources) {
@@ -84,9 +81,7 @@ export class SourcesListComponent implements OnInit {
   }
 
 
-  toggleImg() {
-    this.isImagesShown = !this.isImagesShown;
-  }
+ 
 
 
   catchWebSocketEvents(msg) {

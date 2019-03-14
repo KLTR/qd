@@ -15,8 +15,7 @@
       <span *ngIf="selectedTarget" class="selected selected-target">{{selectedTarget.name}}</span>
     </div>
     <div class="sources-list-wrapper">
-      <ul class="sources-list">
-        <p *ngIf="filteredSources.length === 0" class="no-items">No sources</p>
+      <ul class="sources-list" *ngIf="filteredSources.length > 0; else emptyScreen">
         <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12">
           <ng-container *cdkVirtualFor="let source of filteredSources; trackBy: trackFn">
             <app-source-cube [source]="source" [showImages]="isImagesShown"></app-source-cube>
@@ -27,3 +26,18 @@
   </div>
   <app-right-bar [events]="events"></app-right-bar>
 </div>
+
+<ng-template #emptyScreen>
+  <div  class="empty-state no-items" *ngIf="!isLoading; else loading">
+    <div class="empty-state-wrapper">
+      <app-svg-icon name="no_devices" [size]="150"></app-svg-icon>
+      <div class="desc">
+        <span class="desc-first">No sources</span>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <!-- <app-loading></app-loading> -->
+</ng-template>

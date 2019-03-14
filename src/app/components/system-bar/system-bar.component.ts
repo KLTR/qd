@@ -55,7 +55,7 @@ from 'rxjs/operators';
     pops: any[];
     isMenuOpen: boolean;
     date: any;
-    clock$: Observable < number >= interval(1000).pipe(map(() => Date.now()));
+    clock$: Observable < number >;
     layoutInterval: any;
     batteryStatus: String;
     internetStatus: String;
@@ -76,7 +76,7 @@ from 'rxjs/operators';
     }
 
     ngOnInit() {
-
+      this.clock$  = interval(1000).pipe(map(() => Date.now()));
       this.http.getConfigLocal().subscribe(res => this.config = res);
       this.pops = [this.internetPop,
         this.alicePop,

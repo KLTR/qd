@@ -12,6 +12,7 @@
       margin: 15px;
       margin-left: 50px;
       border-bottom: 1px solid #45586d;
+
       span {
         max-width: 200px;
         white-space: nowrap;
@@ -24,18 +25,22 @@
         margin: 0 5px;
         cursor: pointer;
       }
-      span.selected-target{
+
+      span.selected-target {
         margin-left: auto;
       }
+
       span.selected {
         border-bottom: 3px solid #c5e1ff;
         font-weight: bold;
         color: #c4e1ff;
         padding-bottom: 10px;
       }
-      span:first-child{
+
+      span:first-child {
         margin: 0;
       }
+
       span:last-child {
         &:after {
           content: '';
@@ -48,24 +53,42 @@
       height: 93%;
       overflow-y: hidden;
       overflow-x: hidden;
-
+      .no-items {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        opacity: 0.5;
+        .desc {
+          text-align: center;
+          font-size: 18px;
+        }
+      }
       .sources-list {
         //ul
         margin-bottom: 0;
         height: 98%;
+
         app-source-cube:first-child {
           margin-top: 0;
         }
+
+
       }
     }
   }
-.toggle-images{
-  margin-left: 5px;
-  &:hover{
-    cursor: pointer;
+
+  .toggle-images {
+    margin-left: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    app-svg-icon {
+      margin: 0 2px;
+    }
   }
-  app-svg-icon{
-    margin: 0 2px;
-  }
-}
 }
