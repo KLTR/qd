@@ -6,7 +6,9 @@ import * as Rx from 'rxjs';
 import {
   map,
   share,
+  retry,
 } from 'rxjs/operators';
+import { webSocket } from 'rxjs/webSocket';
 import { AppConfigService } from '../app-config/app-config.service';
 @Injectable()
 export class WsService {
@@ -43,9 +45,6 @@ export class WsService {
     }
     return this.subject;
   }
-
-
-
   private create(url): Rx.Subject < MessageEvent > {
 
     this.ws = new WebSocket(
@@ -60,7 +59,8 @@ export class WsService {
         return this.ws.close.bind(this.ws);
       }
     ).pipe(
-      share()
+      share(),
+      retry()
     )
     const observer = {
       next: (data: Object) => {
@@ -71,6 +71,33 @@ export class WsService {
     }
     return Rx.Subject.create(observer, observable);
   }
+
+
+  // private create(url): Rx.Subject < MessageEvent > {
+
+  //   this.ws = new WebSocket(
+  //     url,
+  //     [this.env.wsProtocol, this.token]
+  //   );
+  //   const observable = Rx.Observable.create(
+  //     (obs: Rx.Observer < MessageEvent > ) => {
+  //       this.ws.onmessage = obs.next.bind(obs);
+  //       this.ws.onerror = obs.error.bind(obs);
+  //       this.ws.onclose = obs.complete.bind(obs);
+  //       return this.ws.close.bind(this.ws);
+  //     }
+  //   ).pipe(
+  //     share()
+  //   )
+  //   const observer = {
+  //     next: (data: Object) => {
+  //       if (this.ws.readyState === WebSocket.OPEN) {
+  //         this.ws.send(JSON.stringify(data));
+  //       }
+  //     }
+  //   }
+  //   return Rx.Subject.create(observer, observable);
+  // }
   public close() {
     if (this.ws) {
       this.ws.close();

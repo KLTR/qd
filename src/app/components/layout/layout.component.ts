@@ -15,6 +15,6 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getDashboard().subscribe(res => {this.user = res.user, this.system = res})
+    // this.httpService.getDashboard().subscribe(res => {this.user = res.user, this.system = res})
   }
 }

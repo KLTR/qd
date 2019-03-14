@@ -11,6 +11,9 @@ variables:
   DOCKER_CANONICAL_IMAGE: sr-rnd-105.swg.local:5000/go-client-quantum-ui:${CI_COMMIT_REF_NAME}
   deploy_to_dev: "curl --request POST -F ref=${CI_COMMIT_REF_NAME} -F token=622bd3e8e8c49b91c9400d24284de6  https://sr-rnd-00.swg.local/api/v4/projects/205/trigger/pipeline"
   DOCKER_IMAGE_TAG: ${CI_COMMIT_REF_NAME}
+  K8S_NODE: none
+  K8S_CONTEXT: kubernetes-admin@kubernetes
+  SKIP_DL: 1
 
   
 .limit_branches: &limit_branches
