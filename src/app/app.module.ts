@@ -47,7 +47,7 @@ import {
 } from "@app/services";
 
 // Components
-
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 import {
   SystemBarComponent
 } from './components/system-bar/system-bar.component';
@@ -177,6 +177,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     TemplateRendererComponent,
     OwnersCellComponent,
     DateCellComponent,
+    SourceInfoComponent,
     // Pipes
     CharactersPipe,
     SafeHtmlPipe,

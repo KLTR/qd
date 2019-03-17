@@ -19,7 +19,6 @@ import { ExportModalComponent } from '@app/components/modals/export-modal/export
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
-  @Input() showImages;
   timedOut = false;
   isAnimated: boolean;
   profilePicIndex = 0;
@@ -38,7 +37,6 @@ export class SourceCubeComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChange){
-    // only init cube when changes is in source and not on showImages - this cause
     // bad animation rendering
     if(changes['source']){
       this.initSourceCube();
