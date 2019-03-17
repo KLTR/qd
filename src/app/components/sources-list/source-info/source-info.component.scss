@@ -64,9 +64,7 @@
   .center-panel {
     display: flex;
     flex-direction: column;
-    // flex-basis: 261px;
-    width: 18%;
-    min-width: 220px;
+    flex-basis: 240px;
     height: 100%;
     border-right: 1px solid #11161c;
   }
