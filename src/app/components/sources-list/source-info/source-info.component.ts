@@ -11,7 +11,7 @@ export class SourceInfoComponent implements OnInit {
 tasks: any;
 selectedInfo = 'apps';
 selectedIntel = 'DEVICE_INFO'
-
+contacts = [];
   constructor(private http: HttpService) { }
 
   ngOnInit() {
