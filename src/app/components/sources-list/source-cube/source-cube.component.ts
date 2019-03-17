@@ -194,7 +194,7 @@ export class SourceCubeComponent implements OnInit {
       case 'SERVER_IS_PROCESSING_DATA':
         return 'Processing';
       case 'IDLE':
-        return 'Active'
+        return 'Active';
       case 'TERMINATING':
         return 'Terminating';
       case 'TOOL_IS_COLLECTING_DATA':

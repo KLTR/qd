@@ -37,14 +37,14 @@
     </ng-template>
     <div class="device-status">
       <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
-      <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING'" [options]="source.animatedIcon?.options"
+      <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING' || source.state === 'SERVER_IS_PROCESSING_DATA'" [options]="source.animatedIcon?.options"
         [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
       </lottie-animation-view>
       <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
         [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
       </lottie-animation-view>
       <ng-template #animated>
-        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE'"
+        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE' && source.state !== 'SERVER_IS_PROCESSING_DATA'"
           [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
         </lottie-animation-view>
       </ng-template>
