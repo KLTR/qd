@@ -33,9 +33,9 @@
   </div>
 
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
-    <intel-device-info *ngIf="selectedIntel === 'DEVICE_INFO'"></intel-device-info>
-    <intel-chats *ngIf="selectedIntel === 'WHATSAPP'"></intel-chats>
-    <intel-contacts [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
+    <intel-device-info class="intel" *ngIf="selectedIntel === 'DEVICE_INFO'"></intel-device-info>
+    <intel-chats class="intel" *ngIf="selectedIntel === 'WHATSAPP'"></intel-chats>
+    <intel-contacts class="intel" [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
   </div>
 
 
