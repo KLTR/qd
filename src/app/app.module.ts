@@ -92,7 +92,7 @@ import {
 } from '@ncstate/sat-popover';
 
 // Intels lib
-import {IntelsModule} from '@common/intels'
+// import {IntelsModule} from '@common/intels'
 // Pipes
 import {
   CharactersPipe,
@@ -199,7 +199,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ScrollingModule,
     BrowserAnimationsModule,
     // Libraries
-    IntelsModule,
+    // IntelsModule,
     NgbModule,
     SatPopoverModule,
     ToastNoAnimationModule.forRoot({
