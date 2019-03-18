@@ -34,7 +34,7 @@ serverUrls = {
   exportSource: '/exports/sources/{{id}}',
   terminateAgent: '/sources/{{id}}/shutdown',
   abortExport: '/exports/{{id}}/abort',
-  getSourceTasks: '/sources/{{id}}/intl',
+  getSourceTasks: '/sources/{{id}}/intls',
   // Pioneer Devices
   findPioneerDevices: '/infections/pioneers/targets/{{id}}',
   queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
