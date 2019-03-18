@@ -15,7 +15,7 @@ export class ExportModalComponent implements OnInit {
   @Input() data: any;
   exportData: any;
   fileName = '5c6dba156c686f5ffa0668f5.zip';
-  fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.fileName}`;
+  fileUrl: any;
   constructor(
     private appConfig: AppConfigService,
     public activeModal: NgbActiveModal,
@@ -36,7 +36,7 @@ export class ExportModalComponent implements OnInit {
       progress: null,
       state: 'pending',
       download_file: `${this.data.file}.zip`,
-      fileUrl: this.fileUrl,
+      fileUrl: `${config.apiUrl}/archives/${this.data.id}.zip`,
       id: ''
     }
   }
