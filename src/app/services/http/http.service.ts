@@ -85,8 +85,8 @@ env: any;
     return this.http.post(this.getUrlByApiName('archiveTarget', targetId),'', this.setHeaders());
   }
   getSourcesTasks(sourceId: string): Observable<any>{
-    // return this.http.get('../../assets/config/tasks.json');
-      return this.http.get(this.getUrlByApiName('getSourceTasks', sourceId), this.setHeaders());
+    return this.http.get('../../assets/config/tasks.json');
+      // return this.http.get(this.getUrlByApiName('getSourceTasks', sourceId), this.setHeaders());
   }
   
   queryPioneerDevices(targetId: string): Observable<any>{
