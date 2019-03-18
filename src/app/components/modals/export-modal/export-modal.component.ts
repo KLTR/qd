@@ -1,9 +1,7 @@
 import { HttpService, AppConfigService } from '@app/services';
 import { WsService } from './../../../services/websocket/ws.service';
-import { environment } from './../../../../environments/environment.prod';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 @Component({
   selector: 'app-export-modal',
@@ -14,8 +12,8 @@ export class ExportModalComponent implements OnInit {
   @Input() dataType: string;
   @Input() data: any;
   exportData: any;
-  fileName = '5c6dba156c686f5ffa0668f5.zip';
   fileUrl: any;
+  config: any;
   constructor(
     private appConfig: AppConfigService,
     public activeModal: NgbActiveModal,
@@ -28,15 +26,13 @@ export class ExportModalComponent implements OnInit {
 
   ngOnInit() {
   
-    let config = this.appConfig.getConfig()
-    console.log(config);
-    console.log(this.data);
-    this.fileUrl = `${config.apiUrl}/archives/${this.data.id}.zip`
+     this.config = this.appConfig.getConfig()
+    this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
       progress: null,
       state: 'pending',
       download_file: `${this.data.file}.zip`,
-      fileUrl: `${config.apiUrl}/archives/${this.data.id}.zip`,
+      fileUrl: `${this.config.apiUrl}/archives/${this.data.id}.zip`,
       id: ''
     }
   }
@@ -64,7 +60,7 @@ export class ExportModalComponent implements OnInit {
       switch (Object.keys(msg.result)[0]) {
         case 'export_status':
           this.exportData = msg.result.export_status;
-          this.exportData.fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.exportData.download_file}`;
+          this.exportData.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`;
           break;
         
       }
