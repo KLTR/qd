@@ -12,10 +12,13 @@ tasks: any;
 selectedInfo = 'apps';
 selectedIntel = 'DEVICE_INFO'
 contacts = [];
+deviceInfo: any;
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks})
+    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks});
+    this.http.getSourceDeviceInfo(this.source.id).subscribe(res => {console.log(res), this.deviceInfo = res});
+
     this.contacts = [
       {  
         name : 'Roy Levy',
@@ -38,7 +41,7 @@ contacts = [];
     mobile : '0241753312' ,
     email : 'Scorer@gunner.com'
 }
-    ]
+    ];
   }
 
 
