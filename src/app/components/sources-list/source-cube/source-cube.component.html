@@ -114,13 +114,13 @@
       </div>
 
     </div>
-    <div class="source-export" stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.id)">
+    <div class="source-export"  ngbTooltip="Export" container="body" placement="top" (click)="exportSource($event,source.id)">
       <svg height="18" viewBox="0 0 19.07 18" width="19.07">
         <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
         <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
       </svg>
     </div>
-    <div class="cube-on-off" stopPropagation ngbTooltip="Terminate Agent" (click)="terminateAgent(source.id)"
+    <div class="cube-on-off"  ngbTooltip="Terminate Agent" (click)="terminateAgent($event,source.id)"
       placement="top" container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>

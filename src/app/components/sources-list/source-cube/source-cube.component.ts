@@ -213,7 +213,8 @@ export class SourceCubeComponent implements OnInit {
   isNoInfo() {
     return (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state))
   }
-  exportSource(sourceId) {
+  exportSource(event,sourceId) {
+    event.stopPropagation();
     this.http.exportSource(sourceId).subscribe(res => {
     const exportModal =   this.modalService.open(ExportModalComponent,{
         size: 'sm',
@@ -224,7 +225,11 @@ export class SourceCubeComponent implements OnInit {
       exportModal.componentInstance.data = this.source;
     });
   }
-  terminateAgent(sourceId) {
+  terminateAgent(event,sourceId) {
+    event.stopPropagation();
+    if(['TERMINATING','TERMINATED'].includes(this.source.state)){
+      return;
+    }
     this.http.terminateAgent(sourceId).subscribe();
   }
 }
