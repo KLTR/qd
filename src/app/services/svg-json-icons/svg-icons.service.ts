@@ -523,7 +523,7 @@ return `<svg viewBox="0 0 14 17.47" id="hide-photo" width="${size ? size : '19'}
   </g>
 </svg>`;
 case 'info':
-case 'device_info':
+case 'device info':
 return `<svg viewBox="0 0 83 83" id="info" preserveAspectRatio="none" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
 
   <g id="arLayer_2" data-name="Layer 2" width="35px" height="35px">
@@ -1693,6 +1693,17 @@ return `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="21.577" viewB
 </g>
 </svg>
 `
+  case 'calendar':
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+<g id="Group_1110" data-name="Group 1110" transform="translate(-1960.943 -2648.943)">
+    <path id="Path_949" d="M1975.055 2650.261v-1.318h-1.35v1.318h-3.087v-1.318h-1.35v1.318h-3.087v-1.318h-1.35v1.318h-3.888v16.682h18v-16.682zm-10.224 1.317v1.755h1.35v-1.755h3.087v1.755h1.35v-1.755h3.087v1.755h1.35v-1.755h2.538v3.363h-15.3v-3.363zm-2.538 14.048v-9.369h15.3v9.369z" class="cls-1" data-name="Path 949"/>
+    <path id="Rectangle_898" d="M0 0h2.318v1.755H0z" fill="#c5e1ff" data-name="Rectangle 898" transform="translate(1964.492 2659.994)"/>
+    <path id="Rectangle_899" d="M0 0h2.318v1.755H0z" fill="#c5e1ff" data-name="Rectangle 899" transform="translate(1968.784 2659.994)"/>
+    <path id="Rectangle_900" d="M0 0h2.318v1.755H0z" fill="#c5e1ff" data-name="Rectangle 900" transform="translate(1973.076 2659.994)"/>
+</g>
+</svg>
+`
+
 }
 }
 }
