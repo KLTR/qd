@@ -12,6 +12,8 @@ import {
 } from '@app/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
+import {AppConfigService} from "@app/services";
+
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -19,12 +21,12 @@ import { ExportModalComponent } from '@app/components/modals/export-modal/export
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
-  @Input() showImages;
   timedOut = false;
   isAnimated: boolean;
   profilePicIndex = 0;
   sourceDuration: string;
   ONE_SECOND = 1 * 1000;
+
   now = new Date();
   constructor(
     private http: HttpService,
@@ -38,7 +40,6 @@ export class SourceCubeComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChange){
-    // only init cube when changes is in source and not on showImages - this cause
     // bad animation rendering
     if(changes['source']){
       this.initSourceCube();
@@ -196,7 +197,7 @@ export class SourceCubeComponent implements OnInit {
       case 'SERVER_IS_PROCESSING_DATA':
         return 'Processing';
       case 'IDLE':
-        return 'Active'
+        return 'Active';
       case 'TERMINATING':
         return 'Terminating';
       case 'TOOL_IS_COLLECTING_DATA':
@@ -212,15 +213,14 @@ export class SourceCubeComponent implements OnInit {
   }
   exportSource(event,sourceId) {
     event.stopPropagation();
-    this.http.exportSource(sourceId).subscribe(res => {
     const exportModal =   this.modalService.open(ExportModalComponent,{
-        size: 'sm',
-        centered: true,
-        backdrop: 'static'
-      });
-      exportModal.componentInstance.dataType = 'Source';
-      exportModal.componentInstance.data = this.source;
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
     });
+    exportModal.componentInstance.dataType = 'Source';
+    exportModal.componentInstance.data = this.source;
+
   }
   terminateAgent(event,sourceId) {
     event.stopPropagation();

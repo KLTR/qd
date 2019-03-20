@@ -10,8 +10,8 @@ DOCKER_PROJECT := go-client-quantum-ui
 include ${QD_GO_MAKEFILE_PATH}/Makefile.base
 include ${QD_GO_MAKEFILE_PATH}/k8s/Makefile.k8s
 
-include ${MAKEFILE_ROOT}/Makefile.docker
-include ${MAKEFILE_ROOT}/Makefile.gitlab
+include ${QD_GO_MAKEFILE_PATH}/Makefile.docker
+include ${QD_GO_MAKEFILE_PATH}/Makefile.gitlab
 
 ng-docker: export DOCKER_IMAGE_TAG := $(shell git branch | grep \* | cut -d ' ' -f2)
 ng-docker:
@@ -26,4 +26,3 @@ install-common:
 	cd ../../common/dist/intels && npm pack && cp common-intels-0.0.1.tgz ../../../quantum/quantum-ui/
 	npm install common-intels-0.0.1.tgz
 	sudo ng s
-	

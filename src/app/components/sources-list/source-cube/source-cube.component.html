@@ -2,8 +2,8 @@
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
-        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.profile_pics[0]; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
+        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics?.length > 1 "></app-svg-icon>
+        <img *ngIf="source.profile_pics; else avatar" src="{{source.profile_pics[profilePicIndex].id}}">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
@@ -36,15 +36,15 @@
       </div>
     </ng-template>
     <div class="device-status">
-      <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source?.state"></app-svg-icon>
-      <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING'" [options]="source.animatedIcon?.options"
+      <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
+      <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING' || source.state === 'SERVER_IS_PROCESSING_DATA'" [options]="source.animatedIcon?.options"
         [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
       </lottie-animation-view>
       <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
         [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
       </lottie-animation-view>
       <ng-template #animated>
-        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE'"
+        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE' && source.state !== 'SERVER_IS_PROCESSING_DATA'"
           [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
         </lottie-animation-view>
       </ng-template>

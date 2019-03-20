@@ -125,8 +125,9 @@ env: any;
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
     return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
   }
-  exportSource(sourceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('exportSource', sourceId), null,this.setHeaders());
+  exportSource(sourceId: string, exportObj): Observable<any> {
+    console.log(exportObj);
+    return this.http.post(this.getUrlByApiName('exportSource', sourceId, exportObj), null,this.setHeaders());
   }
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
