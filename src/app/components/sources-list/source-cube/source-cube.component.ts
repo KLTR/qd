@@ -21,7 +21,6 @@ import {AppConfigService} from "@app/services";
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
-  @Input() showImages;
   timedOut = false;
   isAnimated: boolean;
   profilePicIndex = 0;
