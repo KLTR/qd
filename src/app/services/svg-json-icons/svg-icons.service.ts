@@ -1703,7 +1703,16 @@ return `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="21.577" viewB
 </g>
 </svg>
 `
-
+case 'export-ready':
+return `<svg xmlns="http://www.w3.org/2000/svg" width="29.238" height="23.492" viewBox="0 0 29.238 23.492">
+<defs>
+    <style>
+        .cls-1{fill:#6cfff8}
+    </style>
+</defs>
+<path id="Path_340" d="M-42.677 1732.19l-1.535-1.535a.755.755 0 0 0-.535-.222.756.756 0 0 0-.535.222l-18.373 18.373-5.211-5.211a.757.757 0 0 0-1.07 0l-1.535 1.535a.757.757 0 0 0-.222.535.76.76 0 0 0 .222.535l7.281 7.281a.758.758 0 0 0 .535.222.759.759 0 0 0 .535-.222l20.443-20.444a.756.756 0 0 0 0-1.069z" fill="#6cfff8" data-name="Path 340" transform="translate(71.693 -1730.433)"/>
+</svg>
+`
 }
 }
 }
