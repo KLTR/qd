@@ -1,10 +1,9 @@
 import { HttpService, AppConfigService } from '@app/services';
 import { WsService } from './../../../services/websocket/ws.service';
-import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-export-modal',
   styleUrls: ['./export-modal.component.scss'],
@@ -22,6 +21,7 @@ export class ExportModalComponent implements OnInit {
   fromDate: NgbDate;
   toDate: NgbDate;
   hoveredDate: NgbDate;
+  isDpShown = false;
   isRangeSelected = false;
   @ViewChild('d') public datePicker: NgbDatepicker;
   constructor(
@@ -38,7 +38,6 @@ export class ExportModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedDateRange = 'all';
      this.config = this.appConfig.getConfig()
     this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
@@ -52,8 +51,12 @@ export class ExportModalComponent implements OnInit {
 
 
   startExport(){
-    console.log(this.selectedFormat);
-    this.httpService.exportSource(this.data.id).subscribe(res => {
+    let exportObj = {
+      format: this.selectedFormat,
+      isRange: this.isRangeSelected,
+      range: this.selectedDateRange,
+    }
+    this.httpService.exportSource(this.data.id, exportObj).subscribe(res => {
       this.isStartedExporting = true;
     });
   }
@@ -63,7 +66,14 @@ export class ExportModalComponent implements OnInit {
   }
 
   selectDateRange(range: any){
-    this.selectedDateRange = range;
+    if(range === 'all'){
+      this.isDpShown = false;
+      this.isRangeSelected = false;
+      return;
+    }
+    else{
+      this.isRangeSelected = true;
+    }
   }
 
   cancelExport(){
@@ -80,7 +90,8 @@ export class ExportModalComponent implements OnInit {
       });
     } else {
       this.activeModal.close();
-    }  }
+    }  
+  }
 
     catchWebSocketEvents(msg) {
       if (Object.keys(msg)[0] === 'error') {
@@ -91,32 +102,33 @@ export class ExportModalComponent implements OnInit {
           this.exportData = msg.result.export_status;
           this.exportData.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`;
           break;
-        
       }
       // this.system = Object.assign({}, this.system);
     }
 
-
+    logDate(date){
+      console.log(date)
+    }
     onDateSelection(date: NgbDate) {
-      this.isRangeSelected = false;
+      this.selectedDateRange = null;
+      this.isDpShown = true;
       if (!this.fromDate && !this.toDate) {
         this.fromDate = date;
       } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
         this.toDate = date;
-        console.log(this.fromDate);
-        console.log(this.toDate);
         this.selectedDateRange = {
-          from: this.fromDate,
-          to: this.toDate
+          from: `${this.fromDate.day}/${this.fromDate.month}/${this.fromDate.year}`,
+          to: `${this.toDate.day}/${this.toDate.month}/${this.toDate.year}`,
         }
-        console.log(this.selectedDateRange);
-        this.isRangeSelected = true;
+        this.isDpShown = false;
       } else {
         this.toDate = null;
         this.fromDate = date;
       }
     }
-  
+  applyDate(){
+    this.isDpShown = false;
+  }
     isHovered(date: NgbDate) {
       return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
     }

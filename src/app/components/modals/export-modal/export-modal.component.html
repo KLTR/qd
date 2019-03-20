@@ -59,22 +59,35 @@
           <label for="all">All</label>
         </p>
         <p >
-          <input type="radio" disabled id="range" value="range" (click)="selectDateRange('range')" name="date-range">
+          <input type="radio" id="range" value="range" (click)="selectDateRange('range')" name="date-range">
           <label for="range">Range</label>
         </p>
         <ngb-datepicker 
+           [ngClass]="'datePicker'"
            id="date-picker"
-           ngbDatepicker
-           #d
-           *ngIf="selectedDateRange === 'range'" 
+           #d="ngbDatepicker"
+           name="dp"
+           *ngIf="isDpShown"
            (select)="onDateSelection($event)" 
            [displayMonths]="2" 
            [dayTemplate]="t" 
            outsideDays="visible"
+           autoClose="outside"
            [navigation]="false">
         </ngb-datepicker>
-          <ng-template #t let-date let-focused="focused">
+        <button  *ngIf="isRangeSelected"  class="btn button-dp" (click)="isDpShown = !isDpShown" type="button">
+          <span *ngIf="!selectedDateRange; else date">Select Date Range</span>
+          <ng-template #date>
+            <span>
+              {{selectedDateRange.from | amParse:'DD/MM/YYYY' |  amDateFormat: 'DD/MM/YYYY'}} - 
+              {{selectedDateRange.to | amParse:'DD/MM/YYYY' |  amDateFormat: 'DD/MM/YYYY' }}
+            </span>
+          </ng-template>
+          <app-svg-icon name="calendar"></app-svg-icon>
+        </button>
+          <ng-template #t let-currentMonth="currentMonth" let-date let-focused="focused">
             <span class="custom-day"
+                  [class.text-muted]="date.month !== currentMonth"
                   [class.focused]="focused"
                   [class.range]="isRange(date)"
                   [class.faded]="isHovered(date) || isInside(date)"
@@ -86,8 +99,6 @@
           
       </div>
     </div>
-    <div *ngIf="isRangeSelected" class="form-group">
-      <!-- <input disabled [value]="selectedDateRange.from."> -->
-    </div>
+  
   </div>
 </ng-template>

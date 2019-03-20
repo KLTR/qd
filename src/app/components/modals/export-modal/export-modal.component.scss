@@ -177,6 +177,7 @@
       color: #c5e1ff;
       cursor: pointer;
       background: none !important;
+      font-size: 12px;
       &:hover{
         background-color: rgba(153, 165, 179, 0.5) !important;
       }
@@ -199,27 +200,17 @@
   p{
     margin-right: 15px;
   }
+
+
   ngb-datepicker{
     &#date-picker{
-      margin-top: 35px;
-      z-index: 1;
-      background-color: #3b4a58 !important;
-      .ngb-dp-weekday{
-        color: rgba(197, 225, 255,0.3);
-        background-color: #3b4a58 !important;
-        // ngb-dp-day{
-        //   cursor: pointer;
-        //   display: flex;
-        //   align-items: center;
-        //   justify-content: center;
-        // }
-      }
-      .ngb-db-header{
-        background: transparent !important;
-        &.bg-light{
-          background: transparent !important;
-        }
-      }
+      margin-top: 45px;
+    margin-left: 130px;
+    z-index: 1;
+    background-color: #3b4a58 !important;
+    position: absolute;
+    border: 1px solid transparent;
+    border-radius: 5px;
     }
     button{
       color: #c5e1ff !important;
@@ -274,4 +265,35 @@
 
 .ngb-dp-weekday{
   color: #232d38 !important;
+}
+.button-dp{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 12px;
+  padding: 1px;
+  width: 158.4px;
+  height: 32px;
+  border-radius: 3px;
+  background-color: #3b4a58;
+  span{
+      color: #c4e1ff;
+      opacity: 0.5;
+      font-size: 11px
+  }
+  app-svg-icon{
+    margin-top: 0!important;
+  }
+}
+
+::ng-deep .bg-light{
+  background-color: #3b4a58 !important;
+}
+
+::ng-deep .ngb-dp-weekday{
+  color: #c4e1ff !important;
+    opacity: 0.3;
+}
+::ng-deep .btn-link{
+  color: #c4e1ff !important;
 }
