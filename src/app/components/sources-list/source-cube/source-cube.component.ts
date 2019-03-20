@@ -12,6 +12,8 @@ import {
 } from '@app/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
+import {AppConfigService} from "@app/services";
+
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -25,6 +27,7 @@ export class SourceCubeComponent implements OnInit {
   profilePicIndex = 0;
   sourceDuration: string;
   ONE_SECOND = 1 * 1000;
+
   now = new Date();
   constructor(
     private http: HttpService,
