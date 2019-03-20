@@ -3,7 +3,7 @@
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
         <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics.length > 1 && showImages"></app-svg-icon>
-        <img *ngIf="source.profile_pics[0] && showImages; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
+        <img *ngIf="source.profile_pics[0]; else avatar" src="{{source.profile_pics[profilePicIndex]}}">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>
@@ -114,13 +114,13 @@
       </div>
 
     </div>
-    <div class="source-export" stopPropagation ngbTooltip="Export" container="body" placement="top" (click)="exportSource(source.id)">
+    <div class="source-export"  ngbTooltip="Export" container="body" placement="top" (click)="exportSource($event,source.id)">
       <svg height="18" viewBox="0 0 19.07 18" width="19.07">
         <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
         <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
       </svg>
     </div>
-    <div class="cube-on-off" stopPropagation ngbTooltip="Terminate Agent" (click)="terminateAgent(source.id)"
+    <div class="cube-on-off"  ngbTooltip="Terminate Agent" (click)="terminateAgent($event,source.id)"
       placement="top" container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>
