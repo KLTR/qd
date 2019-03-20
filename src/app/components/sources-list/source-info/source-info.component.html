@@ -34,7 +34,8 @@
 
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
     <intel-device-info [deviceInfo]="deviceInfo" class="intel" *ngIf="selectedIntel === 'DEVICE_INFO'"></intel-device-info>
-    <intel-chats class="intel" *ngIf="selectedIntel === 'WHATSAPP'"></intel-chats>
+    <intel-chats class="intel" [messages]="messages" [sessions]="sessions"
+     *ngIf="['WHATSAPP','TELEGRAM','WECHAT','LINE','SMS', 'SIGNAL'].includes(selectedIntel)"></intel-chats>
     <intel-contacts class="intel" [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
   </div>
 

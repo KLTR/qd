@@ -156,4 +156,12 @@ env: any;
   getConfigLocal(): any{
     return this.config;
   }
+  getIntel(intelName, sourceId): Observable<any>{
+    switch(intelName){
+      case 'DEVICE_INFO':
+       return this.getSourceDeviceInfo(sourceId);
+      default: 
+      return this.getSourceDeviceInfo(sourceId);
+    }
+  }
 }
