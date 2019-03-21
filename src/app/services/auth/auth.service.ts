@@ -24,13 +24,18 @@ export class AuthService {
     private http: HttpService,
     private ws: WsService) {}
 
+
+    getToken() : string  {
+      let token = localStorage.getItem('user');
+      console.log(token);
+      return token;
+    }
+
   logout(): void {
     this.router.navigate(['/login']);
     localStorage.clear();
     this.ws.close();
-    this.http.logout().subscribe(res => {
-      console.log(res);
-    })
+    this.http.logout();
   }
 
   login(credentials: {

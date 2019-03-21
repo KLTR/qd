@@ -39,12 +39,11 @@ export class ExportModalComponent implements OnInit {
 
   ngOnInit() {
      this.config = this.appConfig.getConfig()
-    this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
+    // this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
       progress: null,
       state: 'pending',
-      download_file: `${this.data.file}.zip`,
-      fileUrl: `${this.config.apiUrl}/archives/${this.data.id}.zip`,
+      fileUrl: ``,
       id: ''
     }
   }
@@ -58,6 +57,8 @@ export class ExportModalComponent implements OnInit {
     }
     this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
       this.isStartedExporting = true;
+      this.exportData.id = res.id;
+      this.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.zip`
     });
   }
 
@@ -99,16 +100,13 @@ export class ExportModalComponent implements OnInit {
       }
       switch (Object.keys(msg.result)[0]) {
         case 'export_status':
-          this.exportData = msg.result.export_status;
-          this.exportData.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`;
+          this.exportData.state = msg.result.export_status;
           break;
       }
       // this.system = Object.assign({}, this.system);
     }
 
-    logDate(date){
-      console.log(date)
-    }
+ 
     onDateSelection(date: NgbDate) {
       this.selectedDateRange = null;
       this.isDpShown = true;

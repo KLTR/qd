@@ -3,7 +3,7 @@
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
         <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics?.length > 1 "></app-svg-icon>
-        <img *ngIf="source.profile_pics; else avatar" [src]="imgUrl">
+        <img *ngIf="source.profile_pics; else avatar" [attr.src]="imgUrl | secure | async">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
         </ng-template>

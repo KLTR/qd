@@ -82,7 +82,6 @@ export class SourcesListComponent implements OnInit {
   }
 
   selectSource(source){
-    console.log(source);
     if(source === this.selectedSource){
       this.selectedSource = null;
       

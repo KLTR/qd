@@ -47,3 +47,5 @@ Dockerfile
 .dockerignore
 
 *.pyc
+
+*.tgz

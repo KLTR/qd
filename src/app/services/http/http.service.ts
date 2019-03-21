@@ -137,9 +137,9 @@ env: any;
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
     return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
   }
-  exportSource(sourceId: string, exportObj): Observable<any> {
+  exportSource(sourceId: string, exportObj: any): Observable<any> {
     console.log(exportObj);
-    return this.http.post(this.getUrlByApiName('exportSource', sourceId), exportObj,this.setHeaders());
+    return this.http.post<any>(this.getUrlByApiName('exportSource', sourceId), exportObj,this.setHeaders());
   }
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
@@ -154,7 +154,7 @@ env: any;
    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials);
   }
   logout() : Observable<any> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders());
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'');
   }
   getTop(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('top'), this.setHeaders());
@@ -172,4 +172,7 @@ env: any;
   getIntel(intelName, sourceId): Observable<any>{
     return this.http.get(this.getUrlByApiNameWithArgs('getSourceIntel',sourceId, intelName.toLowerCase()), this.setHeaders());
   }
+  // getProfilePic(sourceId): Observable<any>{
+
+  // }
 }

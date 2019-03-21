@@ -13,3 +13,4 @@ export * from './getFilenameFromUrl.pipe';
 export * from './fileSize.pipe';
 export * from './order-by.pipe';
 export * from './millToMin.pipe';
+export * from './secure.pipe'

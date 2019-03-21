@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import {
   Injectable
 } from '@angular/core';
@@ -12,13 +13,11 @@ import {
   HttpEvent,
   HttpErrorResponse
 } from '@angular/common/http';
-
 import {
   Observable,
   throwError
 } from 'rxjs';
 import {
-  map,
   catchError
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -27,22 +26,22 @@ import { Router } from '@angular/router';
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(private toastr: ToastrService, private router: Router) {}
+  constructor(private toastr: ToastrService, private router: Router, ) {}
 
   intercept(request: HttpRequest < any > , next: HttpHandler): Observable < HttpEvent < any >> {
-    // const token: string = localStorage.getItem('token');
-
-    // if (token) {
-    //     request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
-    // }
+    const token: string = this.getToken();
+    if (token && !request.headers.has('authorization') && !request.url.includes('logout')) {
+      request = request.clone({
+        setHeaders:{
+          'authorization': this.getToken()
+        }
+      });
+    }
 
     // if (!request.headers.has('Content-Type')) {
     //     request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
     // }
 
-    request = request.clone({
-      headers: request.headers.set('Accept', 'application/json')
-    });
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         // Unauthorized
@@ -79,5 +78,8 @@ export class InterceptorService implements HttpInterceptor {
       }));
   }
 
-
+  getToken() : any {
+    let token = localStorage.getItem('user');
+    return token;
+  }
 }

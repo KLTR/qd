@@ -103,7 +103,8 @@ import {
   GetFilenameFromUrlPipe,
   FileSizePipe,
   OrderByPipe,
-  MillToMinFilterPipe
+  MillToMinFilterPipe,
+  SecurePipe
 } from '@app/pipes';
 import {
   AuthGuard
@@ -188,6 +189,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     FileSizePipe,
     OrderByPipe,
     MillToMinFilterPipe,
+    SecurePipe,
     LoadingComponent
   ],
   imports: [
