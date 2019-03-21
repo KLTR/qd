@@ -14,12 +14,12 @@ selectedIntel = 'DEVICE_INFO'
 contacts = [];
 messages = [];
 sessions = [];
-deviceInfo: any;
+data: any;
   constructor(private http: HttpService) { }
 
   ngOnInit() {
     this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks});
-    this.http.getSourceDeviceInfo(this.source.id).subscribe(res => {console.log(res), this.deviceInfo = res});
+    this.http.getIntel('device_info',this.source.id).subscribe(res => {console.log(res), this.data = res});
 
     this.contacts = [
       {  
@@ -489,7 +489,10 @@ deviceInfo: any;
     ]
   }
 
-
+taskAction(event,task: string){
+  event.stopPropagation();
+  this.http.taskAction(task, this.source.id).subscribe(res => console.log(res));
+}
   selectInfo(info: string){
     this.selectedInfo = info;
   }

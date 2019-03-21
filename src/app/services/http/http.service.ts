@@ -46,9 +46,10 @@ serverUrls = {
   resetPioneerMachine: '/infections/pioneers/machines/{{id}}/reset',
 
   // Tasks
-  getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
-  getSourceChat: '/sources/{{id}}/{{chatType}}',
-  getSourceIntel: '/sources/{{id}}/{{intelName}}'
+  // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
+  // getSourceChat: '/sources/{{id}}/{{chatType}}',
+  getSourceIntel: '/sources/{{id}}/{{intelName}}',
+  taskAction: '/sources/{{id}}/cnc/{{taskAction}}'
 };
 
 config: any;
@@ -100,9 +101,7 @@ env: any;
     return this.http.get('../../assets/config/tasks.json');
       // return this.http.get(this.getUrlByApiName('getSourceTasks', sourceId), this.setHeaders());
   }
-  getSourceDeviceInfo(sourceId: string): Observable<any>{
-    return this.http.get(this.getUrlByApiName('getSourceDeviceInfo', sourceId), this.setHeaders());
-  }
+
 
   queryPioneerDevices(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId),'', this.setHeaders());
@@ -175,4 +174,7 @@ env: any;
   // getProfilePic(sourceId): Observable<any>{
 
   // }
+  taskAction(taskAction: string, sourceId: string){
+    return this.http.get(this.getUrlByApiNameWithArgs('taskAction',sourceId, taskAction), this.setHeaders());
+  }
 }
