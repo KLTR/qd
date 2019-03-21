@@ -26,16 +26,22 @@ export class SourceCubeComponent implements OnInit {
   profilePicIndex = 0;
   sourceDuration: string;
   ONE_SECOND = 1 * 1000;
-
+  config: any;
+ fileUrl: any;
   now = new Date();
   constructor(
     private http: HttpService,
     private iconService: IconService,
     private modalService: NgbModal,
+    private appConfig: AppConfigService,
   ) {}
 
   ngOnInit() {
    this.initSourceCube();
+    this.config = this.appConfig.getConfig()
+    if (this.source.profile_pics) {
+      this.fileUrl = `${this.config.apiUrl}/archives/${this.source.profile_pics[this.profilePicIndex].id}.zip`
+    }
    // this updates the duration of source through the amDifference pipe
   }
 
@@ -64,6 +70,8 @@ export class SourceCubeComponent implements OnInit {
     } else {
       this.profilePicIndex = 0;
     }
+    this.fileUrl = `${this.config.apiUrl}/archives/${this.source.prfile_pics[this.profilePicIndex].id}.zip`
+
   }
   getWifiStatus() {
     if(!this.source.device.wifi){
