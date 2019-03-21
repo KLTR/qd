@@ -165,6 +165,9 @@ export class SourcesListComponent implements OnInit {
       }
     });
     this.leftBarData.sources.unshift(source)
+    var arr = new Array();
+    arr.sort()
+    this.leftBarData.sources.sort(this.stateComparator);
 
   }
 ngOnChanges(): void {

@@ -93,7 +93,7 @@ import {
 } from '@ncstate/sat-popover';
 
 // Intels lib
-import {IntelsModule} from '@common/intels'
+import {IntelsModule} from '@quadream/common/dist/intels'
 // Pipes
 import {
   CharactersPipe,
@@ -145,6 +145,7 @@ import {
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DatePickerModalComponent } from './components/modals/date-picker-modal/date-picker-modal.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -190,7 +191,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     OrderByPipe,
     MillToMinFilterPipe,
     SecurePipe,
-    LoadingComponent
+    LoadingComponent,
+    DatePickerModalComponent
   ],
   imports: [
     BrowserModule,
