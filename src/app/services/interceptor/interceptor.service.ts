@@ -30,7 +30,11 @@ export class InterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest < any > , next: HttpHandler): Observable < HttpEvent < any >> {
     const token: string = this.getToken();
-    if (token && !request.headers.has('authorization') && !request.url.includes('logout')) {
+    if (
+      token && 
+      !request.headers.has('authorization') && 
+      !request.url.includes('logout'))
+       {
       request = request.clone({
         setHeaders:{
           'authorization': this.getToken()

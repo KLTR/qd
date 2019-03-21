@@ -4,6 +4,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-export-modal',
   styleUrls: ['./export-modal.component.scss'],
@@ -114,9 +116,11 @@ export class ExportModalComponent implements OnInit {
         this.fromDate = date;
       } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
         this.toDate = date;
+        let fromStr =  `${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`
+        let toStr = `${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`
         this.selectedDateRange = {
-          from: `${this.fromDate.day}/${this.fromDate.month}/${this.fromDate.year}`,
-          to: `${this.toDate.day}/${this.toDate.month}/${this.toDate.year}`,
+          from: moment(fromStr).toISOString(),
+          to: moment(toStr).toISOString()
         }
         this.isDpShown = false;
       } else {
