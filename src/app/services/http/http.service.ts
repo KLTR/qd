@@ -76,6 +76,14 @@ env: any;
       }
       return url;
   }
+  getUrlByApiNameWithArgs(apiName: string, ...args) {
+    let uri = this.env.apiUrl + this.serverUrls[apiName]
+      const argsList = this.serverUrls[apiName].match(/{{(.*?)}}/g);
+      for (let i = 0; i < argsList.length; i++) {
+        uri = uri.replace(argsList[i], args[i]);
+      }
+      return uri;
+  }
   setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -95,11 +103,7 @@ env: any;
   getSourceDeviceInfo(sourceId: string): Observable<any>{
     return this.http.get(this.getUrlByApiName('getSourceDeviceInfo', sourceId), this.setHeaders());
   }
-  // getSourceChat(sourceId: string, chatType: string): Observable<any>{
-  //   chatType = chatType.toLowerCase();
-  //   console.log(chatType);
-  //   return this.http.get(this.getUrlByApiName('getSourceChat', sourceId,chatType),this.setHeaders());
-  // }
+
   queryPioneerDevices(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId),'', this.setHeaders());
   }
@@ -135,7 +139,7 @@ env: any;
   }
   exportSource(sourceId: string, exportObj): Observable<any> {
     console.log(exportObj);
-    return this.http.post(this.getUrlByApiName('exportSource', sourceId, exportObj), null,this.setHeaders());
+    return this.http.post(this.getUrlByApiName('exportSource', sourceId), exportObj,this.setHeaders());
   }
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
@@ -166,14 +170,6 @@ env: any;
     return this.config;
   }
   getIntel(intelName, sourceId): Observable<any>{
-    console.log(intelName.toLowerCase());
-    return this.http.get(this.getUrlByApiName('getSourceIntel',sourceId, intelName.toLowerCase()), this.setHeaders());
-    // return this.http.get(this.getUrlByApiName('getSourceDeviceInfo', sourceId), this.setHeaders());
-    // switch(intelName){
-    //   case 'DEVICE_INFO':
-    //    return this.getSourceDeviceInfo(sourceId);
-    //   default: 
-    //   return this.getSourceDeviceInfo(sourceId);
-    // }
+    return this.http.get(this.getUrlByApiNameWithArgs('getSourceIntel',sourceId, intelName.toLowerCase()), this.setHeaders());
   }
 }

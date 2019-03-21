@@ -37,6 +37,7 @@
     <intel-chats class="intel" [messages]="messages" [sessions]="sessions"
      *ngIf="['WHATSAPP','TELEGRAM','WECHAT','LINE','SMS', 'SIGNAL'].includes(selectedIntel)"></intel-chats>
     <intel-contacts class="intel" [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
+    <!-- <intel-call-history></intel-call-history> -->
   </div>
 
 

@@ -56,7 +56,7 @@ export class ExportModalComponent implements OnInit {
       isRange: this.isRangeSelected,
       range: this.selectedDateRange,
     }
-    this.httpService.exportSource(this.data.id, exportObj).subscribe(res => {
+    this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
       this.isStartedExporting = true;
     });
   }
