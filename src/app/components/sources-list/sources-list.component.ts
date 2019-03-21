@@ -184,8 +184,23 @@ ngOnChanges(): void {
     return item.id;
   }
 
-  compareSourceState(a, b){
-    const stateA = a.toLowerCase();
-    const stateB = b.toLowerCase();
+  stateComparator(s1, s2): number {
+
+    function stateToNumber(state): number {
+      switch (state) {
+        case 'ACTIVE':
+          return 1;
+        case 'DOWNLOADING':
+        case 'DOWNLOADING_AGENT':
+          return 2
+        default:
+          return 3;
+      }
+    }
+
+    let severityNumber1 = stateToNumber(s1);
+    let severityNumber2 = stateToNumber(s2);
+
+    return severityNumber1 - severityNumber2;
   }
 }

@@ -30,7 +30,7 @@
     <button class="cancel-button" (click)="cancelExport()">Abort</button>
     <a *ngIf="!isStartedExporting" class="export-button" (click)="startExport()">EXPORT</a>
     <a *ngIf="isStartedExporting;" class="export-button" [ngClass]="{'disable': exportData.state !== 'Completed!'}"
-      [href]="exportData.fileUrl" download="export.zip" (click)="activeModal.close()">DOWNLOAD</a>
+      [href]="exportData.fileUrl" download="{{exportData.id}}.zip" (click)="activeModal.close()">DOWNLOAD</a>
   </div>
 </div>
 
