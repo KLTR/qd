@@ -27,9 +27,11 @@ $card-shadow: 0px 1px 4px 0 rgba(26, 34, 42, 0.32);
 // Text
 $foreground-color: #C4E1FF;
 $font-family: 'Titillium Web';
+// $grid-size: 8px;
 // $icon-color: #6b8198;
 @import "~ag-grid-community/src/styles/ag-grid.scss";
-@import "~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material.scss";
+// @import "~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material.scss";
+// @import "~ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 .ag-theme-material {
   font-weight: bold;
@@ -64,7 +66,6 @@ $font-family: 'Titillium Web';
       border-left: 4px solid #475a70;
     }
   }
-
   .ag-ltr {
     .ag-cell-focus {
       border: 1px solid #3f51b500;
@@ -88,7 +89,35 @@ $font-family: 'Titillium Web';
   }
 }
 
+.ag-theme-balham{
+  .ag-header{
+    min-height: 30px !important;
+    height: 30px !important;
+    margin-top: 20px;
+    color: #cae3ff86 !important;
+  }
+  .ag-header-cell{
+    font-size: 12px;
+    letter-spacing: 0.2px;
+  }
+  .ag-header-cell, .ag-cell{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-left: 40px;
+  }
+  .ag-row{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #35445585;
+    // height: 50px !important;
+  }
+  .ag-row-hover {
+    /* putting in !important so it overrides the theme's styling as it hovers the row also */
+    background-color: #2E3845 !important;;
+}
 
+}
 
 
 $fa-font-path: "~font-awesome/fonts";
@@ -172,7 +201,6 @@ body {
   background-color: transparent !important;
 }
 
-.modal-dialog {}
 
 /*:::::::::::::::::::::::::: GENERAL :::::::::::::::::::::::::*/
 

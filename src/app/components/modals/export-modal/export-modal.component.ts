@@ -4,6 +4,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-export-modal',
   styleUrls: ['./export-modal.component.scss'],
@@ -38,13 +40,13 @@ export class ExportModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.httpService.getConfig().subscribe()
      this.config = this.appConfig.getConfig()
-    this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
+    // this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
       progress: null,
       state: 'pending',
-      download_file: `${this.data.file}.zip`,
-      fileUrl: `${this.config.apiUrl}/archives/${this.data.id}.zip`,
+      fileUrl: ``,
       id: ''
     }
   }
@@ -56,8 +58,10 @@ export class ExportModalComponent implements OnInit {
       isRange: this.isRangeSelected,
       range: this.selectedDateRange,
     }
-    this.httpService.exportSource(this.data.id, exportObj).subscribe(res => {
+    this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
       this.isStartedExporting = true;
+      this.exportData.id = res.id;
+      this.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.zip`
     });
   }
 
@@ -99,16 +103,13 @@ export class ExportModalComponent implements OnInit {
       }
       switch (Object.keys(msg.result)[0]) {
         case 'export_status':
-          this.exportData = msg.result.export_status;
-          this.exportData.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`;
+          this.exportData.state = msg.result.export_status.state;
           break;
       }
       // this.system = Object.assign({}, this.system);
     }
 
-    logDate(date){
-      console.log(date)
-    }
+ 
     onDateSelection(date: NgbDate) {
       this.selectedDateRange = null;
       this.isDpShown = true;
@@ -116,9 +117,11 @@ export class ExportModalComponent implements OnInit {
         this.fromDate = date;
       } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
         this.toDate = date;
+        let fromStr =  new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
+        let toStr = new Date(`${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`);
         this.selectedDateRange = {
-          from: `${this.fromDate.day}/${this.fromDate.month}/${this.fromDate.year}`,
-          to: `${this.toDate.day}/${this.toDate.month}/${this.toDate.year}`,
+          from: moment(fromStr).toISOString(),
+          to: moment(toStr).toISOString()
         }
         this.isDpShown = false;
       } else {
