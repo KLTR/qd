@@ -35,17 +35,20 @@ serverUrls = {
   terminateAgent: '/sources/{{id}}/shutdown',
   abortExport: '/exports/{{id}}/abort',
   getSourceTasks: '/sources/{{id}}/intls',
-  getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
   // Pioneer Devices
   findPioneerDevices: '/infections/pioneers/targets/{{id}}',
   queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
-
   checkDevice: '/devices/{{id}}/check',
   attackDevice: '/devices/{{id}}/attack',
   abortDevice: '/devices/{{id}}/abort',
 
   // Pioneer Machines
   resetPioneerMachine: '/infections/pioneers/machines/{{id}}/reset',
+
+  // Tasks
+  getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
+  getSourceChat: '/sources/{{id}}/{{chatType}}',
+  getSourceIntel: '/sources/{{id}}/{{intelName}}'
 };
 
 config: any;
@@ -92,6 +95,11 @@ env: any;
   getSourceDeviceInfo(sourceId: string): Observable<any>{
     return this.http.get(this.getUrlByApiName('getSourceDeviceInfo', sourceId), this.setHeaders());
   }
+  // getSourceChat(sourceId: string, chatType: string): Observable<any>{
+  //   chatType = chatType.toLowerCase();
+  //   console.log(chatType);
+  //   return this.http.get(this.getUrlByApiName('getSourceChat', sourceId,chatType),this.setHeaders());
+  // }
   queryPioneerDevices(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId),'', this.setHeaders());
   }
@@ -158,11 +166,14 @@ env: any;
     return this.config;
   }
   getIntel(intelName, sourceId): Observable<any>{
-    switch(intelName){
-      case 'DEVICE_INFO':
-       return this.getSourceDeviceInfo(sourceId);
-      default: 
-      return this.getSourceDeviceInfo(sourceId);
-    }
+    console.log(intelName.toLowerCase());
+    return this.http.get(this.getUrlByApiName('getSourceIntel',sourceId, intelName.toLowerCase()), this.setHeaders());
+    // return this.http.get(this.getUrlByApiName('getSourceDeviceInfo', sourceId), this.setHeaders());
+    // switch(intelName){
+    //   case 'DEVICE_INFO':
+    //    return this.getSourceDeviceInfo(sourceId);
+    //   default: 
+    //   return this.getSourceDeviceInfo(sourceId);
+    // }
   }
 }

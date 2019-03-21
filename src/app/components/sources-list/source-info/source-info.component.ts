@@ -496,6 +496,6 @@ deviceInfo: any;
   selectIntel(intel: string){
     this.selectedIntel = intel;
     console.log(this.selectedIntel);
-    this.http.getIntel(intel, this.source.id).subscribe(res => console.log(res));
+    this.http.getIntel(this.source.id, intel).subscribe(res => console.log(res));
   }
 }
