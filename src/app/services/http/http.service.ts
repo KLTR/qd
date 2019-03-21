@@ -161,7 +161,7 @@ env: any;
   getAlerts() :Observable<any> {
     return this.http.get(this.getUrlByApiName('getAlerts'), this.setHeaders());
   }
-  getConfig() : any {
+  getConfig() : Observable<any> {
     this.config =  this.http.get('../../../assets/config/config.json');
     return this.config;
   }
@@ -175,6 +175,7 @@ env: any;
 
   // }
   taskAction(taskAction: string, sourceId: string){
+    taskAction = taskAction.toLowerCase();
     return this.http.get(this.getUrlByApiNameWithArgs('taskAction',sourceId, taskAction), this.setHeaders());
   }
 }

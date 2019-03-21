@@ -183,4 +183,9 @@ ngOnChanges(): void {
   trackFn(index, item) {
     return item.id;
   }
+
+  compareSourceState(a, b){
+    const stateA = a.toLowerCase();
+    const stateB = b.toLowerCase();
+  }
 }

@@ -40,6 +40,7 @@ export class ExportModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.httpService.getConfig().subscribe()
      this.config = this.appConfig.getConfig()
     // this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
@@ -102,7 +103,7 @@ export class ExportModalComponent implements OnInit {
       }
       switch (Object.keys(msg.result)[0]) {
         case 'export_status':
-          this.exportData.state = msg.result.export_status;
+          this.exportData.state = msg.result.export_status.state;
           break;
       }
       // this.system = Object.assign({}, this.system);
@@ -116,8 +117,8 @@ export class ExportModalComponent implements OnInit {
         this.fromDate = date;
       } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
         this.toDate = date;
-        let fromStr =  `${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`
-        let toStr = `${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`
+        let fromStr =  new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
+        let toStr = new Date(`${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`);
         this.selectedDateRange = {
           from: moment(fromStr).toISOString(),
           to: moment(toStr).toISOString()

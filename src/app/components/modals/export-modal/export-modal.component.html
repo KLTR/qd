@@ -80,8 +80,8 @@
           <span *ngIf="!selectedDateRange; else date">Select Date Range</span>
           <ng-template #date>
             <span>
-              {{selectedDateRange.from | amParse:'DD/MM/YYYY' |  amDateFormat: 'DD/MM/YYYY'}} - 
-              {{selectedDateRange.to | amParse:'DD/MM/YYYY' |  amDateFormat: 'DD/MM/YYYY' }}
+              {{selectedDateRange.from | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY'}} - 
+              {{selectedDateRange.to | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY' }}
             </span>
           </ng-template>
           <app-svg-icon name="calendar"></app-svg-icon>
