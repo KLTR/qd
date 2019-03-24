@@ -2,9 +2,9 @@
     <button class="btn button-dp" (click)="isDpShown = !isDpShown" type="button">
         <span *ngIf="!selectedDateRange; else date">Select Date Range</span>
         <ng-template #date>
-          <span>
-            {{selectedDateRange.from | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY'}} -
-            {{selectedDateRange.to | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY' }}
+          <span class="dates-range">
+           <span>{{selectedDateRange.from | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY'}} -</span>
+           <span *ngIf="selectedDateRange.to">{{selectedDateRange.to | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY' }}</span> 
           </span>
         </ng-template>
         <app-svg-icon name="calendar"></app-svg-icon>
