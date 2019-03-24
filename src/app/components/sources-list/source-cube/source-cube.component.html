@@ -90,19 +90,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="cube-sources-info-value-duration" *ngIf="source.progress">
-        <span class="cube-info-value" *ngIf="source.progress">{{source.progress| bitesToKb}}
-          <div class="source-export" stopPropagation ngbTooltip="Export" placement="top" (click)="exportData('source')">
-            <svg height="18" viewBox="0 0 19.07 18" width="19.07">
-              <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
-              <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
-            </svg>
-          </div>
-        </span>
-        <span class="cube-info-duration" *ngIf="source.progress.time">Duration
-          <span class="source-duration">{{sourceDuration}}</span>
-        </span>
-      </div> -->
         <div class="cube-info">
           <span *ngIf="source.last_infection_at" class="cube-info-duration">Duration:
             <span class="source-duration">{{source.last_infection_at | amLocal | amDifference : now | amDuration:

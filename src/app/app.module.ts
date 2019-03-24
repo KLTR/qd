@@ -93,7 +93,7 @@ import {
 } from '@ncstate/sat-popover';
 
 // Intels lib
-import {IntelsModule} from '@quadream/common/dist/intels'
+import {IntelsModule} from '@common/intels'
 // Pipes
 import {
   CharactersPipe,
