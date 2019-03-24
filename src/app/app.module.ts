@@ -93,6 +93,8 @@ import {
 
 // Intels lib
 // import {IntelsModule} from '@common/intels'
+import {IntelsModule} from '@quadream/common/dist/intels'
+
 // Pipes
 import {
   CharactersPipe,
@@ -200,6 +202,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     BrowserAnimationsModule,
     // Libraries
     // IntelsModule,
+    IntelsModule,
     NgbModule,
     SatPopoverModule,
     ToastNoAnimationModule.forRoot({
