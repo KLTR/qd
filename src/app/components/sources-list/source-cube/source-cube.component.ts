@@ -12,6 +12,8 @@ import {
 } from '@app/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
+import {AppConfigService} from "@app/services";
+
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -24,16 +26,23 @@ export class SourceCubeComponent implements OnInit {
   profilePicIndex = 0;
   sourceDuration: string;
   ONE_SECOND = 1 * 1000;
+  config: any;
   now = new Date();
+  imgUrl: string;
   constructor(
     private http: HttpService,
     private iconService: IconService,
     private modalService: NgbModal,
+    private appConfig: AppConfigService
   ) {}
 
   ngOnInit() {
    this.initSourceCube();
-   // this updates the duration of source through the amDifference pipe
+    this.config = this.appConfig.getConfig()
+    if (this.source.profile_pics) {
+   this.imgUrl = `${this.config.apiUrl}/media/${this.source.profile_pics[this.profilePicIndex].id}`
+    }
+ 
   }
 
   ngOnChanges(changes: SimpleChange){
@@ -61,6 +70,7 @@ export class SourceCubeComponent implements OnInit {
     } else {
       this.profilePicIndex = 0;
     }
+    this.imgUrl = `${this.config.apiUrl}/media/${this.source.profile_pics[this.profilePicIndex].id}`
   }
   getWifiStatus() {
     if(!this.source.device.wifi){
@@ -208,7 +218,8 @@ export class SourceCubeComponent implements OnInit {
   isNoInfo() {
     return (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state))
   }
-  exportSource(sourceId) {
+  exportSource(event,sourceId) {
+    event.stopPropagation();
     const exportModal =   this.modalService.open(ExportModalComponent,{
       size: 'sm',
       centered: true,
@@ -218,7 +229,11 @@ export class SourceCubeComponent implements OnInit {
     exportModal.componentInstance.data = this.source;
 
   }
-  terminateAgent(sourceId) {
+  terminateAgent(event,sourceId) {
+    event.stopPropagation();
+    if(['TERMINATING','TERMINATED'].includes(this.source.state)){
+      return;
+    }
     this.http.terminateAgent(sourceId).subscribe();
   }
 }

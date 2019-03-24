@@ -24,6 +24,7 @@ export class SourcesListComponent implements OnInit {
   acitveSourcesNumber: number;
   lostConnectionSourcesNumber: number;
   terminatedSourcesNumber: number
+  selectedSource: any;
   isLoading: boolean;
   constructor(private http: HttpService, private ws: WsService, ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
@@ -80,9 +81,15 @@ export class SourcesListComponent implements OnInit {
     this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.state !== 'PENDING');
   }
 
-
- 
-
+  selectSource(source){
+    if(source === this.selectedSource){
+      this.selectedSource = null;
+      
+    } else {
+      this.selectedSource = source;
+    }
+  }
+  
 
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {
@@ -175,5 +182,25 @@ ngOnChanges(): void {
   }
   trackFn(index, item) {
     return item.id;
+  }
+
+  stateComparator(s1, s2): number {
+
+    function stateToNumber(state): number {
+      switch (state) {
+        case 'ACTIVE':
+          return 1;
+        case 'DOWNLOADING':
+        case 'DOWNLOADING_AGENT':
+          return 2
+        default:
+          return 3;
+      }
+    }
+
+    let severityNumber1 = stateToNumber(s1);
+    let severityNumber2 = stateToNumber(s2);
+
+    return severityNumber1 - severityNumber2;
   }
 }

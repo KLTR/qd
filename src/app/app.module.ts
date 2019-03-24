@@ -1,3 +1,4 @@
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 // Modules
 import {
   BrowserModule
@@ -47,7 +48,7 @@ import {
 } from "@app/services";
 
 // Components
-import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
+
 import {
   SystemBarComponent
 } from './components/system-bar/system-bar.component';
@@ -104,7 +105,8 @@ import {
   GetFilenameFromUrlPipe,
   FileSizePipe,
   OrderByPipe,
-  MillToMinFilterPipe
+  MillToMinFilterPipe,
+  // SecurePipe
 } from '@app/pipes';
 import {
   AuthGuard
@@ -175,11 +177,11 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     SourceCubeComponent,
     ConfirmModalComponent,
     ExportModalComponent,
+    SourceInfoComponent,
     // Cells
     TemplateRendererComponent,
     OwnersCellComponent,
     DateCellComponent,
-    SourceInfoComponent,
     // Pipes
     CharactersPipe,
     SafeHtmlPipe,
@@ -189,6 +191,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     FileSizePipe,
     OrderByPipe,
     MillToMinFilterPipe,
+    SecurePipe,
     LoadingComponent
   ],
   imports: [
@@ -201,7 +204,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ScrollingModule,
     BrowserAnimationsModule,
     // Libraries
+<<<<<<< HEAD
     // IntelsModule,
+=======
+>>>>>>> 0df608de5f3551379ed83506e449b56cb929b156
     IntelsModule,
     NgbModule,
     SatPopoverModule,
