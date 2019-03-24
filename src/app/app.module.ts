@@ -1,3 +1,4 @@
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 // Modules
 import {
   BrowserModule
@@ -102,7 +103,8 @@ import {
   GetFilenameFromUrlPipe,
   FileSizePipe,
   OrderByPipe,
-  MillToMinFilterPipe
+  MillToMinFilterPipe,
+  SecurePipe
 } from '@app/pipes';
 import {
   AuthGuard
@@ -143,6 +145,7 @@ import {
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DatePickerModalComponent } from './components/modals/date-picker-modal/date-picker-modal.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -173,6 +176,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     SourceCubeComponent,
     ConfirmModalComponent,
     ExportModalComponent,
+    SourceInfoComponent,
     // Cells
     TemplateRendererComponent,
     OwnersCellComponent,
@@ -186,7 +190,9 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     FileSizePipe,
     OrderByPipe,
     MillToMinFilterPipe,
-    LoadingComponent
+    SecurePipe,
+    LoadingComponent,
+    DatePickerModalComponent
   ],
   imports: [
     BrowserModule,

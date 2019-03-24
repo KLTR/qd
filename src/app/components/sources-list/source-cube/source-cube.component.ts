@@ -12,6 +12,8 @@ import {
 } from '@app/services';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExportModalComponent } from '@app/components/modals/export-modal/export-modal.component';
+import {AppConfigService} from "@app/services";
+
 @Component({
   selector: 'app-source-cube',
   templateUrl: './source-cube.component.html',
@@ -19,26 +21,31 @@ import { ExportModalComponent } from '@app/components/modals/export-modal/export
 })
 export class SourceCubeComponent implements OnInit {
   @Input() source;
-  @Input() showImages;
   timedOut = false;
   isAnimated: boolean;
   profilePicIndex = 0;
   sourceDuration: string;
   ONE_SECOND = 1 * 1000;
+  config: any;
   now = new Date();
+  imgUrl: string;
   constructor(
     private http: HttpService,
     private iconService: IconService,
     private modalService: NgbModal,
+    private appConfig: AppConfigService
   ) {}
 
   ngOnInit() {
    this.initSourceCube();
-   // this updates the duration of source through the amDifference pipe
+    this.config = this.appConfig.getConfig()
+    if (this.source.profile_pics) {
+   this.imgUrl = `${this.config.apiUrl}/media/${this.source.profile_pics[this.profilePicIndex].id}`
+    }
+ 
   }
 
   ngOnChanges(changes: SimpleChange){
-    // only init cube when changes is in source and not on showImages - this cause
     // bad animation rendering
     if(changes['source']){
       this.initSourceCube();
@@ -63,6 +70,7 @@ export class SourceCubeComponent implements OnInit {
     } else {
       this.profilePicIndex = 0;
     }
+    this.imgUrl = `${this.config.apiUrl}/media/${this.source.profile_pics[this.profilePicIndex].id}`
   }
   getWifiStatus() {
     if(!this.source.device.wifi){
@@ -196,7 +204,7 @@ export class SourceCubeComponent implements OnInit {
       case 'SERVER_IS_PROCESSING_DATA':
         return 'Processing';
       case 'IDLE':
-        return 'Active'
+        return 'Active';
       case 'TERMINATING':
         return 'Terminating';
       case 'TOOL_IS_COLLECTING_DATA':
@@ -210,18 +218,22 @@ export class SourceCubeComponent implements OnInit {
   isNoInfo() {
     return (['INITIALIZING', 'DOWNLOADING_AGENT'].includes(this.source.state))
   }
-  exportSource(sourceId) {
-    this.http.exportSource(sourceId).subscribe(res => {
+  exportSource(event,sourceId) {
+    event.stopPropagation();
     const exportModal =   this.modalService.open(ExportModalComponent,{
-        size: 'sm',
-        centered: true,
-        backdrop: 'static'
-      });
-      exportModal.componentInstance.dataType = 'Source';
-      exportModal.componentInstance.data = this.source;
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
     });
+    exportModal.componentInstance.dataType = 'Source';
+    exportModal.componentInstance.data = this.source;
+
   }
-  terminateAgent(sourceId) {
+  terminateAgent(event,sourceId) {
+    event.stopPropagation();
+    if(['TERMINATING','TERMINATED'].includes(this.source.state)){
+      return;
+    }
     this.http.terminateAgent(sourceId).subscribe();
   }
 }

@@ -18,10 +18,29 @@
             <app-svg-icon class="info-icon" name="info-second"  [size]="12">
             </app-svg-icon>
           </span>
+
+          <!-- <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
+          <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING' || source.state === 'SERVER_IS_PROCESSING_DATA'" [options]="source.animatedIcon?.options"
+            [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+          </lottie-animation-view>
+          <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
+            [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+          </lottie-animation-view>
+          <ng-template #animated>
+            <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE' && source.state !== 'SERVER_IS_PROCESSING_DATA'"
+              [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+            </lottie-animation-view>
+          </ng-template>
+          <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','TOOL_IS_COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
+            {{deviceStatusToText()}}</span> -->
+
           <span *ngIf="source.tasks.progress_bar" class="downloading-percent green">{{source.tasks.progress ?
               source.tasks.progress : '0'}}%
             </span>
           <span class="device-icon">
+              <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
+            [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+          </lottie-animation-view>
           <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
             [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
           </lottie-animation-view>

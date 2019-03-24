@@ -34,16 +34,22 @@ serverUrls = {
   exportSource: '/exports/sources/{{id}}',
   terminateAgent: '/sources/{{id}}/shutdown',
   abortExport: '/exports/{{id}}/abort',
+  getSourceTasks: '/sources/{{id}}/intls',
   // Pioneer Devices
   findPioneerDevices: '/infections/pioneers/targets/{{id}}',
   queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
-
   checkDevice: '/devices/{{id}}/check',
   attackDevice: '/devices/{{id}}/attack',
   abortDevice: '/devices/{{id}}/abort',
 
   // Pioneer Machines
   resetPioneerMachine: '/infections/pioneers/machines/{{id}}/reset',
+
+  // Tasks
+  // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
+  // getSourceChat: '/sources/{{id}}/{{chatType}}',
+  getSourceIntel: '/sources/{{id}}/{{intelName}}',
+  taskAction: '/sources/{{id}}/cnc/{{taskAction}}'
 };
 
 config: any;
@@ -71,6 +77,14 @@ env: any;
       }
       return url;
   }
+  getUrlByApiNameWithArgs(apiName: string, ...args) {
+    let uri = this.env.apiUrl + this.serverUrls[apiName]
+      const argsList = this.serverUrls[apiName].match(/{{(.*?)}}/g);
+      for (let i = 0; i < argsList.length; i++) {
+        uri = uri.replace(argsList[i], args[i]);
+      }
+      return uri;
+  }
   setHeaders(): {headers: HttpHeaders} {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -83,6 +97,12 @@ env: any;
   archiveTarget(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('archiveTarget', targetId),'', this.setHeaders());
   }
+  getSourcesTasks(sourceId: string): Observable<any>{
+    return this.http.get('../../assets/config/tasks.json');
+      // return this.http.get(this.getUrlByApiName('getSourceTasks', sourceId), this.setHeaders());
+  }
+
+
   queryPioneerDevices(targetId: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId),'', this.setHeaders());
   }
@@ -116,8 +136,9 @@ env: any;
   createTarget(identifiers: [{type: string, value: any}]) : Observable<any>{
     return this.http.post<any>(this.getUrlByApiName('targets'),identifiers,this.setHeaders())
   }
-  exportSource(sourceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('exportSource', sourceId), null,this.setHeaders());
+  exportSource(sourceId: string, exportObj: any): Observable<any> {
+    console.log(exportObj);
+    return this.http.post<any>(this.getUrlByApiName('exportSource', sourceId), exportObj,this.setHeaders());
   }
   getEvents(): Observable<any> {
     return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
@@ -132,7 +153,7 @@ env: any;
    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('login'), credentials);
   }
   logout() : Observable<any> {
-    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'',this.setHeaders());
+    return this.http[this.getHttpMethod('post')](this.getUrlByApiName('logout'),'');
   }
   getTop(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('top'), this.setHeaders());
@@ -140,11 +161,21 @@ env: any;
   getAlerts() :Observable<any> {
     return this.http.get(this.getUrlByApiName('getAlerts'), this.setHeaders());
   }
-  getConfig() : any {
+  getConfig() : Observable<any> {
     this.config =  this.http.get('../../../assets/config/config.json');
     return this.config;
   }
   getConfigLocal(): any{
     return this.config;
+  }
+  getIntel(intelName, sourceId): Observable<any>{
+    return this.http.get(this.getUrlByApiNameWithArgs('getSourceIntel',sourceId, intelName.toLowerCase()), this.setHeaders());
+  }
+  // getProfilePic(sourceId): Observable<any>{
+
+  // }
+  taskAction(taskAction: string, sourceId: string){
+    taskAction = taskAction.toLowerCase();
+    return this.http.get(this.getUrlByApiNameWithArgs('taskAction',sourceId, taskAction), this.setHeaders());
   }
 }

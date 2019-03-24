@@ -1,0 +1,532 @@
+[
+    {
+      "name": "1lory Ona",
+      "email": "glory_ona@gmail.com",
+      "phone": "0549840402",
+      "id": "1",
+      "favorite": true
+    },
+    {
+      "name": "Aoldie Sonkens",
+      "email": "gsonkens@sonkens.co.uk",
+      "phonePermutations": [
+  
+      ],
+      "id": "2",
+      "favorite": true
+    },
+    {
+      "name": "אraham Stanwick",
+      "email": "gstanwick@gmail.com",
+      "phonePermutations": [
+  
+      ],
+      "id": "597da2d75fac4600011c5f8a",
+      "favorite": true
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "3",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "4",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "5",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "6",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "7",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "9",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "11",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "22",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "23",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "34",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "34",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "35",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "31",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "3a",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "5r",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "g",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "f",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "w",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "y",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "Guy Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "a",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    },
+    {
+      "name": "roti Guy",
+      "phone": "+972522666447",
+      "phonePermutations": [
+        "052-2666447",
+        "+972522666447",
+        "00972522666447",
+        "011972522666447",
+        "0522666447",
+        "522666447",
+        "2666447"
+      ],
+      "id": "z",
+      "contactImg": {
+        "source": "597da2605ad97d0001d3432c",
+        "contact": "597da2d75fac4600011c5e20",
+        "job": "597da2ce5ad97d0001d34383",
+        "media": "597da29f5fac4600011c5e07",
+        "appContext": "icloud",
+        "_id": "597da2d95fac4600011c6058",
+        "__v": 0
+      },
+      "favorite": false
+    }
+  ]
+  
