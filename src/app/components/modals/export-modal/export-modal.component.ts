@@ -20,14 +20,8 @@ export class ExportModalComponent implements OnInit {
   isStartedExporting = false;
   selectedFormat = 'Protobuf';
   selectedDateRange: any;
-  fromDate: NgbDate;
-  toDate: NgbDate;
-  hoveredDate: NgbDate;
-  isDpShown = false;
   isRangeSelected = false;
-  @ViewChild('d') public datePicker: NgbDatepicker;
   constructor(
-    private calendar: NgbCalendar,
     private appConfig: AppConfigService,
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
@@ -35,8 +29,6 @@ export class ExportModalComponent implements OnInit {
     private ws: WsService,
   ) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
-    this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
 
   ngOnInit() {
@@ -50,7 +42,10 @@ export class ExportModalComponent implements OnInit {
       id: ''
     }
   }
-
+setDate(date){
+  this.selectDateRange = date;
+  console.log(date);
+}
 
   startExport(){
     let exportObj = {
@@ -71,7 +66,6 @@ export class ExportModalComponent implements OnInit {
 
   selectDateRange(range: any){
     if(range === 'all'){
-      this.isDpShown = false;
       this.isRangeSelected = false;
       return;
     }
@@ -107,40 +101,5 @@ export class ExportModalComponent implements OnInit {
           break;
       }
       // this.system = Object.assign({}, this.system);
-    }
-
- 
-    onDateSelection(date: NgbDate) {
-      this.selectedDateRange = null;
-      this.isDpShown = true;
-      if (!this.fromDate && !this.toDate) {
-        this.fromDate = date;
-      } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
-        this.toDate = date;
-        let fromStr =  new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
-        let toStr = new Date(`${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`);
-        this.selectedDateRange = {
-          from: moment(fromStr).toISOString(),
-          to: moment(toStr).toISOString()
-        }
-        this.isDpShown = false;
-      } else {
-        this.toDate = null;
-        this.fromDate = date;
-      }
-    }
-  applyDate(){
-    this.isDpShown = false;
-  }
-    isHovered(date: NgbDate) {
-      return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
-    }
-  
-    isInside(date: NgbDate) {
-      return date.after(this.fromDate) && date.before(this.toDate);
-    }
-  
-    isRange(date: NgbDate) {
-      return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
     }
 }

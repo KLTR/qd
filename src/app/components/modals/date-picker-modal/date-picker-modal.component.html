@@ -1,0 +1,25 @@
+<div class="datepicker-wrapper">
+    <button class="btn button-dp" (click)="isDpShown = !isDpShown" type="button">
+        <span *ngIf="!selectedDateRange; else date">Select Date Range</span>
+        <ng-template #date>
+          <span class="dates-range">
+           <span>{{selectedDateRange.from | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY'}} -</span>
+           <span *ngIf="selectedDateRange.to">{{selectedDateRange.to | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY' }}</span> 
+          </span>
+        </ng-template>
+        <app-svg-icon name="calendar"></app-svg-icon>
+      </button>
+  <ngb-datepicker [ngClass]="'datePicker'" id="date-picker" #d="ngbDatepicker" name="dp" *ngIf="isDpShown"
+  (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="visible" autoClose="outside"
+  [navigation]="false">
+</ngb-datepicker>
+
+<ng-template #t let-currentMonth="currentMonth" let-date let-focused="focused">
+  <span class="custom-day" [class.text-muted]="date.month !== currentMonth" [class.focused]="focused"
+    [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+    (mouseleave)="hoveredDate = null">
+    {{ date.day }}
+  </span>
+</ng-template>
+
+</div>

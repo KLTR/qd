@@ -1,3 +1,4 @@
+import { SecurePipe } from './pipes/secure.pipe';
 import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 // Modules
 import {
@@ -93,9 +94,7 @@ import {
 } from '@ncstate/sat-popover';
 
 // Intels lib
-// import {IntelsModule} from '@common/intels'
 import {IntelsModule} from '@quadream/common/dist/intels'
-
 // Pipes
 import {
   CharactersPipe,
@@ -147,6 +146,7 @@ import {
 } from './components/ag-grid/date-cell-component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { DatePickerModalComponent } from './components/modals/date-picker-modal/date-picker-modal.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -192,7 +192,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     OrderByPipe,
     MillToMinFilterPipe,
     SecurePipe,
-    LoadingComponent
+    LoadingComponent,
+    DatePickerModalComponent
   ],
   imports: [
     BrowserModule,
@@ -204,10 +205,6 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ScrollingModule,
     BrowserAnimationsModule,
     // Libraries
-<<<<<<< HEAD
-    // IntelsModule,
-=======
->>>>>>> 0df608de5f3551379ed83506e449b56cb929b156
     IntelsModule,
     NgbModule,
     SatPopoverModule,

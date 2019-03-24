@@ -63,41 +63,7 @@
           <input type="radio" id="range" value="range" (click)="selectDateRange('range')" name="date-range">
           <label for="range">Range</label>
         </p>
-        <ngb-datepicker 
-           [ngClass]="'datePicker'"
-           id="date-picker"
-           #d="ngbDatepicker"
-           name="dp"
-           *ngIf="isDpShown"
-           (select)="onDateSelection($event)" 
-           [displayMonths]="2" 
-           [dayTemplate]="t" 
-           outsideDays="visible"
-           autoClose="outside"
-           [navigation]="false">
-        </ngb-datepicker>
-        <button  *ngIf="isRangeSelected"  class="btn button-dp" (click)="isDpShown = !isDpShown" type="button">
-          <span *ngIf="!selectedDateRange; else date">Select Date Range</span>
-          <ng-template #date>
-            <span>
-              {{selectedDateRange.from | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY'}} - 
-              {{selectedDateRange.to | amParse:'YYYY/MM/DD' |  amDateFormat: 'DD/MM/YYYY' }}
-            </span>
-          </ng-template>
-          <app-svg-icon name="calendar"></app-svg-icon>
-        </button>
-          <ng-template #t let-currentMonth="currentMonth" let-date let-focused="focused">
-            <span class="custom-day"
-                  [class.text-muted]="date.month !== currentMonth"
-                  [class.focused]="focused"
-                  [class.range]="isRange(date)"
-                  [class.faded]="isHovered(date) || isInside(date)"
-                  (mouseenter)="hoveredDate = date"
-                  (mouseleave)="hoveredDate = null">
-              {{ date.day }}
-            </span>
-          </ng-template>
-          
+        <app-date-picker-modal class="datepicker" (dateRangeSelected)="setDate($event)" *ngIf="isRangeSelected"></app-date-picker-modal>
       </div>
     </div>
   
