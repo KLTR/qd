@@ -27,6 +27,7 @@ build-project:
   stage: build
   script:
   - set -x && cd ${MAKEFILE_PROJECT_PATH} && git fetch && git checkout ${CI_COMMIT_REF_NAME} && git pull
+  - rm package-lock.json
   - set -x && npm set registry http://172.23.4.20:4873
   - set -x && cd ${PROJECT_ROOT_PATH} && make gitlab-pipeline-reset-all-projects
   - set -x && cd ${PROJECT_ROOT_PATH} && make ${PROJECT}
