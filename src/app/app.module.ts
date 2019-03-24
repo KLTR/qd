@@ -1,4 +1,3 @@
-import { SecurePipe } from './pipes/secure.pipe';
 import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
 // Modules
 import {
@@ -105,7 +104,7 @@ import {
   FileSizePipe,
   OrderByPipe,
   MillToMinFilterPipe,
-  // SecurePipe
+  SecurePipe,
 } from '@app/pipes';
 import {
   AuthGuard
