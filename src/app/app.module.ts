@@ -104,7 +104,7 @@ import {
   FileSizePipe,
   OrderByPipe,
   MillToMinFilterPipe,
-  SecurePipe,
+  SecurePipe
 } from '@app/pipes';
 import {
   AuthGuard
