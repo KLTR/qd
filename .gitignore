@@ -44,7 +44,6 @@ Thumbs.db
 
 # Docker
 Dockerfile
-.dockerignore
 
 *.pyc
 
