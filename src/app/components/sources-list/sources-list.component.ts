@@ -179,7 +179,8 @@ ngOnChanges(): void {
     }
     this.allSourcesNumber = this.leftBarData.sources.length;
     this.downloadingSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'DOWNLOADING').length;
-    this.acitveSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'ACTIVE').length;
+    this.acitveSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'ACTIVE' || src.state === 'DOWNLOADING' ||
+    src.state === 'DOWNLOADING_AGENT' || src.state === 'INITIALIZING' || src.state === 'COLLECTING_DATA').length;
     this.lostConnectionSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'LOST_CONNECTION').length;
     this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
   }
@@ -194,10 +195,15 @@ ngOnChanges(): void {
         case 'ACTIVE':
           return 1;
         case 'DOWNLOADING':
-        case 'DOWNLOADING_AGENT':
           return 2
-        default:
+        case 'DOWNLOADING_AGENT':
           return 3;
+        case 'INITIALIZING':
+          return 4;
+        case 'COLLECTING_DATA':
+        return 5;
+        default : 
+        return 6;
       }
     }
 

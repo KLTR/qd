@@ -386,6 +386,15 @@ a:focus {
       }
     }
 
+ 
+    .max-fit {
+      .modal-dialog-centered{
+        max-width: fit-content !important;
+      }
+    }
+
+
+
     .mobile-modal-cancel-btn-container {
       background-color: transparent;
       margin: 15px auto;

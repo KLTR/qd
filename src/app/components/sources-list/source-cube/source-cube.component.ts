@@ -29,6 +29,7 @@ export class SourceCubeComponent implements OnInit {
   config: any;
   now = new Date();
   imgUrl: string;
+  wifiTip: string;
   constructor(
     private http: HttpService,
     private iconService: IconService,
@@ -37,6 +38,7 @@ export class SourceCubeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
    this.initSourceCube();
     this.config = this.appConfig.getConfig()
     if (this.source.profile_pics) {
@@ -56,6 +58,7 @@ export class SourceCubeComponent implements OnInit {
   }
 
   initSourceCube() {
+    this.getWifiStatus();
     this.source.animatedIcon = this.setAnimatedIcon();
     this.isAnimated = this.isAnimatedIcon();
   }
@@ -78,16 +81,21 @@ export class SourceCubeComponent implements OnInit {
     }
     switch (this.source.device.wifi) {
       case "HIGH":
+        this.wifiTip = "High Signal"
         return 'wifi-excellent';
       case 'MID':
+      this.wifiTip = "Good Signal"
         return 'wifi-mid';
       case 'LOW':
+      this.wifiTip = "Poor Signal"
         return 'wifi-low';
       case 'NOT_AVAILABlE':
+      this.wifiTip = "No Signal"
         return 'no-wifi';
 
     }
   }
+
   getBatteryStatus(){
     if(!this.source.device.battery){
       return;
@@ -223,7 +231,8 @@ export class SourceCubeComponent implements OnInit {
     const exportModal =   this.modalService.open(ExportModalComponent,{
       size: 'sm',
       centered: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      windowClass: 'max-fit'
     });
     exportModal.componentInstance.dataType = 'Source';
     exportModal.componentInstance.data = this.source;

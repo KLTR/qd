@@ -3,8 +3,6 @@ import { WsService } from './../../../services/websocket/ws.service';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
-import {NgbDate, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-export-modal',
@@ -43,8 +41,8 @@ export class ExportModalComponent implements OnInit {
     }
   }
 setDate(date){
-  this.selectDateRange = date;
-  console.log(date);
+  this.selectedDateRange = date;
+  console.log(this.selectedDateRange);
 }
 
   startExport(){
