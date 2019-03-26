@@ -8,18 +8,189 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class SourceInfoComponent implements OnInit {
 @Input() source: any
+data: any;
 tasks: any;
 selectedInfo = 'apps';
 selectedIntel = 'DEVICE_INFO'
 contacts = [];
 messages = [];
 sessions = [];
-data: any;
+callHistory = [];
+passwords = [];
+apps = [];
   constructor(private http: HttpService) { }
 
   ngOnInit() {
     this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks});
     this.http.getIntel('device_info',this.source.id).subscribe(res => {console.log(res), this.data = res});
+
+
+    // field: "title"
+    // field: "type"
+    // field: "username"
+    // field: "value"
+
+    this.apps = [
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+      {
+        name: 'Whatsapp',
+        notes: '1.2.3'
+      },
+    ]
+
+    this.passwords = [
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      },
+      {
+        title: 'com.apple.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'ds'
+      }
+    ]
 
     this.contacts = [
       {  
@@ -233,7 +404,20 @@ data: any;
       'type': 'text',
       'status': 'read'
       },
-      
+      {
+        'from': 'me',
+        'msg': 'Lorem ipsum Lorem ipsum',
+        'meta':{
+        'type': 'doc',
+        'doc_type': 'pdf',
+        'duration': '01:54',
+        'state': 'downloading',
+        'size': '215kb',
+        },
+        'time': '21:30',
+        'type': 'video',
+        'status': 'delivered',
+        },
       {
       'from': 'me',
       'msg': 'Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum',
@@ -247,6 +431,19 @@ data: any;
       'time': '22:15',
       'type': 'text',
       'status': 'pending'
+      },
+      {
+        'from': 'me',
+        'msg': 'Lorem ipsum Lorem ipsum',
+        'meta':{
+        'type': 'audio',
+        'duration': '01:54',
+        'state': 'downloading',
+        'size': '215kb',
+        },
+        'time': '21:30',
+        'type': 'video',
+        'status': 'delivered',
       },
       {
       'from': 'me',
@@ -486,8 +683,205 @@ data: any;
       'id': 11
       
       },
+    ];
+
+    this.callHistory = [
+      {
+        callType: 'declined',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Watsapp'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'outgoing',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Watsapp'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Skype'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Watsapp'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Watsapp'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Ceullular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration : '00:00:34',
+        callTime: '5.12.1985 05:45',
+        provider: 'Skype'
+      },
     ]
+
   }
+ 
 
 taskAction(event,task: string){
   event.stopPropagation();
@@ -498,9 +892,7 @@ taskAction(event,task: string){
   }
   selectIntel(intel: string){
     this.selectedIntel = intel;
-    this.messages = Object.assign(this.messages, this.messages);
-    this.sessions = Object.assign(this.sessions, this.sessions);
-
+    console.log(this.selectedIntel);
     this.http.getIntel(intel,this.source.id).subscribe(res => console.log(res));
   }
 }

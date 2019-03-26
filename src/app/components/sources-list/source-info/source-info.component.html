@@ -21,9 +21,12 @@
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
     <intel-device-info [deviceInfo]="data" class="intel" *ngIf="selectedIntel === 'DEVICE_INFO'"></intel-device-info>
     <intel-chats class="intel" [messages]="messages" [sessions]="sessions"
-     *ngIf="['WHATSAPP','TELEGRAM','WECHAT','LINE','SMS', 'SIGNAL'].includes(selectedIntel)"></intel-chats>
+     *ngIf="['WHATSAPP','TELEGRAM','WECHAT','LINE','SMS', 'SIGNAL'].includes(selectedIntel)">
+    </intel-chats>
     <intel-contacts class="intel" [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
-    <!-- <intel-call-history></intel-call-history> -->
+    <intel-call-history class="intel" [data]='callHistory' *ngIf="selectedIntel === 'CALL_HISTORY'"></intel-call-history>
+    <intel-passwords class="intel" [data]='passwords' *ngIf="selectedIntel === 'KEYCHAIN'"></intel-passwords>
+    <intel-app-list class="intel" [data]='apps' *ngIf="selectedIntel === 'APP_LIST'"></intel-app-list>
   </div>
 
 

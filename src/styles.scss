@@ -116,7 +116,9 @@ $font-family: 'Titillium Web';
     /* putting in !important so it overrides the theme's styling as it hovers the row also */
     background-color: #2E3845 !important;;
 }
-
+.ag-body-horizontal-scroll-viewport {
+  overflow-x: hidden;
+}
 }
 
 
