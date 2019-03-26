@@ -498,7 +498,9 @@ taskAction(event,task: string){
   }
   selectIntel(intel: string){
     this.selectedIntel = intel;
-    console.log(this.selectedIntel);
+    this.messages = Object.assign(this.messages, this.messages);
+    this.sessions = Object.assign(this.sessions, this.sessions);
+
     this.http.getIntel(intel,this.source.id).subscribe(res => console.log(res));
   }
 }

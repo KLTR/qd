@@ -16,6 +16,9 @@
   cursor: pointer;
   &:hover {
     background-color: #425568;
+    .soruce-cube-info{
+      opacity: 1;
+    }
     cursor: pointer;
 
     .source-export {
@@ -94,6 +97,8 @@
 
         .source-phone-info {
           display: flex;
+  //         display: grid;
+  // grid-template-columns: auto auto;
           align-items: center;
           color: #85a0bc;
           font-size: 12px;
@@ -316,6 +321,9 @@
     }
 
     &.dimmed {
+      &:hover{
+        // background-color: #364556;
+      }
       .after-initializing {
         cursor: default;
 
@@ -450,7 +458,7 @@
     // pointer-events: none;
   }
   &:hover{
-    background-color: #364556;
+    // background-color: #364556;
   }
 }
 

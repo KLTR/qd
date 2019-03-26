@@ -1,8 +1,10 @@
 .export-data-wrapper{
-    width: 570px;
-    height: 340px;
-    background-color: #2f3b4a;
-    position: relative;
+  width: 570px;
+  height: 340px;
+  background-color: #2f3b4a;
+  position: absolute;
+  top: calc(50% - 170px);
+  left: calc(50% - 250px);
     .datepicker{
       z-index: 1;
     }

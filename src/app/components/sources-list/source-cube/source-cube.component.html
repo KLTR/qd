@@ -1,4 +1,4 @@
-<li *ngIf="source" class="source-cube" [ngClass]="['LOST_CONNECTION', 'TERMINATED', 'TERMINATING'].includes(source?.state) ? 'dimmed' : ''">
+<li *ngIf="source" class="source-cube" [ngClass]="['TERMINATED', 'TERMINATING'].includes(source?.state) ? 'dimmed' : ''">
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
@@ -12,13 +12,18 @@
         <p class="source-name">{{source.name}}</p>
         <p class="source-number">{{source.device?.number}}</p>
         <div *ngIf="source.device" class="source-phone-info">
-          <span class="phone-model">{{source.device.name}} </span>
-          <span class="phone-version"> ({{source.device.version}})</span>
+          <span class="phone-model grid-item">{{source.device.name}} </span>
+          <span class="phone-version grid-item"> ({{source.device.version}})
           <app-svg-icon ngbTooltip="{{source.device?.battery}}%" container="body" placement="top"
             class="phone-battery" [name]="getBatteryStatus()">
           </app-svg-icon>
-          <app-svg-icon class="phone-wifi" [name]="getWifiStatus()">
+          <app-svg-icon class="phone-wifi" [ngbTooltip]="wifiTip" container="body" placement="top" [name]="getWifiStatus()">
           </app-svg-icon>
+        </span>
+        <!-- <span class="target-identifier grid-item">
+            <img src="../../../assets/img/svg/add-target.svg">
+          <span>55-523-1234</span>
+        </span> -->
           <!-- <app-svg-icon name="signal_high"></app-svg-icon> -->
         </div>
       </div>
@@ -52,7 +57,7 @@
         {{deviceStatusToText()}}</span>
     </div>
   </div>
-  <div class="source-cube-info">
+  <div class="source-cube-info"  [ngClass]="['LOST_CONNECTION'].includes(source?.state) ? 'dimmed' : ''">
     <ng-template #noInfoTasks>
       <div class="before-initializing">
         <div class="top-bar shimmer"></div>
