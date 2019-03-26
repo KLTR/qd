@@ -13,7 +13,6 @@ export class ExportModalComponent implements OnInit {
   @Input() dataType: string;
   @Input() data: any; //source
   exportData: any;
-  fileUrl: any;
   config: any;
   isStartedExporting = false;
   selectedFormat = 'Protobuf';
@@ -54,7 +53,8 @@ setDate(date){
     this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
       this.isStartedExporting = true;
       this.exportData.id = res.id;
-      this.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.zip`
+      this.exportData.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.zip`
+      console.log('File url is : ', this.exportData.fileUrl);
     });
   }
 
