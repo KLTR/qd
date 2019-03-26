@@ -46,7 +46,7 @@ setDate(date){
 
   startExport(){
     let exportObj = {
-      format: this.selectedFormat,
+      format: this.selectedFormat.toLowerCase(),
       isRange: this.isRangeSelected,
       range: this.selectedDateRange,
     }
