@@ -50,10 +50,11 @@ setDate(date){
       isRange: this.isRangeSelected,
       range: this.selectedDateRange,
     }
+    console.log("tar.gz");
     this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
       this.isStartedExporting = true;
       this.exportData.id = res.id;
-      this.exportData.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.tar.gz`
+      this.exportData.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.tar.gz`;
       console.log('File url is : ', this.exportData.fileUrl);
     });
   }
