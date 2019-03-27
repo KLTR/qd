@@ -57,13 +57,13 @@ from 'rxjs/operators';
     date: any;
     clock$: Observable < number >;
     layoutInterval: any;
-    batteryStatus: String;
-    internetStatus: String;
-    diskStatus: String;
-    interceptorStatus: String;
-    aliceStatus: String;
-    pioneerStatus: String;
-    cloudStatus: String;
+    batteryStatus: string;
+    internetStatus: string;
+    diskStatus: string;
+    interceptorStatus: string;
+    aliceStatus: string;
+    pioneerStatus: string;
+    cloudStatus: string;
     showInternetTip = false;
     config: any;
     selectedInterceptor: any;
@@ -78,7 +78,8 @@ from 'rxjs/operators';
     ngOnInit() {
       this.clock$  = interval(1000).pipe(map(() => Date.now()));
       this.http.getConfigLocal().subscribe(res => this.config = res);
-      this.pops = [this.internetPop,
+      this.pops = [
+        this.internetPop,
         this.alicePop,
         this.cloudPop,
         this.pioneerPop,
