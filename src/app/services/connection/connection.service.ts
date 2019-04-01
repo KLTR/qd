@@ -22,12 +22,12 @@ export class ConnectionService {
     this.isInternet = new BehaviorSubject(false);
     this.isPioneer = new BehaviorSubject(false);
     this.http.getTop().subscribe(res => {
-        if(res.internet.indicator.state === 'GREEN'){
+        if(res.internet && res.internet.indicator.state === 'GREEN'){
           this.isInternet.next(true);
         } else {
           this.isInternet.next(false);
         }
-        if(res.pioneer.indicator.state === 'GREEN'){
+        if(res.pioneer && res.pioneer.indicator.state === 'GREEN'){
           this.isPioneer.next(true)
         }else {
           this.isPioneer.next(false);
@@ -57,10 +57,10 @@ export class ConnectionService {
     switch (Object.keys(msg.result)[0]) {
       // System 
       case 'pioneer':
-        this.setPioneerValue(msg.result.pioneer.indicator.state)
+        this.setPioneerValue(msg.result.pioneer.indicator.state);
         break;
       case 'internet':
-        this.setInternetValue(msg.result.internet.indicator.state)
+        this.setInternetValue(msg.result.internet.indicator.state);
         break;
     }
   }
