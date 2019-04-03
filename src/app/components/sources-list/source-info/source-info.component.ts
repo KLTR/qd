@@ -22,7 +22,7 @@ apps = [];
 
   ngOnInit() {
     this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks});
-    this.http.getIntel('device_info',this.source.id).subscribe(res => {console.log(res), this.data = res});
+    this.http.getIntel('deviceinfo',this.source.id).subscribe(res => {console.log(res), this.data = res});
 
 
     // field: "title"
