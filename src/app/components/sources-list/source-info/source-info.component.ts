@@ -892,7 +892,7 @@ taskAction(event,task: string){
   }
   selectIntel(intel: string){
     this.selectedIntel = intel;
-    console.log(this.selectedIntel);
-    this.http.getIntel(intel,this.source.id).subscribe(res => console.log(res));
+    console.log("XXXX", this.selectedIntel);
+    this.http.getIntel(intel, this.source.id).subscribe(res => console.log(res));
   }
 }
