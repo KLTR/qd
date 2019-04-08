@@ -119,7 +119,7 @@
         <li class="last-update">Last update</li>
       </ul>
       <ul class="table-values" *ngFor="let pioneer of system.pioneer?.pioneers">
-        <li>{{pioneer.host}}</li>
+        <li>{{pioneer.name}}</li>
         <li class="status-value {{pioneer.state | lowercase}}">{{pioneer.state}}</li>
         <li class="reset" (click)="resetPioneerMachine(pioneer.id)">
           <span>{{pioneer.updated_at | amDateFormat:'DD.MM.YYYY'}} </span>
