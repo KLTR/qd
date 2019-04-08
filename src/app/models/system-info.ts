@@ -73,7 +73,7 @@ pioneer: {
     {
       created_at: string,
       updated_at: string,
-      host: string,
+      name: string,
       state: string
     }
   ]
