@@ -77,7 +77,6 @@ logout(){
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
-    console.log(msg.result);
     switch (Object.keys(msg.result)[0]) {
       // System 
       case 'alice':
