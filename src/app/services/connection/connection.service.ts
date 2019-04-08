@@ -1,49 +1,44 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './../http/http.service';
 import { WsService } from './../websocket/ws.service';
-import {
-  Injectable
-} from '@angular/core';
-import {
-  BehaviorSubject
-} from 'rxjs';
-
 
 @Injectable()
 export class ConnectionService {
-  public isInternet: BehaviorSubject < boolean > ;
-  public isPioneer: BehaviorSubject < boolean > ;
+  public isInternet: BehaviorSubject<boolean>;
+  public isPioneer: BehaviorSubject<boolean>;
 
-
-  constructor(
-      private ws: WsService,
-      private http: HttpService
-      ){
-
+  constructor(private ws: WsService, private http: HttpService) {
     this.isInternet = new BehaviorSubject(false);
     this.isPioneer = new BehaviorSubject(false);
     this.http.getTop().subscribe(res => {
-        if(res.internet.indicator.state === 'GREEN'){
+      console.log(res);
+      if (res.internet) {
+        if (res.internet.indicator.state === 'GREEN') {
           this.isInternet.next(true);
         } else {
           this.isInternet.next(false);
         }
-        if(res.pioneer.indicator.state === 'GREEN'){
-          this.isPioneer.next(true)
-        }else {
+      }
+      if (res.pioneer) {
+        if (res.pioneer.indicator.state === 'GREEN') {
+          this.isPioneer.next(true);
+        } else {
           this.isPioneer.next(false);
         }
-      })
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+      }
+    });
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
-  setPioneerValue(state: string){
-    if(state === 'GREEN'){
-      this.isPioneer.next(true)
-    }else {
+  setPioneerValue(state: string) {
+    if (state === 'GREEN') {
+      this.isPioneer.next(true);
+    } else {
       this.isPioneer.next(false);
     }
   }
-  setInternetValue(state: string){
-    if(state === 'GREEN'){
+  setInternetValue(state: string) {
+    if (state === 'GREEN') {
       this.isInternet.next(true);
     } else {
       this.isInternet.next(false);
@@ -55,12 +50,12 @@ export class ConnectionService {
       return;
     }
     switch (Object.keys(msg.result)[0]) {
-      // System 
+      // System
       case 'pioneer':
-        this.setPioneerValue(msg.result.pioneer.indicator.state)
+        this.setPioneerValue(msg.result.pioneer.indicator.state);
         break;
       case 'internet':
-        this.setInternetValue(msg.result.internet.indicator.state)
+        this.setInternetValue(msg.result.internet.indicator.state);
         break;
     }
   }

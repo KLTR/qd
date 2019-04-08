@@ -1,0 +1,201 @@
+@import "./_ag-theme-common.scss";
+@import "./ag-vars.scss";
+
+$grid-size: 8px;
+$icons-path: "./material-icons/" !default;
+$transition-speed: 120ms !default;
+
+$params: (prefix: "default",
+grid-size: $grid-size,
+icon-size: 24px,
+header-icon-size: 12px,
+row-height: $grid-size * 6,
+row-border-width: 2px,
+header-height: $grid-size * 7,
+virtual-item-height: $grid-size * 5,
+rich-select-item-height: $grid-size * 6,
+cell-horizontal-padding: $grid-size * 3,
+toolpanel-indent-size: $grid-size + 24px,
+row-group-indent-size: $grid-size * 3 + 24px,
+icons-path: $icons-path,
+font-family: "'Titillium Web',sans-serif",
+font-size: 14px,
+font-weight: normal,
+secondary-font-family: "'Titillium Web',sans-serif",
+secondary-font-size: 12px,
+secondary-font-weight: normal,
+foreground-color: #c5e1ff,
+foreground-opacity: 0.5,
+secondary-foreground-color-opacity: 0.5,
+secondary-foreground-color: rgba(#c5e1ff, 0.5),
+disabled-foreground-color-opacity: 0.3,
+disabled-foreground-color: rgba(#c5e1ff, 0.3),
+background-color: #1d262e,
+odd-row-background-color: rgba(#6b8198, 0.05),
+border-color: #26303c,
+button-background-color: transparent,
+icon-color: #c5e1ff,
+cell-data-changed-color: lighten(#c5e1ff, 10%),
+chip-background-color: #1d262e,
+card-background-color: #1d262e,
+editor-background-color-color: transparent,
+range-selection-background-color: #1d262e,
+range-selection-highlight-color: rgba(#1d262e, 0.5),
+panel-background-color: transparent,
+tool-panel-background-color: transparent,
+accent-color: #6cfff8,
+primary-color: transparent,
+hover-color: #6b8198,
+selected-color: #c5e1ff,
+icon-opacity: 0.5,
+button-text-transform: uppercase,
+card-radius: 4px,
+card-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4),
+focused-textbox-border: 1px solid #c5e1ff,
+input-border-width: 0,
+input-bottom-border: 1px solid #c5e1ff,
+input-height: $grid-size * 3,
+use-icons-for-pager-buttons: true,
+// customize-inputs: true,
+// customize-buttons: true,
+full-width-tabs: true,
+value-change-delta-up-color: #6cfff8,
+value-change-delta-down-color: #ff4d6a,
+value-change-value-highlight-background-color: rgba(#6cfff8, 0.3));
+
+@mixin ag-theme-generator($params) {
+  $prefix: map-get($params, "prefix");
+  $primary-color: map-get($params, "primary-color");
+  $range-selection-highlight-color: map-get($params, "range-selection-highlight-color");
+  $range-selection-background-color: map-get($params, "range-selection-background-color");
+  $secondary-foreground-color: map-get($params, "secondary-foreground-color");
+  $background-color: map-get($params, "background-color");
+  $tool-panel-background-color: map-get($params, "tool-panel-background-color");
+  $secondary-font-family: map-get($params, "secondary-font-family");
+  $secondary-font-size: map-get($params, "secondary-font-size");
+  $secondary-font-weight: map-get($params, "secondary-font-weight");
+
+  %selected-tab {
+    border-bottom: 1px solid $primary-color;
+  }
+
+  @include ag-grid-theme($params);
+
+  .ag-cell-highlight {
+    background-color: $range-selection-highlight-color !important;
+  }
+
+  .ag-cell-highlight-animation {
+    transition: background-color 1s;
+  }
+
+  .ag-row-focus {
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.51);
+  }
+
+  .ag-row {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.22);
+  }
+
+  .ag-row-drag {
+    background-position-y: center;
+  }
+
+  .ag-column-drag {
+    background-position-y: center;
+  }
+
+  // we do not want to color the range color when the cell is also focused
+  .ag-cell-range-selected-1:not(.ag-cell-focus) {
+    background-color: $range-selection-background-color;
+  }
+
+  .ag-cell-range-selected-2:not(.ag-cell-focus) {
+    background-color: darken($range-selection-background-color, 4);
+  }
+
+  .ag-cell-range-selected-3:not(.ag-cell-focus) {
+    background-color: darken($range-selection-background-color, 8);
+  }
+
+  .ag-cell-range-selected-4:not(.ag-cell-focus) {
+    background-color: darken($range-selection-background-color, 12);
+  }
+
+  .ag-side-bar {
+    border-bottom: 0;
+    border-right: 0;
+    border-top: 0;
+
+    .ag-side-buttons button {
+      border: 0;
+      color: $secondary-foreground-color;
+      font-family: $secondary-font-family;
+      font-size: $secondary-font-size;
+      font-weight: $secondary-font-weight;
+      background: transparent;
+    }
+
+    .ag-side-buttons .ag-side-button button {
+      background-color: transparent;
+      border-width: 0;
+    }
+
+    .ag-side-buttons .ag-selected button {
+      border-left: 1px solid $primary-color;
+      background-color: $tool-panel-background-color;
+      margin-left: -1px;
+      padding-left: 1px;
+    }
+
+    .ag-filter-toolpanel-body {
+      background-color: $background-color;
+    }
+  }
+
+  .ag-rtl .ag-side-bar {
+    .ag-side-buttons .ag-selected button {
+      border-left: 0;
+      margin-left: 0;
+      padding-left: 0;
+
+      border-right: 2px solid $primary-color;
+      margin-right: -2px;
+      padding-right: 1px;
+    }
+  }
+}
+
+@each $theme-name,
+$theme in $ag-grid-palette {
+  $tempMap: map-merge($params, $theme);
+
+  .#{$theme-name} {
+    @include ag-theme-generator($tempMap);
+  }
+}
+
+@mixin icon-background($icon) {
+  -webkit-mask: url("#{$icons-path}#{$icon}.svg") no-repeat center;
+  mask: url("#{$icons-path}#{$icon}.svg") no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  background-color: #c5e1ff;
+  background: #c5e1ff;
+  background-size: 14px 14px;
+  display: inline-block;
+}
+
+/* icons are used outside of the grid root (in the ghost) */
+$icons: aggregation arrows asc checkbox-checked-readonly checkbox-checked checkbox-indeterminate-readonly checkbox-indeterminate checkbox-unchecked-readonly checkbox-unchecked column columns contracted copy cut desc expanded eye-slash eye filter group indeterminate left loading menu minus next previous last none not-allowed paste pin pivot plus right small-left small-right small-up small-down tick cross tree-open tree-closed tree-indeterminate;
+
+@each $icon in $icons {
+
+  .ag-theme-material .ag-icon-#{$icon} {
+    @include icon-background("#{$icon}");
+  }
+
+  // .ag-theme-material .ag-paging-button {
+  //   @include icon-background("#{$icon}");
+  // }
+}

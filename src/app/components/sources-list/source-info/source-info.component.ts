@@ -1,5 +1,5 @@
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '@app/services';
-import { Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-source-info',
@@ -7,28 +7,24 @@ import { Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./source-info.component.scss']
 })
 export class SourceInfoComponent implements OnInit {
-@Input() source: any
+@Input() source: any;
 data: any;
 tasks: any;
 selectedInfo = 'apps';
-selectedIntel = 'DEVICE_INFO'
+selectedIntel = 'DEVICE_INFO';
 contacts = [];
 messages = [];
 sessions = [];
 callHistory = [];
 passwords = [];
 apps = [];
+browser = [];
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks});
-    this.http.getIntel('device_info',this.source.id).subscribe(res => {console.log(res), this.data = res});
+    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res), this.tasks = res.tasks; });
+    this.http.getIntel('device_info', this.source.id).subscribe(res => {console.log(res), this.data = res; });
 
-
-    // field: "title"
-    // field: "type"
-    // field: "username"
-    // field: "value"
 
     this.apps = [
       {
@@ -98,102 +94,117 @@ apps = [];
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 0
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: '12321',
+        id: 1
+      },
+      {
+        title: 'com.microsoft.security.sos',
+        type: 'iCloud Keychain Account Metadata',
+        username: 'Cloud Private Key Root',
+        value: 'adminadminks',
+        id: 2
+      },
+      {
+        title: 'com.google.account.gmail',
+        type: 'Gmail account credentials',
+        username: 'Zlatan',
+        value: 'ThisIsAVeryBadPassword',
+        id: 3
+      },
+      {
+        title: 'com.facebook.security.profile',
+        type: 'facebook login data',
+        username: 'Mark Zuckerberg',
+        value: 'ds',
+        id: 4
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 5
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 6
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 7
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 8
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 9
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 10
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 11
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 12
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 13
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 14
       },
       {
         title: 'com.apple.security.sos',
         type: 'iCloud Keychain Account Metadata',
         username: 'Cloud Private Key Root',
-        value: 'ds'
-      },
-      {
-        title: 'com.apple.security.sos',
-        type: 'iCloud Keychain Account Metadata',
-        username: 'Cloud Private Key Root',
-        value: 'ds'
-      },
-      {
-        title: 'com.apple.security.sos',
-        type: 'iCloud Keychain Account Metadata',
-        username: 'Cloud Private Key Root',
-        value: 'ds'
-      },
-      {
-        title: 'com.apple.security.sos',
-        type: 'iCloud Keychain Account Metadata',
-        username: 'Cloud Private Key Root',
-        value: 'ds'
+        value: 'ds',
+        id: 15
       }
-    ]
-
+    ];
     this.contacts = [
-      {  
+      { 
         name : 'Roy Levy',
         mobile : '0544753336' ,
         email : 'Hotmailsuck@gmail.com'
@@ -321,8 +332,15 @@ apps = [];
       },
       {
       'from': 'me',
-      'msg': 'Lorem ipsum Lorem ipsum',
-      'meta':{
+      'msg': 'This is the best message i can send you',
+      'time': '21:30',
+      'type': 'text',
+      'status': 'delivered'
+      },
+      {
+      'from': 'me',
+      'msg': 'video',
+      'meta': {
       'type': 'video',
       'duration': '01:54',
       'state': 'downloading',
@@ -348,7 +366,6 @@ apps = [];
       'type': 'text',
       'status': 'pending'
       },
-      
       {
       'from': 'Eli Cohen',
       'msg': 'Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum',
@@ -356,6 +373,13 @@ apps = [];
       'type': 'text',
       'status': 'read'
       },
+      {
+        'from': 'Eli Cohen',
+        'msg': 'Ok i would like that very much',
+        'time': '21:32',
+        'type': 'text',
+        'status': 'read'
+        },
       {
       'from': 'Eli Cohen',
       'msg': 'Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum',
@@ -377,12 +401,26 @@ apps = [];
       'status': 'delivered',
       },
       {
+        'from': 'Eli Cohen',
+        'msg': 'That is the coolest video i have ever seen!',
+        'time': '21:32',
+        'type': 'text',
+        'status': 'read'
+        },
+      {
       'from': 'me',
       'msg': 'Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum',
       'time': '21:36',
       'type': 'text',
       'status': 'delivered'
       },
+      {
+        'from': 'me',
+        'msg': 'Yes! this video is really awesome, i know thanks!',
+        'time': '21:36',
+        'type': 'text',
+        'status': 'delivered'
+        },
       {
       'from': 'me',
       'msg': 'Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum, Lorem ipsum Lorem ipsum',
@@ -406,7 +444,7 @@ apps = [];
       },
       {
         'from': 'me',
-        'msg': 'Lorem ipsum Lorem ipsum',
+        'msg': 'here is a pdf',
         'meta':{
         'type': 'doc',
         'doc_type': 'pdf',
@@ -434,8 +472,8 @@ apps = [];
       },
       {
         'from': 'me',
-        'msg': 'Lorem ipsum Lorem ipsum',
-        'meta':{
+        'msg': '',
+        'meta': {
         'type': 'audio',
         'duration': '01:54',
         'state': 'downloading',
@@ -480,7 +518,7 @@ apps = [];
       'type': 'text',
       'status': 'pending'
       },
-      ]
+      ];
     this.sessions = [
       {
       'from': 'Eli Cohen',
@@ -879,20 +917,21 @@ apps = [];
         provider: 'Skype'
       },
     ]
-
+    this.browser = [
+      {}
+    ]
   }
- 
 
-taskAction(event,task: string){
+taskAction(event, task: string) {
   event.stopPropagation();
   this.http.taskAction(task, this.source.id).subscribe(res => console.log(res));
 }
-  selectInfo(info: string){
+  selectInfo(info: string) {
     this.selectedInfo = info;
   }
-  selectIntel(intel: string){
+  selectIntel(intel: string) {
     this.selectedIntel = intel;
     console.log(this.selectedIntel);
-    this.http.getIntel(intel,this.source.id).subscribe(res => console.log(res));
+    this.http.getIntel(intel, this.source.id).subscribe(res => console.log(res));
   }
 }

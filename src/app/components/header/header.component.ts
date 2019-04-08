@@ -1,30 +1,11 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { MenuService } from '@app/components/menu/menu.service';
+import { ConnectionService, WsService } from '@app/services';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, Subscription } from 'rxjs';
+import { HttpService } from '../../services/http/http.service';
 import { AuthService } from './../../services/auth/auth.service';
-import {
-  AlertsModalComponent
-} from './../system-bar/alerts/alerts-modal/alerts-modal.component';
-import {
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import {
-  MenuService
-} from '@app/components/menu/menu.service'
-import {
-  HttpService
-} from '../../services/http/http.service';
-import {
-  Observable,
-  Subscription,
-  Subject
-} from 'rxjs';
-import * as $ from 'jquery';
-import {
-  WsService, ConnectionService
-} from '@app/services';
-import {
-  NgbModal
-} from '@ng-bootstrap/ng-bootstrap';
+import { AlertsModalComponent } from './../system-bar/alerts/alerts-modal/alerts-modal.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -61,12 +42,12 @@ export class HeaderComponent implements OnInit {
     this.searchResults = [];
     this.httpService.getTop().subscribe(res => {
       this.system = res;
-    })
+    });
   }
 
   toggleAlerts() {
     this.httpService.getAlerts().subscribe(res => {
-      let alertsModalRef = this.modalService.open(AlertsModalComponent, {
+      const alertsModalRef = this.modalService.open(AlertsModalComponent, {
         windowClass: 'alerts-window',
         backdrop: 'static'
       });
@@ -78,12 +59,12 @@ logout(){
 }
 
   filterItem(searchValue) {
-    let search = {
+    const search = {
       scope: '',
       keyword: searchValue
-    }
+    };
     this.httpService.search(search).subscribe(res => {
-      this.searchResults = res
+      this.searchResults = res;
     });
   }
 

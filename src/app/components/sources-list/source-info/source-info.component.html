@@ -2,29 +2,39 @@
 
   <div class="left-panel">
     <div class="cube info-cube" [class.selected]="selectedInfo === 'apps'" (click)="selectInfo('apps')">
-      <span class="icon"><app-svg-icon name="info-apps"></app-svg-icon></span>
+      <span class="icon">
+        <app-svg-icon name="info-apps"></app-svg-icon>
+      </span>
       <span class="text">Apps</span>
     </div>
     <div class="cube info-cube" [class.selected]="selectedInfo === 'tasks'" (click)="selectInfo('tasks')">
-      <span class="icon"><app-svg-icon name="info-tasks"></app-svg-icon></span>
+      <span class="icon">
+        <app-svg-icon name="info-tasks"></app-svg-icon>
+      </span>
       <span class="text">Tasks view</span>
     </div>
   </div>
   <div class="center-panel" *ngIf="selectedInfo === 'apps'">
-        <div *ngFor="let task of tasks" class="cube intel-cube" [class.selected]="selectedIntel === task.name" (click)="selectIntel(task.name)">
-      <span class="icon"><app-svg-icon [name]="task.name" [size]="17"></app-svg-icon></span>
+    <div *ngFor="let task of tasks" class="cube intel-cube" [class.selected]="selectedIntel === task.name"
+      (click)="selectIntel(task.name)">
+      <span class="icon">
+        <app-svg-icon [name]="task.name" [size]="17"></app-svg-icon>
+      </span>
       <span class="text">{{task.display_name}}</span>
-      <span class="state-icon" (click)="taskAction($event, task.state)"><app-svg-icon [name]="task.state"></app-svg-icon></span>
+      <span class="state-icon" (click)="taskAction($event, task.state)">
+        <app-svg-icon [name]="task.state"></app-svg-icon>
+      </span>
 
     </div>
   </div>
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
     <intel-device-info [deviceInfo]="data" class="intel" *ngIf="selectedIntel === 'DEVICE_INFO'"></intel-device-info>
     <intel-chats class="intel" [messages]="messages" [sessions]="sessions"
-     *ngIf="['WHATSAPP','TELEGRAM','WECHAT','LINE','SMS', 'SIGNAL'].includes(selectedIntel)">
+      *ngIf="['WHATSAPP','TELEGRAM','WECHAT','LINE','SMS', 'SIGNAL'].includes(selectedIntel)">
     </intel-chats>
     <intel-contacts class="intel" [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
-    <intel-call-history class="intel" [data]='callHistory' *ngIf="selectedIntel === 'CALL_HISTORY'"></intel-call-history>
+    <intel-call-history class="intel" [data]='callHistory' *ngIf="selectedIntel === 'CALL_HISTORY'">
+    </intel-call-history>
     <intel-passwords class="intel" [data]='passwords' *ngIf="selectedIntel === 'KEYCHAIN'"></intel-passwords>
     <intel-app-list class="intel" [data]='apps' *ngIf="selectedIntel === 'APP_LIST'"></intel-app-list>
   </div>
@@ -32,6 +42,6 @@
 
   <div class="tasks-view" *ngIf="selectedInfo === 'tasks'">
     <intel-tasks></intel-tasks>
-    </div>
+  </div>
 
 </div>

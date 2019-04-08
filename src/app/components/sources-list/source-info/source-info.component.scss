@@ -5,6 +5,7 @@
   border-radius: 4px;
   display: flex;
   position: relative;
+
   .cube {
     &.selected {
       background-color: #354455;
@@ -15,16 +16,19 @@
       background-color: #354455;
       cursor: pointer;
     }
-&.info-cube{
-  border-bottom: 1px solid #11161c;
-  min-width: 186px;
-}
-&.intel-cube{
-  height: 47px;
-}
+
+    &.info-cube {
+      border-bottom: 1px solid #11161c;
+      min-width: 186px;
+    }
+
+    &.intel-cube {
+      height: 47px;
+    }
+
     width: 100%;
     height: 48px;
-   
+
     display: flex;
     align-items: center;
     opacity: 0.5;
@@ -32,10 +36,12 @@
     .icon {
       margin-left: 19px;
     }
-    .state-icon{
+
+    .state-icon {
       margin-left: auto;
       margin-right: 10px;
     }
+
     .text {
       margin-left: 15px;
       font-size: 14px;
@@ -48,6 +54,7 @@
       color: #c5e1ff;
     }
   }
+
   .left-panel {
     display: flex;
     flex-direction: column;
@@ -56,11 +63,12 @@
     border-right: 1px solid #11161c;
   }
 
-.intels-panel{
-  flex: 1;
-  position: relative;
-  width: 100%;
-}
+  .intels-panel {
+    flex: 1;
+    position: relative;
+    width: 100%;
+  }
+
   .center-panel {
     display: flex;
     flex-direction: column;
@@ -68,22 +76,25 @@
     height: 100%;
     border-right: 1px solid #11161c;
   }
-  .tasks-view{
+
+  .tasks-view {
     width: 100%;
     display: flex;
     position: relative;
   }
-  .intel{
+
+  .intel {
     position: absolute;
     width: 100%;
-  height: 100%;
-    overflow: hidden;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
 }
-intel-tasks{
+
+intel-tasks {
   position: absolute;
   overflow: hidden;
   width: 100%;
   height: 100%;
 }
-
