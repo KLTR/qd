@@ -12,20 +12,15 @@ export class ConnectionService {
     this.isInternet = new BehaviorSubject(false);
     this.isPioneer = new BehaviorSubject(false);
     this.http.getTop().subscribe(res => {
-      console.log(res);
-      if (res.internet) {
-        if (res.internet.indicator.state === 'GREEN') {
-          this.isInternet.next(true);
-        } else {
-          this.isInternet.next(false);
-        }
+      if (res.internet && res.internet.indicator.state === 'GREEN') {
+        this.isInternet.next(true);
+      } else {
+        this.isInternet.next(false);
       }
-      if (res.pioneer) {
-        if (res.pioneer.indicator.state === 'GREEN') {
-          this.isPioneer.next(true);
-        } else {
-          this.isPioneer.next(false);
-        }
+      if (res.pioneer && res.pioneer.indicator.state === 'GREEN') {
+        this.isPioneer.next(true);
+      } else {
+        this.isPioneer.next(false);
       }
     });
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));

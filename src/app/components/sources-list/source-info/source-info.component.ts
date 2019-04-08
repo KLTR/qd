@@ -22,10 +22,8 @@ browser = [];
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res), this.tasks = res.tasks; });
-    this.http.getIntel('device_info', this.source.id).subscribe(res => {console.log(res), this.data = res; });
-
-
+    this.http.getSourcesTasks(this.source.id).subscribe(res => {console.log(res),this.tasks = res.tasks});
+    this.http.getIntel('deviceinfo', this.source.id).subscribe(res => {console.log(res), this.data = res});
     this.apps = [
       {
         name: 'Whatsapp',
@@ -931,7 +929,6 @@ taskAction(event, task: string) {
   }
   selectIntel(intel: string) {
     this.selectedIntel = intel;
-    console.log(this.selectedIntel);
     this.http.getIntel(intel, this.source.id).subscribe(res => console.log(res));
   }
 }

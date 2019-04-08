@@ -27,7 +27,7 @@ build-project:
   stage: build
   script:
   - set -x && cd ${MAKEFILE_PROJECT_PATH} && git fetch && git checkout ${CI_COMMIT_REF_NAME} && git pull
-  - set -x && npm set registry http://172.23.4.20:4873
+  - set -x && npm set registry http://172.23.4.23:4873
   - set -x && cd ${PROJECT_ROOT_PATH} && rm package-lock.json || true
   - set -x && cd ${PROJECT_ROOT_PATH} && make ${PROJECT}
   - set -x && docker push ${DOCKER_CANONICAL_IMAGE}
@@ -42,6 +42,7 @@ build-project:
 cleanup:
   stage: cleanup
   script:
+  - set -x && docker rmi ${DOCKER_CANONICAL_IMAGE} && docker builder prune -af || true
   - docker rmi $(docker images -f "dangling=true" -q) || true
   allow_failure: true
   when: always
