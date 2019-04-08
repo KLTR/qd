@@ -1,32 +1,10 @@
-import {
-  AddTargetWizardComponent
-} from './../modals/add-target-wizard/add-target-wizard.component';
-import {
-  HttpService
-} from '@app/services/http/http.service';
-import {
-  Component,
-  OnInit,
-  Input,
-  QueryList,
-  ViewChildren,
-  ChangeDetectorRef,
-  Output,
-  EventEmitter
-} from '@angular/core';
-import {
-  IconService
-} from '@app/services/svg-json-icons/svg-icons.service'
-import {
-  SatPopover
-} from '@ncstate/sat-popover';
-import {
-  NgbModal,
-  NgbModalRef
-} from '@ng-bootstrap/ng-bootstrap';
-import {
-  DeviceListModalComponent
-} from '../modals/device-list-modal/device-list-modal.component';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { HttpService } from '@app/services/http/http.service';
+import { IconService } from '@app/services/svg-json-icons/svg-icons.service';
+import { SatPopover } from '@ncstate/sat-popover';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeviceListModalComponent } from '../modals/device-list-modal/device-list-modal.component';
+import { AddTargetWizardComponent } from './../modals/add-target-wizard/add-target-wizard.component';
 @Component({
   selector: 'app-left-bar',
   templateUrl: './left-bar.component.html',
@@ -95,7 +73,6 @@ ngOnChanges(): void {
   }
 
   selectSource(source, index) {
-    console.log(source);
     if(this.selectedSource === source){
       this.selectedSource = null;
       return;
@@ -132,7 +109,7 @@ ngOnChanges(): void {
   }
 
   openAddAttack() {
-    let AddTargetModalRef = this.modalService.open(AddTargetWizardComponent, {
+    const AddTargetModalRef = this.modalService.open(AddTargetWizardComponent, {
       windowClass: 'add-attack-modal',
       centered: true,
       backdrop: 'static'
@@ -141,8 +118,7 @@ ngOnChanges(): void {
   openDeviceListModal(targetId, event) {
     event.stopPropagation()
     this.http.findPioneerDevices(targetId).subscribe(res => {
-      console.log(res);
-      let deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
+      const deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
         centered: true,
         size: 'lg',
         backdrop: 'static'

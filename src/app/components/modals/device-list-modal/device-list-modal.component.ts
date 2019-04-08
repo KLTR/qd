@@ -1,26 +1,10 @@
-import {
-  environment
-} from './../../../../environments/environment.prod';
-import {
-  WsService
-} from './../../../services/websocket/ws.service';
-import {
-  HttpService,
-  ConnectionService
-} from '@app/services';
-import {
-  Component,
-  OnInit,
-  Input
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ConnectionService, HttpService } from '@app/services';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { environment } from './../../../../environments/environment.prod';
+import { WsService } from './../../../services/websocket/ws.service';
 
-import {
-  NgbModal,
-  NgbActiveModal
-} from '@ng-bootstrap/ng-bootstrap';
-import {
-  ConfirmModalComponent
-} from '../confirm-modal/confirm-modal.component';
 @Component({
   selector: 'app-device-list-modal',
   templateUrl: './device-list-modal.component.html',
@@ -51,7 +35,6 @@ export class DeviceListModalComponent implements OnInit {
     }
     this.connectionService.isPioneer.subscribe(res => this.isPioneer = res);
     this.connectionService.isInternet.subscribe(res => this.isConnected = res);
-    console.log(this.deviceList);
   }
   getAnimatedIcon(name: string): any {
     return {
@@ -76,12 +59,12 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isAttackingOrChecking = true;
-        this.http.checkDevice(deviceId).subscribe(res => {
-          console.log(res),
+        this.http.checkDevice(deviceId).subscribe(result => {
+          console.log(result),
             this.isAttackingOrChecking = false;
-        })
+        });
       }
-    })
+    });
   }
 
   attackDevice(deviceName, deviceId) {
@@ -95,12 +78,12 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isAttackingOrChecking = true;
-        this.http.attackDevice(deviceId).subscribe(res => {
-          console.log(res),
+        this.http.attackDevice(deviceId).subscribe( result => {
+            console.log(result),
             this.isAttackingOrChecking = false;
-        })
+        });
       }
-    })
+    });
   }
 
   abortDevice(deviceName, deviceId) {
@@ -113,11 +96,11 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to abort attack on '${deviceName}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.abortDevice(deviceId).subscribe(res => {
-          console.log(res)
-        })
+        this.http.abortDevice(deviceId).subscribe(result => {
+          console.log(result);
+        });
       }
-    })
+    });
   }
   archiveTarget() {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
@@ -129,11 +112,11 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to archive '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.archiveTarget(this.targetId).subscribe(res => {
-          console.log(res)
-        })
+        this.http.archiveTarget(this.targetId).subscribe(result => {
+          console.log(result);
+        });
       }
-    })
+    });
   }
   queryPioneerDevices() {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
@@ -145,12 +128,12 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.queryPioneerDevices(this.targetId).subscribe(res => {
+        this.http.queryPioneerDevices(this.targetId).subscribe(result => {
           this.isRefreshing = true;
-          console.log(res);
-        })
+          console.log(result);
+        });
       }
-    })
+    });
   }
 
   getDeviceIconSize(deviceStatus: string): number {

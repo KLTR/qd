@@ -96,6 +96,15 @@ body {
   padding: 0;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 .remove-scroll {
   overflow-y: hidden !important;
   overflow-x: hidden !important;

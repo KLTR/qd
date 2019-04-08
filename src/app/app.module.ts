@@ -1,151 +1,71 @@
-import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
-// Modules
-import {
-  BrowserModule
-} from '@angular/platform-browser';
-import {
-  NgModule,
-  APP_INITIALIZER
-} from '@angular/core';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import {
-  FormsModule,
-  ReactiveFormsModule
-} from '@angular/forms';
-import {
-  AppRoutingModule
-} from './app-routing.module';
-import {
-  AppComponent
-} from './app.component';
-import {
-  LoginComponent
-} from './components/login/login.component';
-import {
-  HttpClientModule,
-  HTTP_INTERCEPTORS
-} from '@angular/common/http'
-import {
-  BrowserAnimationsModule
-} from '@angular/platform-browser/animations';
-import {
-  LottieAnimationViewModule
-} from 'ng-lottie';
-import {
-  ToastNoAnimationModule
-} from 'ngx-toastr';
-
-// Services
-import {
-  HttpService,
-  AuthService,
-  IconService,
-  MenuService,
-  InterceptorService,
-  WsService,
-  ConnectionService,
-  AppConfigService,
-} from "@app/services";
-
-// Components
-
-import {
-  SystemBarComponent
-} from './components/system-bar/system-bar.component';
-import {
-  HeaderComponent
-} from './components/header/header.component';
-import {
-  MenuComponent
-} from './components/menu/menu.component';
-import {
-  LayoutComponent
-} from './components/layout/layout.component';
-import {
-  SvgIconComponent
-} from './components/svg-icon/svg-icon.component';
-import {
-  SourcesListComponent
-} from './components/sources-list/sources-list.component';
-import {
-  AddTargetWizardComponent
-} from './components/modals/add-target-wizard/add-target-wizard.component';
-import {
-  AlertsModalComponent
-} from './components/system-bar/alerts/alerts-modal/alerts-modal.component'
-import {
-  ConfirmModalComponent
-} from './components/modals/confirm-modal/confirm-modal.component';
-import {
-  AlertsStripComponent
-} from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
-import {
-  LeftBarComponent
-} from './components/left-bar/left-bar.component';
-import {
-  RightBarComponent
-} from './components/right-bar/right-bar.component';
-import {
-  ExportModalComponent
-} from './components/modals/export-modal/export-modal.component'
-import {
-  SatPopoverModule
-} from '@ncstate/sat-popover';
-
-// Intels lib
-import {IntelsModule} from '@common/intels'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// Modules
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from '@app/guards';
 // Pipes
 import {
   CharactersPipe,
-  SafeHtmlPipe,
-  FilterAlertsPipe,
   DayMonthOnlyPipe,
-  GetFilenameFromUrlPipe,
   FileSizePipe,
-  OrderByPipe,
+  FilterAlertsPipe,
+  GetFilenameFromUrlPipe,
   MillToMinFilterPipe,
+  OrderByPipe,
+  SafeHtmlPipe,
   SecurePipe
 } from '@app/pipes';
+// Services
 import {
-  AuthGuard
-} from '@app/guards';
-
+  AppConfigService,
+  AuthService,
+  ConnectionService,
+  HttpService,
+  IconService,
+  InterceptorService,
+  MenuService,
+  WsService
+} from '@app/services';
+// Intels lib
+import { IntelsModule } from '@common/intels';
+import { SatPopoverModule } from '@ncstate/sat-popover';
 // Libraries
-import {
-  NgbModule
-} from '@ng-bootstrap/ng-bootstrap';
-import {
-  SearchModalComponent
-} from './components/modals/search-modal/search-modal.component';
-
-import {
-  AgGridModule
-} from 'ag-grid-angular';
-import {
-  SourceTooltipComponent
-} from './components/source-tooltip/source-tooltip.component';
-import {
-  DeviceListModalComponent
-} from './components/modals/device-list-modal/device-list-modal.component';
-
-import {
-  MomentModule
-} from 'ngx-moment';
-import {
-  InfectionComponent
-} from './components/left-bar/infection/infection.component';
-import {
-  TemplateRendererComponent
-} from './components/ag-grid/template-renderer.component';
-import {
-  OwnersCellComponent
-} from './components/ag-grid/owners-cell-component';
-import {
-  DateCellComponent
-} from './components/ag-grid/date-cell-component';
-import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgGridModule } from 'ag-grid-angular';
+import { LottieAnimationViewModule } from 'ng-lottie';
+import { MomentModule } from 'ngx-moment';
+import { ToastNoAnimationModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { DateCellComponent } from './components/ag-grid/date-cell-component';
+import { OwnersCellComponent } from './components/ag-grid/owners-cell-component';
+import { TemplateRendererComponent } from './components/ag-grid/template-renderer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { InfectionComponent } from './components/left-bar/infection/infection.component';
+import { LeftBarComponent } from './components/left-bar/left-bar.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { LoginComponent } from './components/login/login.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { AddTargetWizardComponent } from './components/modals/add-target-wizard/add-target-wizard.component';
+import { ConfirmModalComponent } from './components/modals/confirm-modal/confirm-modal.component';
 import { DatePickerModalComponent } from './components/modals/date-picker-modal/date-picker-modal.component';
+import { DeviceListModalComponent } from './components/modals/device-list-modal/device-list-modal.component';
+import { ExportModalComponent } from './components/modals/export-modal/export-modal.component';
+import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
+import { RightBarComponent } from './components/right-bar/right-bar.component';
+import { SourceTooltipComponent } from './components/source-tooltip/source-tooltip.component';
+import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
+import { SourceInfoComponent } from './components/sources-list/source-info/source-info.component';
+import { SourcesListComponent } from './components/sources-list/sources-list.component';
+import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
+import { AlertsModalComponent } from './components/system-bar/alerts/alerts-modal/alerts-modal.component';
+import { AlertsStripComponent } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
+// Components
+import { SystemBarComponent } from './components/system-bar/system-bar.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -209,13 +129,13 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     SatPopoverModule,
     ToastNoAnimationModule.forRoot({
       timeOut: 5000,
-      preventDuplicates: true,
+      preventDuplicates: true
     }),
     MomentModule,
     // AngularMaterial
     LottieAnimationViewModule.forRoot(),
 
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([])
   ],
   providers: [
     {
@@ -250,7 +170,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     OwnersCellComponent,
     DateCellComponent,
     ConfirmModalComponent,
-    ExportModalComponent,
+    ExportModalComponent
   ],
   bootstrap: [AppComponent]
 })
