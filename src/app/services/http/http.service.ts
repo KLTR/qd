@@ -36,14 +36,14 @@ serverUrls = {
   abortExport: '/exports/{{id}}/abort',
   getSourceTasks: '/sources/{{id}}/intls',
   // Pioneer Devices
-  findPioneerDevices: '/infections/pioneers/targets/{{id}}',
-  queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
+  findPioneerDevices: '/pioneers/fixmelater/{{id}}',
+  queryPioneerDevices: '/pioneers/targets/fixmelater/{{id}}',
+  resetPioneerMachine: '/pioneers/{{id}}/reset',
+
   checkDevice: '/devices/{{id}}/check',
   attackDevice: '/devices/{{id}}/attack',
   abortDevice: '/devices/{{id}}/abort',
 
-  // Pioneer Machines
-  resetPioneerMachine: '/infections/pioneers/machines/{{id}}/reset',
 
   // Tasks
   // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
@@ -57,7 +57,7 @@ env: any;
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService
-    ) { 
+    ) {
       this.env = this.appConfig.getConfig();
   }
   getToken() : any {
