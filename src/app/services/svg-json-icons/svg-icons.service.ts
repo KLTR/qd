@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+/* tslint:disable max-line-length */
 
 @Injectable()
 export class IconService {

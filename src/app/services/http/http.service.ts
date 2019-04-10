@@ -49,7 +49,8 @@ export class HttpService {
     // getSourceChat: '/sources/{{id}}/{{chatType}}',
     getTasks: '/sources/{{id}}/tasks',
     getSourceIntel: '/sources/{{id}}/{{intelName}}',
-    taskAction: '/sources/{{id}}/cnc/{{taskAction}}'
+    taskAction: '/sources/{{id}}/cnc/{{taskAction}}',
+    sessionMessages: '/sessions/{{id}}/'
   };
 
   config: any;
@@ -175,5 +176,9 @@ export class HttpService {
   taskAction(taskAction: string, sourceId: string) {
     taskAction = taskAction.toLowerCase();
     return this.http.get(this.getUrlByApiNameWithArgs('taskAction', sourceId, taskAction), this.setHeaders());
+  }
+
+  getSessionMessages(sessionId: string): Observable<any> {
+    return this.http.get(this.getUrlByApiName('sessionMessages', sessionId), this.setHeaders());
   }
 }

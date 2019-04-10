@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.httpService.getTop().subscribe(res => {
       this.system = res;
       if (res.product_version) {
-        console.log(res.product_version);
+        console.log('product_version: ', res.product_version);
       }
     });
   }

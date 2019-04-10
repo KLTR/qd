@@ -18,6 +18,7 @@ export class SourceInfoComponent implements OnInit {
   callHistory = [];
   passwords = [];
   apps = [];
+  calls = [];
   browser: any;
   constructor(private http: HttpService) {}
 
@@ -808,7 +809,200 @@ export class SourceInfoComponent implements OnInit {
         id: 11
       }
     ];
-
+    this.calls = [
+      {
+        callType: 'declined',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'video'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'outgoing',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'video'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'video'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'video'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'video'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'missed',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'regular'
+      },
+      {
+        callType: 'incoming',
+        name: 'Larry Bird',
+        phone: '0523448759',
+        duration: '00:00:34',
+        callTime: '5.12.1985 05:45',
+        whatsappCallType: 'video'
+      }
+    ];
     this.callHistory = [
       {
         callType: 'declined',
@@ -1018,5 +1212,9 @@ export class SourceInfoComponent implements OnInit {
   selectIntel(intel: string) {
     this.selectedIntel = intel;
     this.http.getIntel(intel, this.source.id).subscribe(res => console.log(res));
+  }
+  onSelectSession(sessionId: any) {
+    console.log(sessionId);
+    this.http.getSessionMessages(sessionId).subscribe(res => console.log(res));
   }
 }
