@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.httpService.getTop().subscribe(res => {
       this.system = res;
       if (res.product_version) {
-        console.log(res.product_version);
+        console.log('product_version: ', res.product_version);
       }
     });
   }
@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
-    console.log("Build successfully");
     switch (Object.keys(msg.result)[0]) {
       // System
       case 'alice':
