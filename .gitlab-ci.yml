@@ -42,6 +42,7 @@ build-project:
 cleanup:
   stage: cleanup
   script:
+   - echo "cleanup"
 #  - docker rmi $(docker images -f "dangling=true" -q) || true
   allow_failure: true
   when: always
