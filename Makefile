@@ -25,4 +25,3 @@ install-common:
 	cd ../../common && ng build  
 	cd ../../common/dist/intels && npm pack && cp common-intels-0.0.1.tgz ../../../quantum/quantum-ui/
 	npm install common-intels-0.0.1.tgz
-	sudo ng s
