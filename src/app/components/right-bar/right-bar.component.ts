@@ -29,6 +29,7 @@ export class RightBarComponent implements OnInit {
   removeEvent(event) {
     this.http.dismissEvent(event.log.id).subscribe(res => {
       console.log(res);
+      console.log("Build successfully!!!");
       const index: number = this.events.indexOf(event);
       if(index !== -1){
         this.events.splice(index, 1)
