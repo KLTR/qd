@@ -30,7 +30,7 @@ build-project:
   - set -x && npm set registry http://172.23.4.23:4873
   - set -x && cd ${PROJECT_ROOT_PATH} && git pull || true
   - set -x && rm package-lock.json || true
-  - set -x && cd ${PROJECT_ROOT_PATH} && docker build -f docker/DockerBasebuilder . -t basebuilder:latest
+#  - set -x && cd ${PROJECT_ROOT_PATH} && docker build -f docker/DockerBasebuilder . -t basebuilder:latest
   - set -x && docker build -f docker/Dockerfile . -t ${DOCKER_CANONICAL_IMAGE}
   - set -x && docker push ${DOCKER_CANONICAL_IMAGE}
   <<: *limit_branches
