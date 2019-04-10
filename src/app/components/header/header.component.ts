@@ -77,6 +77,7 @@ logout(){
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
+    console.log("Build successfully");
     switch (Object.keys(msg.result)[0]) {
       // System 
       case 'alice':
@@ -92,7 +93,6 @@ logout(){
         this.system.storage = msg.result.storage;
         break;
       case 'goat':
-        console.log("WWWWWWWWWWWWWWWWWWW");
         this.system.goat = msg.result.goat;
         break;
       case 'internet':
