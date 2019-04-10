@@ -12,10 +12,10 @@
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{source.name}}</span>
         <span class="device-status">
-          
-          <span class="icon-wrapper"  *ngIf="srcPopovers?.first && source.hover || selectedSource?.index === i" (click)="selectSource(source, i);getSourcePopover(i).toggle();"
-            [satPopoverAnchorFor]="getSourcePopover(i)">
-            <app-svg-icon class="info-icon" name="info-second"  [size]="12">
+
+          <span class="icon-wrapper" *ngIf="srcPopovers?.first && source.hover || selectedSource?.index === i"
+            (click)="selectSource(source, i);getSourcePopover(i).toggle();" [satPopoverAnchorFor]="getSourcePopover(i)">
+            <app-svg-icon class="info-icon" name="info-second" [size]="12">
             </app-svg-icon>
           </span>
 
@@ -36,19 +36,22 @@
 
           <span *ngIf="source.tasks.progress_bar" class="downloading-percent green">{{source.tasks.progress ?
               source.tasks.progress : '0'}}%
-            </span>
+          </span>
           <span class="device-icon">
-              <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
-            [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
-          </lottie-animation-view>
-          <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon" [options]="iconService.setAnimatedIcon(source).options"
-            [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
-          </lottie-animation-view>
+            <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'"
+              [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width"
+              [height]="source.animatedIcon?.height">
+            </lottie-animation-view>
+            <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon"
+              [options]="iconService.setAnimatedIcon(source).options"
+              [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">
+            </lottie-animation-view>
 
-          <ng-template #noAnimatedIcon>
-            <app-svg-icon class="device-status-icon" id="{{source.state | lowercase}}" [size]="15" [name]="source.state"></app-svg-icon>
-          </ng-template>
-        </span>
+            <ng-template #noAnimatedIcon>
+              <app-svg-icon class="device-status-icon" id="{{source.state | lowercase}}" [size]="15"
+                [name]="source.state"></app-svg-icon>
+            </ng-template>
+          </span>
         </span>
       </div>
     </div>
@@ -57,8 +60,8 @@
   <div class="section pending">
     <div class="header">Infecting ({{leftBarData?.infections.length}})</div>
     <div class="content">
-      <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;" (mouseenter)="infection.hover=true;"
-        (mouseleave)="infection.hover=false;">
+      <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;"
+        (mouseenter)="infection.hover=true;" (mouseleave)="infection.hover=false;">
         <sat-popover #infectionPopovers xAlign="center" yAlign="below">
           <div class="custom-tip small-tip">
             <div class="header">
@@ -71,7 +74,8 @@
         <span class="device-status">
 
           <app-svg-icon *ngIf="infPopovers?.first && infPopovers?.length === leftBarData?.infections.length"
-            (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();" (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
+            (mouseenter)="hoveredInfection = infection;getInfectionPopover(i).open();"
+            (mouseleave)="hoveredInfection = null;getInfectionPopover(i).close();"
             [satPopoverAnchorFor]="getInfectionPopover(i)" [name]="infection.state" [size]="20"></app-svg-icon>
         </span>
       </div>
@@ -81,11 +85,11 @@
   <div class="section targets">
     <div class="header">Targets ({{leftBarData?.targets.length}})</div>
     <div class="content">
-      <div class="items" *ngFor="let target of leftBarData?.targets" (click)="filterTargetSources(target.target)">
-          <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
-        <span class="name">{{target.target?.name}}</span>
-        <span class="icon" (click)="openDeviceListModal(target.target.id, $event)">
-          <span class="device-count {{target.state}}">{{target?.devices_count}}</span>
+      <div class="items" *ngFor="let target of leftBarData?.targets" (click)="filterTargetSources(target)">
+        <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
+        <span class="name">{{target?.name}}</span>
+        <span class="icon" (click)="openDeviceListModal(target?.id, $event)">
+          <span class="device-count {{target?.state}}">{{target?.devices_count}}</span>
           <app-svg-icon [size]="17" name="target_{{target.state}}"></app-svg-icon>
         </span>
       </div>

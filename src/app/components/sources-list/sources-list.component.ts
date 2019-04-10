@@ -1,19 +1,11 @@
-
-import {
-  HttpService,
-  WsService
-} from '@app/services';
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpService, WsService } from '@app/services';
 @Component({
   selector: 'app-sources-list',
   templateUrl: './sources-list.component.html',
   styleUrls: ['./sources-list.component.scss']
 })
 export class SourcesListComponent implements OnInit {
-
   leftBarData: any;
   events: any;
   filteredSources = [];
@@ -23,11 +15,11 @@ export class SourcesListComponent implements OnInit {
   downloadingSourcesNumber: number;
   acitveSourcesNumber: number;
   lostConnectionSourcesNumber: number;
-  terminatedSourcesNumber: number
+  terminatedSourcesNumber: number;
   selectedSource: any;
   isLoading: boolean;
-  constructor(private http: HttpService, private ws: WsService, ) {
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+  constructor(private http: HttpService, private ws: WsService) {
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
   ngOnInit() {
@@ -48,20 +40,19 @@ export class SourcesListComponent implements OnInit {
       this.assignFilteredSources();
       this.setSourcesNumbers();
       this.filterPendingInfections();
-
-    })
+      console.log(this.leftBarData);
+    });
     this.http.getEvents().subscribe(res => {
       this.events = res.events;
-        if (!this.events) {
-         this.events = [];
+      if (!this.events) {
+        this.events = [];
       }
-    })
-  
+    });
   }
-  filterByTarget(target){
+  filterByTarget(target) {
     this.filterValue = '';
     this.selectedTarget = target;
-    this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_ids[0] === target.id)
+    this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_ids[0] === target.id);
   }
   assignFilteredSources() {
     this.filteredSources = this.leftBarData.sources;
@@ -73,23 +64,20 @@ export class SourcesListComponent implements OnInit {
     if (!value || value === 'ALL') {
       this.filteredSources = this.leftBarData.sources;
     } else {
-      this.filteredSources = this.leftBarData.sources.filter(item => item.state === value)
-
+      this.filteredSources = this.leftBarData.sources.filter(item => item.state === value);
     }
   }
   filterPendingInfections() {
     this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.state !== 'PENDING');
   }
 
-  selectSource(source){
-    if(source === this.selectedSource){
+  selectSource(source) {
+    if (source === this.selectedSource) {
       this.selectedSource = null;
-      
     } else {
       this.selectedSource = source;
     }
   }
-  
 
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {
@@ -122,14 +110,14 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleTarget(target) {
-     // filters new target from array
-     this.leftBarData.targets = this.leftBarData.targets.filter(x => {
+    // filters new target from array
+    this.leftBarData.targets = this.leftBarData.targets.filter(x => {
       if (x.target.id !== target.target.id) {
-        return x
+        return x;
       }
     });
     // only push if target state is not DELETED
-    if(target.state !== 'DELETED'){
+    if (target.state !== 'DELETED') {
       this.leftBarData.targets.unshift(target);
     }
   }
@@ -138,9 +126,9 @@ export class SourcesListComponent implements OnInit {
     if (!infection.state) {
       return;
     }
-    this.leftBarData.infections = this.leftBarData.infections.filter((inf) => {
+    this.leftBarData.infections = this.leftBarData.infections.filter(inf => {
       if (inf.device_id !== infection.device_id) {
-        return inf
+        return inf;
       }
     });
     switch (infection.state) {
@@ -154,61 +142,65 @@ export class SourcesListComponent implements OnInit {
   }
 
   handleSource(source) {
-    let sourceObj = source;
+    const sourceObj = source;
     if (!source.state) {
       return;
     }
 
-    this.leftBarData.sources = this.leftBarData.sources.filter((src) => {
+    this.leftBarData.sources = this.leftBarData.sources.filter(src => {
       if (src.id !== sourceObj.id) {
-        return src
+        return src;
       }
     });
-    this.leftBarData.sources.unshift(source)
-    var arr = new Array();
-    arr.sort()
+    this.leftBarData.sources.unshift(source);
+    const arr = new Array();
+    arr.sort();
     this.leftBarData.sources.sort(this.stateComparator);
-
   }
-ngOnChanges(): void {
-  this.setSourcesNumbers()
-}
+  ngOnChanges(): void {
+    this.setSourcesNumbers();
+  }
   setSourcesNumbers() {
     if (!this.leftBarData || !this.leftBarData.sources) {
       return;
     }
     this.allSourcesNumber = this.leftBarData.sources.length;
-    this.downloadingSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'DOWNLOADING').length;
-    this.acitveSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'ACTIVE' || src.state === 'DOWNLOADING' ||
-    src.state === 'DOWNLOADING_AGENT' || src.state === 'INITIALIZING' || src.state === 'COLLECTING_DATA').length;
-    this.lostConnectionSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'LOST_CONNECTION').length;
-    this.terminatedSourcesNumber = this.leftBarData.sources.filter((src) => src.state === 'TERMINATED').length;
+    this.downloadingSourcesNumber = this.leftBarData.sources.filter(src => src.state === 'DOWNLOADING').length;
+    this.acitveSourcesNumber = this.leftBarData.sources.filter(
+      src =>
+        src.state === 'ACTIVE' ||
+        src.state === 'DOWNLOADING' ||
+        src.state === 'DOWNLOADING_AGENT' ||
+        src.state === 'INITIALIZING' ||
+        src.state === 'COLLECTING_DATA'
+    ).length;
+    this.lostConnectionSourcesNumber = this.leftBarData.sources.filter(src => src.state === 'LOST_CONNECTION').length;
+    this.terminatedSourcesNumber = this.leftBarData.sources.filter(src => src.state === 'TERMINATED').length;
   }
   trackFn(index, item) {
     return item.id;
   }
 
   stateComparator(s1, s2): number {
-
     function stateToNumber(state): number {
       switch (state) {
         case 'ACTIVE':
           return 1;
         case 'DOWNLOADING':
-          return 2
+          return 2;
         case 'DOWNLOADING_AGENT':
           return 3;
         case 'INITIALIZING':
           return 4;
         case 'COLLECTING_DATA':
-        return 5;
-        default : 
-        return 6;
+          return 5;
+        default:
+          return 6;
       }
     }
 
-    let severityNumber1 = stateToNumber(s1);
-    let severityNumber2 = stateToNumber(s2);
+    const severityNumber1 = stateToNumber(s1);
+    const severityNumber2 = stateToNumber(s2);
 
     return severityNumber1 - severityNumber2;
   }
