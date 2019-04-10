@@ -78,7 +78,6 @@ export class HeaderComponent implements OnInit {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
-    console.log("Build successfully");
     switch (Object.keys(msg.result)[0]) {
       // System
       case 'alice':
