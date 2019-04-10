@@ -92,6 +92,7 @@ logout(){
         this.system.storage = msg.result.storage;
         break;
       case 'goat':
+        console.log("WWWWWWWWWWWWWWWWWWW");
         this.system.goat = msg.result.goat;
         break;
       case 'internet':
