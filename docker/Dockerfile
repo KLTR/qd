@@ -1,6 +1,6 @@
 FROM basebuilder:latest as stage1
 
-RUN cd /app && npm install @common/intels@0.0.3
+RUN cd /app && npm install @common/intels@0.0.3 --no-audit
 
 COPY . /app
 RUN cd /app && npm run build-prod
