@@ -131,13 +131,8 @@ export class HttpService {
   abortDevice(deviceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('abortDevice', deviceId), '', this.setHeaders());
   }
-<<<<<<< Updated upstream
   resetPioneerMachine(pioneerName: string): Observable<any>{
     return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerName),'', this.setHeaders());
-=======
-  resetPioneerMachine(pioneerId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerId), '', this.setHeaders());
->>>>>>> Stashed changes
   }
   terminateAgent(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('terminateAgent', sourceId), null, this.setHeaders());
