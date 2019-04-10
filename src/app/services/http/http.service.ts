@@ -30,37 +30,19 @@ export class HttpService {
     targets: '/targets',
     archiveTarget: '/targets/{{id}}/archive',
 
-<<<<<<< Updated upstream
-  // Sources
-  exportSource: '/exports/sources/{{id}}',
-  terminateAgent: '/sources/{{id}}/shutdown',
-  abortExport: '/exports/{{id}}/abort',
-  getSourceTasks: '/sources/{{id}}/intls',
-  // Pioneer Devices
-  findPioneerDevices: '/pioneers/fixmelater/{{id}}',
-  queryPioneerDevices: '/pioneers/targets/fixmelater/{{id}}',
-  resetPioneerMachine: '/pioneers/{{id}}/reset',
-
-  checkDevice: '/devices/{{id}}/check',
-  attackDevice: '/devices/{{id}}/attack',
-  abortDevice: '/devices/{{id}}/abort',
-
-=======
     // Sources
     exportSource: '/exports/sources/{{id}}',
     terminateAgent: '/sources/{{id}}/shutdown',
     abortExport: '/exports/{{id}}/abort',
     getSourceTasks: '/sources/{{id}}/intls',
     // Pioneer Devices
-    findPioneerDevices: '/infections/pioneers/targets/{{id}}',
-    queryPioneerDevices: '/infections/pioneers/targets/{{id}}',
+    findPioneerDevices: '/pioneers/fixmelater/{{id}}',
+    queryPioneerDevices: '/pioneers/targets/fixmelater/{{id}}',
+    resetPioneerMachine: '/pioneers/{{id}}/reset',
+
     checkDevice: '/devices/{{id}}/check',
     attackDevice: '/devices/{{id}}/attack',
     abortDevice: '/devices/{{id}}/abort',
-
-    // Pioneer Machines
-    resetPioneerMachine: '/infections/pioneers/machines/{{id}}/reset',
->>>>>>> Stashed changes
 
     // Tasks
     // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
@@ -131,8 +113,8 @@ export class HttpService {
   abortDevice(deviceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('abortDevice', deviceId), '', this.setHeaders());
   }
-  resetPioneerMachine(pioneerName: string): Observable<any>{
-    return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerName),'', this.setHeaders());
+  resetPioneerMachine(pioneerName: string): Observable<any> {
+    return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerName), '', this.setHeaders());
   }
   terminateAgent(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('terminateAgent', sourceId), null, this.setHeaders());
