@@ -17,63 +17,62 @@ export class LeftBarComponent implements OnInit {
   isWizardOpen = false;
   selectedSource: any;
   hoveredInfection: any;
-  sources: any[]
+  sources: any[];
 
-  @ViewChildren('sourcePopovers') public srcPopovers: QueryList < SatPopover > ;
-  @ViewChildren('infectionPopovers') public infPopovers: QueryList < SatPopover > ;
+  @ViewChildren('sourcePopovers') public srcPopovers: QueryList<SatPopover>;
+  @ViewChildren('infectionPopovers') public infPopovers: QueryList<SatPopover>;
   constructor(
     private http: HttpService,
     private iconService: IconService,
     private _cd: ChangeDetectorRef,
-    private modalService: NgbModal,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
     this.sources = [];
     this.filterSources();
   }
-ngOnChanges(): void {
-  this.filterSources()
-}
+  ngOnChanges(): void {
+    this.filterSources();
+  }
   ngAfterViewChecked(): void {
     this._cd.detectChanges();
   }
 
-  filterTargetSources(target){
+  filterTargetSources(target) {
     this.filterByTarget.emit(target);
   }
 
   getSourcePopover(index): SatPopover {
-
     return this.srcPopovers.find((p, i) => i === index);
   }
   getInfectionPopover(index): SatPopover {
     return this.infPopovers.find((p, i) => i === index);
   }
 
-  filterSources(){
-    if(this.leftBarData){
-      this.sources = this.leftBarData.sources.filter( source => source.state !== 'TERMINATED')
+  filterSources() {
+    if (this.leftBarData) {
+      this.sources = this.leftBarData.sources.filter(source => source.state !== 'TERMINATED');
     }
   }
 
   setInfectionIcon(state) {
     switch (state) {
-      case "IN_PROGRESS":
+      case 'IN_PROGRESS':
         return 'infection-attacking';
-      case "FAILED":
+      case 'FAILED':
         return 'infection-failed';
     }
   }
 
   closeT(index) {
-    let pop = this.srcPopovers.find((p, i) => i === index);
+    const pop = this.srcPopovers.find((p, i) => i === index);
     pop.close();
     this.selectedSource = null;
   }
 
   selectSource(source, index) {
-    if(this.selectedSource === source){
+    if (this.selectedSource === source) {
       this.selectedSource = null;
       return;
     }
@@ -84,7 +83,7 @@ ngOnChanges(): void {
   selectHoveredInfection(infection) {
     this.hoveredInfection = infection;
   }
-  // 
+  //
   isAnimatedIcon(source) {
     switch (source.state) {
       case 'DOWNLOADING_AGENT':
@@ -92,7 +91,7 @@ ngOnChanges(): void {
       case 'DOWNLOADING':
       case 'ACTIVE':
       case 'TERMINATING':
-      // case 'COLLECTING_DATA':
+        // case 'COLLECTING_DATA':
         return true;
       default:
         return false;
@@ -116,7 +115,7 @@ ngOnChanges(): void {
     });
   }
   openDeviceListModal(targetId, event) {
-    event.stopPropagation()
+    event.stopPropagation();
     this.http.findPioneerDevices(targetId).subscribe(res => {
       const deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
         centered: true,
@@ -126,7 +125,6 @@ ngOnChanges(): void {
       deviceListModalRef.componentInstance.deviceList = res.devices;
       deviceListModalRef.componentInstance.targetId = res.target.id;
       deviceListModalRef.componentInstance.target = res.target;
-
-    })
+    });
   }
 }

@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   title = 'app';
   highestLevel: string;
   activeAlerts = [];
-  menuState$: Observable < boolean > ;
+  menuState$: Observable<boolean>;
   subscription: Subscription;
   subs: Subscription;
   searchText = '';
@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
   isChanged = false;
   moreAlerts = false;
   isAlertsOpen = false;
-
 
   constructor(
     private menuService: MenuService,
@@ -35,13 +34,16 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService
   ) {
     this.system = [];
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
   ngOnInit() {
     this.searchResults = [];
     this.httpService.getTop().subscribe(res => {
       this.system = res;
+      if (res.product_version) {
+        console.log(res.product_version);
+      }
     });
   }
 
@@ -54,9 +56,9 @@ export class HeaderComponent implements OnInit {
       alertsModalRef.componentInstance.alerts = res.alerts;
     });
   }
-logout(){
-  this.authService.logout();
-}
+  logout() {
+    this.authService.logout();
+  }
 
   filterItem(searchValue) {
     const search = {
@@ -68,7 +70,6 @@ logout(){
     });
   }
 
-
   toggleMenu() {
     this.menuService.toggleMenu();
   }
@@ -79,7 +80,7 @@ logout(){
     }
     console.log("Build successfully");
     switch (Object.keys(msg.result)[0]) {
-      // System 
+      // System
       case 'alice':
         this.system.alice = msg.result.alice;
         break;
@@ -104,7 +105,7 @@ logout(){
       case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
         break;
-        // Search
+      // Search
       case 'search_result':
         this.searchResults.unshift(msg.result.search_result);
         this.searchResults = this.searchResults.slice();
@@ -116,4 +117,3 @@ logout(){
     this.searchResults = [];
   }
 }
-

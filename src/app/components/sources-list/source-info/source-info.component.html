@@ -7,7 +7,7 @@
       </span>
       <span class="text">Apps</span>
     </div>
-    <div class="cube info-cube" [class.selected]="selectedInfo === 'tasks'" (click)="selectInfo('tasks')">
+    <div class="cube info-cube" [class.selected]="selectedInfo === 'tasks'" (click)="selectInfo('tasks'); getTasks()">
       <span class="icon">
         <app-svg-icon name="info-tasks"></app-svg-icon>
       </span>
@@ -35,7 +35,7 @@
     <intel-contacts class="intel" [contacts]='contacts' *ngIf="selectedIntel === 'CONTACTS'"></intel-contacts>
     <intel-call-history class="intel" [data]='callHistory' *ngIf="selectedIntel === 'CALL_HISTORY'">
     </intel-call-history>
-    <intel-passwords class="intel" [data]='passwords' *ngIf="selectedIntel === 'KEYCHAIN'"></intel-passwords>
+    <intel-passwords class="intel" [data]='passwords' *ngIf="selectedIntel === 'KEYCHAINS'"></intel-passwords>
     <intel-app-list class="intel" [data]='apps' *ngIf="selectedIntel === 'APP_LIST'"></intel-app-list>
     <intel-browser class="intel" [data]='browser' *ngIf="selectedIntel === 'BROWSER'"></intel-browser>
   </div>

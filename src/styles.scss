@@ -6,9 +6,9 @@
 @import "scss/mission";
 @import "scss/intels";
 @import "./scss/paddings.scss";
-
+@import "./scss/margins.scss";
 @include qd-paddings(0, 50, 1px);
-
+@include qd-margins(0, 50, 1px);
 // Ag-Grid styles
 $ag-icons-path: "./scss/ag-theme/material-icons/";
 $primary-color: #c5e1ff;

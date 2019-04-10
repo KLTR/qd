@@ -28,88 +28,100 @@ export class SourceInfoComponent implements OnInit {
     this.http.getIntel('deviceinfo', this.source.id).subscribe(res => {
       console.log(res), (this.data = res);
     });
-      // os: { [key: string]: string };
+    // os: { [key: string]: string };
     this.browser = {
       safari: [
         {
-         key:  '22/03/2019',
-         value: [
-            {
-              title: 'Lady and Man - youtube',
-              time: '05:57 am',
-              site: 'youtube.com'
-            },
-            {
-              title: 'Philanthrope - Waking Dreams [Full BeatTape]',
-              time: '12:12 am',
-              site: 'youtube.com'
-            },
-            {
-              title: 'Bulking for ectomorphs',
-              time: '03:12 pm',
-              site: 'https://www.bodybuilding.com'
-            }
-          ]
-        },
-        {
-          key: '11/04/2019',
+          key: 'Wednsesday, April 11, 2019',
           value: [
             {
               title: 'Lady and Man - youtube',
               time: '05:57 am',
-              site: 'youtube.com'
+              site: 'youtube.com',
+              unread: true
             },
             {
               title: 'Philanthrope - Waking Dreams [Full BeatTape]',
               time: '12:12 am',
-              site: 'youtube.com'
+              site: 'youtube.com',
+              unread: true
             },
             {
               title: 'Bulking for ectomorphs',
               time: '03:12 pm',
-              site: 'https://www.bodybuilding.com'
+              site: 'https://www.bodybuilding.com',
+              unread: false
+            }
+          ]
+        },
+        {
+          key: 'Tuesday, April 10, 2019',
+          value: [
+            {
+              title: 'Lady and Man - youtube',
+              time: '05:57 am',
+              site: 'youtube.com',
+              unread: true
+            },
+            {
+              title: 'Philanthrope - Waking Dreams [Full BeatTape]',
+              time: '12:12 am',
+              site: 'youtube.com',
+              unread: false
+            },
+            {
+              title: 'Bulking for ectomorphs',
+              time: '03:12 pm',
+              site: 'https://www.bodybuilding.com',
+              unread: false
             }
           ]
         }
       ],
       chrome: [
         {
-          key: '01/01/2019',
+          key: 'Sunday, January 5, 2019',
           value: [
             {
               title: 'Lady and Man - youtube',
               time: '05:57 am',
-              site: 'youtube.com'
+              site: 'youtube.com',
+              unread: true
             },
             {
               title: 'Philanthrope - Waking Dreams [Full BeatTape]',
               time: '12:12 am',
-              site: 'youtube.com'
+              site: 'youtube.com',
+              unread: false
             },
             {
               title: 'Bulking for ectomorphs',
               time: '03:12 pm',
-              site: 'https://www.bodybuilding.com'
+              site: 'https://www.bodybuilding.com',
+              unread: false
             }
           ]
         },
         {
-          key: '02/01/2019',
+          key: 'Saturday, January 4, 2019',
           value: [
             {
               title: 'Lady and Man - youtube',
               time: '05:57 am',
-              site: 'one.co.il'
+              site: 'one.co.il',
+              unread: false
             },
             {
               title: 'Philanthrope - Waking Dreams [Full BeatTape]',
               time: '12:12 am',
-              site: 'ynet.co.il'
+              site: 'ynet.co.il',
+              unread: false
             },
             {
               title: 'Bulking for ectomorphs',
               time: '03:12 pm',
-              site: 'https://www.bodybuilding.com'
+              site: 'https://www.bodybuilding.com',
+              unread: false
             }
           ]
         }
@@ -118,63 +130,63 @@ export class SourceInfoComponent implements OnInit {
     this.apps = [
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       },
       {
         name: 'Whatsapp',
-        notes: '1.2.3'
+        version: '1.2.3'
       }
     ];
 
@@ -999,6 +1011,9 @@ export class SourceInfoComponent implements OnInit {
   }
   selectInfo(info: string) {
     this.selectedInfo = info;
+  }
+  getTasks() {
+    this.http.getTasks(this.source.id).subscribe(res => console.log(res));
   }
   selectIntel(intel: string) {
     this.selectedIntel = intel;
