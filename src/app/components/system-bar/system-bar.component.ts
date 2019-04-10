@@ -99,7 +99,7 @@ ngOnChanges(){
   this.checkInterceptor();
 }
 
-    
+
 
     ngAfterViewInit() {
       this.checkInterceptor();
@@ -248,9 +248,8 @@ ngOnChanges(){
       this.selectedInterceptor = interceptor;
     }
 
-    resetPioneerMachine(pioneerId: string) {
-      console.log(pioneerId);
-      this.http.resetPioneerMachine(pioneerId).subscribe( res => {console.log(res)});
+    resetPioneerMachine(pioneerName: string) {
+      this.http.resetPioneerMachine(pioneerName).subscribe();
     }
 
   }
