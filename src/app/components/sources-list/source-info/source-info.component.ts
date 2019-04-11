@@ -332,6 +332,12 @@ export class SourceInfoComponent implements OnInit {
         name: 'Theirry Henry',
         mobile: '0241753312',
         email: 'Scorer@gunner.com'
+      },
+      {
+        name: 'Ronaldinho',
+        mobile: '05123456789',
+        email: 'ronald@iniho.com',
+        profileImg: 'https://ichef.bbci.co.uk/onesport/cps/480/cpsprodpb/E576/production/_99624785_ron_getty.jpg'
       }
     ];
     this.messages = [
