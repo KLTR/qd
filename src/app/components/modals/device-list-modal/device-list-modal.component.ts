@@ -207,40 +207,37 @@ export class DeviceListModalComponent implements OnInit {
   }
 
   catchWebSocketEvents(msg) {
-    if (Object.keys(msg)[0] === 'error') {
-      return;
-    }
-    if (msg.result) {
-      if (environment.debug) {
-        // console.log(msg.result);
+      if (Object.keys(msg)[0] === 'error') {
+          return;
       }
+
+      if (!msg.result) {
+          return
+      }
+
+      if (true) {
+          //if (environment.debug) {
+          console.log(msg.result);
+      }
+
       switch (Object.keys(msg.result)[0]) {
-        case 'pioneer_device':
-          const device = msg.result.pioneer_device;
-          console.log(device);
-          if (this.targetId && device.target_id === this.targetId) {
-            this.isRefreshing = false;
-            this.handleDevice(device);
-            console.log(device);
-          }
+      case 'pioneer_device':
+          this.isRefreshing = false;
+          this.handleDevice(msg.result.pioneer_device);
           break;
       }
-    } else {
-      console.log('err', msg.result);
-    }
   }
-  handleDevice(device) {
-    console.log('BEFORE', this.deviceList);
 
-    this.deviceList = this.deviceList.filter(x => {
-      if (x.id !== device.id) {
-        return x;
-      }
+  handleDevice(device) {
+    this.deviceList = this.deviceList.map(x => {
+        if (x.id !== device.id) {
+            return x;
+        }
+
+        return device;
     });
-    this.deviceList.unshift(device);
-    console.log('AFTER', this.deviceList);
-    console.log(this.isRefreshing);
   }
+
   actBasedOnStatus(device: any): void {
     const deviceName = device.name;
     const deviceStatus = device.state;
