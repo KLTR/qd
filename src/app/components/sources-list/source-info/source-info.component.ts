@@ -314,7 +314,8 @@ export class SourceInfoComponent implements OnInit {
       {
         name: 'Tomer Pomodoro',
         mobile: '0544753312',
-        email: 'gmailsucks@hotmail.com'
+        email: 'gmailsucks@hotmail.com',
+        profileImg: 'https://images-na.ssl-images-amazon.com/images/I/61FE%2BAqUIoL.png'
       },
       {
         name: 'Zlatan Ibrahimovic',

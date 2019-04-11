@@ -25,16 +25,15 @@ export class DeviceListModalComponent implements OnInit {
     private ws: WsService,
     private connectionService: ConnectionService
   ) {
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
-
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
   ngOnInit() {
     if (!this.deviceList) {
       this.deviceList = [];
     }
-    this.connectionService.isPioneer.subscribe(res => this.isPioneer = res);
-    this.connectionService.isInternet.subscribe(res => this.isConnected = res);
+    this.connectionService.isPioneer.subscribe(res => (this.isPioneer = res));
+    this.connectionService.isInternet.subscribe(res => (this.isConnected = res));
   }
   getAnimatedIcon(name: string): any {
     return {
@@ -60,8 +59,7 @@ export class DeviceListModalComponent implements OnInit {
       if (res) {
         this.isAttackingOrChecking = true;
         this.http.checkDevice(deviceId).subscribe(result => {
-          console.log(result),
-            this.isAttackingOrChecking = false;
+          console.log(result), (this.isAttackingOrChecking = false);
         });
       }
     });
@@ -78,9 +76,8 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isAttackingOrChecking = true;
-        this.http.attackDevice(deviceId).subscribe( result => {
-            console.log(result),
-            this.isAttackingOrChecking = false;
+        this.http.attackDevice(deviceId).subscribe(result => {
+          console.log(result), (this.isAttackingOrChecking = false);
         });
       }
     });
@@ -209,7 +206,6 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
 
-
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {
       return;
@@ -220,23 +216,21 @@ export class DeviceListModalComponent implements OnInit {
       }
       switch (Object.keys(msg.result)[0]) {
         case 'pioneer_device':
-          let device = msg.result.pioneer_device;
+          const device = msg.result.pioneer_device;
           if (this.targetId && device.target_id === this.targetId) {
             this.isRefreshing = false;
             this.handleDevice(device);
           }
           break;
-      
       }
-      
     } else {
       console.log('err', msg.result);
     }
   }
   handleDevice(device) {
-    this.deviceList = this.deviceList.filter((x) => {
+    this.deviceList = this.deviceList.filter(x => {
       if (x.id !== device.id) {
-        return x
+        return x;
       }
     });
     this.deviceList.unshift(device);
@@ -258,5 +252,4 @@ export class DeviceListModalComponent implements OnInit {
         return this.abortDevice(deviceName, deviceId);
     }
   }
-
 }

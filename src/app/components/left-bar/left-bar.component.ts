@@ -108,7 +108,7 @@ export class LeftBarComponent implements OnInit {
   }
 
   openAddAttack() {
-    const AddTargetModalRef = this.modalService.open(AddTargetWizardComponent, {
+    this.modalService.open(AddTargetWizardComponent, {
       windowClass: 'add-attack-modal',
       centered: true,
       backdrop: 'static'
