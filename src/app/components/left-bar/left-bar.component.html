@@ -89,8 +89,13 @@
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{target?.name}}</span>
         <span class="icon" (click)="openDeviceListModal(target?.id, $event)">
-          <span class="device-count {{target?.state}}">{{target?.devices_count}}</span>
-          <app-svg-icon [size]="17" name="target_{{target.state}}"></app-svg-icon>
+          <span class="device-count"
+            [class.in_progress]="target?.infection?.in_progress">{{target?.devices_count}}</span>
+          <app-svg-icon *ngIf="target?.infection?.in_progress; else pendingIcon" [size]="17" name="target_in_progress">
+          </app-svg-icon>
+          <ng-template #pendingIcon>
+            <app-svg-icon [size]="17" name="target_pending"></app-svg-icon>
+          </ng-template>
         </span>
       </div>
     </div>
