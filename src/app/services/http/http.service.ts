@@ -36,8 +36,8 @@ export class HttpService {
     abortExport: '/exports/{{id}}/abort',
     getSourceTasks: '/sources/{{id}}/intls',
     // Pioneer Devices
-    findPioneerDevices: '/pioneers/fixmelater/{{id}}',
-    queryPioneerDevices: '/pioneers/targets/fixmelater/{{id}}',
+    findPioneerDevices: '/pioneers/devices/find/byTarget/{{id}}',
+    queryPioneerDevices: '/pioneers/devices/query/byTarget/{{id}}',
     resetPioneerMachine: '/pioneers/{{id}}/reset',
 
     checkDevice: '/devices/{{id}}/check',
