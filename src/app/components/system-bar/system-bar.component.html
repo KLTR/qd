@@ -5,9 +5,11 @@
       <!-- Tooltips -->
       <ng-template class="tool-tip" #batteryTip>{{system.goat?.tip}}</ng-template>
       <span class="icon-wrapper">
-        <div class="icon-wrapper pioneer-wrapper" *ngIf="pioneerStatus" [satPopoverAnchorFor]="pioneerPop" (click)="handlePops(3);">
+        <div class="icon-wrapper pioneer-wrapper" *ngIf="pioneerStatus" [satPopoverAnchorFor]="pioneerPop"
+          (click)="handlePops(3);">
           <span [ngClass]="pioneerStatus === 'pioneer-green' ? 'circle-green' : 'circle-red'">
-            <span class="number-counter">{{system.pioneer?.pioneers?.length ? system.pioneer.pioneers.length : '0'}}</span>
+            <span
+              class="number-counter">{{system.pioneer?.pioneers?.length ? system.pioneer.pioneers.length : '0'}}</span>
           </span>
           <app-svg-icon class="pioneer" [name]="'pioneer'" [size]="15">
           </app-svg-icon>
@@ -25,8 +27,8 @@
 
     <li class="device-info">
       <span class="icon-wrapper" *ngIf="batteryStatus">
-        <app-svg-icon class="battery" [name]="batteryStatus" [satPopoverAnchorFor]="batteryPop" (mouseenter)="batteryPop.open()"
-          (mouseleave)="batteryPop.close()" [size]="22"></app-svg-icon>
+        <app-svg-icon class="battery" [name]="batteryStatus" [satPopoverAnchorFor]="batteryPop"
+          (mouseenter)="batteryPop.open()" (mouseleave)="batteryPop.close()" [size]="22"></app-svg-icon>
       </span>
 
       <span class="icon-wrapper" *ngIf="internetStatus" [satPopoverAnchorFor]="internetPop" (click)="handlePops(0);">
@@ -37,14 +39,16 @@
         <app-svg-icon class="disk-space" name="{{diskStatus}}" [size]="19"></app-svg-icon>
       </span>
 
-      <span class="icon-wrapper" *ngIf="interceptorStatus" [satPopoverAnchorFor]="interceptorPop" (click)="handlePops(4);">
+      <span class="icon-wrapper" *ngIf="interceptorStatus" [satPopoverAnchorFor]="interceptorPop"
+        (click)="handlePops(4);">
         <app-svg-icon class="device-placeholder" [name]="interceptorStatus" [ngClass]="interceptorStatus" [size]="25">
         </app-svg-icon>
       </span>
     </li>
     <!-- Clock -->
     <li class="sep-line clear-fix clock">
-      <span *ngIf="clock$ | async" class="general-clock">{{date | date:'dd.MM.yyyy'}}</span>{{ clock$ | async | date:'HH:mm:ss' }}
+      <span *ngIf="clock$ | async"
+        class="general-clock">{{date | date:'dd.MM.yyyy'}}</span>{{ clock$ | async | date:'HH:mm:ss' }}
     </li>
   </ul>
 </div>
@@ -83,7 +87,8 @@
       </span>
     </div>
     <ul class="content">
-      <li>Status: <span class="{{aliceStatus}}">{{aliceStatus === 'alice-red' ? 'Disconnected' : 'Connected' }}</span></li>
+      <li>Status: <span class="{{aliceStatus}}">{{aliceStatus === 'alice-red' ? 'Disconnected' : 'Connected' }}</span>
+      </li>
       <li>Chains: <span class="{{aliceStatus}}">In-Use: {{system.alice?.alice?.chains?.in_use}} </span>
         <span> Online: {{system.alice?.alice?.chains?.online}}</span>
         <span><b> Total : {{system.alice?.alice?.chains?.total}}</b></span> </li>
@@ -99,7 +104,8 @@
       </span>
     </div>
     <ul class="content">
-      <li>Status: <span class="{{cloudStatus}}">{{cloudStatus === 'cloud-red' ? 'Disconnected' : 'Connected' }}</span></li>
+      <li>Status: <span class="{{cloudStatus}}">{{cloudStatus === 'cloud-red' ? 'Disconnected' : 'Connected' }}</span>
+      </li>
       <li>Cloud Active Servers: {{system.cloudx?.cloudx?.active_servers}}</li>
     </ul>
   </div>
@@ -122,7 +128,7 @@
         <li>{{pioneer.name}}</li>
         <li class="status-value {{pioneer.state | lowercase}}">{{pioneer.state}}</li>
         <li class="reset" (click)="resetPioneerMachine(pioneer.name)">
-          <span>{{pioneer.updated_at | amDateFormat:'DD.MM.YYYY'}} </span>
+          <span>{{pioneer.updated_at | amTimeAgo}} </span>
           <div class="icon-button">
             <span class="button-img"><img class="rotating" src="../../../assets/img/refresh.png">Reset</span>
           </div>
@@ -147,7 +153,8 @@
             <button class="btn btn-outline-primary" id="dropdown_interceptors" ngbDropdownToggle>{{selectedInterceptor?.name
               || 'select interceptor'}}</button>
             <div ngbDropdownMenu aria-labelledby="dropdown_interceptors">
-              <button class="dropdown-item" *ngFor="let interceptor of system?.interceptor?.interceptors" (click)="selectInterceptor(interceptor)">{{interceptor.name}}</button>
+              <button class="dropdown-item" *ngFor="let interceptor of system?.interceptor?.interceptors"
+                (click)="selectInterceptor(interceptor)">{{interceptor.name}}</button>
             </div>
           </div>
         </div>
@@ -162,8 +169,8 @@
       <div class="single-row status">
         <div class="key">Interceptor status</div>
         <div class="value">
-          <input type="text" class="input status-{{selectedInterceptor?.connected ? 'green' : 'red'}}" [value]="selectedInterceptor?.connected ? 'Connected' : 'Disconnected'"
-            [disabled]="true">
+          <input type="text" class="input status-{{selectedInterceptor?.connected ? 'green' : 'red'}}"
+            [value]="selectedInterceptor?.connected ? 'Connected' : 'Disconnected'" [disabled]="true">
         </div>
       </div>
       <div class="diagnostic" *ngIf="selectedInterceptor?.diagnostics">

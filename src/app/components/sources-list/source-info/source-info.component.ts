@@ -549,10 +549,26 @@ export class SourceInfoComponent implements OnInit {
           doc_type: 'pdf',
           duration: '01:54',
           state: 'downloading',
-          size: '215kb'
+          size: '215kb',
+          name: 'filename.PDF'
         },
         time: '21:30',
-        type: 'video',
+        type: 'doc',
+        status: 'delivered'
+      },
+      {
+        from: 'me',
+        msg: '',
+        meta: {
+          type: 'doc',
+          doc_type: 'doc',
+          duration: '01:54',
+          state: 'downloading',
+          size: '215kb',
+          name: 'filename.PDF'
+        },
+        time: '21:30',
+        type: 'doc',
         status: 'delivered'
       },
       {
