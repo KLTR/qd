@@ -5,7 +5,7 @@
   </div>
   <div class="target-details">
     <span class="name" *ngIf="target?.name">{{ target.name }}</span>
-    <span class="name" *ngFor="let id of target.identifiers">{{ id.value }}</span>
+    <span class="name" *ngFor="let id of target?.identifiers"> | {{ id.value }}</span>
   </div>
   <div class="refresh">
     <div [ngbTooltip]="'Delete target'" placement="left" class="delete-icon" (click)="archiveTarget()"></div>

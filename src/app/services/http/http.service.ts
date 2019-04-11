@@ -40,9 +40,9 @@ export class HttpService {
     queryPioneerDevices: '/pioneers/devices/query/byTarget/{{id}}',
     resetPioneerMachine: '/pioneers/{{id}}/reset',
 
-    checkDevice: '/devices/{{id}}/check',
-    attackDevice: '/devices/{{id}}/attack',
-    abortDevice: '/devices/{{id}}/abort',
+    checkPioneerDevice: '/pioneers/devices/{{id}}/check',
+    attackPioneerDevice: '/pioneers/devices/{{id}}/infect',
+    abortPioneerDevice: '/pioneers/devices/{{id}}/abort',
 
     // Tasks
     // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
@@ -106,13 +106,13 @@ export class HttpService {
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId), '', this.setHeaders());
   }
   checkDevice(deviceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('checkDevice', deviceId), '', this.setHeaders());
+    return this.http.post(this.getUrlByApiName('checkPioneerDevice', deviceId), '', this.setHeaders());
   }
   attackDevice(deviceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('attackDevice', deviceId), '', this.setHeaders());
+    return this.http.post(this.getUrlByApiName('attackPioneerDevice', deviceId), '', this.setHeaders());
   }
   abortDevice(deviceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('abortDevice', deviceId), '', this.setHeaders());
+    return this.http.post(this.getUrlByApiName('abortPioneerDevice', deviceId), '', this.setHeaders());
   }
   resetPioneerMachine(pioneerName: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerName), '', this.setHeaders());
