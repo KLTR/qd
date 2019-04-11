@@ -77,7 +77,7 @@ export class AddTargetWizardComponent implements OnInit {
         console.log(targetId);
         this.isLoading = true;
         this.targetId = targetId;
-        this.activeModal.dismiss();
+        this.activeModal.close();
       },
       err => {
         console.log(err), this.activeModal.close();

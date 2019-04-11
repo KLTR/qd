@@ -218,12 +218,10 @@ export class DeviceListModalComponent implements OnInit {
         case 'pioneer_device':
           const device = msg.result.pioneer_device;
           console.log(device);
-          console.log(msg);
-          console.log(this.targetId);
           if (this.targetId && device.target_id === this.targetId) {
-            console.log('xXx');
             this.isRefreshing = false;
             this.handleDevice(device);
+            console.log(device);
           }
           break;
       }
@@ -232,12 +230,16 @@ export class DeviceListModalComponent implements OnInit {
     }
   }
   handleDevice(device) {
+    console.log('BEFORE', this.deviceList);
+
     this.deviceList = this.deviceList.filter(x => {
       if (x.id !== device.id) {
         return x;
       }
     });
     this.deviceList.unshift(device);
+    console.log('AFTER', this.deviceList);
+    console.log(this.isRefreshing);
   }
   actBasedOnStatus(device: any): void {
     const deviceName = device.name;

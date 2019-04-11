@@ -84,7 +84,7 @@
               <span class="step" [ngClass]="{'completed': device.progress >= 4}"></span>
               <span class="step" [ngClass]="{'completed': device.progress >= 5}"></span>
             </div>
-            <span class="last-updated">Device response {{ device.last_seen_at | amTimeAgo }}</span>
+            <span class="last-updated">Device response : {{ device.last_seen_at | amTimeAgo }}</span>
           </div>
         </div>
         <div class="device-action">
