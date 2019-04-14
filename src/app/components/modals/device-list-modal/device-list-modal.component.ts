@@ -217,11 +217,11 @@ export class DeviceListModalComponent implements OnInit {
       switch (Object.keys(msg.result)[0]) {
         case 'pioneer_device':
           const device = msg.result.pioneer_device;
-          console.log(device);
+          console.log('DEVICE BEOFRE IF', device);
           if (this.targetId && device.target_id === this.targetId) {
             this.isRefreshing = false;
+            console.log('DEVICE INSIDE IF', device);
             this.handleDevice(device);
-            console.log(device);
           }
           break;
       }
