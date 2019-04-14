@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ConnectionService, HttpService } from '@app/services';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
-import { environment } from './../../../../environments/environment.prod';
 import { WsService } from './../../../services/websocket/ws.service';
 
 @Component({
@@ -210,37 +209,34 @@ export class DeviceListModalComponent implements OnInit {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
-    if (msg.result) {
-      if (environment.debug) {
-        // console.log(msg.result);
-      }
-      switch (Object.keys(msg.result)[0]) {
-        case 'pioneer_device':
-          const device = msg.result.pioneer_device;
-          console.log('DEVICE BEOFRE IF', device);
-          if (this.targetId && device.target_id === this.targetId) {
-            this.isRefreshing = false;
-            console.log('DEVICE INSIDE IF', device);
-            this.handleDevice(device);
-          }
-          break;
-      }
-    } else {
-      console.log('err', msg.result);
+
+    if (!msg.result) {
+      return;
+    }
+
+    if (true) {
+      // if (environment.debug) {
+      console.log(msg.result);
+    }
+
+    switch (Object.keys(msg.result)[0]) {
+      case 'pioneer_device':
+        this.isRefreshing = false;
+        this.handleDevice(msg.result.pioneer_device);
+        break;
     }
   }
-  handleDevice(device) {
-    console.log('BEFORE', this.deviceList);
 
-    this.deviceList = this.deviceList.filter(x => {
+  handleDevice(device) {
+    this.deviceList = this.deviceList.map(x => {
       if (x.id !== device.id) {
         return x;
       }
+
+      return device;
     });
-    this.deviceList.unshift(device);
-    console.log('AFTER', this.deviceList);
-    console.log(this.isRefreshing);
   }
+
   actBasedOnStatus(device: any): void {
     const deviceName = device.name;
     const deviceStatus = device.state;
