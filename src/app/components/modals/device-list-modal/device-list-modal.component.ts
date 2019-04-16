@@ -11,7 +11,6 @@ import { WsService } from './../../../services/websocket/ws.service';
 })
 export class DeviceListModalComponent implements OnInit {
   @Input() deviceList: any[];
-  @Input() targetId;
   @Input() target;
   isPioneer: boolean;
   isConnected: boolean;
@@ -108,7 +107,7 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to archive '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.archiveTarget(this.targetId).subscribe(result => {
+        this.http.archiveTarget(this.target.id).subscribe(result => {
           console.log(result);
         });
       }
@@ -124,7 +123,7 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.queryPioneerDevices(this.targetId).subscribe(result => {
+        this.http.queryPioneerDevices(this.target.id).subscribe(result => {
           this.isRefreshing = true;
           console.log(result);
         });

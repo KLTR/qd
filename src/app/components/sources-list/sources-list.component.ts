@@ -52,7 +52,7 @@ export class SourcesListComponent implements OnInit {
   filterByTarget(target) {
     this.filterValue = '';
     this.selectedTarget = target;
-    this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_ids[0] === target.id);
+    this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_id === target.id);
   }
   assignFilteredSources() {
     this.filteredSources = this.leftBarData.sources;

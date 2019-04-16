@@ -114,17 +114,16 @@ export class LeftBarComponent implements OnInit {
       backdrop: 'static'
     });
   }
-  openDeviceListModal(targetId, event) {
+  openDeviceListModal(target, event) {
     event.stopPropagation();
-    this.http.findPioneerDevices(targetId).subscribe(res => {
+    this.http.findPioneerDevices(target.id).subscribe(res => {
       const deviceListModalRef = this.modalService.open(DeviceListModalComponent, {
         centered: true,
         size: 'lg',
         backdrop: 'static'
       });
       deviceListModalRef.componentInstance.deviceList = res.devices;
-      deviceListModalRef.componentInstance.targetId = res.target.id;
-      deviceListModalRef.componentInstance.target = res.target;
+      deviceListModalRef.componentInstance.target = target;
     });
   }
 }

@@ -88,7 +88,7 @@
       <div class="items" *ngFor="let target of leftBarData?.targets" (click)="filterTargetSources(target)">
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{target?.name}}</span>
-        <span class="icon" (click)="openDeviceListModal(target?.id, $event)">
+        <span class="icon" (click)="openDeviceListModal(target, $event)">
           <span class="device-count"
             [class.in_progress]="target?.infection?.in_progress">{{target?.devices_count}}</span>
           <app-svg-icon *ngIf="target?.infection?.in_progress; else pendingIcon" [size]="17" name="target_in_progress">
