@@ -47,6 +47,7 @@ export class HttpService {
     // Tasks
     // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
     // getSourceChat: '/sources/{{id}}/{{chatType}}',
+    getSourceIntels: '/sources/{{id}}/intls',
     getTasks: '/sources/{{id}}/tasks',
     getSourceIntel: '/sources/{{id}}/{{intelName}}',
     taskAction: '/sources/{{id}}/cnc/{{taskAction}}',
@@ -95,9 +96,9 @@ export class HttpService {
   archiveTarget(targetId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('archiveTarget', targetId), '', this.setHeaders());
   }
-  getSourcesTasks(sourceId: string): Observable<any> {
-    return this.http.get('../../assets/config/tasks.json');
-    // return this.http.get(this.getUrlByApiName('getSourceTasks', sourceId), this.setHeaders());
+  getSourceIntels(sourceId: string): Observable<any> {
+    // return this.http.get('../../assets/config/tasks.json');
+    return this.http.get(this.getUrlByApiName('getSourceIntels', sourceId), this.setHeaders());
   }
   getTasks(sourceId: string): Observable<any> {
     return this.http.get(this.getUrlByApiName('getTasks', sourceId), this.setHeaders());

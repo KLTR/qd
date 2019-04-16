@@ -23,7 +23,7 @@ export class SourceInfoComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   ngOnInit() {
-    this.http.getSourcesTasks(this.source.id).subscribe(res => {
+    this.http.getSourceIntels(this.source.id).subscribe(res => {
       console.log(res), (this.tasks = res.tasks);
     });
     this.http.getIntel('deviceinfo', this.source.id).subscribe(res => {
@@ -1234,10 +1234,14 @@ export class SourceInfoComponent implements OnInit {
   }
   selectIntel(intel: string) {
     this.selectedIntel = intel;
-    this.http.getIntel(intel, this.source.id).subscribe(res => console.log(res));
+    this.http.getIntel(intel, this.source.id).subscribe(res => {
+      console.log(res), (this.data = res.apps);
+    });
   }
   onSelectSession(sessionId: any) {
     console.log(sessionId);
-    this.http.getSessionMessages(sessionId).subscribe(res => console.log(res));
+    this.http.getSessionMessages(sessionId).subscribe(res => {
+      console.log(res), (this.data = res);
+    });
   }
 }

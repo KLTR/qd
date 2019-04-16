@@ -524,6 +524,8 @@ export class IconService {
   </g>
 </svg>`;
       case 'device_info':
+      case 'deviceinfo':
+      case 'device info':
         return `<svg viewBox="0 0 83 83" id="info" preserveAspectRatio="none" width="${size ? size : '9.6vw'}" height="${
           size ? size : '9.6vw'
         }">
