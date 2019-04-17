@@ -17,8 +17,8 @@ export class DeviceListModalComponent implements OnInit {
   isRefreshing = false;
   isAttackingOrChecking = false;
   constructor(
-    private modalService: NgbModal,
     public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
     private http: HttpService,
     private ws: WsService,
     private connectionService: ConnectionService

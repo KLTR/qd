@@ -9,7 +9,7 @@ RUN npm set registry http://172.23.4.23:4873
 
 RUN cd /app && npm install
 
-RUN cd /app && npm install @common/intels@0.0.3 --no-audit
+RUN cd /app && npm install @common/intels@0.0.4 --no-audit
 
 COPY . /app
 RUN cd /app && npm run build-prod

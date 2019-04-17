@@ -1227,16 +1227,24 @@ export class SourceInfoComponent implements OnInit {
     this.http.taskAction(task, this.source.id).subscribe(res => console.log(res));
   }
   selectInfo(info: string) {
+    if (info === 'tasks') {
+      this.selectIntel(info);
+    }
     this.selectedInfo = info;
   }
   getTasks() {
     this.http.getTasks(this.source.id).subscribe(res => console.log(res));
   }
   selectIntel(intel: string) {
-    this.selectedIntel = intel;
-    this.http.getIntel(intel, this.source.id).subscribe(res => {
-      console.log(res), (this.data = res.apps);
-    });
+    this.data = null;
+    this.http.getIntel(intel, this.source.id).subscribe(
+      res => {
+        console.log(res), (this.data = res), (this.selectedIntel = intel);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   onSelectSession(sessionId: any) {
     console.log(sessionId);
