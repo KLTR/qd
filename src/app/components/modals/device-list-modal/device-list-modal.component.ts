@@ -45,7 +45,7 @@ export class DeviceListModalComponent implements OnInit {
     };
   }
 
-  checkDevice(deviceName, deviceId) {
+  checkDevice(deviceName: string, deviceId: string) {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
       size: 'sm',
       centered: true,
@@ -56,14 +56,14 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isAttackingOrChecking = true;
-        this.http.checkDevice(deviceId).subscribe(result => {
+        this.http.checkDevice(this.target.id, deviceId).subscribe(result => {
           console.log(result), (this.isAttackingOrChecking = false);
         });
       }
     });
   }
 
-  attackDevice(deviceName, deviceId) {
+  attackDevice(deviceName: string, deviceId: string) {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
       size: 'sm',
       centered: true,
@@ -74,14 +74,14 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isAttackingOrChecking = true;
-        this.http.attackDevice(deviceId).subscribe(result => {
+        this.http.attackDevice(this.target.id, deviceId).subscribe(result => {
           console.log(result), (this.isAttackingOrChecking = false);
         });
       }
     });
   }
 
-  abortDevice(deviceName, deviceId) {
+  abortDevice(deviceName: string, deviceId: string) {
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
       size: 'sm',
       centered: true,
@@ -91,7 +91,7 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to abort attack on '${deviceName}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.abortDevice(deviceId).subscribe(result => {
+        this.http.abortDevice(this.target.id, deviceId).subscribe(result => {
           console.log(result);
         });
       }

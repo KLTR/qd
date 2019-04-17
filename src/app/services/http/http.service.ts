@@ -40,9 +40,9 @@ export class HttpService {
     queryPioneerDevices: '/pioneers/devices/query/byTarget/{{id}}',
     resetPioneerMachine: '/pioneers/{{id}}/reset',
 
-    checkPioneerDevice: '/pioneers/devices/{{id}}/check',
-    attackPioneerDevice: '/pioneers/devices/{{id}}/infect',
-    abortPioneerDevice: '/pioneers/devices/{{id}}/abort',
+    checkPioneerDevice: '/pioneers/check/{{target_id}}/{{device_id}}',
+    attackPioneerDevice: '/pioneers/infect/{{target_id}}/{{device_id}}',
+    abortPioneerDevice: '/pioneers/abort/{{target_id}}/{{device_id}}',
 
     // Tasks
     // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
@@ -106,14 +106,14 @@ export class HttpService {
   queryPioneerDevices(targetId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('queryPioneerDevices', targetId), '', this.setHeaders());
   }
-  checkDevice(deviceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('checkPioneerDevice', deviceId), '', this.setHeaders());
+  checkDevice(targetId: string, deviceId: string): Observable<any> {
+    return this.http.post(this.getUrlByApiNameWithArgs('checkPioneerDevice', targetId, deviceId), '', this.setHeaders());
   }
-  attackDevice(deviceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('attackPioneerDevice', deviceId), '', this.setHeaders());
+  attackDevice(targetId: string, deviceId: string): Observable<any> {
+    return this.http.post(this.getUrlByApiNameWithArgs('attackPioneerDevice', targetId, deviceId), '', this.setHeaders());
   }
-  abortDevice(deviceId: string): Observable<any> {
-    return this.http.post(this.getUrlByApiName('abortPioneerDevice', deviceId), '', this.setHeaders());
+  abortDevice(targetId: string, deviceId: string): Observable<any> {
+    return this.http.post(this.getUrlByApiNameWithArgs('abortPioneerDevice', targetId, deviceId), '', this.setHeaders());
   }
   resetPioneerMachine(pioneerName: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('resetPioneerMachine', pioneerName), '', this.setHeaders());
