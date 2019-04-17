@@ -1237,9 +1237,14 @@ export class SourceInfoComponent implements OnInit {
   }
   selectIntel(intel: string) {
     this.data = null;
-    this.http.getIntel(intel, this.source.id).subscribe(res => {
-      console.log(res), (this.data = res), (this.selectedIntel = intel);
-    });
+    this.http.getIntel(intel, this.source.id).subscribe(
+      res => {
+        console.log(res), (this.data = res), (this.selectedIntel = intel);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   onSelectSession(sessionId: any) {
     console.log(sessionId);
