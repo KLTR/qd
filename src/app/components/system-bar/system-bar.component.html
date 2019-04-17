@@ -23,9 +23,7 @@
       <span class="icon-wrapper" *ngIf="aliceStatus" [satPopoverAnchorFor]="alicePop" (click)="handlePops(1);">
         <app-svg-icon class="alice" [name]="aliceStatus" [size]="23"></app-svg-icon>
       </span>
-    </li>
 
-    <li class="device-info">
       <span class="icon-wrapper" *ngIf="batteryStatus">
         <app-svg-icon class="battery" [name]="batteryStatus" [satPopoverAnchorFor]="batteryPop"
           (mouseenter)="batteryPop.open()" (mouseleave)="batteryPop.close()" [size]="22"></app-svg-icon>
@@ -45,6 +43,7 @@
         </app-svg-icon>
       </span>
     </li>
+
     <!-- Clock -->
     <li class="sep-line clear-fix clock">
       <span *ngIf="clock$ | async"

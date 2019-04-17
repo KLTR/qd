@@ -101,6 +101,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0 5px;
       }
 
       [class*="circle"] {
@@ -338,9 +339,11 @@
 
       li {
         color: #c5e1ff;
-        &.status-value{
+
+        &.status-value {
           width: 65px;
         }
+
         &.reset {
           display: flex;
           align-items: center;
