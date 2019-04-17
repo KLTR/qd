@@ -123,8 +123,8 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to refresh '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
+        this.isRefreshing = true;
         this.http.queryPioneerDevices(this.target.id).subscribe(result => {
-          this.isRefreshing = true;
           console.log(result);
         });
       }
@@ -213,14 +213,10 @@ export class DeviceListModalComponent implements OnInit {
       return;
     }
 
-    if (true) {
-      // if (environment.debug) {
-      console.log(msg.result);
-    }
-
     switch (Object.keys(msg.result)[0]) {
       case 'pioneer_device':
         this.isRefreshing = false;
+        console.log(msg.result.pioneer_device);
         this.handleDevice(msg.result.pioneer_device);
         break;
     }
