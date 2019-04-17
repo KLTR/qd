@@ -112,7 +112,7 @@ export class SourcesListComponent implements OnInit {
   handleTarget(target) {
     // filters new target from array
     this.leftBarData.targets = this.leftBarData.targets.filter(x => {
-      if (x.target.id !== target.target.id) {
+      if (x.id !== target.id) {
         return x;
       }
     });

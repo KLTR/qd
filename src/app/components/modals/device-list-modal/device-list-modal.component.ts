@@ -227,7 +227,6 @@ export class DeviceListModalComponent implements OnInit {
       if (x.id !== device.id) {
         return x;
       }
-
       return device;
     });
   }
