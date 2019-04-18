@@ -130,9 +130,15 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.result.then(res => {
       if (res) {
         this.isRefreshing = true;
-        this.http.queryPioneerDevices(this.target.id).subscribe(result => {
-          console.log(result);
-        });
+        this.http.queryPioneerDevices(this.target.id).subscribe(
+          result => {
+            this.isRefreshing = false;
+            console.log(result);
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
     });
   }
@@ -218,24 +224,23 @@ export class DeviceListModalComponent implements OnInit {
     if (!msg.result) {
       return;
     }
-    console.log(msg.result);
     switch (Object.keys(msg.result)[0]) {
       case 'pioneer_device':
         this.isRefreshing = false;
-        console.log(msg.result.pioneer_device);
+        console.log('pioneer_device:', msg.result.pioneer_device);
         this.handleDevice(msg.result.pioneer_device);
         break;
     }
   }
 
   handleDevice(device) {
-    console.log(this.deviceList);
     this.deviceList = this.deviceList.map(x => {
       if (x.id !== device.id) {
         return x;
       }
-      return device;
     });
+    this.deviceList.unshift(device);
+    console.log(this.deviceList);
   }
 
   actBasedOnStatus(device: any): void {

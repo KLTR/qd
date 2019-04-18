@@ -117,7 +117,7 @@ export class SourcesListComponent implements OnInit {
       }
     });
     // only push if target state is not DELETED
-    if (target.state !== 'DELETED') {
+    if (target.state !== 'ARCHIVED') {
       this.leftBarData.targets.unshift(target);
     }
   }
