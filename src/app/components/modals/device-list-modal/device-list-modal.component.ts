@@ -107,9 +107,15 @@ export class DeviceListModalComponent implements OnInit {
     confirmModal.componentInstance.message = `Are you sure you want to archive '${this.target.name}'?`;
     confirmModal.result.then(res => {
       if (res) {
-        this.http.archiveTarget(this.target.id).subscribe(result => {
-          console.log(result);
-        });
+        this.http.archiveTarget(this.target.id).subscribe(
+          result => {
+            console.log(result);
+            this.activeModal.close();
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
     });
   }

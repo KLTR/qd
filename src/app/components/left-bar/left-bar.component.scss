@@ -42,8 +42,25 @@
       justify-content: center;
     }
 
+    &.targets {
+      .content {
+        height: calc(100% - 82px);
+      }
+    }
+
+    &.pending {
+      .content {
+        height: calc(100% - 42px);
+      }
+    }
+
+    &.source {
+      .content {
+        height: calc(100% - 42px);
+      }
+    }
+
     .content {
-      height: calc(100% - 82px);
       overflow-y: auto;
       overflow-x: hidden;
       margin-top: 1px;
