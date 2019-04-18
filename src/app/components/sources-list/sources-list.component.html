@@ -4,10 +4,10 @@
     <div class="filters">
       <span [class.selected]="filterValue === 'ALL'" (click)="setFilter('ALL')">All sources ({{allSourcesNumber ?
         allSourcesNumber : '0'}})</span>
+      <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active ({{acitveSourcesNumber ?
+            acitveSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'DOWNLOADING'" (click)="setFilter('DOWNLOADING')">Downloading
         ({{downloadingSourcesNumber ? downloadingSourcesNumber : '0'}})</span>
-      <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active ({{acitveSourcesNumber ?
-        acitveSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'LOST_CONNECTION'" (click)="setFilter('LOST_CONNECTION')">Lost Connection
         ({{lostConnectionSourcesNumber ? lostConnectionSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'TERMINATED'" (click)="setFilter('TERMINATED')">Terminated
@@ -28,7 +28,7 @@
 </div>
 
 <ng-template #emptyScreen>
-  <div  class="empty-state no-items" *ngIf="!isLoading; else loading">
+  <div class="empty-state no-items" *ngIf="!isLoading; else loading">
     <div class="empty-state-wrapper">
       <app-svg-icon name="no_devices" [size]="150"></app-svg-icon>
       <div class="desc">
@@ -43,8 +43,8 @@
 </ng-template>
 
 <ng-template #sourceInfo style="height: 100%">
-  <div class="source-info-wrapper"  *ngIf="selectedSource?.state === filterValue || filterValue === 'ALL'">
+  <div class="source-info-wrapper" *ngIf="selectedSource?.state === filterValue || filterValue === 'ALL'">
     <app-source-cube [source]="selectedSource" (click)="selectSource(source)"></app-source-cube>
-    <app-source-info [source]="selectedSource" ></app-source-info>
+    <app-source-info [source]="selectedSource"></app-source-info>
   </div>
 </ng-template>

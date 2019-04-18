@@ -63,6 +63,15 @@ export class SourcesListComponent implements OnInit {
     this.filterValue = value;
     if (!value || value === 'ALL') {
       this.filteredSources = this.leftBarData.sources;
+    } else if (value === 'ACTIVE') {
+      this.filteredSources = this.leftBarData.sources.filter(
+        item =>
+          item.state === 'ACTIVE' ||
+          item.state === 'DOWNLOADING' ||
+          item.state === 'DOWNLOADING_AGENT' ||
+          item.state === 'INITIALIZING' ||
+          item.state === 'COLLECTING_DATA'
+      );
     } else {
       this.filteredSources = this.leftBarData.sources.filter(item => item.state === value);
     }
@@ -117,7 +126,7 @@ export class SourcesListComponent implements OnInit {
       }
     });
     // only push if target state is not DELETED
-    if (target.state !== 'ARCHIVED') {
+    if (!target.archived) {
       this.leftBarData.targets.unshift(target);
     }
   }
