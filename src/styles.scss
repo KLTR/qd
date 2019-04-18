@@ -612,3 +612,22 @@ a:focus {
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
+.tooltip>div {
+  animation-name: delayedFadeIn;
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+  /* Adjust this duration */
+}
+
+@keyframes delayedFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
