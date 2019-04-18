@@ -125,7 +125,8 @@
       </ul>
       <ul class="table-values" *ngFor="let pioneer of system.pioneer?.pioneers">
         <li>{{pioneer.name}}</li>
-        <li class="status-value {{pioneer.state | lowercase}}">{{pioneer.state}}</li>
+        <li [ngbTooltip]="pioneer.reason" placement="bottom" class="status-value {{pioneer.state | lowercase}}">
+          {{pioneer.state}}</li>
         <li class="reset" (click)="resetPioneerMachine(pioneer.name)">
           <span>{{pioneer.updated_at | amTimeAgo}} </span>
           <div class="icon-button">

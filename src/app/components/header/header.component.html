@@ -27,7 +27,7 @@
 <sat-popover #userPop xAlign="center" yAlign="below">
   <div class="custom-tip user">
     <div class="header">
-      <span class="user-name">{{system?.user?.user}}</span>
+      <span class="user-name">{{system?.user?.user.name}}</span>
       <span class="logout icon-button" (click)="logout()">Logout <img src="../../../assets/img/export.png"></span>
     </div>
     <ul class="content">
@@ -35,7 +35,7 @@
         <li>Space name</li>
         <li class="roles">Roles</li>
       </ul>
-      <ul class="table-values" *ngFor="let space of system?.user?.permissions">
+      <ul class="table-values" *ngFor="let space of system?.user?.user?.permissions">
         <li><span>{{space.space_name}}</span></li>
         <li class="roles" *ngFor="let role of space.roles; let i = index;">{{role}} <span
             *ngIf="i !== space.roles.length-1">,</span></li>

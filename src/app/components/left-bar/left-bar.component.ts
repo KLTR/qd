@@ -31,6 +31,7 @@ export class LeftBarComponent implements OnInit {
   ngOnInit() {
     this.sources = [];
     this.filterSources();
+    console.log(this.leftBarData);
   }
   ngOnChanges(): void {
     this.filterSources();

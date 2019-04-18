@@ -1,7 +1,7 @@
 <div class="sidebar">
   <!-- This section shoudl be at the TOP-->
   <div class="section sources">
-    <div class="header">Sources ({{sources?.length}})</div>
+    <div class="header">Sources ({{sources ? sources.length : '0'}})</div>
     <div class="content">
       <!-- Sources -->
       <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
@@ -58,7 +58,7 @@
   </div>
   <!-- Infections -->
   <div class="section pending">
-    <div class="header">Infecting ({{leftBarData?.infections.length}})</div>
+    <div class="header">Infecting ({{leftBarData?.infections ? leftBarData?.infections?.length : '0'}})</div>
     <div class="content">
       <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;"
         (mouseenter)="infection.hover=true;" (mouseleave)="infection.hover=false;">
@@ -83,20 +83,23 @@
   </div>
   <!-- Targets -->
   <div class="section targets">
-    <div class="header">Targets ({{leftBarData?.targets.length}})</div>
+    <div class="header">Targets ({{leftBarData?.targets ? leftBarData?.targets?.length : '0'}})</div>
     <div class="content">
       <div class="items" *ngFor="let target of leftBarData?.targets" (click)="filterTargetSources(target)">
-        <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
-        <span class="name">{{target?.name}}</span>
-        <span class="icon" (click)="openDeviceListModal(target, $event)">
-          <span class="device-count"
-            [class.in_progress]="target?.infection?.in_progress">{{target?.devices_count}}</span>
-          <app-svg-icon *ngIf="target?.infection?.in_progress; else pendingIcon" [size]="17" name="target_in_progress">
-          </app-svg-icon>
-          <ng-template #pendingIcon>
-            <app-svg-icon [size]="17" name="target_pending"></app-svg-icon>
-          </ng-template>
-        </span>
+        <div class="target-wrapper" *ngIf="!target.archived">
+          <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
+          <span class="name">{{target?.name}}</span>
+          <span class="icon" (click)="openDeviceListModal(target, $event)">
+            <span class="device-count"
+              [class.in_progress]="target?.infection?.in_progress">{{target?.devices_count}}</span>
+            <app-svg-icon *ngIf="target?.infection?.in_progress; else pendingIcon" [size]="17"
+              name="target_in_progress">
+            </app-svg-icon>
+            <ng-template #pendingIcon>
+              <app-svg-icon [size]="17" name="target_pending"></app-svg-icon>
+            </ng-template>
+          </span>
+        </div>
       </div>
     </div>
   </div>

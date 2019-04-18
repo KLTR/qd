@@ -46,15 +46,15 @@
       .content {
         height: calc(100% - 82px);
       }
-    }
 
-    &.pending {
-      .content {
-        height: calc(100% - 42px);
+      .target-wrapper {
+        width: 100%;
+        display: flex;
       }
     }
 
-    &.source {
+    &.pending,
+    &.sources {
       .content {
         height: calc(100% - 42px);
       }
