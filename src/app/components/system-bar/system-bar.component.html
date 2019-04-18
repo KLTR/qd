@@ -117,7 +117,25 @@
         <i class="fa fa-times" aria-hidden="true"></i>
       </span>
     </div>
-    <ul class="content">
+    <table class="rwd-table">
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Last update</th>
+      </tr>
+      <tr *ngFor='let pioneer of system.pioneer?.pioneers'>
+        <td data-th="Movie Title">{{pioneer.name}}</td>
+        <td data-th="Genre" class="{{pioneer.state | lowercase}}">{{pioneer.state}}</td>
+        <td data-th="Year" (click)="resetPioneerMachine(pioneer.name)">
+          <span>{{pioneer.updated_at | amTimeAgo}} </span>
+          <div class="icon-button">
+            <span class="button-img"><img class="rotating" src="../../../assets/img/refresh.png">Reset</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- <ul class="content">
       <ul class="table-headers">
         <li>Name</li>
         <li class="status">Status</li>
@@ -134,7 +152,7 @@
           </div>
         </li>
       </ul>
-    </ul>
+    </ul> -->
   </div>
 </sat-popover>
 

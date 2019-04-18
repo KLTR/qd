@@ -218,7 +218,7 @@ export class DeviceListModalComponent implements OnInit {
     if (!msg.result) {
       return;
     }
-
+    console.log(msg.result);
     switch (Object.keys(msg.result)[0]) {
       case 'pioneer_device':
         this.isRefreshing = false;
@@ -229,6 +229,7 @@ export class DeviceListModalComponent implements OnInit {
   }
 
   handleDevice(device) {
+    console.log(this.deviceList);
     this.deviceList = this.deviceList.map(x => {
       if (x.id !== device.id) {
         return x;

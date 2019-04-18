@@ -998,6 +998,7 @@ export class IconService {
   </g>
 </svg>`;
       case 'failed':
+      case 'canceled':
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${size ? size : 15}" height="${size ? size : 15}" viewBox="0 0 25 36">
   <g id="Group_153" data-name="Group 153" transform="translate(-1376 -1496)">
     <path id="Path_348" d="M1385 1504h-8a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1v-18l-1-.75V1525h-15v-20h7.5zm-.5 26a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z"
