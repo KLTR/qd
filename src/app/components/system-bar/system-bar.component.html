@@ -125,7 +125,8 @@
       </tr>
       <tr *ngFor='let pioneer of system.pioneer?.pioneers'>
         <td data-th="Movie Title">{{pioneer.name}}</td>
-        <td data-th="Genre" class="{{pioneer.state | lowercase}}">{{pioneer.state}}</td>
+        <td data-th="Genre" [ngbTooltip]="pioneer.reason" placement="bottom" class="{{pioneer.state | lowercase}}">
+          {{pioneer.state}}</td>
         <td data-th="Year" (click)="resetPioneerMachine(pioneer.name)">
           <span>{{pioneer.updated_at | amTimeAgo}} </span>
           <div class="icon-button">
