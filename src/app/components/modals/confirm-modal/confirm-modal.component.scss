@@ -1,12 +1,12 @@
 @import "../../../../scss/base";
 @import "../../../../scss/backgroundimages";
-
+@import "../../../../scss//colors.scss";
 
 .modal-media-header {
   height: 78px;
   font-size: 26px;
   text-align: center;
-  color: #65efe8;
+  color: $tiffany-blue;
   background-color: #445464;
   padding: 22px;
   text-transform: capitalize;
@@ -51,7 +51,7 @@
       height: 51px;
       font-size: 21px;
       text-align: center;
-      color: #c5e1ff;
+      color: $primary-text;
       background-color: #445464;
       display: flex;
       align-items: center;
@@ -95,7 +95,7 @@
         border: none;
         background-color: #ff4d6a;
         box-shadow: 0 7px 10px 0 rgba(26, 34, 42, 0.31);
-        color: #232d38;
+        color: $dark;
         text-transform: uppercase;
         cursor: pointer;
       }

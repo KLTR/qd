@@ -1,8 +1,8 @@
 {
   "protocol": "http",
   "port": "8091",
-  "host": "gateway.quantum.sr-rnd-17",
-  "apiUrl": "http://gateway.quantum.sr-rnd-17:80",
-  "webSocketUrl": "ws://gateway.quantum.sr-rnd-17:80/dashboard/ws",
+  "host": "gateway.qa1.nuc.k8s.swg.local",
+  "apiUrl": "http://gateway.qa1.nuc.k8s.swg.local:80",
+  "webSocketUrl": "ws://gateway.qa1.nuc.k8s.swg.local:80/dashboard/ws",
   "wsProtocol": "Bearer"
 }

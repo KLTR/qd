@@ -1,12 +1,15 @@
+@import '../../../scss/colors.scss';
+
 .tooltip-wrapper {
   background-color: #3B4859;
   padding: 15px;
-  color: #c5e1ff;
+  color: $primary-text;
   font-size: 11px;
   letter-spacing: 0.2px;
   position: absolute;
   left: 85px;
   top: -7px;
+
   &::after {
     content: "";
     display: block;

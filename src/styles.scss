@@ -4,6 +4,7 @@
 @import "scss/main";
 @import "scss/cases";
 @import "scss/mission";
+@import "scss/colors.scss";
 @import "scss/intels";
 @import "./scss/paddings.scss";
 @import "./scss/margins.scss";
@@ -12,7 +13,7 @@
 // Ag-Grid styles
 $ag-icons-path: "./scss/ag-theme/material-icons/";
 $primary-color: #c5e1ff;
-$accent-color: #6cfff8;
+$accent-color: $robins-egg;
 $warn-color: #ff4d6a;
 $disabled-color: #c5e1ff;
 $disabled-background-color: #2d3a48;
@@ -92,7 +93,7 @@ body {
   font-family: 'Titillium Web', sans-serif;
   color: #b7d2ee;
   font-size: 15px;
-  background-color: #232d38;
+  background-color: $dark;
   width: 100%;
   overflow-x: hidden;
   margin: 0;
@@ -338,7 +339,7 @@ a:focus {
         }
 
         &:active {
-          color: #6cfff8;
+          color: $robins-egg;
         }
       }
     }
@@ -410,7 +411,7 @@ a:focus {
           font-size: 4.533333333333333vw;
 
           span {
-            color: #6cfff8;
+            color: $robins-egg;
           }
         }
       }
@@ -490,29 +491,29 @@ a:focus {
 
 // Global classes
 [class*="connected"] {
-  color: #65efe8;
+  color: $tiffany-blue;
 }
 
 [class="not-connected"] {
-  color: #ff536f !important;
+  color: $warning !important;
 }
 
 [class="red"] {
-  color: #ff536f !important;
+  color: $warning !important;
 }
 
 [class="RED"] {
-  color: #ff536f !important;
+  color: $warning !important;
 }
 
 [class="green"] {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 
 
 [class="GREEN"] {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 .WARNING {
@@ -520,7 +521,7 @@ a:focus {
 }
 
 .INFO {
-  color: #6cfff8;
+  color: $robins-egg;
 }
 
 .MAJOR {
@@ -528,11 +529,11 @@ a:focus {
 }
 
 .red {
-  color: #ff536f
+  color: $warning
 }
 
 .green {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 .cdk-virtual-scroll-orientation-vertical {
@@ -551,7 +552,7 @@ a:focus {
 }
 
 .busy {
-  color: #ff536f !important;
+  color: $warning !important;
 }
 
 // Forms
@@ -630,4 +631,8 @@ a:focus {
     opacity: 1;
     transform: translateY(0px);
   }
+}
+
+.warning {
+  color: $warning;
 }

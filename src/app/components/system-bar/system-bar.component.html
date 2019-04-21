@@ -127,7 +127,7 @@
         <td data-th="Movie Title">{{pioneer.name}}</td>
         <td data-th="Genre" [ngbTooltip]="pioneer.reason" placement="bottom" class="{{pioneer.state | lowercase}}">
           {{pioneer.state}}</td>
-        <td data-th="Year" (click)="resetPioneerMachine(pioneer.name)">
+        <td data-th="Year" (click)="resetPioneerMachine(pioneer)">
           <span>{{pioneer.updated_at | amTimeAgo}} </span>
           <div class="icon-button">
             <span class="button-img"><img class="rotating" src="../../../assets/img/refresh.png">Reset</span>
@@ -135,25 +135,6 @@
         </td>
       </tr>
     </table>
-
-    <!-- <ul class="content">
-      <ul class="table-headers">
-        <li>Name</li>
-        <li class="status">Status</li>
-        <li class="last-update">Last update</li>
-      </ul>
-      <ul class="table-values" *ngFor="let pioneer of system.pioneer?.pioneers">
-        <li>{{pioneer.name}}</li>
-        <li [ngbTooltip]="pioneer.reason" placement="bottom" class="status-value {{pioneer.state | lowercase}}">
-          {{pioneer.state}}</li>
-        <li class="reset" (click)="resetPioneerMachine(pioneer.name)">
-          <span>{{pioneer.updated_at | amTimeAgo}} </span>
-          <div class="icon-button">
-            <span class="button-img"><img class="rotating" src="../../../assets/img/refresh.png">Reset</span>
-          </div>
-        </li>
-      </ul>
-    </ul> -->
   </div>
 </sat-popover>
 

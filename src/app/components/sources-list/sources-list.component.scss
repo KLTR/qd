@@ -1,3 +1,5 @@
+@import '../../../scss/colors.scss';
+
 .sources-wrapper {
   display: flex;
   overflow-x: hidden;
@@ -8,6 +10,7 @@
     width: 100%;
     max-height: calc(100vh - 43px);
     position: relative;
+
     .filters {
       display: flex;
       margin: 15px;
@@ -32,7 +35,7 @@
       }
 
       span.selected {
-        border-bottom: 3px solid #c5e1ff;
+        border-bottom: 3px solid $primary-text;
         font-weight: bold;
         color: #c4e1ff;
         padding-bottom: 10px;
@@ -54,6 +57,7 @@
       height: 93%;
       overflow-y: hidden;
       overflow-x: hidden;
+
       .no-items {
         width: 100%;
         display: flex;
@@ -62,11 +66,13 @@
         flex-direction: column;
         height: 100%;
         opacity: 0.5;
+
         .desc {
           text-align: center;
           font-size: 18px;
         }
       }
+
       .sources-list {
         //ul
         margin-bottom: 0;
@@ -82,7 +88,7 @@
   }
 
 
-  .source-info-wrapper{
+  .source-info-wrapper {
     height: 100%;
     position: relative;
   }

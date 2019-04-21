@@ -1,4 +1,5 @@
 @import "../../../scss/base";
+@import "../../../scss/colors.scss";
 
 .navbar-wrapper {
   z-index: 10;
@@ -29,7 +30,7 @@
   @include font-bold;
   letter-spacing: 0.6px;
   text-align: left;
-  color: #c5e1ff;
+  color: $primary-text;
   font-size: 15.6px;
 }
 
@@ -57,7 +58,7 @@
   .alerts-number {
     border-radius: 100px;
     background-color: #ff536f;
-    color: #232d38;
+    color: $dark;
     height: 10px;
     width: 10px;
     display: flex;
@@ -146,7 +147,7 @@
       color: black;
       font-size: 11px;
       font-weight: bold;
-      background-color: #ff4d6a;
+      background-color: $warning;
       border-radius: 50%;
       height: 10px;
       width: 10px;
@@ -165,17 +166,17 @@
     right: -3px;
     z-index: 555;
     border: 1px solid #455666;
-    background-color: #ff4d6a;
+    background-color: $warning;
 
     &.critical {
-      background-color: #ff4d6a;
+      background-color: $warning;
       animation: blinker 2s linear infinite;
     }
 
     .alerts-amount {
       width: 100%;
       font-size: 10px;
-      color: #232d38;
+      color: $dark;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -193,7 +194,7 @@
   }
 
   .info {
-    background-color: #c5e1ff;
+    background-color: $primary-text;
   }
 }
 
@@ -240,7 +241,7 @@
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
-    color: #c5e1ff;
+    color: $primary-text;
     font-size: 14px;
   }
 
@@ -252,12 +253,12 @@
   }
 
   input:-moz-placeholder {
-    color: #c5e1ff;
+    color: $primary-text;
     font-size: 14px;
   }
 
   input::-webkit-input-placeholder {
-    color: #c5e1ff;
+    color: $primary-text;
     font-size: 14px;
   }
 
@@ -302,13 +303,13 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: left;
-  color: #c5e1ff;
+  color: $primary-text;
   margin-top: 20px;
   border-radius: 4px;
   min-width: 350px;
 
   &.pioneer {
-    min-width: 450px
+    width: 450px
   }
 
   &.user {
@@ -404,7 +405,7 @@
       padding: 10px;
 
       li {
-        color: #c5e1ff57;
+        color: $primary-text;
 
         &.last-update {
           margin-right: 22px;
@@ -418,7 +419,7 @@
       @extend .table-headers;
 
       li {
-        color: #c5e1ff;
+        color: $primary-text;
 
         &.reset {
           display: flex;

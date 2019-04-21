@@ -52,7 +52,7 @@ export class SourcesListComponent implements OnInit {
   filterByTarget(target) {
     this.filterValue = '';
     this.selectedTarget = target;
-    this.filteredSources = this.leftBarData.sources.filter(item => item.source.target_id === target.id);
+    this.filteredSources = this.leftBarData.sources.filter(source => source.target_id === target.id);
   }
   assignFilteredSources() {
     this.filteredSources = this.leftBarData.sources;
@@ -73,7 +73,7 @@ export class SourcesListComponent implements OnInit {
           item.state === 'COLLECTING_DATA'
       );
     } else {
-      this.filteredSources = this.leftBarData.sources.filter(item => item.state === value);
+      this.filteredSources = this.leftBarData.sources.filter(source => source.state === value);
     }
   }
   filterPendingInfections() {
@@ -120,9 +120,9 @@ export class SourcesListComponent implements OnInit {
 
   handleTarget(target) {
     // filters new target from array
-    this.leftBarData.targets = this.leftBarData.targets.filter(x => {
-      if (x.id !== target.id) {
-        return x;
+    this.leftBarData.targets = this.leftBarData.targets.filter(t => {
+      if (t.id !== target.id) {
+        return t;
       }
     });
     // only push if target state is not DELETED

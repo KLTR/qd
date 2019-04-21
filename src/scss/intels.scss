@@ -1,5 +1,6 @@
 .intel {
   height: 100%;
+
   &.location-intel qd-map agm-map {
     height: 100% !important;
   }
@@ -7,6 +8,7 @@
   .data-table-wrapper .tensor-table {
     margin-bottom: 0;
   }
+
   .data-table-wrapper .tensor-table-header-row.push-header-up {
     width: calc(100vw - 65px - 548px);
   }
@@ -18,9 +20,10 @@
       align-items: baseline;
       padding: 1rem 2rem 0 2rem;
       box-shadow: none;
-      border-bottom: 1px solid #232d38;
+      border-bottom: 1px solid $dark;
 
-      .group-name, .group-participants{
+      .group-name,
+      .group-participants {
         margin: 0 0 0 0.5rem;
       }
 
@@ -32,20 +35,22 @@
           cursor: pointer;
           outline: none;
         }
+
         .selected-tab {
           color: #c4e1ff !important;
         }
       }
     }
-    .chats-container{
+
+    .chats-container {
       padding: 2rem;
       height: calc(100% - 70px);
 
-      .chatsInfo{
+      .chatsInfo {
         display: block;
         padding: 0;
 
-        .info-cube{
+        .info-cube {
           width: auto;
           height: auto;
           margin-right: 0;
@@ -53,32 +58,38 @@
           display: flex;
           align-items: center;
 
-          .device-data-header{
+          .device-data-header {
             width: 120px;
             color: rgba(196, 225, 255, 0.4);
           }
-          .device-data-subheader{
+
+          .device-data-subheader {
             font-size: 12px;
           }
         }
       }
-      .message-row{
-        border-bottom: 1px solid #232d38;
 
-        .group{
+      .message-row {
+        border-bottom: 1px solid $dark;
+
+        .group {
           font-size: 12px;
           font-weight: bold;
           margin-bottom: 0;
         }
-        .last-commenter, .body{
+
+        .last-commenter,
+        .body {
           font-size: 12px;
         }
-        .date{
+
+        .date {
           font-size: 12px;
           top: 20px;
           margin-bottom: 0;
         }
-        .unread-count{
+
+        .unread-count {
           background-color: #c4e1ff;
         }
       }
@@ -89,13 +100,15 @@
     .tensor-table {
       //height: calc(100% - 130px);
     }
+
     .browser-intel-header {
       background-color: #364556;
       display: block;
       padding: 1rem 0 0 2rem;
       box-shadow: none;
 
-      .browsers, .browser-filters {
+      .browsers,
+      .browser-filters {
         button {
           color: #52657a;
           text-transform: uppercase;
@@ -103,19 +116,21 @@
           font-size: 10px;
           outline: none;
         }
+
         .selected {
           color: #c4e1ff !important;
         }
       }
-      .browsers{
-        button{
+
+      .browsers {
+        button {
           font-size: 13px;
         }
       }
     }
 
-    .data-table-wrapper{
-      .tensor-table-header-row{
+    .data-table-wrapper {
+      .tensor-table-header-row {
         background-color: #364556;
         border-bottom: 1px solid #1a222a;
         color: rgba(196, 225, 255, 0.4);
@@ -124,7 +139,7 @@
         padding-right: 1rem;
         width: calc(100vw - 65px - 548px);
 
-        .tensor-table-header-cell{
+        .tensor-table-header-cell {
           color: rgba(196, 225, 255, 0.4) !important;
           padding-left: 1rem;
           font-size: 10px;
@@ -134,19 +149,21 @@
         }
       }
 
-      .tensor-table-cell:first-child{
+      .tensor-table-cell:first-child {
         padding-left: 0;
       }
-      .tensor-table-cell:last-child{
+
+      .tensor-table-cell:last-child {
         padding-right: 0;
       }
 
-      .tensor-table-cell{
+      .tensor-table-cell {
         width: 5vw;
         font-size: 12px;
         padding: 0.5rem 1rem;
       }
-      .tensor-table-row{
+
+      .tensor-table-row {
         padding-left: 0;
         padding-right: 0;
         margin: 0 2rem;
@@ -165,45 +182,52 @@
       align-items: center;
       padding: 1.5rem 2rem 0.5rem 2rem;
       box-shadow: none;
-      border-bottom: 1px solid #232d38;
+      border-bottom: 1px solid $dark;
+
       .search-input {
         text-transform: uppercase;
         font-size: 13px;
         color: #c4e1ff;
       }
-      .magnifier-icon{
+
+      .magnifier-icon {
         @include bg-image('search.png', 100%, 100%);
         width: 12px;
         height: 20px;
         margin: 0 5px 2px 0;
       }
+
       .search-input::placeholder {
         font-size: 13px;
         color: #c4e1ff;
       }
     }
+
     .contacts-intel-list {
       height: calc(100% - 70px);
     }
-    .contacts-intel-list{
+
+    .contacts-intel-list {
       padding: 2rem;
-      .contacts-intel-group{
-        .group-header > span{
+
+      .contacts-intel-group {
+        .group-header>span {
           font: {
             size: 13px;
             weight: bold;
           }
         }
-        .contacts-wrapper{
+
+        .contacts-wrapper {
           display: block;
 
-          .contacts-intel-contact{
+          .contacts-intel-contact {
             background-color: transparent;
             margin: 0;
             margin-bottom: 1rem;
             height: auto;
 
-            .contact-info{
+            .contact-info {
               flex-direction: inherit;
               border-bottom: 1px solid #1a222a;
               padding-bottom: 1rem;
@@ -212,20 +236,21 @@
               justify-content: flex-start;
               font-size: 14px;
 
-              .contact-name{
+              .contact-name {
                 width: 180px;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                color:#c4e1ff;
+                color: #c4e1ff;
               }
 
-              .contact-number{
+              .contact-number {
                 width: 180px;
                 color: rgba(196, 225, 255, 0.4);
               }
             }
-            .contact-image{
+
+            .contact-image {
               width: 28px;
               height: 28px;
               border-radius: 2px;
@@ -239,7 +264,7 @@
   &.table-intel {
     .data-table-wrapper {
 
-      .tensor-table-row{
+      .tensor-table-row {
         padding-left: 0;
         padding-right: 0;
         margin: 0 2rem;
@@ -255,22 +280,26 @@
         padding: 1rem 2rem 0 2rem;
         box-shadow: none;
         background-color: #364556;
+
         .tensor-table-filter-input {
           font-size: 13px;
           color: #c4e1ff
         }
-        .magnifier-icon{
+
+        .magnifier-icon {
           @include bg-image('search.png', 100%, 100%);
           width: 12px;
           height: 20px;
           margin: 0 5px 2px 0;
         }
+
         .tensor-table-filter-input::placeholder {
           text-transform: uppercase;
           font-size: 13px;
           color: #c4e1ff;
         }
       }
+
       .tensor-table-header-row {
         background-color: #364556;
         border-bottom: 1px solid #1a222a;
@@ -279,7 +308,7 @@
         padding-right: 1rem;
         width: calc(100vw - 65px - 548px);
 
-        .tensor-table-header-cell{
+        .tensor-table-header-cell {
           color: rgba(196, 225, 255, 0.4);
           padding-left: 1rem;
         }
@@ -292,17 +321,20 @@
         padding-left: 1rem;
       }
 
-      .tensor-table-cell{
+      .tensor-table-cell {
         width: 5vw;
         font-size: 12px;
         padding: 0.5rem 1rem;
       }
-      .tensor-table-cell:first-child{
+
+      .tensor-table-cell:first-child {
         padding-left: 0;
       }
-      .tensor-table-cell:last-child{
+
+      .tensor-table-cell:last-child {
         padding-right: 0;
       }
+
       .calls-missed-icon {
         width: 16px;
         height: 16px;

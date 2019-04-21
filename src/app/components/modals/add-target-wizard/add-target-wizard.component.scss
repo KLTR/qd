@@ -1,3 +1,5 @@
+@import '../../../../scss/colors.scss';
+
 #add-attack-modal-wrapper {
   background-color: #2f3b4a;
   box-shadow: 0.9px 0.4px 2px 0 rgba(0, 0, 0, 0.25);
@@ -16,7 +18,7 @@
     line-height: 2.52;
     letter-spacing: 0.7px;
     text-align: center;
-    color: #c5e1ff;
+    color: $primary-text;
 
     .vector-icon {
       height: 48px;
@@ -170,7 +172,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #c5e1ff;
+            color: $primary-text;
           }
 
           .vector-info {
@@ -234,7 +236,7 @@
             .tooltip-inner {
               border-radius: 2px;
               background-color: #52667b;
-              color: #c5e1ff;
+              color: $primary-text;
               font-size: 11px;
               letter-spacing: 0.2px;
             }
@@ -246,7 +248,7 @@
             text-align: center;
 
             &.info {
-              color: #c5e1ff;
+              color: $primary-text;
             }
 
             &.warn {
@@ -283,7 +285,7 @@
             justify-content: center;
 
             .fa {
-              color: #c5e1ff;
+              color: $primary-text;
               cursor: pointer;
             }
           }
@@ -396,7 +398,7 @@
                 font-stretch: normal;
                 letter-spacing: 0.7px;
                 text-align: center;
-                color: #c5e1ff;
+                color: $primary-text;
                 width: 158px;
                 height: 22px;
                 margin-top: 25px;
@@ -409,8 +411,8 @@
               .preview-button {
                 border-radius: 2px;
                 box-shadow: 0px 2px 8px 0 rgba(35, 45, 56, 0.43);
-                background-color: #c5e1ff;
-                border: solid 1px #c5e1ff;
+                background-color: $primary-text;
+                border: solid 1px $primary-text;
                 width: 76px;
                 height: 22px;
                 margin-top: 25px;

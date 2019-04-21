@@ -34,7 +34,7 @@
       .alerts-number {
         border-radius: 100px;
         background-color: #ff536f;
-        color: #232d38;
+        color: $dark;
         height: 10px;
         width: 10px;
         display: flex;
@@ -48,13 +48,13 @@
     }
 
     .circle-red {
-      background-color: #ff536f;
-      color: #232d38;
+      background-color: $warning;
+      color: $dark;
     }
 
     .circle-green {
-      background-color: #65efe8;
-      color: #232d38;
+      background-color: $tiffany-blue;
+      color: $dark;
     }
 
     li.device-info {
@@ -167,7 +167,7 @@
     }
 
     li .interceptor {
-      color: #65efe8;
+      color: $tiffany-blue;
     }
 
     li .interceptor-failed {
@@ -214,7 +214,7 @@
       background-color: #52667b;
       border-radius: 0;
       text-transform: capitalize;
-      color: #c5e1ff;
+      color: $primary-text;
       font-size: 11px;
       letter-spacing: 0.2px;
     }
@@ -235,7 +235,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: left;
-  color: #c5e1ff;
+  color: $primary-text;
   margin-top: 20px;
   border-radius: 4px;
   min-width: 350px;
@@ -321,7 +321,7 @@
       padding: 10px;
 
       li {
-        color: #c5e1ff57;
+        color: $primary-text;
 
         &.last-update {
           margin-right: 115px;
@@ -338,7 +338,7 @@
       @extend .table-headers;
 
       li {
-        color: #c5e1ff;
+        color: $primary-text;
 
         &.status-value {
           width: 30px;
@@ -387,7 +387,7 @@
 }
 
 [class*="connected"] {
-  color: #65efe8;
+  color: $tiffany-blue;
 }
 
 [class*="not-connected"] {
@@ -403,11 +403,11 @@
 }
 
 [class*="green"] {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 [class*="GREEN"] {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 .interceptor-pop-wrapper {
@@ -557,7 +557,7 @@
         line-height: 1.93;
         letter-spacing: 0.6px;
         text-align: left;
-        color: #c5e1ff;
+        color: $primary-text;
         width: 400px;
         padding: 0 5px 0 0;
         height: 100px;

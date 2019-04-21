@@ -5,6 +5,8 @@
     </div>
     <div class="modal-content truncate">
       {{ message }}
+      <br>
+      <span class="warning" *ngIf="additionalText">{{additionalText}}</span>
     </div>
     <div class="modal-disconnect-footer">
       <button class="button-no disconnect-modal-button" type="button" (click)="activeModal.close(false)">No</button>

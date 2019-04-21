@@ -1,3 +1,5 @@
+@import '../../../scss/colors.scss';
+
 .sidebar {
   height: calc(100vh - 43px);
   width: 15vw;
@@ -111,7 +113,7 @@
       }
 
       span {
-        color: #c5e1ff;
+        color: $primary-text;
         font-size: 14px;
       }
 
@@ -161,7 +163,7 @@
 .tooltip-wrapper {
   background-color: #52667b;
   padding: 15px;
-  color: #c5e1ff;
+  color: $primary-text;
   font-size: 11px;
   letter-spacing: 0.2px;
 
@@ -243,7 +245,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: left;
-  color: #c5e1ff;
+  color: $primary-text;
   margin-top: 20px;
   border-radius: 4px;
   min-width: 350px;

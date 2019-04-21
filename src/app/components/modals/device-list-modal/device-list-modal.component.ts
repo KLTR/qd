@@ -226,15 +226,19 @@ export class DeviceListModalComponent implements OnInit {
     }
     switch (Object.keys(msg.result)[0]) {
       case 'pioneer_device':
+        const device = msg.result.pioneer_device;
         this.isRefreshing = false;
-        console.log('pioneer_device:', msg.result.pioneer_device);
-        this.handleDevice(msg.result.pioneer_device);
+        console.log('pioneer_device:', device);
+        if (!device) {
+          return;
+        }
+        this.handleDevice(device);
         break;
     }
   }
 
   handleDevice(device) {
-    this.deviceList = this.deviceList.map(x => {
+    this.deviceList = this.deviceList.filter(x => {
       if (x.id !== device.id) {
         return x;
       }
