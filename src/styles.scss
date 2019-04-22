@@ -59,7 +59,6 @@ $fa-font-path: "~font-awesome/fonts";
 }
 
 p,
-button,
 div {
   user-select: none !important;
 }
@@ -442,52 +441,6 @@ a:focus {
 }
 
 
-.icon-button {
-  width: 80px;
-  height: 35px;
-  border-radius: 4px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16);
-  background-color: #314153;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  span {
-    color: #c5e1ff;
-    font-size: 14px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: 0.3px;
-    text-align: center;
-    margin: 0 !important;
-  }
-
-  .button-img {
-    flex: 1;
-    display: flex;
-    align-items: center;
-
-    img {
-      height: 30px;
-      width: 30px;
-    }
-  }
-
-  &:hover {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
-    background-color: #4d6179;
-    cursor: pointer;
-
-  }
-
-  &:active {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.16);
-    background-color: #3d5064;
-    transform: translateY(1px);
-  }
-}
 
 // Global classes
 [class*="connected"] {
@@ -555,7 +508,134 @@ a:focus {
   color: $warning !important;
 }
 
+
 // Forms
+
+button {
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-weight: normal;
+  letter-spacing: 0.6px;
+  font-weight: bold;
+  line-height: 1.5;
+  min-width: 100px;
+  text-align: center;
+  font-size: 12px;
+  outline: none !important;
+
+  &:hover {
+    transition: all 0.2s ease-in;
+  }
+
+  &.disabled {
+    cursor: not-allowed !important;
+  }
+}
+
+.default-btn {
+  @extend button;
+  width: 116px;
+  height: 35px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+  background: $default-btn;
+  color: $primary-text;
+
+  &:hover {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
+    color: $primary-text !important;
+    background: $default-btn-hover;
+  }
+
+  &.disabled {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+
+    span {
+      opacity: 0.2;
+    }
+  }
+
+  &:active {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
+    background: $default-btn-active;
+  }
+}
+
+
+
+.secondary-btn {
+  @extend button;
+  color: $light-blue-grey;
+  background-color: transparent;
+  width: 100px;
+
+  &:hover {
+    color: $robins-egg !important;
+  }
+
+  &.disabled {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+
+    span {
+      opacity: 0.2;
+    }
+  }
+
+  &:active {
+    color: $primary-btn-active !important;
+  }
+}
+
+.primary-btn {
+  @extend button;
+  width: 165px;
+  height: 40px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+  color: $dark !important;
+  background-color: $robins-egg;
+
+  &:hover {
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
+    background-color: $primary-btn-hover;
+  }
+
+  &:active {
+    background-color: $primary-btn-active;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  &.disabled {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+
+    span {
+      opacity: 0.5;
+    }
+  }
+}
+
+.warning-btn {
+  @extend button;
+  background-color: $warning;
+}
+
+.icon-btn {
+  @extend .default-btn;
+  width: 123px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 35px;
+    height: 35px;
+  }
+
+}
+
+a {
+  @extend button;
+}
+
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
   position: absolute;

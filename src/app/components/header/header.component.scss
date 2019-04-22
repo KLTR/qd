@@ -349,22 +349,8 @@
     justify-content: space-between;
     padding: 0 10px;
 
-    .logout {
-      &.icon-button {
-        width: 93px;
-        height: 26px;
-        background-color: #314153;
-      }
-
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-
-      img {
-        height: 12px;
-        width: 12px;
-        margin-left: 5px;
-      }
+    .default-btn {
+      height: 25px;
     }
 
     .user-name {

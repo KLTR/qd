@@ -129,9 +129,9 @@
           {{pioneer.state}}</td>
         <td data-th="Year" (click)="resetPioneerMachine(pioneer)">
           <span>{{pioneer.updated_at | amTimeAgo}} </span>
-          <div class="icon-button">
-            <span class="button-img"><img class="rotating" src="../../../assets/img/refresh.png">Reset</span>
-          </div>
+          <button class="default-btn">
+            <span>reset</span>
+          </button>
         </td>
       </tr>
     </table>

@@ -50,10 +50,11 @@
     </ul>
   </div>
   <div class="buttons-wrapper">
-    <!-- <button class="apply-button modal-btn" (click)="">Test Viewer</button> -->
-    <button class="cancel-button modal-btn" (click)="activeModal.close()">Close</button>
-    <button *ngIf="!isLoading" class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isPionnerConnected"
-      [ngClass]="{ 'disabled': isEmpty || hasErrors || !isPionnerConnected }" (click)="addTarget()">Add target
+    <button class="secondary-btn modal-btn" (click)="activeModal.close()">Close</button>
+    <button *ngIf="!isLoading" class="primary-btn modal-btn ripple"
+      [disabled]="isEmpty || hasErrors || !isPionnerConnected"
+      [ngClass]="{ 'disabled': isEmpty || hasErrors || !isPionnerConnected }" (click)="addTarget()">
+      <span>Add target</span>
     </button>
   </div>
 </div>

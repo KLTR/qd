@@ -451,6 +451,7 @@
     position: absolute;
     bottom: 34px;
     right: 3px;
+    justify-content: flex-end;
 
     .modal-btn {
       width: 120px;
@@ -462,41 +463,6 @@
       transition: all 250ms;
       border: none;
       cursor: pointer;
-
-      &.cancel-button {
-        margin-left: auto;
-        color: rgba(197, 225, 255, 0.7);
-        background-color: transparent;
-
-        &:hover {
-          color: rgba(197, 225, 255, 1);
-        }
-      }
-
-      &.apply-button {
-        color: #232d38;
-        background-color: rgba(197, 255, 255, 1);
-        box-shadow: 0 7px 10px 0 rgba(26, 34, 42, 0.31);
-        margin-left: 5px;
-
-        &:hover {
-          color: #232d38;
-          background-color: #6cfff8;
-        }
-
-        &:active {
-          color: #232d38;
-          background-color: #00c5d1;
-        }
-
-        &.disabled {
-          background-color: #c5ffff26;
-
-          &:hover {
-            background-color: #c5ffff26;
-          }
-        }
-      }
     }
   }
 

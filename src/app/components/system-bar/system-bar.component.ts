@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '@app/services';
 import { NgbModal, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 import { interval, Observable } from 'rxjs/';
 import { map } from 'rxjs/operators';
 import { ConfirmModalComponent } from '../modals/confirm-modal/confirm-modal.component';
@@ -210,9 +211,7 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
     });
     confirmModal.componentInstance.title = 'Refresh';
     confirmModal.componentInstance.message = `Are you sure you want to reset '${pioneer.name}'?`;
-    // const lastUpdate = 'this.moment.get(pioneer.updated_at);';
-    // console.log(lastUpdate);
-    // confirmModal.componentInstance.additionalText = `(last reset was ${this.moment.diff(lastUpdate)})`;
+    confirmModal.componentInstance.additionalText = `*last reset was ${moment(pioneer.updated_at).fromNow()}`;
     confirmModal.result.then(res => {
       if (res) {
         this.http.resetPioneerMachine(pioneer.name).subscribe(

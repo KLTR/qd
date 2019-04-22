@@ -7,7 +7,7 @@
   font-size: 26px;
   text-align: center;
   color: $tiffany-blue;
-  background-color: #445464;
+  background-color: $slate;
   padding: 22px;
   text-transform: capitalize;
 }
@@ -41,7 +41,7 @@
   .modal-wrapper {
     width: 311px;
     height: 260px;
-    background-color: #3c4a58;
+    background-color: $slate-two;
     border-radius: 0;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@
       font-size: 21px;
       text-align: center;
       color: $primary-text;
-      background-color: #445464;
+      background-color: $slate;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -72,7 +72,7 @@
     .modal-disconnect-footer {
       font-size: 15px;
       text-align: center;
-      color: #ff6c91;
+      color: $carnation;
       display: flex;
       margin-bottom: 28px;
       justify-content: center;
@@ -91,25 +91,11 @@
         font-weight: bold;
       }
 
-      .button-yes {
-        border: none;
-        background-color: #ff4d6a;
-        box-shadow: 0 7px 10px 0 rgba(26, 34, 42, 0.31);
-        color: $dark;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
 
-      .button-no {
-        border: none;
-        color: #b6d1ed;
-        background-color: transparent;
-        letter-spacing: 0.6px;
-        text-transform: uppercase;
-        cursor: pointer;
-        width: 100px;
-        font-weight: normal;
-      }
     }
   }
+}
+
+.warning {
+  font-size: 12px;
 }

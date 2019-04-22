@@ -8,8 +8,8 @@
     <span class="name" *ngFor="let id of target?.identifiers"> | {{ id.value }}</span>
   </div>
   <div class="refresh">
-    <div [ngbTooltip]="'Delete target'" placement="left" class="delete-icon" (click)="archiveTarget()"></div>
-    <app-svg-icon [name]="'complete'" [size]="20" [ngbTooltip]="refreshTip" placement="right"
+    <div [ngbTooltip]="'Delete target'" placement="left" class="delete-icon icon" (click)="archiveTarget()"></div>
+    <app-svg-icon [name]="'complete'" class="refresh-icon icon" [size]="20" [ngbTooltip]="refreshTip" placement="right"
       (click)="queryPioneerDevices()"></app-svg-icon>
     <ng-template #refreshTip>
       <div [ngStyle]="{ 'min-width': '150px' }">
@@ -127,6 +127,8 @@
     </div>
   </ng-template>
   <div class="btn-wrap">
-    <button class="btn no-outline" (click)="activeModal.close()">Close</button>
+    <button class="secondary-btn" (click)="activeModal.close()">
+      <span>Close</span>
+    </button>
   </div>
 </div>

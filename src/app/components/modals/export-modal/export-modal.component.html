@@ -6,31 +6,35 @@
       <div class="progress-info">
         <!-- <span class="title" [ngStyle]="{'color': '#6cfff8'}" *ngIf="preparingExport">Preparing...</span> -->
         <span class="title" [ngStyle]="{'color': '#6cfff8'}">{{exportData.state}}</span>
-        <span class="title" *ngIf="exportData?.state === 'Completed!'" [ngStyle]="{'color': '#6cfff8'}">{{exportData.progress ? exportData.progress : '100'}}%</span>
+        <span class="title" *ngIf="exportData?.state === 'Completed!'"
+          [ngStyle]="{'color': '#6cfff8'}">{{exportData.progress ? exportData.progress : '100'}}%</span>
       </div>
       <div class="progress-bar-element">
         <!-- <span class="export-notice" *ngIf="data.device?.name">{{data.device.name}}</span> -->
         <div class="progress-bar-over-element">
-          <span class="progress-fill" [class.full]="exportData.progress === 100" [ngStyle]="{'width': exportData?.progress + '%'}"></span>
-          <span *ngIf="exportData?.state === 'Completed!'" class="progress-fill full" [ngStyle]="{'width': '100%'}"></span>
+          <span class="progress-fill" [class.full]="exportData.progress === 100"
+            [ngStyle]="{'width': exportData?.progress + '%'}"></span>
+          <span *ngIf="exportData?.state === 'Completed!'" class="progress-fill full"
+            [ngStyle]="{'width': '100%'}"></span>
           <span class="progress-indicator" *ngIf="exportData?.progress > 0"></span>
         </div>
       </div>
     </div>
     <ng-template #ready>
       <div class="download-ready">
-          <app-svg-icon name="export-ready"></app-svg-icon>
-          <p>FILE IS READY!</p>
+        <app-svg-icon name="export-ready"></app-svg-icon>
+        <p>FILE IS READY!</p>
       </div>
     </ng-template>
-    
+
   </div>
 
   <div class="export-data-options">
-    <button class="cancel-button" (click)="cancelExport()">Abort</button>
-    <a *ngIf="!isStartedExporting" class="export-button" (click)="startExport()">EXPORT</a>
-    <a *ngIf="isStartedExporting;" class="export-button" [ngClass]="{'disable': exportData.state !== 'Completed!'}"
-      [href]="exportData.fileUrl" download="{{exportData.id}}.zip" (click)="activeModal.close()">DOWNLOAD</a>
+    <button class="secondary-btn" (click)="cancelExport()">Abort</button>
+    <a *ngIf="!isStartedExporting" class="primary-btn export-btn" (click)="startExport()">EXPORT</a>
+    <a *ngIf="isStartedExporting;" class="primary-btn export-btn"
+      [ngClass]="{'disable': exportData.state !== 'Completed!'}" [href]="exportData.fileUrl"
+      download="{{exportData.id}}.zip" (click)="activeModal.close()">DOWNLOAD</a>
   </div>
 </div>
 
@@ -41,7 +45,8 @@
         FILE FORMAT
       </label>
       <div ngbDropdown class="d-inline-block">
-        <button class="btn dropdown-btn" id="dropdown_interceptors" ngbDropdownToggle>{{selectedFormat ? selectedFormat : 'select'}}</button>
+        <button class="btn dropdown-btn" id="dropdown_interceptors"
+          ngbDropdownToggle>{{selectedFormat ? selectedFormat : 'select'}}</button>
         <div ngbDropdownMenu aria-labelledby="dropdown_interceptors">
           <button class="dropdown-item" (click)="selectFormat('Protobuf')">Protobuf</button>
           <button class="dropdown-item" (click)="selectFormat('JSON')">JSON</button>
@@ -59,13 +64,14 @@
           <input type="radio" id="all" value="all" name="date-range" (click)="selectDateRange('all')" checked>
           <label for="all">All</label>
         </p>
-        <p >
+        <p>
           <input type="radio" id="range" value="range" (click)="selectDateRange('range')" name="date-range">
           <label for="range">Range</label>
         </p>
-        <app-date-picker-modal class="datepicker" (dateRangeSelected)="setDate($event)" *ngIf="isRangeSelected"></app-date-picker-modal>
+        <app-date-picker-modal class="datepicker" (dateRangeSelected)="setDate($event)" *ngIf="isRangeSelected">
+        </app-date-picker-modal>
       </div>
     </div>
-  
+
   </div>
 </ng-template>
