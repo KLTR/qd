@@ -1,5 +1,7 @@
 @import "../../../../../scss/backgroundimages";
 @import "../../../../../scss/base.scss";
+@import "../../../../../scss/colors.scss";
+
 $image-base: '../../../../../../assets/img/mission-cube/';
 
 .modal-media-header {
@@ -20,6 +22,7 @@ $image-base: '../../../../../../assets/img/mission-cube/';
   height: 75vh;
   margin-top: 35px;
   margin-left: 25px;
+
   .modal-dialog {
     max-width: 735px !important;
     width: 100%;
@@ -34,11 +37,12 @@ $image-base: '../../../../../../assets/img/mission-cube/';
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
+
     .modal-disconnect-header {
       height: 40px;
       font-size: 17px;
       text-align: center;
-      color: #c5e1ff;
+      color: $primary-text;
       background-color: #445464;
       display: flex;
       align-items: center;
@@ -93,7 +97,7 @@ $image-base: '../../../../../../assets/img/mission-cube/';
 
         .show-all {
           margin-left: 7px;
-          background-color: #c5e1ff;
+          background-color: $primary-text;
           color: #2f3b4a;
           text-transform: uppercase;
           padding: 0 16px;
@@ -110,7 +114,7 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         }
 
         .show-active {
-          background-color: #c5e1ff;
+          background-color: $primary-text;
           color: #2f3b4a;
           text-transform: uppercase;
           padding: 0 16px;
@@ -152,6 +156,7 @@ $image-base: '../../../../../../assets/img/mission-cube/';
         margin-bottom: 7px;
         box-shadow: 0 1px 4px 0 rgba(26, 34, 42, 0.32);
         height: 100%;
+
         .buttons {
           cursor: pointer;
           height: 100%;
@@ -167,12 +172,14 @@ $image-base: '../../../../../../assets/img/mission-cube/';
             align-items: center;
             justify-content: center;
             border: 1px solid #bdd9f6;
-            &.inactive{
+
+            &.inactive {
               opacity: 0.5;
             }
+
             span {
               color: #bdd9f6;
-              line-height: 12px;              
+              line-height: 12px;
               font-size: 11px;
               font-weight: bold;
               font-style: normal;
@@ -259,12 +266,12 @@ $image-base: '../../../../../../assets/img/mission-cube/';
 
       .button-yes {
         border: none;
-        color: #232d38;
+        color: $dark;
         @include font-bold;
         font-size: 15px;
         text-transform: uppercase;
         cursor: pointer;
-        background-color: #c5e1ff;
+        background-color: $primary-text;
         box-shadow: 0 7px 10px 0 rgba(26, 34, 42, 0.31);
       }
 
@@ -281,12 +288,13 @@ $image-base: '../../../../../../assets/img/mission-cube/';
 }
 
 
-.no-alerts{
+.no-alerts {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   height: 50vh;
-  span{
+
+  span {
     font-size: 24px
   }
 }

@@ -40,19 +40,9 @@ class QuantumUI(Recipe):
         self.add_component(s)
 
     def _load_config(self):
-        if is_env_enabled('K8S_LOCAL_DEV'):
-            self.add_component(kube.File(os.path.join(
-                self.dir_path,
-                'k8s/dev-config.yaml',
-            )))
-        else:
-            self.add_component(
-                kube.File(os.path.join(
-                    self.dir_path,
-                    'k8s/prod-config.yaml'
-                ),
-                    k8s_node=os.environ['K8S_NODE'],
-                ))
+        self.add_component(kube.File(
+            os.path.join(self.dir_path, 'k8s/config.yaml'),
+            k8s_domain=os.environ['K8S_DOMAIN']))
 
     def _load_ingress(self):
         rules = [

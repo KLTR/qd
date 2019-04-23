@@ -1,30 +1,11 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { MenuService } from '@app/components/menu/menu.service';
+import { ConnectionService, WsService } from '@app/services';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, Subscription } from 'rxjs';
+import { HttpService } from '../../services/http/http.service';
 import { AuthService } from './../../services/auth/auth.service';
-import {
-  AlertsModalComponent
-} from './../system-bar/alerts/alerts-modal/alerts-modal.component';
-import {
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
-import {
-  MenuService
-} from '@app/components/menu/menu.service'
-import {
-  HttpService
-} from '../../services/http/http.service';
-import {
-  Observable,
-  Subscription,
-  Subject
-} from 'rxjs';
-import * as $ from 'jquery';
-import {
-  WsService, ConnectionService
-} from '@app/services';
-import {
-  NgbModal
-} from '@ng-bootstrap/ng-bootstrap';
+import { AlertsModalComponent } from './../system-bar/alerts/alerts-modal/alerts-modal.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -35,7 +16,7 @@ export class HeaderComponent implements OnInit {
   title = 'app';
   highestLevel: string;
   activeAlerts = [];
-  menuState$: Observable < boolean > ;
+  menuState$: Observable<boolean>;
   subscription: Subscription;
   subs: Subscription;
   searchText = '';
@@ -43,7 +24,6 @@ export class HeaderComponent implements OnInit {
   isChanged = false;
   moreAlerts = false;
   isAlertsOpen = false;
-
 
   constructor(
     private menuService: MenuService,
@@ -54,39 +34,41 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService
   ) {
     this.system = [];
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
   ngOnInit() {
     this.searchResults = [];
     this.httpService.getTop().subscribe(res => {
       this.system = res;
-    })
+      if (res.product_version) {
+        console.log('product_version: ', res.product_version);
+      }
+    });
   }
 
   toggleAlerts() {
     this.httpService.getAlerts().subscribe(res => {
-      let alertsModalRef = this.modalService.open(AlertsModalComponent, {
+      const alertsModalRef = this.modalService.open(AlertsModalComponent, {
         windowClass: 'alerts-window',
         backdrop: 'static'
       });
       alertsModalRef.componentInstance.alerts = res.alerts;
     });
   }
-logout(){
-  this.authService.logout();
-}
-
-  filterItem(searchValue) {
-    let search = {
-      scope: '',
-      keyword: searchValue
-    }
-    this.httpService.search(search).subscribe(res => {
-      this.searchResults = res
-    });
+  logout() {
+    this.authService.logout();
   }
 
+  filterItem(searchValue) {
+    const search = {
+      scope: '',
+      keyword: searchValue
+    };
+    this.httpService.search(search).subscribe(res => {
+      this.searchResults = res;
+    });
+  }
 
   toggleMenu() {
     this.menuService.toggleMenu();
@@ -96,9 +78,8 @@ logout(){
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
-    console.log(msg.result);
     switch (Object.keys(msg.result)[0]) {
-      // System 
+      // System
       case 'alice':
         this.system.alice = msg.result.alice;
         break;
@@ -123,7 +104,7 @@ logout(){
       case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
         break;
-        // Search
+      // Search
       case 'search_result':
         this.searchResults.unshift(msg.result.search_result);
         this.searchResults = this.searchResults.slice();
@@ -135,4 +116,3 @@ logout(){
     this.searchResults = [];
   }
 }
-

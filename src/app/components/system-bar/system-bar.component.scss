@@ -34,7 +34,7 @@
       .alerts-number {
         border-radius: 100px;
         background-color: #ff536f;
-        color: #232d38;
+        color: $dark;
         height: 10px;
         width: 10px;
         display: flex;
@@ -48,13 +48,13 @@
     }
 
     .circle-red {
-      background-color: #ff536f;
-      color: #232d38;
+      background-color: $warning;
+      color: $dark;
     }
 
     .circle-green {
-      background-color: #65efe8;
-      color: #232d38;
+      background-color: $tiffany-blue;
+      color: $dark;
     }
 
     li.device-info {
@@ -101,6 +101,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0 5px;
       }
 
       [class*="circle"] {
@@ -166,7 +167,7 @@
     }
 
     li .interceptor {
-      color: #65efe8;
+      color: $tiffany-blue;
     }
 
     li .interceptor-failed {
@@ -213,7 +214,7 @@
       background-color: #52667b;
       border-radius: 0;
       text-transform: capitalize;
-      color: #c5e1ff;
+      color: $primary-text;
       font-size: 11px;
       letter-spacing: 0.2px;
     }
@@ -234,7 +235,7 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: left;
-  color: #c5e1ff;
+  color: $primary-text;
   margin-top: 20px;
   border-radius: 4px;
   min-width: 350px;
@@ -320,7 +321,7 @@
       padding: 10px;
 
       li {
-        color: #c5e1ff57;
+        color: $primary-text;
 
         &.last-update {
           margin-right: 115px;
@@ -337,10 +338,12 @@
       @extend .table-headers;
 
       li {
-        color: #c5e1ff;
-        &.status-value{
-          width: 65px;
+        color: $primary-text;
+
+        &.status-value {
+          width: 30px;
         }
+
         &.reset {
           display: flex;
           align-items: center;
@@ -364,14 +367,6 @@
 
     .status-value {}
 
-    .icon-button {
-      width: fit-content;
-      height: 35px;
-
-      .button-img {
-        padding-right: 10px;
-      }
-    }
   }
 }
 
@@ -384,7 +379,7 @@
 }
 
 [class*="connected"] {
-  color: #65efe8;
+  color: $tiffany-blue;
 }
 
 [class*="not-connected"] {
@@ -400,11 +395,11 @@
 }
 
 [class*="green"] {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 [class*="GREEN"] {
-  color: #65efe8 !important;
+  color: $tiffany-blue !important;
 }
 
 .interceptor-pop-wrapper {
@@ -554,7 +549,7 @@
         line-height: 1.93;
         letter-spacing: 0.6px;
         text-align: left;
-        color: #c5e1ff;
+        color: $primary-text;
         width: 400px;
         padding: 0 5px 0 0;
         height: 100px;
@@ -580,4 +575,83 @@
     }
   }
 
+}
+
+
+.rwd-table {
+  width: 100%;
+}
+
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+}
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+
+.rwd-table td:last-child {
+  padding: 10px !important;
+  margin: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: center;
+}
+
+
+.rwd-table th,
+.rwd-table td {
+  display: table-cell;
+  padding: .25em .5em;
+}
+
+
+
+.rwd-table th:last-child,
+.rwd-table td:last-child {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.rwd-table {
+  background-color: #2c3745;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.rwd-table tr {
+  border-color: #13171c;
+  // border-bottom: 1px solid #13171c;
+}
+
+.rwd-table th,
+.rwd-table td {
+  margin: .5em 1em;
 }

@@ -1,14 +1,13 @@
 @import "../../../../scss/base";
 @import "../../../../scss/backgroundimages";
+@import "../../../../scss//colors.scss";
 
-
-.modal-media-header
-{
+.modal-media-header {
   height: 78px;
   font-size: 26px;
   text-align: center;
-  color:#65efe8;
-  background-color: #445464;
+  color: $tiffany-blue;
+  background-color: $slate;
   padding: 22px;
   text-transform: capitalize;
 }
@@ -30,90 +29,73 @@
   margin-top: 10px;
 }
 
-.disconnect-device-modal
-{
+.disconnect-device-modal {
   width: 311px;
   z-index: 99999 !important;
   overflow-y: hidden !important;
 
-  .modal-dialog
-  {
+  .modal-dialog {
     margin: 0 auto;
   }
 
-  .modal-wrapper
-  {
+  .modal-wrapper {
     width: 311px;
     height: 260px;
-    background-color: #3c4a58;
+    background-color: $slate-two;
     border-radius: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    .modal-disconnect-header
-    {
+    .modal-disconnect-header {
       height: 51px;
       font-size: 21px;
       text-align: center;
-      color: #c5e1ff;
-      background-color: #445464;
+      color: $primary-text;
+      background-color: $slate;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 1px 4px 0 rgba(26, 34, 42, 0.32);
     }
+
     .modal-content {
       text-align: center;
-      width: 60%;
+      width: 100%;
       margin: 20px auto 0 auto;
       font-size: 18px;
       line-height: 1.4;
       letter-spacing: 0.7px;
       color: #c4e1ff;
     }
-    .modal-disconnect-footer
-    {
+
+    .modal-disconnect-footer {
       font-size: 15px;
       text-align: center;
-      color: #ff6c91;
+      color: $carnation;
       display: flex;
       margin-bottom: 28px;
       justify-content: center;
+
       .center-button {
-        width:225px;
+        width: 225px;
         height: 44px;
         font-size: 20px;
         margin: 0 auto;
       }
-      .disconnect-modal-button
-      {
-        width:126px;
+
+      .disconnect-modal-button {
+        width: 126px;
         height: 39px;
         font-size: 15px;
         font-weight: bold;
       }
-      .button-yes
-      {
-        border: none;
-        background-color: #ff4d6a;
-        box-shadow: 0 7px 10px 0 rgba(26, 34, 42, 0.31);
-        color: #232d38;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
 
-      .button-no
-      {
-        border: none;
-        color: #b6d1ed;
-        background-color: transparent;
-        letter-spacing: 0.6px;
-        text-transform: uppercase;
-        cursor: pointer;
-        width: 100px;
-        font-weight: normal;
-      }
+
     }
   }
+}
+
+.warning {
+  font-size: 12px;
 }

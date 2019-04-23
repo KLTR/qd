@@ -1,255 +1,228 @@
-import {
-  HttpService
-}
-from '@app/services';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  ViewChild,
-  SimpleChange
-}
-from '@angular/core';
-import {
-  NgbTooltip
-}
-from '@ng-bootstrap/ng-bootstrap';
-import {
-  User
-}
-from '@app/models';
-import {
-  Observable,
-  interval
-}
-from 'rxjs/';
-import {
-  map
-}
-
-from 'rxjs/operators';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { HttpService } from '@app/services';
+import { NgbModal, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
+import { interval, Observable } from 'rxjs/';
+import { map } from 'rxjs/operators';
+import { ConfirmModalComponent } from '../modals/confirm-modal/confirm-modal.component';
 
 @Component({
-      selector: 'app-system-bar',
-      templateUrl: './system-bar.component.html',
-      styleUrls: ['./system-bar.component.scss']
-    }
+  selector: 'app-system-bar',
+  templateUrl: './system-bar.component.html',
+  styleUrls: ['./system-bar.component.scss']
+})
+export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
+  @Input() system: any;
+  @ViewChild('t') public tooltip: NgbTooltip;
 
-  ) export class SystemBarComponent implements OnInit,
-  OnChanges,
-  AfterViewInit {
+  // Popovers childs
+  @ViewChild('internetPop') public internetPop: any;
+  @ViewChild('alicePop') public alicePop: any;
+  @ViewChild('cloudPop') public cloudPop: any;
+  @ViewChild('pioneerPop') public pioneerPop: any;
+  @ViewChild('interceptorPop') public interceptorPop: any;
+  openedPop: any;
+  pops: any[];
+  isMenuOpen: boolean;
+  date: any;
+  clock$: Observable<number>;
+  layoutInterval: any;
+  batteryStatus: string;
+  internetStatus: string;
+  diskStatus: string;
+  interceptorStatus: string;
+  aliceStatus: string;
+  pioneerStatus: string;
+  cloudStatus: string;
+  showInternetTip = false;
+  config: any;
+  selectedInterceptor: any;
+  jsonInterceptor: any;
+  constructor(private cdRef: ChangeDetectorRef, private modalService: NgbModal, private http: HttpService) {
+    this.isMenuOpen = false;
+    this.date = new Date();
+    this.layoutInterval = null;
+  }
 
-    @Input() system: any;
-    @ViewChild('t') public tooltip: NgbTooltip;
+  ngOnInit() {
+    this.clock$ = interval(1000).pipe(map(() => Date.now()));
+    this.http.getConfigLocal().subscribe(res => (this.config = res));
+    this.pops = [this.internetPop, this.alicePop, this.cloudPop, this.pioneerPop, this.interceptorPop];
+  }
 
-    // Popovers childs
-    @ViewChild('internetPop') public internetPop: any;
-    @ViewChild('alicePop') public alicePop: any;
-    @ViewChild('cloudPop') public cloudPop: any;
-    @ViewChild('pioneerPop') public pioneerPop: any;
-    @ViewChild('interceptorPop') public interceptorPop: any;
-    openedPop: any;
-    pops: any[];
-    isMenuOpen: boolean;
-    date: any;
-    clock$: Observable < number >;
-    layoutInterval: any;
-    batteryStatus: String;
-    internetStatus: String;
-    diskStatus: String;
-    interceptorStatus: String;
-    aliceStatus: String;
-    pioneerStatus: String;
-    cloudStatus: String;
-    showInternetTip = false;
-    config: any;
-    selectedInterceptor: any;
-    jsonInterceptor: any;
-    constructor(private cdRef: ChangeDetectorRef,
-      private http: HttpService) {
-      this.isMenuOpen = false;
-      this.date = new Date();
-      this.layoutInterval = null;
-    }
+  ngOnChanges() {
+    this.getBatteryMode();
+    this.getInternetMode();
+    this.getDiskSpace();
+    this.getDeviceStatus();
+    this.getAliceStatus();
+    this.getPioneerStatus();
+    this.getCloudStatus();
+    this.checkInterceptor();
+  }
 
-    ngOnInit() {
-      this.clock$  = interval(1000).pipe(map(() => Date.now()));
-      this.http.getConfigLocal().subscribe(res => this.config = res);
-      this.pops = [this.internetPop,
-        this.alicePop,
-        this.cloudPop,
-        this.pioneerPop,
-        this.interceptorPop
-      ];
+  ngAfterViewInit() {
+    this.checkInterceptor();
+    this.cdRef.detectChanges();
+  }
 
-    }
-
-ngOnChanges(){
-  this.getBatteryMode();
-  this.getInternetMode();
-  this.getDiskSpace();
-  this.getDeviceStatus();
-  this.getAliceStatus();
-  this.getPioneerStatus();
-  this.getCloudStatus();
-  this.checkInterceptor();
-}
-
-    
-
-    ngAfterViewInit() {
-      this.checkInterceptor();
-      this.cdRef.detectChanges();
-    }
-
-    // Close other popover that is currently open;
-    handlePops(index) {
-
-      // If click on opened pop
-      if (this.openedPop === this.pops[index]) {
-        this.openedPop.close();
-        this.openedPop = null;
-        return;
-      }
-
-      this.openedPop = this.pops[index];
-      this.openedPop.open();
-      for (let i = 0; i < this.pops.length;
-
-        i++) {
-        if (i !== index && this.pops[i].isOpen()) {
-          this.pops[i].close();
-          return;
-        }
-      }
-    }
-
-    closeTip() {
+  // Close other popover that is currently open;
+  handlePops(index) {
+    // If click on opened pop
+    if (this.openedPop === this.pops[index]) {
       this.openedPop.close();
       this.openedPop = null;
+      return;
     }
 
-    checkInterceptor() {
-      if(this.selectedInterceptor){
+    this.openedPop = this.pops[index];
+    this.openedPop.open();
+    for (let i = 0; i < this.pops.length; i++) {
+      if (i !== index && this.pops[i].isOpen()) {
+        this.pops[i].close();
         return;
       }
-      if (this.system.interceptor && this.config) {
-        if (this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0) {
-          this.system.interceptor.interceptors.forEach(element => {
-            if(element.connected ){
-              this.selectedInterceptor = element;
-              return;
-            }
-          });
-          if(!this.selectedInterceptor){
-            this.selectedInterceptor = this.system.interceptor.interceptors[0]
-          }
-        }
-      }
     }
-
-    getBatteryMode() {
-      if (this.system.goat && this.config) {
-        switch (this.system.goat.indicator.state) {
-          case this.config.indicators.state.green:
-            this.batteryStatus = 'battery-full';
-            break;
-          case this.config.indicators.state.yellow:
-            this.batteryStatus = 'battery-mid';
-            break;
-          case this.config.indicators.red:
-            this.batteryStatus = 'battery-low';
-            break;
-          default:
-            this.batteryStatus = 'battery-low';
-            // default :
-            // Chargin icon
-            //   this.batteryStatus = 'power-on';
-            //   break;
-        }
-      }
-    }
-
-    getDiskSpace() {
-      if (this.system.storage && this.config) {
-        switch (this.system.storage.indicator.state) {
-          case this.config.indicators.state.green:
-            this.diskStatus = 'storage-full';
-            break;
-          case this.config.indicators.state.yellow:
-            this.diskStatus = 'storage-half';
-            break;
-          case this.config.indicators.red:
-            this.diskStatus = 'storage-empty';
-            break;
-          default:
-            this.diskStatus = 'storage-empty';
-        }
-      }
-    }
-
-
-    getInternetMode() {
-      if (this.system.internet && this.config) {
-        if (this.system.internet.indicator.state === this.config.indicators.state.green) {
-          this.internetStatus = 'connected';
-        } else {
-          this.internetStatus = 'not-connected';
-        }
-
-      }
-    }
-
-    getDeviceStatus() {
-      if (this.system.interceptor && this.config) {
-        if (this.system.interceptor.indicator.state === this.config.indicators.state.green) {
-          this.interceptorStatus = 'interceptor';
-        } else {
-          this.interceptorStatus = 'interceptor-failed';
-        }
-      }
-    }
-
-    getAliceStatus() {
-      if (this.system.alice && this.config) {
-        if (this.system.alice.indicator.state === this.config.indicators.state.green) {
-          this.aliceStatus = 'alice-green'
-        } else {
-          this.aliceStatus = 'alice-red'
-        }
-      }
-    }
-
-    getCloudStatus() {
-      if (this.system.cloudx && this.config) {
-        if (this.system.cloudx.indicator.state === this.config.indicators.state.green) {
-          this.cloudStatus = 'cloud-green'
-        } else {
-          this.cloudStatus = 'cloud-red'
-        }
-      }
-    }
-
-    getPioneerStatus() {
-      if (this.system.pioneer && this.config) {
-        if (this.system.pioneer.indicator.state === this.config.indicators.state.green) {
-          this.pioneerStatus = 'pioneer-green';
-        } else {
-          this.pioneerStatus = 'pioneer-red'
-        }
-      }
-    }
-
-    selectInterceptor(interceptor: Object) {
-      this.selectedInterceptor = interceptor;
-    }
-
-    resetPioneerMachine(pioneerId: string) {
-      console.log(pioneerId);
-      this.http.resetPioneerMachine(pioneerId).subscribe( res => {console.log(res)});
-    }
-
   }
+
+  closeTip() {
+    this.openedPop.close();
+    this.openedPop = null;
+  }
+
+  checkInterceptor() {
+    if (this.selectedInterceptor) {
+      return;
+    }
+    if (this.system.interceptor && this.config) {
+      if (this.system.interceptor.interceptors && this.system.interceptor.interceptors.length > 0) {
+        this.system.interceptor.interceptors.forEach(element => {
+          if (element.connected) {
+            this.selectedInterceptor = element;
+            return;
+          }
+        });
+        if (!this.selectedInterceptor) {
+          this.selectedInterceptor = this.system.interceptor.interceptors[0];
+        }
+      }
+    }
+  }
+
+  getBatteryMode() {
+    if (this.system.goat && this.config) {
+      switch (this.system.goat.indicator.state) {
+        case this.config.indicators.state.green:
+          this.batteryStatus = 'battery-full';
+          break;
+        case this.config.indicators.state.yellow:
+          this.batteryStatus = 'battery-mid';
+          break;
+        case this.config.indicators.red:
+          this.batteryStatus = 'battery-low';
+          break;
+        default:
+          this.batteryStatus = 'battery-low';
+        // default :
+        // Chargin icon
+        //   this.batteryStatus = 'power-on';
+        //   break;
+      }
+    }
+  }
+
+  getDiskSpace() {
+    if (this.system.storage && this.config) {
+      switch (this.system.storage.indicator.state) {
+        case this.config.indicators.state.green:
+          this.diskStatus = 'storage-full';
+          break;
+        case this.config.indicators.state.yellow:
+          this.diskStatus = 'storage-half';
+          break;
+        case this.config.indicators.red:
+          this.diskStatus = 'storage-empty';
+          break;
+        default:
+          this.diskStatus = 'storage-empty';
+      }
+    }
+  }
+
+  getInternetMode() {
+    if (this.system.internet && this.config) {
+      if (this.system.internet.indicator.state === this.config.indicators.state.green) {
+        this.internetStatus = 'connected';
+      } else {
+        this.internetStatus = 'not-connected';
+      }
+    }
+  }
+
+  getDeviceStatus() {
+    if (this.system.interceptor && this.config) {
+      if (this.system.interceptor.indicator.state === this.config.indicators.state.green) {
+        this.interceptorStatus = 'interceptor';
+      } else {
+        this.interceptorStatus = 'interceptor-failed';
+      }
+    }
+  }
+
+  getAliceStatus() {
+    if (this.system.alice && this.config) {
+      if (this.system.alice.indicator.state === this.config.indicators.state.green) {
+        this.aliceStatus = 'alice-green';
+      } else {
+        this.aliceStatus = 'alice-red';
+      }
+    }
+  }
+
+  getCloudStatus() {
+    if (this.system.cloudx && this.config) {
+      if (this.system.cloudx.indicator.state === this.config.indicators.state.green) {
+        this.cloudStatus = 'cloud-green';
+      } else {
+        this.cloudStatus = 'cloud-red';
+      }
+    }
+  }
+
+  getPioneerStatus() {
+    if (this.system.pioneer && this.config) {
+      if (this.system.pioneer.indicator.state === this.config.indicators.state.green) {
+        this.pioneerStatus = 'pioneer-green';
+      } else {
+        this.pioneerStatus = 'pioneer-red';
+      }
+    }
+  }
+
+  selectInterceptor(interceptor: Object) {
+    this.selectedInterceptor = interceptor;
+  }
+
+  resetPioneerMachine(pioneer: any) {
+    const confirmModal = this.modalService.open(ConfirmModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static'
+    });
+    confirmModal.componentInstance.title = 'Refresh';
+    confirmModal.componentInstance.message = `Are you sure you want to reset '${pioneer.name}'?`;
+    confirmModal.componentInstance.additionalText = `*last reset was ${moment(pioneer.updated_at).fromNow()}`;
+    confirmModal.result.then(res => {
+      if (res) {
+        this.http.resetPioneerMachine(pioneer.name).subscribe(
+          result => {
+            console.log(result);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      }
+    });
+  }
+}

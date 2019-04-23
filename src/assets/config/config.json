@@ -5,5 +5,11 @@
             "red": "RED",
             "yellow": "YELLOW"
         }
-    } 
+    },
+    "export-formats": [
+        "PB",
+        "JSON",
+        "CSV",
+        "RAW"
+    ]
 }

@@ -1,6 +1,7 @@
 <div class="right-bar" [ngClass]="isOpen ? 'expanded' : 'folded'">
   <div class="arrow" (click)="toggleNav()">
-    <app-svg-icon [name]="isOpen ? 'right_arrow' : (events?.length > 0 ? 'bell_notification' : 'bell_empty' ) " [size]="15"></app-svg-icon>
+    <app-svg-icon [name]="isOpen ? 'right_arrow' : (events?.length > 0 ? 'bell_notification' : 'bell_empty' ) "
+      [size]="15"></app-svg-icon>
   </div>
   <div class="wrapper" [ngClass]="isOpen ? 'open-nav' : 'close-nav' ">
     <div class="content">
@@ -16,7 +17,9 @@
               <span *ngIf="event.log?.metadata?.name" class="event-owner2">{{event.log.metadata.name}}</span>
             </div>
             <div class="buttons">
-              <span class="dismiss" (click)="removeEvent(event)">DISMISS </span>
+              <button class="secondary-btn" (click)="removeEvent(event)">
+                <span>DISMISS</span>
+              </button>
             </div>
           </li>
         </ul>

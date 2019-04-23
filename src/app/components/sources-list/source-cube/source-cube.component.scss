@@ -13,9 +13,15 @@
   z-index: 3;
   position: relative;
   margin-top: 8px;
+  cursor: pointer;
 
   &:hover {
     background-color: #425568;
+
+    .soruce-cube-info {
+      opacity: 1;
+    }
+
     cursor: pointer;
 
     .source-export {
@@ -31,7 +37,8 @@
   .source-img {
     width: 85px;
     position: relative;
-    .more-photos-icon{
+
+    .more-photos-icon {
       position: absolute;
       right: 7px;
       top: 0;
@@ -94,6 +101,8 @@
 
         .source-phone-info {
           display: flex;
+          //         display: grid;
+          // grid-template-columns: auto auto;
           align-items: center;
           color: #85a0bc;
           font-size: 12px;
@@ -103,10 +112,12 @@
           .phone-version {
             margin-left: 3px;
           }
-          .phone-battery{
+
+          .phone-battery {
             margin-left: 5px;
           }
-          .phone-wifi{
+
+          .phone-wifi {
             margin-left: 5px;
             margin-bottom: 2px;
           }
@@ -117,12 +128,13 @@
     .device-status {
       display: flex;
       align-self: center;
-      margin-left: auto;
+      margin-left: -70px;
       flex-direction: column;
       align-items: center;
       height: 100%;
       justify-content: center;
       margin-right: 20px;
+
       app-svg-icon {
         svg {
           #inactive {
@@ -149,6 +161,7 @@
     display: flex;
     height: 100%;
     flex-grow: 1;
+
     .after-initializing {
       width: 96.5%;
       display: flex;
@@ -162,20 +175,23 @@
         display: flex;
         align-items: center;
         margin-top: 4px;
-        .cube-info{
+
+        .cube-info {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          margin-left:auto;
+          margin-left: auto;
           font-weight: bold;
-          .cube-info-duration{
+
+          .cube-info-duration {
             margin-left: auto;
             font-size: 12px;
             color: #85a0bc;
             line-height: 0.93;
           }
-          .cube-info-value{
+
+          .cube-info-value {
             margin-left: auto;
             font-size: 12px;
             color: #85a0bc;
@@ -220,9 +236,11 @@
           display: flex;
           justify-content: center;
         }
-        .remaining-time{
+
+        .remaining-time {
           margin-left: 5px;
         }
+
         ::ng-deep ngb-progressbar {
           .progress {
             background-color: rgba(35, 45, 56, 1);
@@ -316,6 +334,10 @@
     }
 
     &.dimmed {
+      &:hover {
+        // background-color: #364556;
+      }
+
       .after-initializing {
         cursor: default;
 
@@ -425,7 +447,7 @@
   background-size: 99% 100%;
   background-repeat: no-repeat;
   animation: shimmer 1.5s linear 1ms infinite backwards;
-   //background-image: linear-gradient(90deg, rgba(54, 69, 86, 0.4) 0, rgba(54, 69, 86, 0.4) 20%, rgba(54, 69, 86, 0.4) 40%, rgba(54, 69, 86, 0.4));
+  //background-image: linear-gradient(90deg, rgba(54, 69, 86, 0.4) 0, rgba(54, 69, 86, 0.4) 20%, rgba(54, 69, 86, 0.4) 40%, rgba(54, 69, 86, 0.4));
   //animation: shimmer 3s linear 1ms infinite backwards;
 }
 
@@ -442,22 +464,25 @@
 .dimmed {
   opacity: 0.6;
   cursor: default;
-  .source-cube-wrapper{
+
+  .source-cube-wrapper {
     opacity: 0.6;
     cursor: default;
   }
-  .cube-on-off{
-    pointer-events: none;
+
+  .cube-on-off {
+    // pointer-events: none;
   }
-  &:hover{
-    background-color: #364556;
+
+  &:hover {
+    // background-color: #364556;
   }
 }
 
-svg#inactive{
+svg#inactive {
   margin-left: 4px;
 }
 
-#ctool_is_ollecting_data{
+#ctool_is_ollecting_data {
   margin-right: 6px;
 }

@@ -1,0 +1,101 @@
+{
+  "tasks": [{
+      "id": "12356",
+      "name": "DEVICE_INFO",
+      "display_name": "Device info",
+      "state": "FETCH"
+    },
+    {
+      "id": "222222",
+      "name": "APPLIST",
+      "display_name": "App list",
+      "state": "DOWNLOADING_APP"
+    },
+    {
+      "id": "333333",
+      "name": "KEYCHAINS",
+      "display_name": "Passwords",
+      "progress_bar": true,
+      "progress": 58,
+      "state": "PAUSE"
+    },
+    {
+      "id": "333333",
+      "name": "CONTACTS",
+      "display_name": "Contacts",
+      "progress_bar": true,
+      "progress": 25,
+      "state": "UPDATE"
+    },
+    {
+      "id": "333333",
+      "name": "CALL_HISTORY",
+      "display_name": "Call history",
+      "state": "FAILED_TO_DOWNLOAD"
+    },
+    {
+      "id": "333333",
+      "name": "SMS",
+      "display_name": "SMS",
+      "state": "FAILED_TO_UPDATE"
+    },
+    {
+      "id": "333333",
+      "name": "BROWSER",
+      "display_name": "Browser",
+      "state": "RECCURANCE"
+    },
+    {
+      "id": "333333",
+      "name": "LOCATION",
+      "display_name": "Location",
+      "state": "FETCH"
+    },
+    {
+      "id": "333333",
+      "name": "WHATSAPP",
+      "display_name": "Whatsapp",
+      "state": "FAILED_TO_DOWNLOAD"
+    },
+    {
+      "id": "333333",
+      "name": "TELEGRAM",
+      "display_name": "Telegram",
+      "progress_bar": true,
+      "progress": 16,
+      "state": "UPDATE"
+    },
+    {
+      "id": "333333",
+      "name": "SIGNAL",
+      "display_name": "Signal",
+      "state": "RECCURANCE"
+    },
+    {
+      "id": "333333",
+      "name": "LINE",
+      "display_name": "Line",
+      "state": "FAILED_TO_UPDATE"
+    },
+    {
+      "id": "333333",
+      "name": "WECHAT",
+      "display_name": "Wechat",
+      "progress_bar": true,
+      "progress": 78,
+      "state": "PAUSE"
+    },
+    {
+      "id": "333333",
+      "name": "EMAIL",
+      "display_name": "Email",
+      "state": "DOWNLOADING_APP"
+    },
+    {
+      "id": "333333",
+      "name": "MEDIA",
+      "display_name": "Media",
+      "state": "WAITING_FOR_DOWNLOAD"
+    }
+  ]
+}

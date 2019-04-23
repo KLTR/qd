@@ -1,18 +1,21 @@
+@import '../../../scss/colors.scss';
+
 .tooltip-wrapper {
-  background-color: #52667b;
+  background-color: #3B4859;
   padding: 15px;
-  color: #c5e1ff;
+  color: $primary-text;
   font-size: 11px;
   letter-spacing: 0.2px;
   position: absolute;
   left: 85px;
   top: -7px;
+
   &::after {
     content: "";
     display: block;
     border-width: 10px 10px 10px 10px;
     border-style: solid;
-    border-color: transparent #4d6179 transparent transparent;
+    border-color: transparent #3B4859 transparent transparent;
     margin-left: -10px;
     position: absolute;
     top: 0px;
@@ -58,14 +61,13 @@
         min-width: 90px;
         font-size: 10px;
         text-align: left;
-        color: #c4e1ff;
         text-transform: uppercase;
         align-self: center;
-        font-weight: bold;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;
         letter-spacing: 0.4px;
+        color: rgba(197, 225, 255, 0.6);
       }
 
       .field-value {
@@ -73,8 +75,8 @@
         //width: 65%;
         font-size: 13px;
         text-align: left;
-        color: rgba(197, 225, 255, 0.8);
-        font-weight: normal;
+        color: rgba(197, 225, 255, 1);
+        font-weight: bold;
         font-style: normal;
         font-stretch: normal;
         line-height: normal;

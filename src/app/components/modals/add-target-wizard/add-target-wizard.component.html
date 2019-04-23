@@ -12,7 +12,8 @@
           </div>
           <div class="vector-info">
             <div class="vector-name">{{vector.name}}<span class="licenses">
-                ( licenses: <span [ngClass]="{ 'warn': vector.license?.used === 1, 'error': vector.license?.used === 0 }">{{vector.license?.used}}</span>/{{vector.license?.total}}
+                ( licenses: <span
+                  [ngClass]="{ 'warn': vector.license?.used === 1, 'error': vector.license?.used === 0 }">{{vector.license?.used}}</span>/{{vector.license?.total}}
                 )
               </span></div>
             <div class="vector-state">
@@ -30,14 +31,17 @@
                 <button class="btn btn-outline-primary" id="typeDropdown" ngbDropdownToggle>{{selectedType || 'select
                   type'}}</button>
                 <div ngbDropdownMenu aria-labelledby="typeDropdown">
-                  <button class="dropdown-item" (click)="selectedType = 'email';validateIdentifier(vector.inputs.identifier)">Email</button>
-                  <button class="dropdown-item" (click)="selectedType = 'phone';validateIdentifier(vector.inputs.identifier)">Phone
+                  <button class="dropdown-item"
+                    (click)="selectedType = 'email';validateIdentifier(vector.inputs.identifier)">Email</button>
+                  <button class="dropdown-item"
+                    (click)="selectedType = 'phone';validateIdentifier(vector.inputs.identifier)">Phone
                     number</button>
                 </div>
               </div>
               <label for="identifier">Enter target's {{selectedType}}</label>
-              <input [ngClass]="{ 'error': !!error }" [(ngModel)]="vector.inputs.identifier" (keyup)="validateIdentifier($event.target.value)"
-                (change)="validateIdentifier($event.target.value)" class="phone" id="identifier" name="identifier" />
+              <input [ngClass]="{ 'error': !!error }" [(ngModel)]="vector.inputs.identifier"
+                (keyup)="validateIdentifier($event.target.value)" (change)="validateIdentifier($event.target.value)"
+                class="phone" id="identifier" name="identifier" />
               <span class="input-error" *ngIf="error">{{ error}}</span>
             </div>
           </div>
@@ -46,10 +50,11 @@
     </ul>
   </div>
   <div class="buttons-wrapper">
-    <!-- <button class="apply-button modal-btn" (click)="">Test Viewer</button> -->
-    <button class="cancel-button modal-btn" (click)="activeModal.close()">Close</button>
-    <button *ngIf="!isLoading" class="apply-button modal-btn" [disabled]="isEmpty || hasErrors || !isPionnerConnected"
-      [ngClass]="{ 'disabled': isEmpty || hasErrors || !isPionnerConnected }" (click)="addTarget()">Add target
+    <button class="secondary-btn modal-btn" (click)="activeModal.close()">Close</button>
+    <button *ngIf="!isLoading" class="primary-btn modal-btn ripple"
+      [disabled]="isEmpty || hasErrors || !isPionnerConnected"
+      [ngClass]="{ 'disabled': isEmpty || hasErrors || !isPionnerConnected }" (click)="addTarget()">
+      <span>Add target</span>
     </button>
   </div>
 </div>

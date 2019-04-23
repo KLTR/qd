@@ -1,44 +1,45 @@
 <div class="navigation-wrapper">
-    <div class="navbar-wrapper">
-      <a class="navbar-logo" href="#">{{system?.system?.name}}</a>
-      <div class="navbar-system-bar">
-          <!-- <div class="search-bar">
+  <div class="navbar-wrapper">
+    <a class="navbar-logo" href="#">{{system?.system?.name}}</a>
+    <div class="navbar-system-bar">
+      <!-- <div class="search-bar">
               <form>
                   <input id="search-input" #searchInput type="search" placeholder="Search" name="searchText" [(ngModel)]="searchText"
                    (input)="filterItem(searchInput.value)"
                     >
               </form>  
           </div> -->
-        <app-system-bar *ngIf="system" [system]="system"></app-system-bar>
-      </div>
-      <div class="navbar-menu">
-        <div class="alerts" (click)="toggleAlerts()">
-            <span *ngIf="system?.alert?.indicator.state === 'RED'" class="alerts-number">{{system.alert?.count}}</span>
-            <app-svg-icon name="alert" [size]="20" ></app-svg-icon>
-        </div>
-
-        <app-svg-icon name="user" [size]="21" [satPopoverAnchorFor]="userPop" (click)="userPop.toggle()"></app-svg-icon>
-      </div>
+      <app-system-bar *ngIf="system" [system]="system"></app-system-bar>
     </div>
+    <div class="navbar-menu">
+      <div class="alerts" (click)="toggleAlerts()">
+        <span *ngIf="system?.alert?.indicator.state === 'RED'" class="alerts-number">{{system.alert?.count}}</span>
+        <app-svg-icon name="alert" [size]="20"></app-svg-icon>
+      </div>
 
+      <app-svg-icon name="user" [size]="21" [satPopoverAnchorFor]="userPop" (click)="userPop.toggle()"></app-svg-icon>
+    </div>
   </div>
 
-  <!-- <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal> -->
-        <sat-popover #userPop xAlign="center" yAlign="below">
-            <div class="custom-tip user">
-                <div class="header">
-                    <span class="user-name">{{system?.user?.user}}</span>
-                    <span class="logout icon-button" (click)="logout()">Logout <img src="../../../assets/img/export.png"></span>
-                </div>
-                <ul class="content">
-                    <ul class="table-headers">
-                        <li>Space name</li>
-                        <li class="roles">Roles</li>
-                    </ul>
-                    <ul class="table-values" *ngFor="let space of system?.user?.permissions">
-                        <li><span>{{space.space_name}}</span></li>
-                        <li class="roles" *ngFor="let role of space.roles; let i = index;">{{role}} <span *ngIf="i !== space.roles.length-1">,</span></li>
-                    </ul>
-                </ul>
-            </div>
-        </sat-popover>
+</div>
+
+<!-- <app-search-modal [searchResult]="searchResults" (clearSearchResults)="clearSearchResults()" ></app-search-modal> -->
+<sat-popover #userPop xAlign="center" yAlign="below">
+  <div class="custom-tip user">
+    <div class="header">
+      <span class="user-name">{{system?.user?.user.name}}</span>
+      <button class="default-btn" (click)="logout()">logout</button>
+    </div>
+    <ul class="content">
+      <ul class="table-headers">
+        <li>Space name</li>
+        <li class="roles">Roles</li>
+      </ul>
+      <ul class="table-values" *ngFor="let space of system?.user?.user?.permissions">
+        <li><span>{{space.space_name}}</span></li>
+        <li class="roles" *ngFor="let role of space.roles; let i = index;">{{role}} <span
+            *ngIf="i !== space.roles.length-1">,</span></li>
+      </ul>
+    </ul>
+  </div>
+</sat-popover>

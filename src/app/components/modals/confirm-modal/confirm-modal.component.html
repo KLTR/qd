@@ -1,15 +1,16 @@
 <div class="disconnect-device-modal">
-    <div class="modal-wrapper">
-      <div class="modal-disconnect-header">
-        <span class="shut-down-title">{{ title }}</span>
-      </div>
-      <div class="modal-content">
-        {{ message }}
-      </div>
-      <div class="modal-disconnect-footer">
-        <button class="button-no disconnect-modal-button" type="button" (click)="activeModal.close(false)">No</button>
-        <button class="button-yes disconnect-modal-button" type="button" (click)="activeModal.close(true)">Yes</button>
-      </div>
+  <div class="modal-wrapper">
+    <div class="modal-disconnect-header">
+      <span class="shut-down-title">{{ title }}</span>
+    </div>
+    <div class="modal-content truncate">
+      {{ message }}
+      <br>
+      <span class="warning" *ngIf="additionalText">{{additionalText}}</span>
+    </div>
+    <div class="modal-disconnect-footer">
+      <button class="secondary-btn disconnect-modal-button" type="button" (click)="activeModal.close(false)">No</button>
+      <button class="warning-btn disconnect-modal-button" type="button" (click)="activeModal.close(true)">Yes</button>
     </div>
   </div>
-  
+</div>

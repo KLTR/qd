@@ -1,10 +1,9 @@
-import { HttpService } from '@app/services';
+import { HttpService, AppConfigService } from '@app/services';
 import { WsService } from './../../../services/websocket/ws.service';
-import { environment } from './../../../../environments/environment.prod';
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgbModal, NgbActiveModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+
 @Component({
   selector: 'app-export-modal',
   styleUrls: ['./export-modal.component.scss'],
@@ -12,11 +11,15 @@ import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component'
 })
 export class ExportModalComponent implements OnInit {
   @Input() dataType: string;
-  @Input() data: any;
+  @Input() data: any; //source
   exportData: any;
-  fileName = '5c6dba156c686f5ffa0668f5.zip';
-  fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.fileName}`;
+  config: any;
+  isStartedExporting = false;
+  selectedFormat = 'Protobuf';
+  selectedDateRange: any;
+  isRangeSelected = false;
   constructor(
+    private appConfig: AppConfigService,
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
     private httpService: HttpService,
@@ -26,14 +29,48 @@ export class ExportModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.httpService.getConfig().subscribe()
+     this.config = this.appConfig.getConfig()
+    // this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
       progress: null,
       state: 'pending',
-      download_file: '5c6dba156c686f5ffa0668f5.zip',
-      fileUrl: '',
+      fileUrl: ``,
       id: ''
     }
-    console.log(this.data);
+  }
+setDate(date){
+  this.selectedDateRange = date;
+  console.log(this.selectedDateRange);
+}
+
+  startExport(){
+    let exportObj = {
+      format: this.selectedFormat.toLowerCase(),
+      isRange: this.isRangeSelected,
+      range: this.selectedDateRange,
+    }
+    console.log("tar.gz");
+    this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
+      this.isStartedExporting = true;
+      this.exportData.id = res.id;
+      this.exportData.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.tar.gz`;
+      console.log('File url is : ', this.exportData.fileUrl);
+    });
+  }
+
+  selectFormat(format: string){
+    this.selectedFormat = format;
+  }
+
+  selectDateRange(range: any){
+    if(range === 'all'){
+      this.isRangeSelected = false;
+      return;
+    }
+    else{
+      this.isRangeSelected = true;
+    }
   }
 
   cancelExport(){
@@ -50,7 +87,8 @@ export class ExportModalComponent implements OnInit {
       });
     } else {
       this.activeModal.close();
-    }  }
+    }  
+  }
 
     catchWebSocketEvents(msg) {
       if (Object.keys(msg)[0] === 'error') {
@@ -58,10 +96,8 @@ export class ExportModalComponent implements OnInit {
       }
       switch (Object.keys(msg.result)[0]) {
         case 'export_status':
-          this.exportData = msg.result.export_status;
-          this.exportData.fileUrl = `${environment.apiUrl}/${environment.exportURI}/${this.exportData.download_file}`;
+          this.exportData.state = msg.result.export_status.state;
           break;
-        
       }
       // this.system = Object.assign({}, this.system);
     }
