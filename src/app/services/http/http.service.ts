@@ -22,10 +22,9 @@ export class HttpService {
     getChatAppInfo: '/messengers/{{type}}/about',
 
     // Applog
-    getAlerts: '/alerts',
-    getEvents: '/dashboard/right',
+    getEvents: '/events',
+    getRightBar: '/dashboard/right',
     dismissEvent: '/events/{{id}}',
-    dismissAlert: '/alerts/{{id}}',
     // Targets
     targets: '/targets',
     archiveTarget: '/targets/{{id}}/archive',
@@ -127,9 +126,6 @@ export class HttpService {
   dismissEvent(eventId: string): Observable<any> {
     return this.http.delete(this.getUrlByApiName('dismissEvent', eventId), this.setHeaders());
   }
-  dismissAlert(alertId: string): Observable<any> {
-    return this.http.delete(this.getUrlByApiName('dismissAlert', alertId), this.setHeaders());
-  }
   abortExport(exportId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('abortExport', exportId), '', this.setHeaders());
   }
@@ -140,8 +136,8 @@ export class HttpService {
     console.log(exportObj);
     return this.http.post<any>(this.getUrlByApiName('exportSource', sourceId), exportObj, this.setHeaders());
   }
-  getEvents(): Observable<any> {
-    return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
+  getRightBar(): Observable<any> {
+    return this.http.get(this.getUrlByApiName('getRightBar'), this.setHeaders());
   }
   getDashboard(): Observable<any> {
     return this.http.get(this.getUrlByApiName('dashboard'), this.setHeaders());
@@ -158,12 +154,18 @@ export class HttpService {
   getTop(): Observable<any> {
     return this.http[this.getHttpMethod('get')](this.getUrlByApiName('top'), this.setHeaders());
   }
-  getAlerts(): Observable<any> {
-    return this.http.get(this.getUrlByApiName('getAlerts'), this.setHeaders());
+  getEvents(): Observable<any> {
+    return this.http.get(this.getUrlByApiName('getEvents'), this.setHeaders());
   }
   getConfig(): Observable<any> {
     this.config = this.http.get('../../../assets/config/config.json');
     return this.config;
+  }
+  getFakeSessions(): Observable<any> {
+    return this.http.get('../../../assets/faker/sessions.json');
+  }
+  getFakeMessages(sessionId): Observable<any> {
+    return this.http.get('../../../assets/faker/messages.json');
   }
   getConfigLocal(): any {
     return this.config;

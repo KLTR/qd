@@ -1,0 +1,12 @@
+<span class="icon-wrapper" *ngIf="batteryStatus">
+  <app-svg-icon class="battery" [name]="batteryStatus" [satPopoverAnchorFor]="batteryPop"
+    (mouseenter)="batteryPop.open()" (mouseleave)="batteryPop.close()" [size]="22"></app-svg-icon>
+</span>
+
+<sat-popover #batteryPop xAlign="center" yAlign="below">
+  <div class="custom-tip small-tip">
+    <div class="header">
+      {{goat?.tip}}
+    </div>
+  </div>
+</sat-popover>

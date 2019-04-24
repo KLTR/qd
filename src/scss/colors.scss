@@ -3,13 +3,29 @@ $charcoal-grey : #34404c;
 $slate : #455666;
 $slate-two : #3c4a58;
 $carnation : #ff6c91;
-$warning: #ff4d6a;
+
 $light-blue-grey : #b7d2ee;
-$primary-text: #c5e1ff;
 $robins-egg : #6cfff8;
 $tiffany-blue : #65efe8;
+
+// Buttons
 $primary-btn-hover: #5ee5df;
 $primary-btn-active: #4fc7c1;
 $default-btn: #2d3a48;
 $default-btn-hover: #314153;
 $default-btn-active: #3d5064;
+$warning: #ff4d6a;
+$warning-btn-hover: #ee2546;
+$warning-btn-active: #ff6c91;
+// General
+$active: #2bec97;
+$primary-text: #c5e1ff;
+
+// Events
+$event-minor: #c5e1ff;
+$event-info: #6cfff8;
+$event-warning: #ffd139;
+$event-major: #ff9f39;
+$event-critical: #ff4d6a;
+$event-fatal: #ff4d6a;
+;

@@ -48,12 +48,13 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleAlerts() {
-    this.httpService.getAlerts().subscribe(res => {
+    this.httpService.getEvents().subscribe(res => {
       const alertsModalRef = this.modalService.open(AlertsModalComponent, {
         windowClass: 'alerts-window',
         backdrop: 'static'
       });
-      alertsModalRef.componentInstance.alerts = res.alerts;
+      console.log(res);
+      alertsModalRef.componentInstance.alerts = res.events;
     });
   }
   logout() {

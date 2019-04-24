@@ -8,15 +8,18 @@
 @import "scss/intels";
 @import "./scss/paddings.scss";
 @import "./scss/margins.scss";
+@import "./scss/buttons.scss";
 @include qd-paddings(0, 50, 1px);
 @include qd-margins(0, 50, 1px);
 // Ag-Grid styles
 $ag-icons-path: "./scss/ag-theme/material-icons/";
 $primary-color: #c5e1ff;
 $accent-color: $robins-egg;
-$warn-color: #ff4d6a;
-$disabled-color: #c5e1ff;
-$disabled-background-color: #2d3a48;
+$warn-color: $warning;
+$disabled-color: $primary-text;
+$disabled-background-color: $default-btn;
+$dark : $dark; //main bg color
+
 $disabled-opacity: 0.3;
 $base-size: 1rem;
 $base-font-size: 14px;
@@ -134,7 +137,7 @@ a:focus {
 }
 
 .red-text {
-  color: #ff6c91 !important;
+  color: $carnation !important;
 }
 
 .btn-wrap,
@@ -469,17 +472,33 @@ a:focus {
   color: $tiffany-blue !important;
 }
 
-.WARNING {
-  color: #fa4c69;
+// $event-minor: #c5e1ff;
+// $event-info: #6cfff8;
+// $event-warning: #ffd139;
+// $event-major: #ff9f39;
+// $event-critical: #ff4d6a;
+// $event-fatal: #ff4d6a;;
+.EVENT-MINOR {
+  color: $event-minor;
 }
 
-.INFO {
-  color: $robins-egg;
+.EVENT-INFO {
+  color: $event-info;
 }
 
-.MAJOR {
-  color: #ff9f39;
+.EVENT-WARNING {
+  color: $event-warning;
 }
+
+.EVENT-MAJOR {
+  color: $event-major;
+}
+
+.EVENT-CRITICAL,
+.EVENT-FATAL {
+  color: $event-critical;
+}
+
 
 .red {
   color: $warning
@@ -501,7 +520,7 @@ a:focus {
 }
 
 .ready {
-  color: #2bec97 !important;
+  color: $active !important;
 }
 
 .busy {
@@ -511,126 +530,6 @@ a:focus {
 
 // Forms
 
-button {
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
-  font-weight: normal;
-  letter-spacing: 0.6px;
-  font-weight: bold;
-  line-height: 1.5;
-  min-width: 100px;
-  text-align: center;
-  font-size: 12px;
-  outline: none !important;
-
-  &:hover {
-    transition: all 0.2s ease-in;
-  }
-
-  &.disabled {
-    cursor: not-allowed !important;
-  }
-}
-
-.default-btn {
-  @extend button;
-  width: 116px;
-  height: 35px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-  background: $default-btn;
-  color: $primary-text;
-
-  &:hover {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
-    color: $primary-text !important;
-    background: $default-btn-hover;
-  }
-
-  &.disabled {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-
-    span {
-      opacity: 0.2;
-    }
-  }
-
-  &:active {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
-    background: $default-btn-active;
-  }
-}
-
-
-
-.secondary-btn {
-  @extend button;
-  color: $light-blue-grey;
-  background-color: transparent;
-  width: 100px;
-
-  &:hover {
-    color: $robins-egg !important;
-  }
-
-  &.disabled {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-
-    span {
-      opacity: 0.2;
-    }
-  }
-
-  &:active {
-    color: $primary-btn-active !important;
-  }
-}
-
-.primary-btn {
-  @extend button;
-  width: 165px;
-  height: 40px;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-  color: $dark !important;
-  background-color: $robins-egg;
-
-  &:hover {
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
-    background-color: $primary-btn-hover;
-  }
-
-  &:active {
-    background-color: $primary-btn-active;
-    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.4);
-  }
-
-  &.disabled {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
-
-    span {
-      opacity: 0.5;
-    }
-  }
-}
-
-.warning-btn {
-  @extend button;
-  background-color: $warning;
-}
-
-.icon-btn {
-  @extend .default-btn;
-  width: 123px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    width: 35px;
-    height: 35px;
-  }
-
-}
 
 a {
   @extend button;
@@ -715,4 +614,14 @@ a {
 
 .warning {
   color: $warning;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
