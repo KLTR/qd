@@ -109,7 +109,8 @@ export class SourcesListComponent implements OnInit {
           this.setSourcesNumbers();
           break;
         case 'new_event':
-          this.events.unshift(msg.result.event);
+          console.log(msg.result);
+          this.events.unshift(msg.result.new_event);
           this.events = this.events.slice();
           break;
       }

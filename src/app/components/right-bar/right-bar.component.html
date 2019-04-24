@@ -11,7 +11,7 @@
         <ul>
           <li class="event-item" *ngFor="let event of events; let i = index">
             <span class="event-time">{{event?.created_at | date:'HH:mm:ss'}}</span>
-            <span class="event-title EVENT-{{event?.severity}}">{{event.msg}}</span>
+            <span class="event-title EVENT-{{event?.severity}}">{{event?.msg}}</span>
             <div class="owners">
               <span *ngIf="event?.metadata?.key" class="event-owner1">{{event.metadata.key}}</span>
               <span *ngIf="event?.metadata?.name" class="event-owner2">{{event.metadata.name}}</span>
