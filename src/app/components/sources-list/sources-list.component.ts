@@ -42,7 +42,7 @@ export class SourcesListComponent implements OnInit {
       this.filterPendingInfections();
       console.log(this.leftBarData);
     });
-    this.http.getEvents().subscribe(res => {
+    this.http.getRightBar().subscribe(res => {
       this.events = res.events;
       if (!this.events) {
         this.events = [];
@@ -108,7 +108,7 @@ export class SourcesListComponent implements OnInit {
           this.assignFilteredSources();
           this.setSourcesNumbers();
           break;
-        case 'event':
+        case 'new_event':
           this.events.unshift(msg.result.event);
           this.events = this.events.slice();
           break;

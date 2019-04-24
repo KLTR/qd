@@ -1,0 +1,41 @@
+      <span class="icon-wrapper">
+        <div class="icon-wrapper pioneer-wrapper" *ngIf="pioneerStatus" [satPopoverAnchorFor]="pioneerPop"
+          (click)="pioneerPop.toggle()">
+          <span [ngClass]="pioneerStatus === 'pioneer-green' ? 'circle-green' : 'circle-red'">
+            <span class="number-counter">{{pioneer?.pioneers?.length ? pioneer.pioneers.length : '0'}}</span>
+          </span>
+          <app-svg-icon class="pioneer" [name]="'pioneer'" [size]="15">
+          </app-svg-icon>
+        </div>
+      </span>
+
+
+
+      <sat-popover #pioneerPop xAlign="center" yAlign="below">
+        <div class="custom-tip pioneer">
+          <div class="header">Pioneer (IDS)
+            <span class="close-button" (click)="pioneerPop.close()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+          </div>
+          <table class="rwd-table">
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Last update</th>
+            </tr>
+            <tr *ngFor='let pioneer of pioneer?.pioneers'>
+              <td data-th="Movie Title">{{pioneer.name}}</td>
+              <td data-th="Genre" [ngbTooltip]="pioneer.reason" placement="bottom"
+                class="{{pioneer.state | lowercase}}">
+                {{pioneer.state}}</td>
+              <td data-th="Year" (click)="resetPioneerMachine(pioneer)">
+                <span>{{pioneer.updated_at | amTimeAgo}} </span>
+                <button class="default-btn">
+                  <span>reset</span>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </sat-popover>

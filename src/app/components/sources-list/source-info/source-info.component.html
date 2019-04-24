@@ -26,6 +26,17 @@
       </span>
 
     </div>
+    <!-- FAKER -->
+    <div class="cube intel-cube" [class.selected]="selectedIntel === 'WHATSAPP'" (click)="selectIntel('WHATSAPP')">
+      <span class="icon">
+        <app-svg-icon [name]="WHATSAPP" [size]="17"></app-svg-icon>
+      </span>
+      <span class="text">{{'WHATSAPP'}}</span>
+      <span class="state-icon" (click)="taskAction($event, pending)">
+        <app-svg-icon [name]="pending"></app-svg-icon>
+      </span>
+      <!-- END -->
+    </div>
   </div>
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
     <intel-device-info [deviceInfo]="data" class="intel" *ngIf="selectedIntel === 'DEVICE INFO'"></intel-device-info>

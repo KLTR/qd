@@ -1,10 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from '@app/services';
 import { NgbModal, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import * as moment from 'moment';
 import { interval, Observable } from 'rxjs/';
 import { map } from 'rxjs/operators';
-import { ConfirmModalComponent } from '../modals/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-system-bar',
@@ -19,7 +17,7 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('internetPop') public internetPop: any;
   @ViewChild('alicePop') public alicePop: any;
   @ViewChild('cloudPop') public cloudPop: any;
-  @ViewChild('pioneerPop') public pioneerPop: any;
+  // @ViewChild('pioneerPop') public pioneerPop: any;
   @ViewChild('interceptorPop') public interceptorPop: any;
   openedPop: any;
   pops: any[];
@@ -47,16 +45,14 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit() {
     this.clock$ = interval(1000).pipe(map(() => Date.now()));
     this.http.getConfigLocal().subscribe(res => (this.config = res));
-    this.pops = [this.internetPop, this.alicePop, this.cloudPop, this.pioneerPop, this.interceptorPop];
+    this.pops = [this.internetPop, this.alicePop, this.cloudPop, this.interceptorPop];
   }
 
   ngOnChanges() {
-    this.getBatteryMode();
     this.getInternetMode();
     this.getDiskSpace();
     this.getDeviceStatus();
     this.getAliceStatus();
-    this.getPioneerStatus();
     this.getCloudStatus();
     this.checkInterceptor();
   }
@@ -105,28 +101,6 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
         if (!this.selectedInterceptor) {
           this.selectedInterceptor = this.system.interceptor.interceptors[0];
         }
-      }
-    }
-  }
-
-  getBatteryMode() {
-    if (this.system.goat && this.config) {
-      switch (this.system.goat.indicator.state) {
-        case this.config.indicators.state.green:
-          this.batteryStatus = 'battery-full';
-          break;
-        case this.config.indicators.state.yellow:
-          this.batteryStatus = 'battery-mid';
-          break;
-        case this.config.indicators.red:
-          this.batteryStatus = 'battery-low';
-          break;
-        default:
-          this.batteryStatus = 'battery-low';
-        // default :
-        // Chargin icon
-        //   this.batteryStatus = 'power-on';
-        //   break;
       }
     }
   }
@@ -201,28 +175,5 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
 
   selectInterceptor(interceptor: Object) {
     this.selectedInterceptor = interceptor;
-  }
-
-  resetPioneerMachine(pioneer: any) {
-    const confirmModal = this.modalService.open(ConfirmModalComponent, {
-      size: 'sm',
-      centered: true,
-      backdrop: 'static'
-    });
-    confirmModal.componentInstance.title = 'Refresh';
-    confirmModal.componentInstance.message = `Are you sure you want to reset '${pioneer.name}'?`;
-    confirmModal.componentInstance.additionalText = `*last reset was ${moment(pioneer.updated_at).fromNow()}`;
-    confirmModal.result.then(res => {
-      if (res) {
-        this.http.resetPioneerMachine(pioneer.name).subscribe(
-          result => {
-            console.log(result);
-          },
-          err => {
-            console.log(err);
-          }
-        );
-      }
-    });
   }
 }

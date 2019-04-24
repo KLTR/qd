@@ -1,9 +1,5 @@
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '@app/services';
-import {
-  Component,
-  OnInit,
-  Input
-} from '@angular/core';
 
 @Component({
   selector: 'app-right-bar',
@@ -12,11 +8,10 @@ import {
 })
 export class RightBarComponent implements OnInit {
   isOpen = false;
-  selected = "today"
+  selected = 'today';
   @Input() events: any[];
 
-
-  constructor(private http:HttpService) {}
+  constructor(private http: HttpService) {}
 
   ngOnInit() {}
 
@@ -27,15 +22,12 @@ export class RightBarComponent implements OnInit {
     this.selected = val;
   }
   removeEvent(event) {
-    this.http.dismissEvent(event.log.id).subscribe(res => {
-      console.log(res);
-      console.log("Build successfully!!!");
+    this.http.dismissEvent(event.id).subscribe(res => {
       const index: number = this.events.indexOf(event);
-      if(index !== -1){
-        this.events.splice(index, 1)
-            this.events = this.events.slice();
+      if (index !== -1) {
+        this.events.splice(index, 1);
+        this.events = this.events.slice();
       }
     });
-
   }
 }

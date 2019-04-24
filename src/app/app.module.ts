@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from '@app/guards';
+// Angular Material
 // Pipes
 import {
   CharactersPipe,
@@ -64,6 +65,8 @@ import { SourcesListComponent } from './components/sources-list/sources-list.com
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { AlertsModalComponent } from './components/system-bar/alerts/alerts-modal/alerts-modal.component';
 import { AlertsStripComponent } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
+import { BatteryComponent } from './components/system-bar/battery/battery.component';
+import { PioneerComponent } from './components/system-bar/pioneer/pioneer.component';
 // Components
 import { SystemBarComponent } from './components/system-bar/system-bar.component';
 
@@ -112,7 +115,9 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     MillToMinFilterPipe,
     SecurePipe,
     LoadingComponent,
-    DatePickerModalComponent
+    DatePickerModalComponent,
+    PioneerComponent,
+    BatteryComponent
   ],
   imports: [
     BrowserModule,
@@ -123,6 +128,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     HttpClientModule,
     ScrollingModule,
     BrowserAnimationsModule,
+    ScrollingModule,
     // Libraries
     IntelsModule,
     NgbModule,

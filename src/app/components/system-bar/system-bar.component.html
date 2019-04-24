@@ -4,17 +4,8 @@
     <li class="device-info">
       <!-- Tooltips -->
       <ng-template class="tool-tip" #batteryTip>{{system.goat?.tip}}</ng-template>
-      <span class="icon-wrapper">
-        <div class="icon-wrapper pioneer-wrapper" *ngIf="pioneerStatus" [satPopoverAnchorFor]="pioneerPop"
-          (click)="handlePops(3);">
-          <span [ngClass]="pioneerStatus === 'pioneer-green' ? 'circle-green' : 'circle-red'">
-            <span
-              class="number-counter">{{system.pioneer?.pioneers?.length ? system.pioneer.pioneers.length : '0'}}</span>
-          </span>
-          <app-svg-icon class="pioneer" [name]="'pioneer'" [size]="15">
-          </app-svg-icon>
-        </div>
-      </span>
+
+      <app-pioneer *ngIf="system.pioneer" [pioneer]="system?.pioneer"></app-pioneer>
 
       <span class="icon-wrapper" *ngIf="cloudStatus" [satPopoverAnchorFor]="cloudPop" (click)="handlePops(2);">
         <app-svg-icon *ngIf="cloudStatus" class="cloud" [name]="cloudStatus" [size]="23"></app-svg-icon>
@@ -24,10 +15,8 @@
         <app-svg-icon class="alice" [name]="aliceStatus" [size]="23"></app-svg-icon>
       </span>
 
-      <span class="icon-wrapper" *ngIf="batteryStatus">
-        <app-svg-icon class="battery" [name]="batteryStatus" [satPopoverAnchorFor]="batteryPop"
-          (mouseenter)="batteryPop.open()" (mouseleave)="batteryPop.close()" [size]="22"></app-svg-icon>
-      </span>
+
+      <app-battery *ngIf="system?.goat" [goat]="system?.goat"></app-battery>
 
       <span class="icon-wrapper" *ngIf="internetStatus" [satPopoverAnchorFor]="internetPop" (click)="handlePops(0);">
         <app-svg-icon class="internet" name="internet" [size]="15" [ngClass]="internetStatus"></app-svg-icon>
@@ -53,15 +42,6 @@
 </div>
 
 
-
-<!-- Pop Overs -->
-<sat-popover #batteryPop xAlign="center" yAlign="below">
-  <div class="custom-tip small-tip">
-    <div class="header">
-      {{system.goat?.tip}}
-    </div>
-  </div>
-</sat-popover>
 
 <sat-popover #internetPop xAlign="center" yAlign="below">
   <div class="custom-tip">
@@ -110,33 +90,6 @@
   </div>
 </sat-popover>
 
-<sat-popover #pioneerPop xAlign="center" yAlign="below">
-  <div class="custom-tip pioneer">
-    <div class="header">Pioneer (IDS)
-      <span class="close-button" (click)="closeTip()">
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </span>
-    </div>
-    <table class="rwd-table">
-      <tr>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Last update</th>
-      </tr>
-      <tr *ngFor='let pioneer of system.pioneer?.pioneers'>
-        <td data-th="Movie Title">{{pioneer.name}}</td>
-        <td data-th="Genre" [ngbTooltip]="pioneer.reason" placement="bottom" class="{{pioneer.state | lowercase}}">
-          {{pioneer.state}}</td>
-        <td data-th="Year" (click)="resetPioneerMachine(pioneer)">
-          <span>{{pioneer.updated_at | amTimeAgo}} </span>
-          <button class="default-btn">
-            <span>reset</span>
-          </button>
-        </td>
-      </tr>
-    </table>
-  </div>
-</sat-popover>
 
 <sat-popover #interceptorPop xAlign="center" yAlign="below">
   <div class="custom-tip interceptor-pop-wrapper">

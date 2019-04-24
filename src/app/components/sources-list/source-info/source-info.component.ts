@@ -23,6 +23,10 @@ export class SourceInfoComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   ngOnInit() {
+    this.http.getFakeSessions().subscribe(sessions => {
+      console.log(sessions), (this.sessions = sessions.sessions);
+    });
+
     this.http.getSourceIntels(this.source.id).subscribe(res => {
       console.log(res), (this.tasks = res.tasks);
     });
@@ -641,197 +645,6 @@ export class SourceInfoComponent implements OnInit {
         status: 'pending'
       }
     ];
-    this.sessions = [
-      {
-        from: 'Eli Cohen',
-        date: 'Yesterday',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '23',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 1
-      },
-      {
-        from: 'Eli Cohen',
-        date: 'Yesterday',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 2
-      },
-      {
-        from: 'Eli Cohen',
-        date: '18:54',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '23',
-        isRead: false,
-        privacy: 'chats-group',
-        id: 3
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: false,
-        privacy: 'chats-group',
-        id: 4
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-broadcast',
-        id: 5
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '2',
-        isRead: true,
-        privacy: 'chats-group',
-        id: 6
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 7
-      },
-      {
-        from: 'Eli Cohen',
-        date: 'Yesterday',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '23',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 8
-      },
-      {
-        from: 'Eli Cohen',
-        date: 'Yesterday',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 9
-      },
-      {
-        from: 'Eli Cohen',
-        date: '18:54',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '23',
-        isRead: false,
-        privacy: 'chats-group',
-        id: 10
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: false,
-        privacy: 'chats-group',
-        id: 21
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-broadcast',
-        id: 20
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '2',
-        isRead: true,
-        privacy: 'chats-group',
-        id: 19
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 18
-      },
-      {
-        from: 'Eli Cohen',
-        date: 'Yesterday',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '23',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 17
-      },
-      {
-        from: 'Eli Cohen',
-        date: 'Yesterday',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 16
-      },
-      {
-        from: 'Eli Cohen',
-        date: '18:54',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '23',
-        isRead: false,
-        privacy: 'chats-group',
-        id: 15
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: false,
-        privacy: 'chats-group',
-        id: 14
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-broadcast',
-        id: 13
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '2',
-        isRead: true,
-        privacy: 'chats-group',
-        id: 12
-      },
-      {
-        from: 'Eli Cohen',
-        date: '14.10.2018 21:30',
-        message: 'Lorem ipsum Lorem ipsum Lorem…',
-        unread: '0',
-        isRead: true,
-        privacy: 'chats-private',
-        id: 11
-      }
-    ];
     this.calls = [
       {
         callType: 'declined',
@@ -1237,6 +1050,10 @@ export class SourceInfoComponent implements OnInit {
   }
   selectIntel(intel: string) {
     this.data = null;
+    if (intel === 'WHATSAPP') {
+      this.selectedIntel = intel;
+      return;
+    }
     this.http.getIntel(intel, this.source.id).subscribe(
       res => {
         console.log(res), (this.data = res), (this.selectedIntel = intel);
@@ -1248,7 +1065,7 @@ export class SourceInfoComponent implements OnInit {
   }
   onSelectSession(sessionId: any) {
     console.log(sessionId);
-    this.http.getSessionMessages(sessionId).subscribe(res => {
+    this.http.getFakeMessages(sessionId).subscribe(res => {
       console.log(res), (this.data = res);
     });
   }
