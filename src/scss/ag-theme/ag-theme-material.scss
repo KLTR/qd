@@ -1,6 +1,6 @@
 @import "./_ag-theme-common.scss";
 @import "./ag-vars.scss";
-
+@import "../colors.scss";
 $grid-size: 8px;
 $icons-path: "./material-icons/" !default;
 $transition-speed: 120ms !default;
@@ -46,7 +46,7 @@ tool-panel-background-color: transparent,
 accent-color: #6cfff8,
 primary-color: transparent,
 hover-color: #6b8198,
-selected-color: #c5e1ff,
+selected-color: rgba($primary-text, 0.2),
 icon-opacity: 0.5,
 button-text-transform: uppercase,
 card-radius: 4px,

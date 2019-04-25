@@ -1,0 +1,55 @@
+@import "../../../../scss/colors";
+
+.custom-tip {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: $primary-text;
+  margin-top: 20px;
+  border-radius: 4px;
+  min-width: 350px;
+
+  &.small-tip {
+    min-width: 50px;
+
+    .header {
+      min-width: 50px;
+      padding: 10px;
+    }
+  }
+
+
+  &:after {
+    content: "";
+    display: block;
+    border-width: 0px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #4d6179;
+    margin-left: -10px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+  }
+
+  .header {
+    min-width: 175px;
+    height: 38px;
+    background-color: #4d6179;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+
+    .settings {
+      margin-left: auto;
+      margin-right: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

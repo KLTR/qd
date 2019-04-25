@@ -1,13 +1,6 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  Subscription
-} from 'rxjs';
-import {
-  WsService
-} from '@app/services';
+import { Component, OnInit } from '@angular/core';
+import { WsService } from '@app/services';
+import { Subscription } from 'rxjs';
 // import { WebSocketCommonService } from '@quadream/ui-common';
 
 @Component({
@@ -20,15 +13,11 @@ export class AlertsStripComponent implements OnInit {
   message: string;
   subscription: Subscription;
 
-  constructor(
-    private ws: WsService
-  ) {
-    
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+  constructor(private ws: WsService) {
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
   ngOnInit() {
-
     // this.subscription = this.websocket.getSocketsFor('alert-created').subscribe((action: { type: string, eventdata: any }) => {
     //   if (action.eventdata.severity === 'critical') {
     //     this.showStrip = true;
@@ -42,14 +31,13 @@ export class AlertsStripComponent implements OnInit {
     this.showStrip = false;
   }
 
-
   catchWebSocketEvents(msg) {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
     switch (Object.keys(msg.result)[0]) {
-      case 'alert':
-        let alert = msg.result.alert.log;
+      case 'new_alert':
+        const alert = msg.result.new_alert;
         if (['FATAL', 'CRITICAL'].includes(alert.severity)) {
           this.showStrip = true;
           this.message = alert.msg;
@@ -58,5 +46,4 @@ export class AlertsStripComponent implements OnInit {
         break;
     }
   }
-
 }

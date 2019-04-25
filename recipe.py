@@ -107,7 +107,7 @@ class QuantumUI(Recipe):
 
         self.add_component(
             kube.Ingress(
-                name='ui-ingress',
+                name='ui-quantum-ingress',
                 ingress_class='ui',
                 rules=rules,
                 cors=True,
