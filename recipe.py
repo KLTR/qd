@@ -42,7 +42,7 @@ class QuantumUI(Recipe):
     def _load_config(self):
         self.add_component(kube.File(
             os.path.join(self.dir_path, 'k8s/config.yaml'),
-            k8s_domain=os.environ['K8S_DOMAIN']))
+            k8s_domain=os.environ['K8S_DOMAIN'], name='quantum-ui-config'))
 
     def _load_ingress(self):
         rules = [
