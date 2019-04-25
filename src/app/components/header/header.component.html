@@ -12,8 +12,8 @@
       <app-system-bar *ngIf="system" [system]="system"></app-system-bar>
     </div>
     <div class="navbar-menu">
-      <div class="alerts" (click)="toggleAlerts()">
-        <span *ngIf="system?.alert?.indicator.state === 'RED'" class="alerts-number">{{system.alert?.count}}</span>
+      <div *ngIf="system.alert" class="alerts" (click)="toggleAlerts()">
+        <span class="alerts-number">{{ system?.alert?.count < 100 ? system.alert.count : '99+'}}</span>
         <app-svg-icon name="alert" [size]="20"></app-svg-icon>
       </div>
 

@@ -35,76 +35,86 @@ export class AlertsModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.alerts);
-    this.columnDefs = [
-      {
-        headerName: 'Date',
-        field: 'created_at',
+    this.gridOptions = {
+      pagination: true,
+      paginationPageSize: 12,
+      defaultColDef: {
+        filter: false,
         sortable: true,
-        filter: 'agDateColumnFilter',
-        width: 150,
-        cellRendererFramework: DateCellComponent,
-        cellRendererParams: {
-          ngTemplate: this.ownersCell
-        },
-        cellClassRules: {
-          'critical-border': function(params) {
-            return params.data.severity === 'CRITICAL' || params.data.severity === 'FATAL';
-          },
-          'info-border': function(params) {
-            return params.data.severity === 'INFO';
-          },
-          'major-border': function(params) {
-            return params.data.severity === 'MAJOR';
-          }
-        }
-      },
-      {
-        headerName: 'Msg',
-        field: 'msg',
-        sortable: true,
-        width: 600,
         resizable: true
       },
-      {
-        headerName: 'Severity',
-        field: 'severity',
-        sortable: true,
-        filter: true,
-        width: 135,
-        comparator: this.severityComparator,
-        cellClassRules: {
-          WARNING: function(params) {
-            return params.value === 'CRITICAL' || params.value === 'FATAL';
-          },
-          MAJOR: function(params) {
-            return params.value === 'MAJOR';
-          }
+      // TODO: which unique ID field can be chosen from the data
+      getRowNodeId: function(data) {
+        return data.id;
+      },
+      rowClassRules: {
+        closed: params => {
+          return params.data.status === 'inactive';
         }
       },
-
-      {
-        headerName: '',
-        colId: 'delete',
-        cellRendererFramework: TemplateRendererComponent,
-        width: 105,
-        cellRendererParams: {
-          ngTemplate: this.deleteCell
+      columnDefs: [
+        {
+          headerName: 'Date',
+          field: 'created_at',
+          sortable: true,
+          filter: 'agDateColumnFilter',
+          cellRendererFramework: DateCellComponent,
+          cellRendererParams: {
+            ngTemplate: this.ownersCell
+          },
+          cellClassRules: {
+            'critical-border': function(params) {
+              return params.data.severity === 'CRITICAL' || params.data.severity === 'FATAL';
+            },
+            'info-border': function(params) {
+              return params.data.severity === 'INFO';
+            },
+            'major-border': function(params) {
+              return params.data.severity === 'MAJOR';
+            }
+          }
+        },
+        {
+          headerName: 'Msg',
+          field: 'msg',
+          sortable: true,
+          resizable: true
+        },
+        {
+          headerName: 'Severity',
+          field: 'severity',
+          sortable: true,
+          filter: true,
+          comparator: this.severityComparator,
+          cellClassRules: {
+            'EVENT-CRITICAL': function(params) {
+              return params.value === 'CRITICAL' || params.value === 'FATAL';
+            },
+            'EVENT-MAJOR': function(params) {
+              return params.value === 'MAJOR';
+            },
+            'EVENT-INFO': function(params) {
+              return params.value === 'INFO';
+            },
+            'EVENT-MINOR': function(params) {
+              return params.value === 'MINOR';
+            }
+          }
+        },
+        {
+          headerName: '',
+          colId: 'delete',
+          cellRendererFramework: TemplateRendererComponent,
+          width: 105,
+          cellRendererParams: {
+            ngTemplate: this.deleteCell
+          }
         }
-      }
-    ];
+      ],
+      onFirstDataRendered: params => params.api.sizeColumnsToFit()
+    };
 
-    this.rowClassRules = {
-      closed: params => {
-        return params.data.status === 'inactive';
-      }
-    };
-    this.icons = {
-      menu: '<i class="fa fa-filter" style="width: 10px;" />',
-      filter: '<i class="fa fa-filter"/>',
-      sortAscending: '<i class="fa fa-long-arrow-down"/>',
-      sortDescending: '<i class="fa fa-long-arrow-up"/>'
-    };
+    console.log(this.alerts);
   }
   onGridReady(params) {
     this.gridApi = params.api;
@@ -152,9 +162,9 @@ export class AlertsModalComponent implements OnInit {
       return;
     }
     switch (Object.keys(msg.result)[0]) {
-      case 'alert':
-        console.log(msg.result.alert.log);
-        this.alerts.unshift(msg.result.alert.log);
+      case 'new_alert':
+        console.log(msg.result.new_alert);
+        this.alerts.unshift(msg.result.new_alert);
         this.alerts = this.alerts.slice();
         break;
     }

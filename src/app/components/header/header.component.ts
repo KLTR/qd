@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
     this.searchResults = [];
     this.httpService.getTop().subscribe(res => {
       this.system = res;
+      console.log(res);
       if (res.product_version) {
         console.log('product_version: ', res.product_version);
       }
@@ -79,6 +80,7 @@ export class HeaderComponent implements OnInit {
     if (Object.keys(msg)[0] === 'error') {
       return;
     }
+    console.log(msg.result);
     switch (Object.keys(msg.result)[0]) {
       // System
       case 'alice':
@@ -99,8 +101,11 @@ export class HeaderComponent implements OnInit {
       case 'internet':
         this.system.internet = msg.result.internet;
         break;
-      case 'alert':
-        this.system.alert = msg.result.alert;
+      case 'new_alert':
+        const alert = msg.result.new_alert;
+        this.system.alert.count++;
+        this.system.alert.log = alert;
+        // this.system.alert = msg.result.new_alert;
         break;
       case 'interceptor':
         this.system.interceptor = msg.result.interceptor;
