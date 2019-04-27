@@ -87,27 +87,9 @@ class QuantumUI(Recipe):
                 ]
             ))
 
-        if os.environ['K8S_CONTEXT'] == 'docker-for-desktop':
-            self.add_component(kube.Docker4DesktopIngressNginxLoadBalancer(
-                name='ui-ingress-controller-lb',
-                selector='ui-ingress-controller',
-                ports=[
-                    {
-                        'name': 'http',
-                        'port': 80,
-                        'targetPort': 'http',
-                    },
-                    {
-                        'name': 'https',
-                        'port': 443,
-                        'targetPort': 'https',
-                    }
-                ],
-            ))
-
         self.add_component(
             kube.Ingress(
-                name='ui-quantum-ingress',
+                name='quantum-ui',
                 ingress_class='ui',
                 rules=rules,
                 cors=True,
