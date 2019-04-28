@@ -48,9 +48,12 @@ export class HttpService {
     // getSourceChat: '/sources/{{id}}/{{chatType}}',
     getSourceIntels: '/sources/{{id}}/intls',
     getTasks: '/sources/{{id}}/tasks',
-    getSourceIntel: '/sources/{{id}}/{{intelName}}',
+    getSourceIntel: '/intls/sources/{{id}}/{{intelName}}',
     taskAction: '/sources/{{id}}/cnc/{{taskAction}}',
-    sessionMessages: '/sessions/{{id}}/'
+    getSessionMessages: '/intls/sources/{source_id}/{{chat_name}}/sessions{{session_id}}',
+    getSessions: '/intls/sources/{{source_id}}/{{chat_name}}/sessions'
+    // /intls/sources/{id}/whatsapp/sessions
+    // intl/sources/<sourceId>/deviceinfo
   };
 
   config: any;
@@ -170,18 +173,25 @@ export class HttpService {
   getConfigLocal(): any {
     return this.config;
   }
-  getIntel(intelName, sourceId): Observable<any> {
+  getIntel(intelName: string, sourceId): Observable<any> {
+    console.log(intelName);
+    if (['whatsapp', 'telegram', 'line', 'sms', 'messages'].includes(intelName.toLowerCase())) {
+      return this.getSessions(intelName.toLowerCase(), sourceId);
+    }
     return this.http.get(this.getUrlByApiNameWithArgs('getSourceIntel', sourceId, intelName.toLowerCase()), this.setHeaders());
   }
-  // getProfilePic(sourceId): Observable<any>{
 
-  // }
   taskAction(taskAction: string, sourceId: string) {
     taskAction = taskAction.toLowerCase();
     return this.http.get(this.getUrlByApiNameWithArgs('taskAction', sourceId, taskAction), this.setHeaders());
   }
 
+  getSessions(intelName: string, sourceId: string): Observable<any> {
+    console.log(intelName);
+    return this.http.get(this.getUrlByApiNameWithArgs('getSessions', sourceId, intelName));
+  }
+
   getSessionMessages(sessionId: string): Observable<any> {
-    return this.http.get(this.getUrlByApiName('sessionMessages', sessionId), this.setHeaders());
+    return this.http.get(this.getUrlByApiName('getSessionMessages', sessionId), this.setHeaders());
   }
 }

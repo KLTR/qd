@@ -1,4 +1,4 @@
-import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '@app/services';
 
@@ -7,24 +7,13 @@ import { HttpService } from '@app/services';
   templateUrl: './right-bar.component.html',
   styleUrls: ['./right-bar.component.scss'],
   animations: [
-    trigger('listAnimation', [
-      transition('* => *', [
-        // each time the binding value changes
-        query(':leave', [stagger(100, [animate('0.35s', style({ opacity: 0 }))])], {
-          optional: true
-        }),
-        query(':enter', [style({ opacity: 0 }), stagger(100, [animate('0.5s', style({ opacity: 1 }))])], { optional: true })
+    trigger('items', [
+      transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }), // initial
+        animate('1s cubic-bezier(.5, -0.6, 0.2, 1.5)', style({ transform: 'scale(1)', opacity: 1 })) // final
       ])
     ])
   ]
-  // animations: [
-  // trigger('listAnimation', [
-  // transition('* => *', [
-  // query(':leave', style({ transform: 'translateX(-100%)' })),
-  // query(':enter', stagger('100ms', [animate('200ms', style({ transform: 'translateX(0)' }))]))
-  // ])
-  // ])
-  // ]
 })
 export class RightBarComponent implements OnInit {
   isOpen = false;

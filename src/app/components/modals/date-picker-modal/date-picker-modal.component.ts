@@ -1,5 +1,5 @@
-import { NgbDate, NgbDatepicker, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { NgbCalendar, NgbDate, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 
 @Component({
@@ -15,48 +15,43 @@ export class DatePickerModalComponent implements OnInit {
   @ViewChild('d') public datePicker: NgbDatepicker;
   isDpShown = false;
   @Output() dateRangeSelected: EventEmitter<any> = new EventEmitter();
-  constructor( private calendar: NgbCalendar,) {
+  constructor(private calendar: NgbCalendar) {
     this.fromDate = this.calendar.getToday();
     this.toDate = this.calendar.getNext(calendar.getToday(), 'd', 10);
-   }
-
-  ngOnInit() {
   }
 
+  ngOnInit() {}
 
   onDateSelection(date: NgbDate) {
-    // this.selectedDateRange = null;
     this.isDpShown = true;
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
-      let fromStr =  new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
+      const fromStr = new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
       this.selectedDateRange = {
-        from: moment(fromStr).toISOString(),
-        // to: ''
-      }
+        from: moment(fromStr).toDate()
+      };
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
-      let fromStr =  new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
-      let toStr = new Date(`${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`);
+      const fromStr = new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
+      const toStr = new Date(`${this.toDate.year}/${this.toDate.month}/${this.toDate.day}`);
       this.selectedDateRange = {
-        from: moment(fromStr).toISOString(),
-        to: moment(toStr).toISOString()
-      }
+        from: moment(fromStr).toDate(),
+        to: moment(toStr).toDate()
+      };
       this.isDpShown = false;
       this.dateRangeSelected.emit(this.selectedDateRange);
     } else {
       this.toDate = null;
       this.fromDate = date;
-      let fromStr =  new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
+      const fromStr = new Date(`${this.fromDate.year}/${this.fromDate.month}/${this.fromDate.day}`);
       this.selectedDateRange = {
-        from: moment(fromStr).toISOString(),
-        // to: ''
-      }
+        from: moment(fromStr).toDate()
+      };
     }
   }
-applyDate(){
-  this.isDpShown = false;
-}
+  applyDate() {
+    this.isDpShown = false;
+  }
   isHovered(date: NgbDate) {
     return this.fromDate && !this.toDate && this.hoveredDate && date.after(this.fromDate) && date.before(this.hoveredDate);
   }
@@ -68,5 +63,4 @@ applyDate(){
   isRange(date: NgbDate) {
     return date.equals(this.fromDate) || date.equals(this.toDate) || this.isInside(date) || this.isHovered(date);
   }
-
 }
