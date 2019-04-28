@@ -28,13 +28,13 @@
     </div>
   </div>
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
-    <intel-device-info [data]="data" class="intel" *ngIf="selectedIntel === 'device_info'"></intel-device-info>
+    <intel-device-info [data]="data" class="intel" *ngIf="selectedIntel === 'deviceinfo'"></intel-device-info>
     <intel-chats class="intel" [messages]="messages" [sessions]="sessions" [calls]="calls"
       *ngIf="['whatsapp','telegram','wechat','line','sms', 'signal'].includes(selectedIntel)"
       (selectSession)="onSelectSession($event)">
     </intel-chats>
     <intel-contacts class="intel" [contacts]='data' *ngIf="selectedIntel === 'contacts'"></intel-contacts>
-    <intel-call-history class="intel" [data]='data' *ngIf="selectedIntel === 'call_history'">
+    <intel-call-history class="intel" [data]='data' *ngIf="selectedIntel === 'callhistory'">
     </intel-call-history>
     <intel-passwords class="intel" [data]='data' *ngIf="selectedIntel === 'keychains'"></intel-passwords>
     <intel-app-list class="intel" [data]='data' *ngIf="selectedIntel === 'apps'"></intel-app-list>

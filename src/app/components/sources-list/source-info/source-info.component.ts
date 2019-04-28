@@ -11,7 +11,7 @@ export class SourceInfoComponent implements OnInit {
   data: any;
   tasks: any;
   selectedInfo = 'apps';
-  selectedIntel = 'device_info';
+  selectedIntel = 'deviceinfo';
   contacts = [];
   messages = [];
   sessions = [];
@@ -26,7 +26,7 @@ export class SourceInfoComponent implements OnInit {
     this.http.getSourceIntels(this.source.id).subscribe(res => {
       console.log(res), (this.tasks = res.tasks);
     });
-    this.selectIntel('device_info');
+    this.selectIntel('deviceinfo');
   }
   taskAction(event, task: string) {
     event.stopPropagation();
@@ -34,12 +34,14 @@ export class SourceInfoComponent implements OnInit {
   }
   selectInfo(info: string) {
     if (info === 'tasks') {
-      this.selectIntel(info);
+      this.getTasks();
     }
     this.selectedInfo = info;
   }
   getTasks() {
-    this.http.getTasks(this.source.id).subscribe(res => console.log(res));
+    this.http.getTasks(this.source.id).subscribe(res => {
+      console.log(res), (this.data = res);
+    });
   }
   selectIntel(intel: string) {
     intel = intel.toLowerCase();
