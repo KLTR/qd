@@ -6,7 +6,7 @@ RUN apk add --no-cache --virtual .build-deps alpine-sdk python \
  && npm install --production --silent \
     && apk del .build-deps
 
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV PATH /usr/src/app/node_modules/.bin:/app/node_modules/.bin:$PATH
 
 ARG USE_NPM_REGISTRY
 RUN npm set registry ${USE_NPM_REGISTRY}
@@ -32,3 +32,5 @@ COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
 
 ARG GIT_HASH_TAG
 LABEL GIT_HASH_TAG ${GIT_HASH_TAG}
+LABEL NG_BUILD_ARGS ${NG_BUILD_ARGS}
+LABEL ALT_NPM_INSTALL_PACKAGES ${ALT_NPM_INSTALL_PACKAGES}
