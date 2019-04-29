@@ -9,13 +9,12 @@ variables:
   PROJECT_ROOT_PATH: ${QD_GO_ROOT}/sr-rnd-00.swg.local/go/client/quantum/quantum-ui
   MAKEFILE_PROJECT_PATH: ${QD_GO_ROOT}/sr-rnd-00.swg.local/go/makefile
   DOCKER_CANONICAL_IMAGE: sr-rnd-105.swg.local:5000/go-client-quantum-ui:${CI_COMMIT_REF_NAME}
-  deploy_to_dev: "curl --request POST -F ref=${CI_COMMIT_REF_NAME} -F token=622bd3e8e8c49b91c9400d24284de6  https://sr-rnd-00.swg.local/api/v4/projects/205/trigger/pipeline"
   DOCKER_IMAGE_TAG: ${CI_COMMIT_REF_NAME}
   K8S_NODE: none
   K8S_CONTEXT: kubernetes-admin@kubernetes
   SKIP_DL: 1
+  deploy_to_dev: "curl --request POST -F ref=${CI_COMMIT_REF_NAME} -F token=622bd3e8e8c49b91c9400d24284de6  https://sr-rnd-00.swg.local/api/v4/projects/205/trigger/pipeline"
 
-  
 .limit_branches: &limit_branches
   only:
     refs:
@@ -27,20 +26,11 @@ build-project:
   stage: build
   script:
   - set -x && cd ${MAKEFILE_PROJECT_PATH} && git fetch && git checkout ${CI_COMMIT_REF_NAME} && git pull
-  - set -x && npm set registry http://172.23.4.23:4873
   - set -x && cd ${PROJECT_ROOT_PATH} && git pull || true
   - set -x && rm package-lock.json || true
-  - set -x && if [ "$(md5sum package.json)" != "$(cat ~/pmd5)" ] ; then docker build -f docker/DockerBasebuilder . -t basebuilder:latest ; md5sum package.json > ~/pmd5 ; fi
-  - set -x && docker build -f docker/Dockerfile . -t ${DOCKER_CANONICAL_IMAGE}
-  - set -x && docker push ${DOCKER_CANONICAL_IMAGE}
+  - set -x && cd ${PROJECT_ROOT_PATH} &&  make docker-build docker-push
   <<: *limit_branches
 
-#deploy-to-dev:
-#  stage: deployment
-#  script:
-#  - set -x && ${deploy_to_dev}
-#  <<: *limit_branches
-  
 cleanup:
   stage: cleanup
   script:
