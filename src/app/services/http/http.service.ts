@@ -50,8 +50,9 @@ export class HttpService {
     getTasks: '/sources/{{id}}/tasks',
     getSourceIntel: '/intls/sources/{{id}}/{{intelName}}',
     taskAction: '/sources/{{id}}/cnc/{{taskAction}}',
-    getSessionMessages: '/intls/sources/{source_id}/{{chat_name}}/sessions{{session_id}}',
-    getSessions: '/intls/sources/{{source_id}}/{{chat_name}}/sessions'
+    getSessionMessages: '/intls/sources/{{source_id}}/{{chat_name}}/sessions/{{session_id}}',
+    getSessions: '/intls/sources/{{source_id}}/{{chat_name}}/sessions',
+    getMedia: '/media/{{media_id}}'
     // /intls/sources/{id}/whatsapp/sessions
     // intl/sources/<sourceId>/deviceinfo
   };
@@ -164,12 +165,6 @@ export class HttpService {
     this.config = this.http.get('../../../assets/config/config.json');
     return this.config;
   }
-  getFakeSessions(): Observable<any> {
-    return this.http.get('../../../assets/faker/sessions.json');
-  }
-  getFakeMessages(sessionId): Observable<any> {
-    return this.http.get('../../../assets/faker/messages.json');
-  }
   getConfigLocal(): any {
     return this.config;
   }
@@ -187,11 +182,9 @@ export class HttpService {
   }
 
   getSessions(intelName: string, sourceId: string): Observable<any> {
-    console.log(intelName);
     return this.http.get(this.getUrlByApiNameWithArgs('getSessions', sourceId, intelName));
   }
-
-  getSessionMessages(sessionId: string): Observable<any> {
-    return this.http.get(this.getUrlByApiName('getSessionMessages', sessionId), this.setHeaders());
+  getSessionMessages(sourceId: string, intelName: string, sessionId: string): Observable<any> {
+    return this.http.get(this.getUrlByApiNameWithArgs('getSessionMessages', sourceId, intelName, sessionId), this.setHeaders());
   }
 }

@@ -11,7 +11,9 @@ export class InterceptorService implements HttpInterceptor {
   constructor(private toastr: ToastrService, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('intercepting');
     const token: string = this.getToken();
+    console.log(request);
     if (token && !request.headers.has('authorization') && !request.url.includes('logout')) {
       request = request.clone({
         setHeaders: {
@@ -63,6 +65,7 @@ export class InterceptorService implements HttpInterceptor {
 
   getToken(): any {
     const token = localStorage.getItem('user');
+    console.log(token);
     return token;
   }
 }

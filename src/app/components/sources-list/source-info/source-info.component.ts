@@ -48,6 +48,9 @@ export class SourceInfoComponent implements OnInit {
     this.data = null;
     this.http.getIntel(intel, this.source.id).subscribe(
       res => {
+        if (res === this.data) {
+          return;
+        }
         console.log(res), (this.data = res), (this.selectedIntel = intel);
       },
       err => {
@@ -55,7 +58,9 @@ export class SourceInfoComponent implements OnInit {
       }
     );
   }
-  onSelectSession(event) {
-    console.log(event);
+  onSelectSession(sessionId) {
+    this.http.getSessionMessages(this.source.id, this.selectedIntel.toLowerCase(), sessionId).subscribe(res => {
+      console.log(res), (this.messages = res);
+    });
   }
 }

@@ -29,7 +29,7 @@
   </div>
   <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
     <intel-device-info [data]="data" class="intel" *ngIf="selectedIntel === 'deviceinfo'"></intel-device-info>
-    <intel-chats class="intel" [messages]="messages" [sessions]="sessions" [calls]="calls"
+    <intel-chats class="intel" [data]="data" [messages]="messages" [sessions]="sessions" [calls]="calls"
       *ngIf="['whatsapp','telegram','wechat','line','sms', 'signal'].includes(selectedIntel)"
       (selectSession)="onSelectSession($event)">
     </intel-chats>
