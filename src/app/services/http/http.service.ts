@@ -33,7 +33,7 @@ export class HttpService {
     exportSource: '/exports/sources/{{id}}',
     terminateAgent: '/sources/{{id}}/shutdown',
     abortExport: '/exports/{{id}}/abort',
-    getSourceTasks: '/sources/{{id}}/intls',
+    getSourceTasks: '/sources/{{id}}/apps',
     // Pioneer Devices
     findPioneerDevices: '/pioneers/find/by_target/{{id}}',
     queryPioneerDevices: '/pioneers/query/by_target/{{id}}',
@@ -46,7 +46,7 @@ export class HttpService {
     // Tasks
     // getSourceDeviceInfo: '/sources/{{id}}/deviceinfo',
     // getSourceChat: '/sources/{{id}}/{{chatType}}',
-    getSourceIntels: '/sources/{{id}}/intls',
+    getSourceIntels: '/sources/{{id}}/apps',
     getTasks: '/sources/{{id}}/tasks',
     getSourceIntel: '/intls/sources/{{id}}/{{intelName}}',
     taskAction: '/sources/{{id}}/cnc/{{taskAction}}',

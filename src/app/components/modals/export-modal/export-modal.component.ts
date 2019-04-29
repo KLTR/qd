@@ -1,8 +1,8 @@
-import { HttpService, AppConfigService } from '@app/services';
-import { WsService } from './../../../services/websocket/ws.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgbModal, NgbActiveModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { AppConfigService, HttpService } from '@app/services';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { WsService } from './../../../services/websocket/ws.service';
 
 @Component({
   selector: 'app-export-modal',
@@ -11,7 +11,7 @@ import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component'
 })
 export class ExportModalComponent implements OnInit {
   @Input() dataType: string;
-  @Input() data: any; //source
+  @Input() data: any; // source
   exportData: any;
   config: any;
   isStartedExporting = false;
@@ -23,62 +23,59 @@ export class ExportModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private modalService: NgbModal,
     private httpService: HttpService,
-    private ws: WsService,
+    private ws: WsService
   ) {
-    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg))
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
   ngOnInit() {
-    this.httpService.getConfig().subscribe()
-     this.config = this.appConfig.getConfig()
+    this.httpService.getConfig().subscribe();
+    this.config = this.appConfig.getConfig();
     // this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
       progress: null,
       state: 'pending',
       fileUrl: ``,
       id: ''
-    }
+    };
   }
-setDate(date){
-  this.selectedDateRange = date;
-  console.log(this.selectedDateRange);
-}
+  setDate(date) {
+    this.selectedDateRange = date;
+  }
 
-  startExport(){
-    let exportObj = {
+  startExport() {
+    const exportObj = {
       format: this.selectedFormat.toLowerCase(),
       isRange: this.isRangeSelected,
-      range: this.selectedDateRange,
-    }
-    console.log("tar.gz");
-    this.httpService.exportSource(this.data.id,exportObj).subscribe(res => {
+      range: this.selectedDateRange
+    };
+    this.httpService.exportSource(this.data.id, exportObj).subscribe(res => {
       this.isStartedExporting = true;
       this.exportData.id = res.id;
-      this.exportData.fileUrl =  `${this.config.apiUrl}/archives/${this.exportData.id}.tar.gz`;
+      this.exportData.fileUrl = `${this.config.apiUrl}/archives/${this.exportData.id}.tar.gz`;
       console.log('File url is : ', this.exportData.fileUrl);
     });
   }
 
-  selectFormat(format: string){
+  selectFormat(format: string) {
     this.selectedFormat = format;
   }
 
-  selectDateRange(range: any){
-    if(range === 'all'){
+  selectDateRange(range: any) {
+    if (range === 'all') {
       this.isRangeSelected = false;
       return;
-    }
-    else{
+    } else {
       this.isRangeSelected = true;
     }
   }
 
-  cancelExport(){
+  cancelExport() {
     if (this.exportData.progress && this.exportData.progress < 100) {
       const confirmModal = this.modalService.open(ConfirmModalComponent, { size: 'sm', centered: true, backdrop: 'static' });
       confirmModal.componentInstance.title = 'Cancel Export';
       confirmModal.componentInstance.message = 'Are you sure you want to cancel this export?';
-      confirmModal.result.then((result) => {
+      confirmModal.result.then(result => {
         if (result) {
           this.httpService.abortExport(this.exportData.id).subscribe(() => {
             this.activeModal.close();
@@ -87,18 +84,18 @@ setDate(date){
       });
     } else {
       this.activeModal.close();
-    }  
+    }
   }
 
-    catchWebSocketEvents(msg) {
-      if (Object.keys(msg)[0] === 'error') {
-        return;
-      }
-      switch (Object.keys(msg.result)[0]) {
-        case 'export_status':
-          this.exportData.state = msg.result.export_status.state;
-          break;
-      }
-      // this.system = Object.assign({}, this.system);
+  catchWebSocketEvents(msg) {
+    if (Object.keys(msg)[0] === 'error') {
+      return;
     }
+    switch (Object.keys(msg.result)[0]) {
+      case 'export_status':
+        this.exportData.state = msg.result.export_status.state;
+        break;
+    }
+    // this.system = Object.assign({}, this.system);
+  }
 }
