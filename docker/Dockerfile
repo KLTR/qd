@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:11-alpine as stage1
 
 WORKDIR /app
 
@@ -21,11 +21,14 @@ COPY . /app
 ARG ALT_NPM_INSTALL_PACKAGES
 RUN cd /app && npm install ${ALT_NPM_INSTALL_PACKAGES} --no-audit
 
-ARG USE_NG_BUILD
+ARG NG_BUILD_ARGS
 
-RUN cd /app && npm run ${USE_NG_BUILD}
+RUN cd /app && ng build ${NG_BUILD_ARGS}
 
 FROM nginx:alpine
 
 COPY --from=stage1 /app/dist/quantum-ui /usr/share/nginx/html
 COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
+
+ARG GIT_HASH_TAG
+LABEL GIT_HASH_TAG ${GIT_HASH_TAG}
