@@ -501,19 +501,19 @@ a:focus {
 
 .critical-border,
 .fatal-border {
-  border-left: 1px solid $event-critical !important;
+  border-left: 2px solid $event-critical !important;
 }
 
 .info-border {
-  border-left: 1px solid $event-info !important;
+  border-left: 2px solid $event-info !important;
 }
 
 .major-border {
-  border-left: 1px solid $event-major !important;
+  border-left: 2px solid $event-major !important;
 }
 
 .warning-border {
-  border-left: 1px solid $event-warning !important;
+  border-left: 2px solid $event-warning !important;
 
 }
 

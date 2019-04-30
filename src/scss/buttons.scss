@@ -138,3 +138,86 @@ button {
 a {
   @extend button;
 }
+
+// Dropdown
+.dropdown {
+  &>.btn {
+    width: 206px;
+    height: 32px;
+    border-radius: 2px;
+    padding: 0;
+    padding-left: 10px;
+    text-align: left;
+    box-shadow: none;
+    outline: none;
+    text-transform: capitalize;
+    font-size: 13.5px;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 0.3px;
+    font-stretch: normal;
+    opacity: 1;
+    // Override bootstrap css
+    border: solid 1px #bcd8f5 !important;
+    background-color: transparent !important;
+    color: #bcd8f5 !important;
+    box-shadow: none !important;
+
+    &:after {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    &:hover {
+      border: solid 1px #bcd8f5;
+      cursor: pointer;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: rgb(47, 59, 74);
+    border-radius: 2px;
+    // border: solid 1px rgba(197, 225, 255, 0.2);
+    margin: 0;
+    border-top: none;
+    width: 206px;
+
+    .dropdown-item {
+      font-size: 13.5px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: 0.3px;
+      text-align: left;
+      color: #bcd8f5;
+      text-transform: capitalize;
+
+      &:hover {
+        background-color: #52667b;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.input {
+  width: 206px;
+  height: 30px;
+  border-radius: 2px;
+  background-color: rgba(55, 67, 83, 0.5);
+  border: none;
+  font-size: 13.5px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.3px;
+  text-align: left;
+  color: rgba(197, 225, 255, 0.8);
+  padding-left: 10px;
+
+}
+
+.name {
+  margin-bottom: 20px;
+}

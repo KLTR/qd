@@ -90,6 +90,22 @@
 
 .rwd-table td {
   display: block;
+
+  &.state {
+    .info-icon {
+      display: none;
+      cursor: pointer;
+    }
+
+    &:hover {
+      .info-icon {
+        display: inline;
+        position: absolute;
+        margin-left: 5px;
+      }
+    }
+  }
+
 }
 
 .rwd-table td:first-child {
@@ -106,7 +122,6 @@
 
 .rwd-table td:before {
   content: attr(data-th) ": ";
-  font-weight: bold;
   width: 6.5em;
   display: inline-block;
 }
@@ -152,7 +167,6 @@
 .rwd-table th,
 .rwd-table td {
   margin: .5em 1em;
-  font-weight: bold;
 }
 
 

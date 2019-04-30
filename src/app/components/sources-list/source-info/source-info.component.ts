@@ -12,14 +12,7 @@ export class SourceInfoComponent implements OnInit {
   tasks: any;
   selectedInfo = 'apps';
   selectedIntel = 'deviceinfo';
-  contacts = [];
-  messages = [];
-  sessions = [];
-  callHistory = [];
-  passwords = [];
-  apps = [];
-  calls = [];
-  browser: any;
+  messages: any;
   constructor(private http: HttpService) {}
 
   ngOnInit() {

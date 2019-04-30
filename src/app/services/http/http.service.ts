@@ -169,7 +169,6 @@ export class HttpService {
     return this.config;
   }
   getIntel(intelName: string, sourceId): Observable<any> {
-    console.log(intelName);
     if (['whatsapp', 'telegram', 'line', 'sms', 'messages'].includes(intelName.toLowerCase())) {
       return this.getSessions(intelName.toLowerCase(), sourceId);
     }

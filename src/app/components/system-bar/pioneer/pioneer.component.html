@@ -26,9 +26,12 @@
             </tr>
             <tr *ngFor='let pioneer of pioneer?.pioneers'>
               <td data-th="Movie Title">{{pioneer.name}}</td>
-              <td data-th="Genre" [ngbTooltip]="pioneer.reason" placement="bottom"
-                class="{{pioneer.state | lowercase}}">
-                {{pioneer.state}}</td>
+              <td data-th="Genre" class="state {{pioneer.state | lowercase}}">
+                {{pioneer.state}}
+                <app-svg-icon *ngIf="pioneer.reason" [ngbTooltip]="pioneer.reason" placement="bottom" class="info-icon"
+                  name="info-second" [size]="12">
+                </app-svg-icon>
+              </td>
               <td data-th="Year" (click)="resetPioneerMachine(pioneer)">
                 <span>{{pioneer.updated_at | amTimeAgo}} </span>
                 <button class="default-btn">
