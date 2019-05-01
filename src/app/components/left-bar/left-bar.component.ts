@@ -90,6 +90,7 @@ export class LeftBarComponent implements OnInit {
       case 'INITIALIZING':
       case 'DOWNLOADING':
       case 'ACTIVE':
+      case 'IDLE':
       case 'TERMINATING':
         // case 'COLLECTING_DATA':
         return true;

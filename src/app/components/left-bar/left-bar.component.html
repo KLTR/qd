@@ -38,10 +38,6 @@
               source.tasks.progress : '0'}}%
           </span>
           <span class="device-icon">
-            <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'"
-              [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width"
-              [height]="source.animatedIcon?.height">
-            </lottie-animation-view>
             <lottie-animation-view *ngIf="isAnimatedIcon(source); else noAnimatedIcon"
               [options]="iconService.setAnimatedIcon(source).options"
               [width]="iconService.setAnimatedIcon(source).width" [height]="iconService.setAnimatedIcon(source).height">

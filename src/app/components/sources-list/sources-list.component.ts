@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService, WsService } from '@app/services';
 @Component({
   selector: 'app-sources-list',
@@ -18,7 +19,9 @@ export class SourcesListComponent implements OnInit {
   terminatedSourcesNumber: number;
   selectedSource: any;
   isLoading: boolean;
-  constructor(private http: HttpService, private ws: WsService) {
+  id: string;
+  private sub: any;
+  constructor(private http: HttpService, private ws: WsService, private router: Router, private route: ActivatedRoute) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
@@ -48,6 +51,14 @@ export class SourcesListComponent implements OnInit {
         this.events = [];
       }
     });
+    // if (!this.selectedSource) {
+    //   this.route.firstChild.params.subscribe(params => {
+    //     console.log(params['id']);
+    //     this.http.getSource(params['id']).subscribe(res => {
+    //       console.log(res), (this.selectedSource = res);
+    //     });
+    //   });
+    // }
   }
   filterByTarget(target) {
     this.filterValue = '';
@@ -81,10 +92,13 @@ export class SourcesListComponent implements OnInit {
   }
 
   selectSource(source) {
+    console.log(source);
     if (source === this.selectedSource) {
       this.selectedSource = null;
+      this.router.navigate(['/dashboard']);
     } else {
       this.selectedSource = source;
+      this.router.navigate(['/dashboard/source-info', source.id]);
     }
   }
 
@@ -177,6 +191,7 @@ export class SourcesListComponent implements OnInit {
     this.acitveSourcesNumber = this.leftBarData.sources.filter(
       src =>
         src.state === 'ACTIVE' ||
+        src.state === 'IDLE' ||
         src.state === 'DOWNLOADING' ||
         src.state === 'DOWNLOADING_AGENT' ||
         src.state === 'INITIALIZING' ||

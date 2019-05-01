@@ -57,7 +57,7 @@ export class IconService {
           }
         };
       // 3
-      case 'ACTIVE':
+      case 'IDLE':
         return {
           height: 27,
           width: 23,

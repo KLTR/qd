@@ -141,6 +141,8 @@ a {
 
 // Dropdown
 .dropdown {
+  position: relative;
+
   &>.btn {
     width: 206px;
     height: 32px;
@@ -157,6 +159,7 @@ a {
     letter-spacing: 0.3px;
     font-stretch: normal;
     opacity: 1;
+    position: relative;
     // Override bootstrap css
     border: solid 1px #bcd8f5 !important;
     background-color: transparent !important;

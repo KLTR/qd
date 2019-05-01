@@ -4,7 +4,7 @@
     <div class="filters">
       <span [class.selected]="filterValue === 'ALL'" (click)="setFilter('ALL')">All sources ({{allSourcesNumber ?
         allSourcesNumber : '0'}})</span>
-      <span [class.selected]="filterValue === 'ACTIVE'" (click)="setFilter('ACTIVE')">Active ({{acitveSourcesNumber ?
+      <span [class.selected]="filterValue === 'IDLE'" (click)="setFilter('IDLE')">Active ({{acitveSourcesNumber ?
             acitveSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'DOWNLOADING'" (click)="setFilter('DOWNLOADING')">Downloading
         ({{downloadingSourcesNumber ? downloadingSourcesNumber : '0'}})</span>
@@ -16,9 +16,10 @@
     </div>
     <div class="sources-list-wrapper">
       <ul class="sources-list" *ngIf="filteredSources.length > 0; else emptyScreen">
-        <cdk-virtual-scroll-viewport style="height: 100%" itemSize="12" *ngIf="!selectedSource; else sourceInfo">
+        <cdk-virtual-scroll-viewport style="height: 100%" itemSize="100" *ngIf="!selectedSource; else sourceInfo">
           <ng-container *cdkVirtualFor="let source of filteredSources; trackBy: trackFn">
-            <app-source-cube [source]="source" (click)="selectSource(source)"></app-source-cube>
+            <app-source-cube [source]="source" (click)="selectSource(source)">
+            </app-source-cube>
           </ng-container>
         </cdk-virtual-scroll-viewport>
       </ul>
@@ -44,7 +45,7 @@
 
 <ng-template #sourceInfo style="height: 100%">
   <div class="source-info-wrapper" *ngIf="selectedSource?.state === filterValue || filterValue === 'ALL'">
-    <app-source-cube [source]="selectedSource" (click)="selectSource(source)"></app-source-cube>
+    <app-source-cube [source]="selectedSource" (click)="selectSource(selectedSource)"></app-source-cube>
     <app-source-info [source]="selectedSource"></app-source-info>
   </div>
 </ng-template>

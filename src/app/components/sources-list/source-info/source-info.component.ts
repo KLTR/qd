@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '@app/services';
 
 @Component({
@@ -13,12 +14,14 @@ export class SourceInfoComponent implements OnInit {
   selectedInfo = 'apps';
   selectedIntel = 'deviceinfo';
   messages: any;
-  constructor(private http: HttpService) {}
+
+  constructor(private http: HttpService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.http.getSourceIntels(this.source.id).subscribe(res => {
       console.log(res), (this.tasks = res.tasks);
     });
+
     this.selectIntel('deviceinfo');
   }
   taskAction(event, task: string) {

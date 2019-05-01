@@ -30,6 +30,7 @@ export class HttpService {
     archiveTarget: '/targets/{{id}}/archive',
 
     // Sources
+    getSource: '/sources/{{id}}',
     exportSource: '/exports/sources/{{id}}',
     terminateAgent: '/sources/{{id}}/shutdown',
     abortExport: '/exports/{{id}}/abort',
@@ -174,7 +175,9 @@ export class HttpService {
     }
     return this.http.get(this.getUrlByApiNameWithArgs('getSourceIntel', sourceId, intelName.toLowerCase()), this.setHeaders());
   }
-
+  getSource(sourceId: string): Observable<any> {
+    return this.http.get(this.getUrlByApiName('getSource', sourceId), this.setHeaders());
+  }
   taskAction(taskAction: string, sourceId: string) {
     taskAction = taskAction.toLowerCase();
     return this.http.get(this.getUrlByApiNameWithArgs('taskAction', sourceId, taskAction), this.setHeaders());

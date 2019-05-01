@@ -1,8 +1,10 @@
-<li *ngIf="source" class="source-cube" [ngClass]="['TERMINATED', 'TERMINATING'].includes(source?.state) ? 'dimmed' : ''">
+<li *ngIf="source" class="source-cube"
+  [ngClass]="['TERMINATED', 'TERMINATING'].includes(source?.state) ? 'dimmed' : ''">
   <div class="source-cube-wrapper">
     <div class="info-wrapper" *ngIf="!isNoInfo(); else noInfoSource">
       <div class="source-img">
-        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos" *ngIf="source.profile_pics?.length > 1 "></app-svg-icon>
+        <app-svg-icon (click)="changeImg($event)" class="more-photos-icon" name="more-photos"
+          *ngIf="source.profile_pics?.length > 1 "></app-svg-icon>
         <img *ngIf="source.profile_pics; else avatar" [attr.src]="imgUrl | secure | async">
         <ng-template #avatar>
           <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
@@ -14,13 +16,14 @@
         <div *ngIf="source.device" class="source-phone-info">
           <span class="phone-model grid-item">{{source.device.name}} </span>
           <span class="phone-version grid-item"> ({{source.device.version}})
-          <app-svg-icon ngbTooltip="{{source.device?.battery}}%" container="body" placement="top"
-            class="phone-battery" [name]="getBatteryStatus()">
-          </app-svg-icon>
-          <app-svg-icon class="phone-wifi" [ngbTooltip]="wifiTip" container="body" placement="top" [name]="getWifiStatus()">
-          </app-svg-icon>
-        </span>
-        <!-- <span class="target-identifier grid-item">
+            <app-svg-icon ngbTooltip="{{source.device?.battery}}%" container="body" placement="top"
+              class="phone-battery" [name]="getBatteryStatus()">
+            </app-svg-icon>
+            <app-svg-icon class="phone-wifi" [ngbTooltip]="wifiTip" container="body" placement="top"
+              [name]="getWifiStatus()">
+            </app-svg-icon>
+          </span>
+          <!-- <span class="target-identifier grid-item">
             <img src="../../../assets/img/svg/add-target.svg">
           <span>55-523-1234</span>
         </span> -->
@@ -41,23 +44,29 @@
       </div>
     </ng-template>
     <div class="device-status">
-      <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}" [name]="source.state"></app-svg-icon>
-      <lottie-animation-view *ngIf="!timedOut && source.state === 'DOWNLOADING' || source.state === 'SERVER_IS_PROCESSING_DATA'" [options]="source.animatedIcon?.options"
-        [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+      <app-svg-icon *ngIf="!isAnimated; else animated" [size]="23" id="{{source.state | lowercase}}"
+        [name]="source.state"></app-svg-icon>
+      <lottie-animation-view
+        *ngIf="!timedOut && source.state === 'DOWNLOADING' || source.state === 'SERVER_IS_PROCESSING_DATA'"
+        [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width"
+        [height]="source.animatedIcon?.height">
       </lottie-animation-view>
-      <lottie-animation-view *ngIf="!timedOut && source.state === 'ACTIVE'" [options]="source.animatedIcon?.options"
+      <lottie-animation-view *ngIf="!timedOut && source.state === 'IDLE'" [options]="source.animatedIcon?.options"
         [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
       </lottie-animation-view>
       <ng-template #animated>
-        <lottie-animation-view *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'ACTIVE' && source.state !== 'SERVER_IS_PROCESSING_DATA'"
-          [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width" [height]="source.animatedIcon?.height">
+        <lottie-animation-view
+          *ngIf="!timedOut && source.state !== 'DOWNLOADING' && source.state !== 'IDLE' && source.state !== 'SERVER_IS_PROCESSING_DATA'"
+          [options]="source.animatedIcon?.options" [width]="source.animatedIcon?.width"
+          [height]="source.animatedIcon?.height">
         </lottie-animation-view>
       </ng-template>
-      <span class="device-status-text" [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','TOOL_IS_COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
+      <span class="device-status-text"
+        [ngClass]="source.state === 'LOST_CONNECTION' ? 'red' : (['DOWNLOADING','TOOL_IS_COLLECTING_DATA'].includes(source.state) ? 'green' : '')">
         {{deviceStatusToText()}}</span>
     </div>
   </div>
-  <div class="source-cube-info"  [ngClass]="['LOST_CONNECTION'].includes(source?.state) ? 'dimmed' : ''">
+  <div class="source-cube-info" [ngClass]="['LOST_CONNECTION'].includes(source?.state) ? 'dimmed' : ''">
     <ng-template #noInfoTasks>
       <div class="before-initializing">
         <div class="top-bar shimmer"></div>
@@ -90,7 +99,8 @@
           <div class="tooltip-placeholder">
             <app-svg-icon *ngIf="!item.progress_bar || !source.tasks.progress_bar" [name]="item.name" [size]="23"
               [ngClass]="{'in-proccess': item.progress_bar}"></app-svg-icon>
-            <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}" *ngIf="item.progress_bar && source.tasks.progress_bar">
+            <div class="download-proccess" [ngStyle]="{'width': item.progress ? item.progress + '%' : '0' + '%'}"
+              *ngIf="item.progress_bar && source.tasks.progress_bar">
               <app-svg-icon [name]="item.name" [size]="23"></app-svg-icon>
             </div>
           </div>
@@ -106,14 +116,17 @@
       </div>
 
     </div>
-    <div class="source-export"  ngbTooltip="Export" container="body" placement="top" (click)="exportSource($event,source.id)">
+    <div class="source-export" ngbTooltip="Export" container="body" placement="top"
+      (click)="exportSource($event,source.id)">
       <svg height="18" viewBox="0 0 19.07 18" width="19.07">
-        <polygon class="cls-1" points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16"></polygon>
+        <polygon class="cls-1"
+          points="11 16 2 16 2 2 11 2 11 5 13 5 13 0 11 0 2 0 0 0 0 2 0 16 0 18 2 18 11 18 13 18 13 13 11 13 11 16">
+        </polygon>
         <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
       </svg>
     </div>
-    <div class="cube-on-off"  ngbTooltip="Terminate Agent" (click)="terminateAgent($event,source.id)"
-      placement="top" container="body">
+    <div class="cube-on-off" ngbTooltip="Terminate Agent" (click)="terminateAgent($event,source.id)" placement="top"
+      container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>
   </div>

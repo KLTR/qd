@@ -5,8 +5,13 @@
       <!-- Tooltips -->
       <ng-template class="tool-tip" #batteryTip>{{system.goat?.tip}}</ng-template>
 
-      <app-pioneer *ngIf="system.pioneer" [pioneer]="system?.pioneer"></app-pioneer>
+      <app-pioneer *ngIf="system.pioneer; else pioneerPh" [pioneer]="system?.pioneer"></app-pioneer>
 
+      <ng-template #pioneerPh>
+        <app-svg-icon class="pioneer" [name]="'pioneer'" [size]="15" container="body" [ngbTooltip]="'No data'"
+          placement="bottom">
+        </app-svg-icon>
+      </ng-template>
       <span class="icon-wrapper" *ngIf="cloudStatus" [satPopoverAnchorFor]="cloudPop" (click)="handlePops(2);">
         <app-svg-icon *ngIf="cloudStatus" class="cloud" [name]="cloudStatus" [size]="23"></app-svg-icon>
       </span>
@@ -16,8 +21,12 @@
       </span>
 
 
-      <app-battery *ngIf="system?.goat" [goat]="system?.goat"></app-battery>
-
+      <app-battery *ngIf="system?.goat; else batteryPh" [goat]="system?.goat"></app-battery>
+      <ng-template #batteryPh>
+        <app-svg-icon class="battery" name="battery-full" container="body" [ngbTooltip]="'No data'" placement="bottom"
+          [size]="22">
+        </app-svg-icon>
+      </ng-template>
       <span class="icon-wrapper" *ngIf="internetStatus" [satPopoverAnchorFor]="internetPop" (click)="handlePops(0);">
         <app-svg-icon class="internet" name="internet" [size]="15" [ngClass]="internetStatus"></app-svg-icon>
       </span>
