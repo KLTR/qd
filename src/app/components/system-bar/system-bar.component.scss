@@ -62,6 +62,7 @@
       justify-content: space-around;
       display: flex;
       align-items: center;
+      min-height: 40px;
 
       app-svg-icon {
         cursor: pointer;
@@ -167,7 +168,7 @@
       &.clock {
         position: absolute;
         right: 70px;
-        margin-top: 6px;
+        margin-top: 12px;
       }
     }
 
