@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '@app/services';
+import { HttpService, WsService } from '@app/services';
 
 @Component({
   selector: 'app-source-info',
@@ -11,17 +11,20 @@ export class SourceInfoComponent implements OnInit {
   @Input() source: any;
   data: any;
   tasks: any;
+  tasksView: any;
   selectedInfo = 'apps';
   selectedIntel = 'deviceinfo';
   messages: any;
 
-  constructor(private http: HttpService, private route: ActivatedRoute) {}
+  constructor(private http: HttpService, private route: ActivatedRoute, private ws: WsService) {
+    this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
+  }
 
   ngOnInit() {
     this.http.getSourceIntels(this.source.id).subscribe(res => {
       console.log(res), (this.tasks = res.tasks);
     });
-
+    this.getTasks();
     this.selectIntel('deviceinfo');
   }
   taskAction(event, task: string) {
@@ -36,7 +39,7 @@ export class SourceInfoComponent implements OnInit {
   }
   getTasks() {
     this.http.getTasks(this.source.id).subscribe(res => {
-      console.log(res), (this.data = res);
+      console.log(res), (this.tasksView = res);
     });
   }
   selectIntel(intel: string) {
@@ -58,5 +61,18 @@ export class SourceInfoComponent implements OnInit {
     this.http.getSessionMessages(this.source.id, this.selectedIntel.toLowerCase(), sessionId).subscribe(res => {
       console.log(res), (this.messages = res);
     });
+  }
+
+  catchWebSocketEvents(msg) {
+    if (Object.keys(msg)[0] === 'error') {
+      return;
+    }
+    switch (Object.keys(msg.result)[0]) {
+      // System
+      case 'tasks':
+        this.tasksView = msg.result.tasks;
+        break;
+    }
+    this.tasksView = Object.assign({}, this.tasksView);
   }
 }

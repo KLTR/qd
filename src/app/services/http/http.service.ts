@@ -127,7 +127,7 @@ export class HttpService {
     return this.http.post(this.getUrlByApiName('terminateAgent', sourceId), null, this.setHeaders());
   }
   findPioneerDevices(targetId: string): Observable<any> {
-    return this.http.get(this.getUrlByApiName('findPioneerDevices', targetId), this.setHeaders());
+    return this.http.get(this.getUrlByApiName('findDevices', targetId), this.setHeaders());
   }
   dismissEvent(eventId: string): Observable<any> {
     return this.http.delete(this.getUrlByApiName('dismissEvent', eventId), this.setHeaders());
