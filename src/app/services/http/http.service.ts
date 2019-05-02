@@ -28,6 +28,7 @@ export class HttpService {
     // Targets
     targets: '/targets',
     archiveTarget: '/targets/{{id}}/archive',
+    findDevices: '/targets/{{id}}/devices',
 
     // Sources
     getSource: '/sources/{{id}}',
@@ -35,8 +36,8 @@ export class HttpService {
     terminateAgent: '/sources/{{id}}/shutdown',
     abortExport: '/exports/{{id}}/abort',
     getSourceTasks: '/sources/{{id}}/apps',
+
     // Pioneer Devices
-    findPioneerDevices: '/pioneers/find/by_target/{{id}}',
     queryPioneerDevices: '/pioneers/query/by_target/{{id}}',
     resetPioneerMachine: '/pioneers/{{id}}/reset',
 
