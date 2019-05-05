@@ -1,6 +1,5 @@
       <span class="icon-wrapper">
-        <div class="icon-wrapper pioneer-wrapper" *ngIf="pioneerStatus" [satPopoverAnchorFor]="pioneerPop"
-          (click)="pioneerPop.toggle()">
+        <div class="icon-wrapper pioneer-wrapper" [satPopoverAnchorFor]="pioneerPop" (click)="pioneerPop.toggle()">
           <span [ngClass]="pioneerStatus === 'pioneer-green' ? 'circle-green' : 'circle-red'">
             <span class="number-counter">{{pioneer?.pioneers?.length ? pioneer.pioneers.length : '0'}}</span>
           </span>
@@ -12,7 +11,7 @@
 
 
       <sat-popover #pioneerPop xAlign="center" yAlign="below">
-        <div class="custom-tip pioneer">
+        <div *ngIf="pioneerStatus; else noData" class="custom-tip pioneer">
           <div class="header">Pioneer (IDS)
             <span class="close-button" (click)="pioneerPop.close()">
               <i class="fa fa-times" aria-hidden="true"></i>
@@ -41,4 +40,11 @@
             </tr>
           </table>
         </div>
+        <ng-template #noData>
+          <div class="custom-tip small-tip">
+            <div class="header">
+              No data
+            </div>
+          </div>
+        </ng-template>
       </sat-popover>

@@ -1,12 +1,13 @@
-<span class="icon-wrapper" *ngIf="batteryStatus">
-  <app-svg-icon class="battery" [name]="batteryStatus" [satPopoverAnchorFor]="batteryPop"
-    (mouseenter)="batteryPop.open()" (mouseleave)="batteryPop.close()" [size]="22"></app-svg-icon>
+<span class="icon-wrapper">
+  <app-svg-icon class="battery" [name]="batteryStatus ? batteryStatus : 'battery-full'"
+    [satPopoverAnchorFor]="batteryPop" (click)="batteryPop.toggle()" [size]="22">
+  </app-svg-icon>
 </span>
 
 <sat-popover #batteryPop xAlign="center" yAlign="below">
   <div class="custom-tip small-tip">
     <div class="header">
-      {{goat?.tip}}
+      {{batteryStatus ? goat?.tip : 'No Data'}}
     </div>
   </div>
 </sat-popover>

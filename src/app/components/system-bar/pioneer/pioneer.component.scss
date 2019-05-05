@@ -23,6 +23,15 @@
   border-radius: 4px;
   min-width: 350px;
 
+  &.small-tip {
+    min-width: 50px;
+
+    .header {
+      min-width: 50px;
+      padding: 10px;
+    }
+  }
+
   &:after {
     content: "";
     display: block;

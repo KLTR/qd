@@ -1,0 +1,45 @@
+<div class="modal-wrapper">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{intel}}</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"> -->
+    <!-- <span aria-hidden="true">&times;</span> -->
+    <!-- </button> -->
+  </div>
+  <div class="modal-body">
+    <div class="left-wrapper p-10">
+      <span class="title">WHAT TO DOWNLOAD</span>
+      <ul class="downloads">
+        <li *ngFor="let item of downloads; let i = index">
+          <input id="checkbox-{{i}}" class="checkbox-custom" name="checkbox-{{i}}" type="checkbox" value="{{item.name}}"
+            [(ngModel)]="item.isChecked">
+          <!-- <span class="item-name">{{item.name}}</span> -->
+          <label for="checkbox-{{i}}" class="checkbox-custom-label">{{item.name}}</label>
+          <span class="item-size">{{item.size}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="right-wrapper p-10">
+      <span class="title">TIME PATTERN</span>
+      <div class="form-group">
+        <div class="radio-buttons">
+          <p>
+            <input type="radio" id="all" value="all" name="date-range" (click)="selectDateRange('all')" checked>
+            <label for="all">All</label>
+          </p>
+          <p>
+            <input type="radio" id="range" value="range" (click)="selectDateRange('range')" name="date-range">
+            <label for="range">Range</label>
+          </p>
+          <app-date-picker-modal class="datepicker" (dateRangeSelected)="setDate($event)" *ngIf="isRangeSelected">
+          </app-date-picker-modal>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="secondary-btn modal-btn" (click)="activeModal.close()">Close</button>
+    <button class="primary-btn modal-btn" (click)="setTask()">
+      <span>Apply</span>
+    </button>
+  </div>
+</div>

@@ -74,9 +74,10 @@ export class SourcesListComponent implements OnInit {
     this.filterValue = value;
     if (!value || value === 'ALL') {
       this.filteredSources = this.leftBarData.sources;
-    } else if (value === 'ACTIVE') {
+    } else if (value === 'ACTIVE' || value === 'IDLE') {
       this.filteredSources = this.leftBarData.sources.filter(
         item =>
+          item.state === 'IDLE' ||
           item.state === 'ACTIVE' ||
           item.state === 'DOWNLOADING' ||
           item.state === 'DOWNLOADING_AGENT' ||

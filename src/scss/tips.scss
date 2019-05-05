@@ -1,0 +1,99 @@
+.icon-wrapper {
+  height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.custom-tip {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: $primary-text;
+  margin-top: 20px;
+  border-radius: 4px;
+  min-width: 350px;
+
+  &.small-tip {
+    min-width: 50px;
+
+    .header {
+      min-width: 50px;
+      padding: 10px;
+    }
+  }
+
+
+  &.user {
+    max-width: 350px;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    border-width: 0px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #4d6179;
+    margin-left: -10px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+  }
+
+  .close-button {
+    position: absolute;
+    right: 15px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .header {
+    min-width: 175px;
+    height: 38px;
+    background-color: #4d6179;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+
+    .settings {
+      margin-left: auto;
+      margin-right: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content {
+    min-width: 175px;
+    border-radius: 4px;
+    background-color: #2c3745;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 15px;
+    margin: 0;
+    max-height: 380px;
+
+    li {
+      display: flex;
+    }
+
+
+    span {
+      margin-left: 5px;
+    }
+
+  }
+}

@@ -21,7 +21,9 @@ export class PioneerComponent implements OnInit {
     this.getPioneerStatus();
     // console.log(this.pioneer);
   }
-
+  ngOnChanges(): void {
+    this.getPioneerStatus();
+  }
   getPioneerStatus() {
     if (this.pioneer) {
       if (this.pioneer.indicator.state === 'GREEN') {

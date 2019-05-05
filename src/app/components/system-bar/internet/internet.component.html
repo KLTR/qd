@@ -1,0 +1,24 @@
+<span class="icon-wrapper" [satPopoverAnchorFor]="internetPop" (click)="internetPop.toggle()">
+  <app-svg-icon class="internet" name="internet" [size]="15" [ngClass]="internetStatus ? internetStatus : ''">
+  </app-svg-icon>
+</span>
+
+<sat-popover #internetPop xAlign="center" yAlign="below">
+  <div *ngIf="internetStatus; else noData" class="custom-tip">
+    <div class="header">Internet Connection
+      <span class="close-button" (click)="closeTip()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </span>
+    </div>
+    <ul class="content">
+      <li>Status: <span class="status-{{internetStatus}}">{{internetStatus}}</span></li>
+    </ul>
+  </div>
+  <ng-template #noData>
+    <div class="custom-tip small-tip">
+      <div class="header">
+        No Data
+      </div>
+    </div>
+  </ng-template>
+</sat-popover>

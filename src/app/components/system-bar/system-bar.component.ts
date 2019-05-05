@@ -45,12 +45,10 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit() {
     this.clock$ = interval(1000).pipe(map(() => Date.now()));
     this.http.getConfigLocal().subscribe(res => (this.config = res));
-    this.pops = [this.internetPop, this.alicePop, this.cloudPop, this.interceptorPop];
+    this.pops = [this.alicePop, this.cloudPop, this.interceptorPop];
   }
 
   ngOnChanges() {
-    this.getInternetMode();
-    this.getDiskSpace();
     this.getDeviceStatus();
     this.getAliceStatus();
     this.getCloudStatus();
@@ -105,34 +103,6 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  getDiskSpace() {
-    if (this.system.storage && this.config) {
-      switch (this.system.storage.indicator.state) {
-        case this.config.indicators.state.green:
-          this.diskStatus = 'storage-full';
-          break;
-        case this.config.indicators.state.yellow:
-          this.diskStatus = 'storage-half';
-          break;
-        case this.config.indicators.red:
-          this.diskStatus = 'storage-empty';
-          break;
-        default:
-          this.diskStatus = 'storage-empty';
-      }
-    }
-  }
-
-  getInternetMode() {
-    if (this.system.internet && this.config) {
-      if (this.system.internet.indicator.state === this.config.indicators.state.green) {
-        this.internetStatus = 'connected';
-      } else {
-        this.internetStatus = 'not-connected';
-      }
-    }
-  }
-
   getDeviceStatus() {
     if (this.system.interceptor && this.config) {
       if (this.system.interceptor.indicator.state === this.config.indicators.state.green) {
@@ -159,16 +129,6 @@ export class SystemBarComponent implements OnInit, OnChanges, AfterViewInit {
         this.cloudStatus = 'cloud-green';
       } else {
         this.cloudStatus = 'cloud-red';
-      }
-    }
-  }
-
-  getPioneerStatus() {
-    if (this.system.pioneer && this.config) {
-      if (this.system.pioneer.indicator.state === this.config.indicators.state.green) {
-        this.pioneerStatus = 'pioneer-green';
-      } else {
-        this.pioneerStatus = 'pioneer-red';
       }
     }
   }

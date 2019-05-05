@@ -57,6 +57,7 @@ import { DatePickerModalComponent } from './components/modals/date-picker-modal/
 import { DeviceListModalComponent } from './components/modals/device-list-modal/device-list-modal.component';
 import { ExportModalComponent } from './components/modals/export-modal/export-modal.component';
 import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
+import { TasksModalComponent } from './components/modals/tasks-modal/tasks-modal.component';
 import { RightBarComponent } from './components/right-bar/right-bar.component';
 import { SourceTooltipComponent } from './components/source-tooltip/source-tooltip.component';
 import { SourceCubeComponent } from './components/sources-list/source-cube/source-cube.component';
@@ -69,6 +70,8 @@ import { BatteryComponent } from './components/system-bar/battery/battery.compon
 import { PioneerComponent } from './components/system-bar/pioneer/pioneer.component';
 // Components
 import { SystemBarComponent } from './components/system-bar/system-bar.component';
+import { StorageComponent } from './components/system-bar/storage/storage.component';
+import { InternetComponent } from './components/system-bar/internet/internet.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -117,7 +120,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     LoadingComponent,
     DatePickerModalComponent,
     PioneerComponent,
-    BatteryComponent
+    BatteryComponent,
+    TasksModalComponent,
+    StorageComponent,
+    InternetComponent
   ],
   imports: [
     BrowserModule,
@@ -176,7 +182,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     OwnersCellComponent,
     DateCellComponent,
     ConfirmModalComponent,
-    ExportModalComponent
+    ExportModalComponent,
+    TasksModalComponent
   ],
   bootstrap: [AppComponent]
 })

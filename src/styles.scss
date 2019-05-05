@@ -2,13 +2,13 @@
 @import "scss/backgroundimages";
 @import "scss/base";
 @import "scss/main";
-@import "scss/cases";
 @import "scss/mission";
 @import "scss/colors.scss";
 @import "scss/intels";
 @import "./scss/paddings.scss";
 @import "./scss/margins.scss";
 @import "./scss/buttons.scss";
+@import "./scss/tips.scss";
 @include qd-paddings(0, 50, 1px);
 @include qd-margins(0, 50, 1px);
 // Ag-Grid styles
@@ -60,6 +60,51 @@ $fa-font-path: "~font-awesome/fonts";
   src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'), url('assets/fonts/titilliumweb-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: $modal-body;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.25);
+
+  .modal-header {
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: $modal-header;
+    padding: 10px;
+    text-transform: uppercase;
+    border: none;
+    justify-content: center;
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.55;
+      letter-spacing: 0.4px;
+      text-align: center;
+      color: $primary-text;
+    }
+  }
+
+  .modal-body {
+    color: #b7d2ee;
+    font-size: 15px;
+    padding: 15px;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+}
+
 
 p,
 div {
@@ -207,7 +252,7 @@ a:focus {
   .tooltip-inner {
     border-radius: 2px;
     background-color: #52667b;
-    color: #fff;
+    color: $primary-text;
     z-index: 999;
   }
 
@@ -446,13 +491,6 @@ a:focus {
 
 
 // Global classes
-[class*="connected"] {
-  color: $tiffany-blue;
-}
-
-[class="not-connected"] {
-  color: $warning !important;
-}
 
 [class="red"] {
   color: $warning !important;
@@ -465,8 +503,6 @@ a:focus {
 [class="green"] {
   color: $tiffany-blue !important;
 }
-
-
 
 [class="GREEN"] {
   color: $tiffany-blue !important;
@@ -552,63 +588,7 @@ a {
   @extend button;
 }
 
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
-  position: absolute;
-  left: -9999px;
-}
 
-[type="radio"]:checked+label,
-[type="radio"]:not(:checked)+label {
-  position: relative;
-  padding-left: 28px;
-  cursor: pointer;
-  line-height: 20px;
-  display: inline-block;
-  color: rgba(196, 225, 255, 0.5);
-}
-
-[type="radio"]:checked+label {
-  color: rgba(196, 225, 255, 1);
-}
-
-[type="radio"]:checked+label:before,
-[type="radio"]:not(:checked)+label:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #c4e1ff;
-  border-radius: 100%;
-  background: transparent;
-}
-
-[type="radio"]:checked+label:after,
-[type="radio"]:not(:checked)+label:after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: #c4e1ff;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  border-radius: 100%;
-  transition: all 0.2s ease;
-}
-
-[type="radio"]:not(:checked)+label:after {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-
-[type="radio"]:checked+label:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
 
 .tooltip>div {
   animation-name: delayedFadeIn;

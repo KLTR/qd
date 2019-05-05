@@ -125,8 +125,12 @@
         <polygon class="cls-1" points="19.07 9 15 4.93 15 8 6 8 6 10 15 10 15 13.07 19.07 9"></polygon>
       </svg>
     </div>
-    <div class="cube-on-off" ngbTooltip="Terminate Agent" (click)="terminateAgent($event,source.id)" placement="top"
-      container="body">
+    <div *ngIf="source.state !== 'TERMINATING'" class="cube-on-off" ngbTooltip="Terminate Agent"
+      (click)="terminateAgent($event,source.id)" placement="top" container="body">
+      <app-svg-icon name="power" [size]="13"></app-svg-icon>
+    </div>
+    <div *ngIf="source.state === 'TERMINATING'" class="cube-on-off" ngbTooltip="Force Termination"
+      (click)="terminateAgent($event,source.id)" placement="top" container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>
   </div>

@@ -21,8 +21,8 @@
         <app-svg-icon [name]="task.name" [size]="17"></app-svg-icon>
       </span>
       <span class="text">{{task.display_name}}</span>
-      <span class="state-icon" (click)="taskAction($event, task.state)">
-        <app-svg-icon [name]="task.state"></app-svg-icon>
+      <span class="state-icon" (click)="taskAction($event, task.name)">
+        <app-svg-icon [size]="15" [name]="task.state"></app-svg-icon>
       </span>
 
     </div>

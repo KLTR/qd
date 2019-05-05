@@ -74,6 +74,7 @@ button {
   @extend button;
   width: 165px;
   height: 40px;
+  border-radius: 4px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.25);
   color: $dark !important;
   background-color: $robins-egg;
@@ -219,4 +220,111 @@ a {
   color: rgba(197, 225, 255, 0.8);
   padding-left: 10px;
 
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: rgba(196, 225, 255, 0.5);
+}
+
+[type="radio"]:checked+label {
+  color: rgba(196, 225, 255, 1);
+}
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #c4e1ff;
+  border-radius: 100%;
+  background: transparent;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #c4e1ff;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 100%;
+  transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+// Checkbox
+.checkbox-custom {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-custom,
+.checkbox-custom-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.checkbox-custom-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-custom+.checkbox-custom-label:before {
+  content: '';
+  background: transparent;
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+  margin-right: 10px;
+  text-align: center;
+  border: solid 1px #c5e1ff;
+  border-radius: 2px;
+}
+
+.checkbox-custom:checked+.checkbox-custom-label:before {
+  content: "\f00c";
+  font-family: 'FontAwesome';
+  background: #c5e1ff;
+  color: #26303c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.checkbox-custom:focus+.checkbox-custom-label {
+  /* focus style */
 }

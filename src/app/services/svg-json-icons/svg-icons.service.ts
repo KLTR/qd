@@ -1105,7 +1105,8 @@ export class IconService {
     </g>
   </g>
 </svg>`;
-      case 'complete':
+      case 'completed':
+      case 'update':
         return `<svg viewBox="0 0 19 21.58" id="complete" width="${size ? size : ''}" height="${size ? size : ''}">
   <g id="aLayer_2" data-name="Layer 2">
     <path fill="currentColor" d="M19 11.58h-1v.5A8.5 8.5 0 1 1 9 3.6v2.49a.3.3 0 0 0 .51.22l2.9-2.9a.29.29 0 0 0 0-.42L9.51.09A.3.3 0 0 0 9 .3v2.3a9.5 9.5 0 1 0 10 9.48v-.5z"
@@ -1721,7 +1722,6 @@ export class IconService {
     }
   }
 }
-
 // FETCH
 // DOWNLOADING
 // PAUSE

@@ -5,13 +5,9 @@
       <!-- Tooltips -->
       <ng-template class="tool-tip" #batteryTip>{{system.goat?.tip}}</ng-template>
 
-      <app-pioneer *ngIf="system.pioneer; else pioneerPh" [pioneer]="system?.pioneer"></app-pioneer>
+      <app-pioneer [pioneer]="system?.pioneer"></app-pioneer>
 
-      <ng-template #pioneerPh>
-        <app-svg-icon class="pioneer" [name]="'pioneer'" [size]="15" container="body" [ngbTooltip]="'No data'"
-          placement="bottom">
-        </app-svg-icon>
-      </ng-template>
+
       <span class="icon-wrapper" *ngIf="cloudStatus" [satPopoverAnchorFor]="cloudPop" (click)="handlePops(2);">
         <app-svg-icon *ngIf="cloudStatus" class="cloud" [name]="cloudStatus" [size]="23"></app-svg-icon>
       </span>
@@ -21,19 +17,12 @@
       </span>
 
 
-      <app-battery *ngIf="system?.goat; else batteryPh" [goat]="system?.goat"></app-battery>
-      <ng-template #batteryPh>
-        <app-svg-icon class="battery" name="battery-full" container="body" [ngbTooltip]="'No data'" placement="bottom"
-          [size]="22">
-        </app-svg-icon>
-      </ng-template>
-      <span class="icon-wrapper" *ngIf="internetStatus" [satPopoverAnchorFor]="internetPop" (click)="handlePops(0);">
-        <app-svg-icon class="internet" name="internet" [size]="15" [ngClass]="internetStatus"></app-svg-icon>
-      </span>
+      <app-battery [goat]="system?.goat"></app-battery>
 
-      <span class="icon-wrapper" *ngIf="diskStatus">
-        <app-svg-icon class="disk-space" name="{{diskStatus}}" [size]="19"></app-svg-icon>
-      </span>
+
+      <app-internet [internet]="system.internet"></app-internet>
+
+      <app-storage [storage]="system.storage"></app-storage>
 
       <span class="icon-wrapper" *ngIf="interceptorStatus" [satPopoverAnchorFor]="interceptorPop"
         (click)="handlePops(4);">
@@ -52,19 +41,7 @@
 
 
 
-<sat-popover #internetPop xAlign="center" yAlign="below">
-  <div class="custom-tip">
-    <div class="header">Internet Connection
-      <span class="close-button" (click)="closeTip()">
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </span>
-    </div>
-    <ul class="content">
-      <li>Status: <span class="status-{{internetStatus}}">{{internetStatus === 'not-connected' ? 'Disconnected' :
-          'Connected'}}</span></li>
-    </ul>
-  </div>
-</sat-popover>
+
 
 
 <sat-popover #alicePop xAlign="center" yAlign="below">

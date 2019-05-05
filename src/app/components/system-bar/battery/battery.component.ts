@@ -13,9 +13,11 @@ export class BatteryComponent implements OnInit {
   ngOnInit() {
     this.getBatteryMode();
   }
+  ngOnChanges(changes: any): void {
+    this.getBatteryMode();
+  }
   getBatteryMode() {
     if (this.goat) {
-      console.log(this.goat);
       switch (this.goat.indicator.state) {
         case 'GREEN':
           this.batteryStatus = 'battery-full';

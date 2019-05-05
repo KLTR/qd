@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TasksModalComponent } from '@app/components/modals/tasks-modal/tasks-modal.component';
 import { HttpService, WsService } from '@app/services';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-source-info',
   templateUrl: './source-info.component.html',
@@ -16,7 +17,7 @@ export class SourceInfoComponent implements OnInit {
   selectedIntel = 'deviceinfo';
   messages: any;
 
-  constructor(private http: HttpService, private route: ActivatedRoute, private ws: WsService) {
+  constructor(private http: HttpService, private route: ActivatedRoute, private ws: WsService, private modalService: NgbModal) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
 
@@ -27,10 +28,10 @@ export class SourceInfoComponent implements OnInit {
     this.getTasks();
     this.selectIntel('deviceinfo');
   }
-  taskAction(event, task: string) {
-    event.stopPropagation();
-    this.http.taskAction(task, this.source.id).subscribe(res => console.log(res));
-  }
+  // taskAction(event, task: string) {
+  // event.stopPropagation();
+  // this.http.taskAction(task, this.source.id).subscribe(res => console.log(res));
+  // }
   selectInfo(info: string) {
     if (info === 'tasks') {
       this.getTasks();
@@ -74,5 +75,20 @@ export class SourceInfoComponent implements OnInit {
         break;
     }
     this.tasksView = Object.assign({}, this.tasksView);
+  }
+
+  taskAction(event, taskName) {
+    const taskModal = this.modalService.open(TasksModalComponent, {
+      centered: true,
+      size: 'lg',
+      backdrop: 'static'
+    });
+    taskModal.componentInstance.intel = taskName;
+    taskModal.result.then(result => {
+      console.log(result);
+      if (result) {
+        // Call http service
+      }
+    });
   }
 }
