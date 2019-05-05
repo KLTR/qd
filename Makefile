@@ -13,7 +13,7 @@ ifeq (${RELEASE},1)
 NG_BUILD_ARGS += --prod
 endif
 
-COMMON_VERSION ?= 0.1.2
+COMMON_VERSION ?= 0.1.3
 USE_NPM_SERVER_URL ?= http://npm.dev.swg.local:4873
 GIT_HASH_TAG ?= $(shell git rev-parse HEAD 2>/dev/null | tr / -)
 DOCKER_IMAGE_TAG ?= $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null | tr / -)
@@ -35,5 +35,5 @@ install-common:
 	sed -i '/@common\/intels/d' ./package.json
 	npm install 
 	cd ../../common && ng build  
-	cd ../../common/dist/intels && npm pack && cp common-intels-0.1.2.tgz ../../../quantum/quantum-ui/
-	npm install common-intels-0.1.2.tgz
+	cd ../../common/dist/intels && npm pack && cp common-intels-${COMMON_VERSION}.tgz ../../../quantum/quantum-ui/
+	npm install common-intels-${COMMON_VERSION}.tgz
