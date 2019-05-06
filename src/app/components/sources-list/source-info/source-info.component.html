@@ -33,12 +33,14 @@
       *ngIf="['whatsapp','telegram','wechat','line','sms', 'signal'].includes(selectedIntel)"
       (selectSession)="onSelectSession($event)">
     </intel-chats>
-    <intel-contacts class="intel" [data]='data' *ngIf="selectedIntel === 'contacts'"></intel-contacts>
-    <intel-call-history class="intel" [data]='data' *ngIf="selectedIntel === 'callhistory'">
+    <intel-contacts class="intel" [data]='data' *ngIf="selectedIntel === 'contacts' && data.contacts"></intel-contacts>
+    <intel-call-history class="intel" [data]='data' *ngIf="selectedIntel === 'callhistory' && data.call_histories">
     </intel-call-history>
-    <intel-passwords class="intel" [data]='data' *ngIf="selectedIntel === 'keychain'"></intel-passwords>
-    <intel-app-list class="intel" [data]='data' *ngIf="selectedIntel === 'apps'"></intel-app-list>
-    <intel-browser class="intel" [data]='data' *ngIf="selectedIntel === 'browser'"></intel-browser>
+    <intel-passwords class="intel" [data]='data' *ngIf="selectedIntel === 'keychain' && data.keychains">
+    </intel-passwords>
+    <intel-app-list class="intel" [data]='data' *ngIf="selectedIntel === 'apps' && data.apps"></intel-app-list>
+    <intel-browser class="intel" [data]='data' *ngIf="selectedIntel === 'browser' && data.browser"></intel-browser>
+
   </div>
 
 

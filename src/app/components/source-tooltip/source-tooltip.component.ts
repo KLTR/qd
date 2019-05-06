@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  OnDestroy
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-source-tooltip',
@@ -18,17 +11,13 @@ export class SourceTooltipComponent implements OnInit, OnDestroy {
   deviceName: string;
   constructor() {}
 
-
-
-  ngOnInit() {
-    console.log(this.source);
-  }
+  ngOnInit() {}
 
   closeTooltip() {
     this.close.emit();
   }
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
   }
 }

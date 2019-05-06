@@ -33,7 +33,7 @@ export class ExportModalComponent implements OnInit {
     this.config = this.appConfig.getConfig();
     // this.fileUrl = `${this.config.apiUrl}/archives/${this.data.id}.zip`
     this.exportData = {
-      progress: null,
+      progress: 0,
       state: 'pending',
       fileUrl: ``,
       id: ''
@@ -53,7 +53,6 @@ export class ExportModalComponent implements OnInit {
       this.isStartedExporting = true;
       this.exportData.id = res.id;
       this.exportData.fileUrl = `${this.config.apiUrl}/archives/${this.exportData.id}.tar.gz`;
-      console.log('File url is : ', this.exportData.fileUrl);
     });
   }
 
@@ -94,6 +93,7 @@ export class ExportModalComponent implements OnInit {
     switch (Object.keys(msg.result)[0]) {
       case 'export_status':
         this.exportData.state = msg.result.export_status.state;
+        this.exportData.progress = msg.result.export_status.progress;
         break;
     }
     // this.system = Object.assign({}, this.system);

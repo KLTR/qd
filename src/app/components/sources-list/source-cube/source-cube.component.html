@@ -129,7 +129,7 @@
       (click)="terminateAgent($event,source.id)" placement="top" container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>
-    <div *ngIf="source.state === 'TERMINATING'" class="cube-on-off" ngbTooltip="Force Termination"
+    <div *ngIf="source.state === 'TERMINATING'" class="cube-on-off red" ngbTooltip="Force Termination"
       (click)="terminateAgent($event,source.id)" placement="top" container="body">
       <app-svg-icon name="power" [size]="13"></app-svg-icon>
     </div>
