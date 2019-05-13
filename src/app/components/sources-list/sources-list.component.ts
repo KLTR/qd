@@ -60,6 +60,7 @@ export class SourcesListComponent implements OnInit {
     //   });
     // }
   }
+
   filterByTarget(target) {
     this.filterValue = '';
     this.selectedTarget = target;

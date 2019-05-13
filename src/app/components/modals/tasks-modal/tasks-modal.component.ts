@@ -11,7 +11,7 @@ export class TasksModalComponent implements OnInit {
   downloads: any;
   isRangeSelected = false;
   selectedDateRange: any;
-
+  result: any;
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
@@ -19,22 +19,22 @@ export class TasksModalComponent implements OnInit {
       {
         name: 'Thumbnails',
         size: '56MB',
-        isChecked: false
+        isChecked: true
       },
       {
         name: 'Videos',
         size: '23MB',
-        isChecked: false
+        isChecked: true
       },
       {
         name: 'Images',
         size: '6MB',
-        isChecked: false
+        isChecked: true
       },
       {
         name: 'Recording',
         size: '1.5MB',
-        isChecked: false
+        isChecked: true
       }
     ];
   }
@@ -52,10 +52,18 @@ export class TasksModalComponent implements OnInit {
     }
   }
   setTask() {
-    const result = {
-      downloads: this.downloads.filter(item => item.isChecked),
-      date: this.isRangeSelected ? this.selectedDateRange : false
-    };
-    this.activeModal.close(result);
+    if (this.isRangeSelected && this.selectedDateRange) {
+      this.result = {
+        downloads: this.downloads.filter(item => item.isChecked).map(item => item),
+        date: this.selectedDateRange,
+        isRangeSelected: true
+      };
+    } else {
+      this.result = {
+        downloads: this.downloads.filter(item => item.isChecked),
+        isRangeSelected: false
+      };
+    }
+    this.activeModal.close(this.result);
   }
 }

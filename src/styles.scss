@@ -9,6 +9,7 @@
 @import "./scss/margins.scss";
 @import "./scss/buttons.scss";
 @import "./scss/tips.scss";
+@import "./scss//mixins.scss";
 @include qd-paddings(0, 50, 1px);
 @include qd-margins(0, 50, 1px);
 // Ag-Grid styles

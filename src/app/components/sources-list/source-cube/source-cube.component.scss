@@ -35,8 +35,6 @@
   }
 
   .source-img {
-    width: 85px;
-    position: relative;
 
     .more-photos-icon {
       position: absolute;
@@ -48,10 +46,7 @@
   }
 
   .source-img>* {
-    height: 100%;
-    width: 82px;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
+    margin-left: 15px;
   }
 
   .source-cube-wrapper {

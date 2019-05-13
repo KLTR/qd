@@ -1,4 +1,5 @@
 @import '../../../scss/colors.scss';
+@import '../../../scss/mixins.scss';
 
 .sidebar {
   height: calc(100vh - 43px);
@@ -123,10 +124,8 @@
       }
 
       .name {
+        @include single-line-text;
         font-size: 13px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         margin-left: 5px;
         margin-top: 2px;
       }
@@ -279,4 +278,76 @@
 
 #tool_is_collecting_data {
   margin-right: 6px;
+}
+
+.main {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
+  display: flex;
+  border-radius: 4px;
+  z-index: 3;
+  position: relative;
+  cursor: pointer;
+  align-items: center;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  .cube-person-img {
+    position: absolute;
+    left: 5px;
+  }
+
+  div {
+    width: 80%;
+    height: 12px;
+    background-color: #52667b;
+    border-radius: 2px;
+  }
+
+  div.second {
+    width: 5%;
+    margin: 0 5px;
+  }
+
+  div:last-of-type {
+    margin-bottom: 0;
+  }
+
+  span {
+    width: 100%;
+    background-color: #ce242400;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    word-wrap: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+  }
+}
+
+
+.shimmer {
+  background-image: linear-gradient(90deg, #52667b 0, #5b7289 20%, #52667b 40%, #52667b);
+  background-size: 99% 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 1.5s linear 1ms infinite backwards;
+  //background-image: linear-gradient(90deg, rgba(54, 69, 86, 0.4) 0, rgba(54, 69, 86, 0.4) 20%, rgba(54, 69, 86, 0.4) 40%, rgba(54, 69, 86, 0.4));
+  //animation: shimmer 3s linear 1ms infinite backwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% * 5 100%;
+  }
+
+  100% {
+    background-position: 100% * 100 100%;
+  }
 }

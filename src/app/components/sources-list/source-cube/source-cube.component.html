@@ -7,7 +7,7 @@
           *ngIf="source.profile_pics?.length > 1 "></app-svg-icon>
         <img *ngIf="source.profile_pics; else avatar" [attr.src]="imgUrl | secure | async">
         <ng-template #avatar>
-          <app-svg-icon name="avatar" [size]="85" class="cube-person-img"></app-svg-icon>
+          <app-svg-icon name="avatar" [size]="55" class="cube-person-img"></app-svg-icon>
         </ng-template>
       </div>
       <div *ngIf="source" class="source-info">

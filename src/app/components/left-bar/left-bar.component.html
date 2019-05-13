@@ -2,7 +2,7 @@
   <!-- This section shoudl be at the TOP-->
   <div class="section sources">
     <div class="header">Sources ({{sources ? sources.length : '0'}})</div>
-    <div class="content">
+    <div class="content" *ngIf="leftBarData?.sources; else shimmer">
       <!-- Sources -->
       <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
         (mouseleave)="source.hover=false;">
@@ -55,7 +55,7 @@
   <!-- Infections -->
   <div class="section pending">
     <div class="header">Infecting ({{leftBarData?.infections ? leftBarData?.infections?.length : '0'}})</div>
-    <div class="content">
+    <div class="content" *ngIf="leftBarData?.infections; else shimmer">
       <div class="items" *ngFor="let infection of leftBarData?.infections; let i = index;"
         (mouseenter)="infection.hover=true;" (mouseleave)="infection.hover=false;">
         <sat-popover #infectionPopovers xAlign="center" yAlign="below">
@@ -80,7 +80,7 @@
   <!-- Targets -->
   <div class="section targets">
     <div class="header">Targets ({{leftBarData?.targets ? leftBarData?.targets?.length : '0'}})</div>
-    <div class="content">
+    <div class="content" *ngIf="leftBarData?.targets; else shimmer">
       <div class="items" *ngFor="let target of leftBarData?.targets" (click)="filterTargetSources(target)">
         <app-svg-icon name='type-x-caliber' [size]="15"></app-svg-icon>
         <span class="name">{{target?.name}}</span>
@@ -102,3 +102,11 @@
     <p> Add Target</p>
   </div>
 </div>
+
+<ng-template #shimmer>
+  <div *ngFor="let shimmer of [1,2,3,4,5,6]" class="main full-width p-7">
+    <div class="shimmer second"></div>
+    <div class="shimmer"></div>
+    <div class="shimmer second"></div>
+  </div>
+</ng-template>

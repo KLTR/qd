@@ -1,0 +1,16 @@
+// #region Mixins
+@mixin single-line-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin full-height-width {
+  height: 100%;
+  width: 100%;
+}
+
+@mixin small {
+  zoom: var(--tdk-small-zoom);
+}
+// #endregion

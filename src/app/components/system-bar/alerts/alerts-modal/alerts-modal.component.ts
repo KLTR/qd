@@ -3,10 +3,10 @@ import { DateCellComponent } from '@app/components/ag-grid/date-cell-component';
 import { TemplateRendererComponent } from '@app/components/ag-grid/template-renderer.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GridApi, GridOptions } from 'ag-grid-community';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { HttpService } from '../../../../services/http/http.service';
 import { WsService } from './../../../../services/websocket/ws.service';
-
 @Component({
   selector: 'app-alerts-modal',
   templateUrl: './alerts-modal.component.html',
@@ -57,7 +57,25 @@ export class AlertsModalComponent implements OnInit {
           headerName: 'Date',
           field: 'created_at',
           sortable: true,
-          filter: 'agDateColumnFilter',
+          filter: 'date',
+          filterParams: {
+            browserDatePicker: true,
+            comparator: function(filterLocalDateAtMidnight, cellValue) {
+              const dateAsString = moment(cellValue).format('DD/MM/YYYY');
+              const dateParts = dateAsString.split('/');
+              const cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
+              console.log(filterLocalDateAtMidnight);
+              if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
+                return 0;
+              }
+              if (cellDate < filterLocalDateAtMidnight) {
+                return -1;
+              }
+              if (cellDate > filterLocalDateAtMidnight) {
+                return 1;
+              }
+            }
+          },
           cellRendererFramework: DateCellComponent,
           cellRendererParams: {
             ngTemplate: this.ownersCell
