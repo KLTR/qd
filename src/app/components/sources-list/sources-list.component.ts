@@ -83,10 +83,10 @@ export class SourcesListComponent implements OnInit {
     // user click - override filters
     if (userClick) {
       this.selectedTarget = null;
+      this.selectedSource = null;
     }
-    this.selectedSource = null;
     // from socket - if user filtered by target no need to filter again.
-    if (this.selectedTarget) {
+    if (this.selectedTarget || this.selectedSource) {
       return;
     }
     this.filterValue = value;

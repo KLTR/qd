@@ -156,7 +156,9 @@ intel-tasks {
   width: 100%;
   position: absolute;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 35px;
+  color: #c5e1ff;
 }
