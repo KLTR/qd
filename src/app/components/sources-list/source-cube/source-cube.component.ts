@@ -227,27 +227,42 @@ export class SourceCubeComponent implements OnInit {
   }
   terminateAgent(event, sourceId) {
     event.stopPropagation();
-    if (['TERMINATING', 'TERMINATED'].includes(this.source.state)) {
-      return;
-    }
+
     const confirmModal = this.modalService.open(ConfirmModalComponent, {
       size: 'sm',
       centered: true,
       backdrop: 'static'
     });
-    confirmModal.componentInstance.title = 'Terminate agent';
-    confirmModal.componentInstance.message = `Are you sure you want to terminate '${this.source.name}'?`;
-    confirmModal.result.then(res => {
-      if (res) {
-        this.http.terminateAgent(sourceId).subscribe(
-          result => {
-            console.log(result);
-          },
-          err => {
-            console.log(err);
-          }
-        );
-      }
-    });
+    if (['TERMINATING'].includes(this.source.state)) {
+      confirmModal.componentInstance.title = 'Terminate agent';
+      confirmModal.componentInstance.message = `Are you sure you want to FORCE terminate '${this.source.name}'?`;
+      confirmModal.result.then(res => {
+        if (res) {
+          this.http.forceTerminateAgent(sourceId).subscribe(
+            result => {
+              console.log(result);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        }
+      });
+    } else {
+      confirmModal.componentInstance.title = 'Terminate agent';
+      confirmModal.componentInstance.message = `Are you sure you want to terminate '${this.source.name}'?`;
+      confirmModal.result.then(res => {
+        if (res) {
+          this.http.terminateAgent(sourceId).subscribe(
+            result => {
+              console.log(result);
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        }
+      });
+    }
   }
 }

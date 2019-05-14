@@ -22,7 +22,7 @@
       </span>
       <span class="text">{{task.display_name}}</span>
       <span class="state-icon" (click)="taskAction($event, task.name)">
-        <app-svg-icon [size]="15" [name]="task.state"></app-svg-icon>
+        <app-svg-icon [size]="15" name="device-{{task.state}}"></app-svg-icon>
       </span>
 
     </div>

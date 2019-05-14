@@ -34,6 +34,7 @@ export class HttpService {
     getSource: '/sources/{{id}}',
     exportSource: '/exports/sources/{{id}}',
     terminateAgent: '/sources/{{id}}/shutdown',
+    forceTerminateAgent: '/sources/{{id}}/force_shutdown',
     abortExport: '/exports/{{id}}/abort',
     getSourceTasks: '/sources/{{id}}/apps',
 
@@ -125,6 +126,9 @@ export class HttpService {
   }
   terminateAgent(sourceId: string): Observable<any> {
     return this.http.post(this.getUrlByApiName('terminateAgent', sourceId), null, this.setHeaders());
+  }
+  forceTerminateAgent(sourceId: string): Observable<any> {
+    return this.http.post(this.getUrlByApiName('forceTerminateAgent', sourceId), null, this.setHeaders());
   }
   findPioneerDevices(targetId: string): Observable<any> {
     return this.http.get(this.getUrlByApiName('findDevices', targetId), this.setHeaders());
