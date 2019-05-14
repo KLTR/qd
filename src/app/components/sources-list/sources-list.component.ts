@@ -43,6 +43,7 @@ export class SourcesListComponent implements OnInit {
       this.assignFilteredSources();
       this.setSourcesNumbers();
       this.filterPendingInfections();
+      this.leftBarData.sources.sort(this.stateComparator);
       console.log(this.leftBarData);
     });
     this.http.getRightBar().subscribe(res => {
@@ -137,14 +138,22 @@ export class SourcesListComponent implements OnInit {
 
   handleTarget(target) {
     // filters new target from array
+    let index = -1;
+
     this.leftBarData.targets = this.leftBarData.targets.filter(t => {
       if (t.id !== target.id) {
         return t;
+      } else {
+        index = this.leftBarData.targets.indexOf(t);
       }
     });
     // only push if target state is not DELETED
-    if (!target.archived) {
-      this.leftBarData.targets.unshift(target);
+    if (index === -1) {
+      if (!target.archived) {
+        this.leftBarData.targets.unshift(target);
+      }
+    } else {
+      this.leftBarData.targets.splice(index, 0, target);
     }
   }
 
@@ -152,18 +161,27 @@ export class SourcesListComponent implements OnInit {
     if (!infection.state) {
       return;
     }
+    let index = -1;
+
     this.leftBarData.infections = this.leftBarData.infections.filter(inf => {
       if (inf.device_id !== infection.device_id) {
         return inf;
+      } else {
+        // Get index of old source
+        index = this.leftBarData.infections.indexOf(inf);
       }
     });
-    switch (infection.state) {
-      case 'IN_PROGRESS':
-      case 'FAILED':
-        this.leftBarData.infections.unshift(infection);
-        break;
-      default:
-        return;
+    if (index === -1) {
+      switch (infection.state) {
+        case 'IN_PROGRESS':
+        case 'FAILED':
+          this.leftBarData.infections.unshift(infection);
+          break;
+        default:
+          return;
+      }
+    } else {
+      this.leftBarData.infections.splice(index, 0, infection);
     }
   }
 
@@ -172,14 +190,21 @@ export class SourcesListComponent implements OnInit {
     if (!source.state) {
       return;
     }
+    let index = -1;
 
     this.leftBarData.sources = this.leftBarData.sources.filter(src => {
       if (src.id !== sourceObj.id) {
         return src;
+      } else {
+        // Get index of old source
+        index = this.leftBarData.sources.indexOf(src);
       }
     });
-    this.leftBarData.sources.unshift(source);
-    this.leftBarData.sources.sort(this.stateComparator);
+    if (index === -1) {
+      this.leftBarData.sources.unshift(source);
+    } else {
+      this.leftBarData.sources.splice(index, 0, source);
+    }
   }
   ngOnChanges(): void {
     this.setSourcesNumbers();
@@ -207,9 +232,10 @@ export class SourcesListComponent implements OnInit {
   }
 
   stateComparator(s1, s2): number {
-    function stateToNumber(state): number {
-      switch (state) {
+    function stateToNumber(source): number {
+      switch (source.state) {
         case 'ACTIVE':
+        case 'IDLE':
           return 1;
         case 'DOWNLOADING':
           return 2;
@@ -217,16 +243,15 @@ export class SourcesListComponent implements OnInit {
           return 3;
         case 'INITIALIZING':
           return 4;
-        case 'COLLECTING_DATA':
+        case 'TOOL_IS_COLLECTING_DATA':
           return 5;
         default:
           return 6;
       }
     }
 
-    const severityNumber1 = stateToNumber(s1);
-    const severityNumber2 = stateToNumber(s2);
-
-    return severityNumber1 - severityNumber2;
+    const stateNumber1 = stateToNumber(s1);
+    const stateNumber2 = stateToNumber(s2);
+    return stateNumber1 - stateNumber2;
   }
 }

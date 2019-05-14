@@ -27,21 +27,36 @@
 
     </div>
   </div>
-  <div class="intels-panel" *ngIf="selectedInfo === 'apps' && data">
-    <intel-device-info [data]="data" class="intel" *ngIf="selectedIntel === 'deviceinfo'"></intel-device-info>
-    <intel-chats class="intel" [data]="data" [messages]="messages" [sessions]="sessions" [calls]="calls"
-      *ngIf="['whatsapp','telegram','wechat','line','sms', 'signal'].includes(selectedIntel)"
-      (selectSession)="onSelectSession($event)">
-    </intel-chats>
-    <intel-contacts class="intel" [data]='data' *ngIf="selectedIntel === 'contacts' && data.contacts"></intel-contacts>
-    <intel-call-history class="intel" [data]='data' *ngIf="selectedIntel === 'callhistory' && data.call_histories">
-    </intel-call-history>
-    <intel-passwords class="intel" [data]='data' *ngIf="selectedIntel === 'keychain' && data.keychains">
-    </intel-passwords>
-    <intel-app-list class="intel" [data]='data' *ngIf="selectedIntel === 'apps' && data.apps"></intel-app-list>
-    <intel-browser class="intel" [data]='data' *ngIf="selectedIntel === 'browser' && data.browser"></intel-browser>
-
+  <div class="intels-panel" *ngIf="selectedInfo === 'apps'">
+    <div class="intels-wrapper" *ngIf="data; else loader">
+      <div *ngIf="!isEmpty(data); else noData">
+        <intel-device-info [data]="data" class="intel" *ngIf="selectedIntel === 'deviceinfo'"></intel-device-info>
+        <intel-chats class="intel" [data]="data" [messages]="messages" [sessions]="sessions" [calls]="calls"
+          *ngIf="['whatsapp','telegram','wechat','line','sms', 'signal'].includes(selectedIntel)"
+          (selectSession)="onSelectSession($event)">
+        </intel-chats>
+        <intel-contacts class="intel" [data]='data' *ngIf="selectedIntel === 'contacts' && data.contacts">
+        </intel-contacts>
+        <intel-call-history class="intel" [data]='data' *ngIf="selectedIntel === 'callhistory' && data.call_histories">
+        </intel-call-history>
+        <intel-passwords class="intel" [data]='data' *ngIf="selectedIntel === 'keychain' && data.keychains">
+        </intel-passwords>
+        <intel-app-list class="intel" [data]='data' *ngIf="selectedIntel === 'apps' && data.apps"></intel-app-list>
+        <intel-browser class="intel" [data]='data' *ngIf="selectedIntel === 'browser' && data.browser"></intel-browser>
+      </div>
+    </div>
   </div>
+
+
+  <ng-template #loader>
+    <app-loading [type]="'loader'"></app-loading>
+  </ng-template>
+
+  <ng-template #noData>
+    <div class="noData">
+      <span>No Data</span>
+    </div>
+  </ng-template>
 
 
   <div class="tasks-view" *ngIf="selectedInfo === 'tasks'">

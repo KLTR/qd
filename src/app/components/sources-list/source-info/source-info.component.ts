@@ -28,10 +28,6 @@ export class SourceInfoComponent implements OnInit {
     this.getTasks();
     this.selectIntel('deviceinfo');
   }
-  // taskAction(event, task: string) {
-  // event.stopPropagation();
-  // this.http.taskAction(task, this.source.id).subscribe(res => console.log(res));
-  // }
   selectInfo(info: string) {
     if (info === 'tasks') {
       this.getTasks();
@@ -46,12 +42,13 @@ export class SourceInfoComponent implements OnInit {
   selectIntel(intel: string) {
     intel = intel.toLowerCase();
     this.data = null;
+    this.selectedIntel = intel;
     this.http.getIntel(intel, this.source.id).subscribe(
       res => {
         if (res === this.data) {
           return;
         }
-        console.log(res), (this.data = res), (this.selectedIntel = intel);
+        console.log(res), (this.data = res);
       },
       err => {
         console.log(err);
@@ -90,5 +87,14 @@ export class SourceInfoComponent implements OnInit {
         // Call http service
       }
     });
+  }
+
+  isEmpty(obj) {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
   }
 }

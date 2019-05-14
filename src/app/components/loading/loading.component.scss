@@ -1,145 +1,113 @@
 @import '../../../scss/colors.scss';
 
-// .load-wrapp {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
+.loader-wrapper {
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
 
-// .load-wrapp p {
-//   padding: 20px 0 0;
-// }
+  .loader {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin: 90px auto;
+    animation: spin 2s ease-in-out infinite;
+  }
 
-// .load-wrapp:last-child {
-//   margin-right: 0;
-//   height: 100%;
-//   width: 100%;
-// }
+  .bubble-1,
+  .bubble-2 {
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: $primary-text;
+  }
 
-// .spinner {
-//   position: relative;
-//   width: 45px;
-//   height: 45px;
-//   margin: 0 auto;
-// }
+  .bubble-2 {
+    top: auto;
+    bottom: 0;
+  }
 
-// .bubble-1,
-// .bubble-2 {
-//   position: absolute;
-//   top: 0;
-//   width: 25px;
-//   height: 25px;
-//   border-radius: 100%;
-//   background-color: $primary-text;
-// }
+  .bubble-1,
+  .bubble-2 {
+    animation: bounce 2s ease-in-out infinite;
+  }
 
-// .bubble-2 {
-//   top: auto;
-//   bottom: 0;
-// }
+  .bubble-2 {
+    animation-delay: -1.0s;
+  }
+}
 
-// .load-9 .spinner {
-//   animation: loadingI 2s linear infinite;
-// }
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-// .load-9 .bubble-1,
-// .load-9 .bubble-2 {
-//   animation: bounce 2s ease-in-out infinite;
-// }
+@keyframes bounce {
 
-// .load-9 .bubble-2 {
-//   animation-delay: -1.0s;
-// }
+  0%,
+  100% {
+    transform: scale(0.0);
+  }
 
-// @keyframes loadingI {
-//   100% {
-//     transform: rotate(360deg);
-//   }
-// }
+  50% {
+    transform: scale(1.0);
+  }
+}
 
-// @keyframes bounce {
+@-webkit-keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
 
-//   0%,
-//   100% {
-//     transform: scale(0.0);
-//   }
+  100% {
+    background-position: 100% 0;
+  }
+}
 
-//   50% {
-//     transform: scale(1.0);
-//   }
-// }
-// .card {
-//   position: relative;
-//   -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-//   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-//   background-color: #FFF;
-//   border-radius: 6px;
-//   overflow: hidden;
+@keyframes shimmer {
+  0% {
+    background-position: -1200px 0;
+  }
 
-//   .shimmerBG {
-//     animation-duration: 2.2s;
-//     animation-fill-mode: forwards;
-//     animation-iteration-count: infinite;
-//     animation-name: shimmer;
-//     animation-timing-function: linear;
-//     background: #E5F0FB;
-//     background: linear-gradient(to right, #c1dceb 4%, #a3cbe1 25%, #c1dceb 36%);
-//     background-size: 1200px 100%;
-//   }
+  100% {
+    background-position: 1200px 0;
+  }
+}
 
+.media {
+  height: 200px;
+}
 
-//   @-webkit-keyframes shimmer {
-//     0% {
-//       background-position: -100% 0;
-//     }
+.p-32 {
+  padding: 32px;
+}
 
-//     100% {
-//       background-position: 100% 0;
-//     }
-//   }
+.title-line {
+  height: 24px;
+  width: 100%;
+  margin-bottom: 12px;
+  border-radius: 20px;
+}
 
-//   @keyframes shimmer {
-//     0% {
-//       background-position: -1200px 0;
-//     }
+.content-line {
+  height: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
 
-//     100% {
-//       background-position: 1200px 0;
-//     }
-//   }
+.end {
+  width: 40%;
+}
 
-//   .media {
-//     height: 200px;
-//   }
-
-//   .p-32 {
-//     padding: 32px;
-//   }
-
-//   .title-line {
-//     height: 24px;
-//     width: 100%;
-//     margin-bottom: 12px;
-//     border-radius: 20px;
-//   }
-
-//   .content-line {
-//     height: 8px;
-//     width: 100%;
-//     margin-bottom: 16px;
-//     border-radius: 8px;
-//   }
-
-//   .end {
-//     width: 40%;
-//   }
-
-// }
-
-
-// .m-t-24 {
-//   margin-top: 24px;
-// }
+.m-t-24 {
+  margin-top: 24px;
+}
 
 .main {
   width: 60%;

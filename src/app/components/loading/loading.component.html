@@ -1,8 +1,16 @@
-<div *ngFor="let shimmer of [0,1,2,3,4]" class="main full-width p-15">
-  <!-- <div class="person-img-wrapper"> -->
-  <app-svg-icon name="avatar" [size]="65" class="cube-person-img"></app-svg-icon>
-  <!-- </div> -->
-  <div class="shimmer"></div>
-  <div class="shimmer second"></div>
-  <div class="shimmer"></div>
+<div *ngIf="type === 'shimmer'">
+  <div *ngFor="let shimmer of [0,1,2,3,4]" class="main full-width p-15">
+    <!-- <div class="person-img-wrapper"> -->
+    <app-svg-icon name="avatar" [size]="65" class="cube-person-img"></app-svg-icon>
+    <!-- </div> -->
+    <div class="shimmer"></div>
+    <div class="shimmer second"></div>
+    <div class="shimmer"></div>
+  </div>
+</div>
+<div *ngIf="type === 'loader'" class="loader-wrapper">
+  <div class="loader">
+    <div class="bubble-1"></div>
+    <div class="bubble-2"></div>
+  </div>
 </div>
