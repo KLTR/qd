@@ -20,6 +20,7 @@ export class SourcesListComponent implements OnInit {
   selectedSource: any;
   isLoading: boolean;
   id: string;
+  sort = 'desc';
   private sub: any;
   constructor(private http: HttpService, private ws: WsService, private router: Router, private route: ActivatedRoute) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
@@ -40,10 +41,10 @@ export class SourcesListComponent implements OnInit {
       if (!this.leftBarData.infections) {
         this.leftBarData.infections = [];
       }
-      this.assignFilteredSources();
+      this.leftBarData.sources.sort(this.stateComparator);
+      this.setFilter(this.filterValue);
       this.setSourcesNumbers();
       this.filterPendingInfections();
-      this.leftBarData.sources.sort(this.stateComparator);
       console.log(this.leftBarData);
     });
     this.http.getRightBar().subscribe(res => {
@@ -62,17 +63,32 @@ export class SourcesListComponent implements OnInit {
     // }
   }
 
+  changeSortOrder() {
+    // desc, asce
+    this.sort === 'desc'
+      ? (this.leftBarData.sources.sort(this.stateComparator).reverse(), (this.sort = 'ascend'))
+      : (this.leftBarData.sources.sort(this.stateComparator), (this.sort = 'desc'));
+    this.leftBarData = Object.assign({}, this.leftBarData);
+    this.setFilter(this.filterValue);
+  }
+
   filterByTarget(target) {
     this.filterValue = '';
+    this.selectedSource = null;
     this.selectedTarget = target;
     this.filteredSources = this.leftBarData.sources.filter(source => source.target_id === target.id);
   }
-  assignFilteredSources() {
-    this.filteredSources = this.leftBarData.sources;
-    this.setFilter(this.filterValue);
-  }
-  setFilter(value) {
-    this.selectedTarget = null;
+
+  setFilter(value, userClick?) {
+    // user click - override filters
+    if (userClick) {
+      this.selectedTarget = null;
+    }
+    this.selectedSource = null;
+    // from socket - if user filtered by target no need to filter again.
+    if (this.selectedTarget) {
+      return;
+    }
     this.filterValue = value;
     if (!value || value === 'ALL') {
       this.filteredSources = this.leftBarData.sources;
@@ -84,11 +100,13 @@ export class SourcesListComponent implements OnInit {
           item.state === 'DOWNLOADING' ||
           item.state === 'DOWNLOADING_AGENT' ||
           item.state === 'INITIALIZING' ||
-          item.state === 'COLLECTING_DATA'
+          item.state === 'TOOL_IS_COLLECTING_DATA' ||
+          item.state === 'SERVER_IS_PROCESSING_DATA'
       );
     } else {
       this.filteredSources = this.leftBarData.sources.filter(source => source.state === value);
     }
+    this.filteredSources = Object.assign([], this.filteredSources);
   }
   filterPendingInfections() {
     this.leftBarData.infections = this.leftBarData.infections.filter(infection => infection.state !== 'PENDING');
@@ -96,6 +114,7 @@ export class SourcesListComponent implements OnInit {
 
   selectSource(source) {
     console.log(source);
+    this.selectedTarget = null;
     if (source === this.selectedSource) {
       this.selectedSource = null;
       this.router.navigate(['/dashboard']);
@@ -122,7 +141,7 @@ export class SourcesListComponent implements OnInit {
         case 'source':
           this.handleSource(msg.result.source);
           this.leftBarData = Object.assign({}, this.leftBarData);
-          this.assignFilteredSources();
+          this.setFilter(this.filterValue);
           this.setSourcesNumbers();
           break;
         case 'new_event':
@@ -171,17 +190,17 @@ export class SourcesListComponent implements OnInit {
         index = this.leftBarData.infections.indexOf(inf);
       }
     });
-    if (index === -1) {
-      switch (infection.state) {
-        case 'IN_PROGRESS':
-        case 'FAILED':
+    switch (infection.state) {
+      case 'IN_PROGRESS':
+      case 'FAILED':
+        if (index === -1) {
           this.leftBarData.infections.unshift(infection);
-          break;
-        default:
-          return;
-      }
-    } else {
-      this.leftBarData.infections.splice(index, 0, infection);
+        } else {
+          this.leftBarData.infections.splice(index, 0, infection);
+        }
+        break;
+      default:
+        return;
     }
   }
 
@@ -222,7 +241,8 @@ export class SourcesListComponent implements OnInit {
         src.state === 'DOWNLOADING' ||
         src.state === 'DOWNLOADING_AGENT' ||
         src.state === 'INITIALIZING' ||
-        src.state === 'COLLECTING_DATA'
+        src.state === 'TOOL_IS_COLLECTING_DATA' ||
+        src.state === 'SERVER_IS_PROCESSING_DATA'
     ).length;
     this.lostConnectionSourcesNumber = this.leftBarData.sources.filter(src => src.state === 'LOST_CONNECTION').length;
     this.terminatedSourcesNumber = this.leftBarData.sources.filter(src => src.state === 'TERMINATED').length;

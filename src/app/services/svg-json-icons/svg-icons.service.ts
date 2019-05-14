@@ -1366,6 +1366,11 @@ export class IconService {
     </g>
   </g>
 </svg>`;
+      case 'sort':
+        return `<svg xmlns="http://www.w3.org/2000/svg" width="6" height="15" viewBox="0 0 4 10">
+<path id="Shape_1350_copy_4" d="M345 974l2-4 2 4zm4 2l-2 4-2-4z" fill="#bfdbf8" opacity=".4" data-name="Shape 1350 copy 4" transform="translate(-345 -970)"/>
+</svg>
+`;
       case 'no_signal':
         return `<svg viewBox="0 0 15.85 15.34" id="no_signal" width="${size ? size : '9.6vw'}" height="${size ? size : '9.6vw'}">
 

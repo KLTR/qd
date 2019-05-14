@@ -1,7 +1,7 @@
 <div class="sidebar">
   <!-- This section shoudl be at the TOP-->
   <div class="section sources">
-    <div class="header">Sources ({{sources ? sources.length : '0'}})</div>
+    <div class="header">Active Sources ({{sources ? sources.length : '0'}})</div>
     <div class="content" *ngIf="leftBarData?.sources; else shimmer">
       <!-- Sources -->
       <div class="items" *ngFor="let source of sources; let i = index;" (mouseenter)="source.hover=true;"
