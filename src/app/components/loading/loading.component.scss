@@ -109,6 +109,57 @@
   margin-top: 24px;
 }
 
+.main-small {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
+  display: flex;
+  border-radius: 4px;
+  z-index: 3;
+  position: relative;
+  align-items: center;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  .cube-person-img {
+    position: absolute;
+    left: 5px;
+  }
+
+  div {
+    width: 80%;
+    height: 12px;
+    background-color: #52667b;
+    border-radius: 2px;
+  }
+
+  div.second {
+    width: 5%;
+    margin: 0 5px;
+  }
+
+  div:last-of-type {
+    margin-bottom: 0;
+  }
+
+  span {
+    width: 100%;
+    background-color: #ce242400;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    word-wrap: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+  }
+}
+
 .main {
   width: 60%;
   display: flex;
@@ -164,6 +215,72 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600;
+  }
+
+  &.small {
+    width: 80%;
+    background-color: #52667b;
+    border-radius: 2px;
+    margin: 0;
+
+    div.second {
+      width: 5%;
+      margin: 0 5px;
+
+    }
+  }
+}
+
+.before-initializing {
+  width: 96.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0 3%;
+
+  .top-bar {
+    margin-top: 2%;
+    height: 3px;
+    width: 100%;
+    background-color: #52667b;
+    border-radius: 2px;
+  }
+
+  .bottom-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .bottom-icons {
+      .icon-placeholder {
+        width: 23px;
+        height: 23px;
+        background-color: #52667b;
+        border-radius: 1px;
+        display: inline-block;
+        margin-right: 3px;
+        margin-top: 3px;
+      }
+    }
+
+    .time-wrapper {
+      width: 20%;
+
+      .bottom-time-placeholder-upper {
+        width: 85px;
+        height: 10px;
+        background-color: #52667b;
+        border-radius: 2px;
+        margin-top: 3px;
+        margin-left: auto;
+      }
+
+      .bottom-time-placeholder-bottom {
+        @extend .bottom-time-placeholder-upper;
+        width: 54px;
+        margin-left: auto;
+      }
+    }
   }
 }
 

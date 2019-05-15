@@ -13,10 +13,10 @@
         ({{lostConnectionSourcesNumber ? lostConnectionSourcesNumber : '0'}})</span>
       <span [class.selected]="filterValue === 'TERMINATED'" (click)="setFilter('TERMINATED', $event)">Terminated
         ({{terminatedSourcesNumber ? terminatedSourcesNumber : '0'}})</span>
-      <span *ngIf="selectedTarget" class="selected selected-target">{{selectedTarget.name}}</span>
       <span class="source-sort-btn" (click)="this.changeSortOrder()">
         <app-svg-icon name="sort"></app-svg-icon>
       </span>
+      <span *ngIf="selectedTarget" class="selected selected-target">{{selectedTarget.name}}</span>
     </div>
     <div class="sources-list-wrapper">
       <ul class="sources-list" *ngIf="filteredSources.length > 0; else emptyScreen">

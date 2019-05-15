@@ -72,6 +72,7 @@ import { PioneerComponent } from './components/system-bar/pioneer/pioneer.compon
 import { SystemBarComponent } from './components/system-bar/system-bar.component';
 import { StorageComponent } from './components/system-bar/storage/storage.component';
 import { InternetComponent } from './components/system-bar/internet/internet.component';
+import { ShimmerComponent } from './shimmer/shimmer.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -123,7 +124,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     BatteryComponent,
     TasksModalComponent,
     StorageComponent,
-    InternetComponent
+    InternetComponent,
+    ShimmerComponent
   ],
   imports: [
     BrowserModule,

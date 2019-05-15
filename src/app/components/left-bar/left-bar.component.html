@@ -104,11 +104,5 @@
 </div>
 
 <ng-template #shimmer>
-  <div class="content">
-    <div *ngFor="let shimmer of [1,2,3,4,5,6,7]" class="main full-width p-7">
-      <div class="shimmer second"></div>
-      <div class="shimmer"></div>
-      <div class="shimmer second"></div>
-    </div>
-  </div>
+  <app-loading [type]="'shimmer-small'"></app-loading>
 </ng-template>
