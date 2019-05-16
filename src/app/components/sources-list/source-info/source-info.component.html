@@ -49,13 +49,13 @@
 
 
   <ng-template #loader>
-    <app-loading [type]="'loader'"></app-loading>
+    <app-loading *ngIf="!isServerError; else noData" [type]="'loader'"></app-loading>
   </ng-template>
 
   <ng-template #noData>
     <div class="noData">
-      <app-svg-icon name="no_data" [size]="150"></app-svg-icon>
-      <span>No Data</span>
+      <app-svg-icon [name]="!isServerError ?  'no_data' : 'server_error'" [size]="150"></app-svg-icon>
+      <span>{{!isServerError ?  'Nothing to show here' : 'Something went wrong'}}</span>
     </div>
   </ng-template>
 

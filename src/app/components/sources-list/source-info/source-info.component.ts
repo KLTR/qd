@@ -16,7 +16,7 @@ export class SourceInfoComponent implements OnInit {
   selectedInfo = 'apps';
   selectedIntel = 'deviceinfo';
   messages: any;
-
+  isServerError = false;
   constructor(private http: HttpService, private route: ActivatedRoute, private ws: WsService, private modalService: NgbModal) {
     this.ws.messages.subscribe(msg => this.catchWebSocketEvents(msg));
   }
@@ -48,9 +48,11 @@ export class SourceInfoComponent implements OnInit {
         if (res === this.data) {
           return;
         }
+        this.isServerError = false;
         console.log(res), (this.data = res);
       },
       err => {
+        this.isServerError = true;
         console.log(err);
       }
     );
