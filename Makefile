@@ -13,7 +13,7 @@ ifeq (${RELEASE},1)
 NG_BUILD_ARGS += --prod
 endif
 
-COMMON_VERSION ?= 0.1.5
+COMMON_VERSION ?= 0.1.6
 USE_NPM_SERVER_URL ?= http://npm.dev.swg.local:4873
 GIT_HASH_TAG ?= $(shell git rev-parse HEAD 2>/dev/null | tr / -)
 DOCKER_IMAGE_TAG ?= $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null | tr / -)

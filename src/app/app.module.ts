@@ -67,11 +67,11 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { AlertsModalComponent } from './components/system-bar/alerts/alerts-modal/alerts-modal.component';
 import { AlertsStripComponent } from './components/system-bar/alerts/alerts-strip/alerts-strip.component';
 import { BatteryComponent } from './components/system-bar/battery/battery.component';
+import { InternetComponent } from './components/system-bar/internet/internet.component';
 import { PioneerComponent } from './components/system-bar/pioneer/pioneer.component';
+import { StorageComponent } from './components/system-bar/storage/storage.component';
 // Components
 import { SystemBarComponent } from './components/system-bar/system-bar.component';
-import { StorageComponent } from './components/system-bar/storage/storage.component';
-import { InternetComponent } from './components/system-bar/internet/internet.component';
 import { ShimmerComponent } from './shimmer/shimmer.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
@@ -134,7 +134,6 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ScrollingModule,
     BrowserAnimationsModule,
     ScrollingModule,
     // Libraries

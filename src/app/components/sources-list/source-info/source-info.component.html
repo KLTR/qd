@@ -55,7 +55,7 @@
   <ng-template #noData>
     <div class="noData">
       <app-svg-icon [name]="!isServerError ?  'no_data' : 'server_error'" [size]="150"></app-svg-icon>
-      <span>{{!isServerError ?  'Nothing to show here' : 'Something went wrong'}}</span>
+      <span>{{!isServerError ?  'Nothing to show here' : 'Something went wrong' +' ('+errorText+')' }}</span>
     </div>
   </ng-template>
 
